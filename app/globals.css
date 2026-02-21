@@ -1,3 +1,147 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===============================
+   🎨 ROOT VARIABLES
+================================= */
+:root {
+  --color-text: #333;
+  --color-white: #ffffff;
+  --color-bg: #f8fafc;
+
+  --color-primary: #6A4DF4;
+  --color-primary-dark: #5538e0;
+  --color-primary-light: rgba(106, 77, 244, 0.12);
+
+  --color-bg-light: #f5f7ff;
+  --color-bg-soft: #eef1ff;
+
+  --color-border: #ccc;
+
+  --color-accent-purple: #6A4DF4;
+  --color-accent-yellow: #FFB800;
+}
+
+/* ===============================
+   🔤 BASE BODY STYLE
+================================= */
+body {
+  font-family: Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-white);
+  line-height: 1.6;
+}
+
+/* ===============================
+   🧱 RESET
+================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===============================
+   📦 CONTAINER
+================================= */
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-3 sm:px-4 lg:px-10;
+  }
+}
+
+/* ===============================
+   🎨 CUSTOM UTILITIES
+================================= */
+
+/* 🔥 GRADIENT BACKGROUND CLASS (IMPORTANT) */
+.bg-soft-gradient {
+  background: linear-gradient(
+    to right,
+    var(--color-bg-soft),
+    var(--color-bg-light)
+  );
+}
+
+/* Swiper dots */
+.swiper-pagination-bullet {
+  background: var(--color-border) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-accent-purple) !important;
+  width: 12px !important;
+  height: 12px !important;
+  border: 2px solid white !important;
+}
+
+/* marquee animation */
+.animate-slide {
+  display: inline-block;
+  white-space: nowrap;
+  animation: leftRight 3s linear infinite;
+}
+
+@keyframes leftRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #2b22be, #8153ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-light {
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.625rem 1.75rem;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.03125rem;
+  text-transform: uppercase;
+
+  color: #2563eb;
+
+  background-image: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.18),
+    rgba(59, 130, 246, 0.18)
+  );
+  border-radius: 999px;
+  /* 🔑 THIS FIXES THE TOP LINE */
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 10px 28px rgba(99, 102, 241, 0.22);  /* backdrop-filter: blur(6px); */
+}
+
+.courses-pill {
+  display: inline-block;
+  padding: 6px 18px;
+  font-size: 12px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border-radius: 999px;
+}

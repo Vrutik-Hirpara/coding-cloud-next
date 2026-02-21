@@ -1,11 +1,9 @@
-// app/api/endpoints/route.ts
+// src/lib/api.ts
 
-import { NextResponse } from "next/server";
-
-// 🔥 Base URL
+// 🔥 Base URL (backend)
 export const BASE_URL = "https://codingcloud.pythonanywhere.com";
 
-// 🔥 Correct endpoints (NO /api/)
+// 🔥 All API endpoints
 export const API = {
   CATEGORY: {
     LIST: `${BASE_URL}/category/`,
@@ -44,7 +42,8 @@ export const API = {
 
   REGISTER_MSG: {
     LIST: `${BASE_URL}/register_msg/`,
-    DELETE: (id: number | string) => `${BASE_URL}/register_msg/${id}/`,
+    DELETE: (id: number | string) =>
+      `${BASE_URL}/register_msg/${id}/`,
   },
 
   ARTICLES: {
@@ -52,15 +51,3 @@ export const API = {
     DETAIL: (id: number | string) => `${BASE_URL}/articles/${id}/`,
   },
 };
-
-// 🔥 API Route handler
-export async function GET() {
-  try {
-    return NextResponse.json(API);
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Failed to load endpoints" },
-      { status: 500 }
-    );
-  }
-}
