@@ -33,7 +33,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
           <img
             src={event.image}
             alt={event.title}
-            className="w-full h-72 object-cover group-hover:scale-110 transition duration-500"
+            className="w-[350px] h-[260px]  object-cover group-hover:scale-110 transition duration-500"
           />
 
           <div className="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-xs font-semibold">

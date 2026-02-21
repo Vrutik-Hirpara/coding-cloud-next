@@ -257,16 +257,21 @@ export default function Page() {
       </div>
 
       {/* 🔥 MAIN CONTENT */}
-      <div className="max-w-7xl mx-auto px-8 py-12 grid grid-cols-1 lg:grid-cols-[25%_70%] gap-0">
+     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+  {/* Mobile: Stack vertically, Desktop: Grid */}
+  <div className="flex flex-col lg:grid lg:grid-cols-[280px_1fr] gap-6 lg:gap-8">
+    
+    {/* LEFT SIDEBAR - Mobile: Normal, Desktop: Sticky */}
+    <div className="lg:sticky lg:top-[140px] lg:self-start">
+      <CourseSidebar course={course} />
+    </div>
 
-        {/* LEFT SIDEBAR */}
-        <CourseSidebar course={course} />
-
-        {/* RIGHT CONTENT */}
-        <div>
-          <CourseTabs course={course} events={eventsData} />
-        </div>
-      </div>
+    {/* RIGHT CONTENT - Full width on mobile */}
+    <div className="w-full">
+      <CourseTabs course={course} events={eventsData} />
+    </div>
+  </div>
+</div>
 
     <RelatedCourses events={eventsData} />
 

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* 🔥 minimum layout width */
+html, body {
+  min-width: 392px;
+}
 /* ===============================
    🎨 ROOT VARIABLES
 ================================= */
@@ -13,14 +18,22 @@
   --color-primary: #6A4DF4;
   --color-primary-dark: #5538e0;
   --color-primary-light: rgba(106, 77, 244, 0.12);
+  --color-light: #e5e7eb;
+  --color-dark: #0f172a;
 
   --color-bg-light: #f5f7ff;
   --color-bg-soft: #eef1ff;
+  --color-muted: #6b7280;
 
   --color-border: #ccc;
 
   --color-accent-purple: #6A4DF4;
   --color-accent-yellow: #FFB800;
+
+    --nav-height: 64px;
+  --nav-font: 14px;
+    --nav-gap: 24px;
+
 }
 
 /* ===============================

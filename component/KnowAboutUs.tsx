@@ -250,49 +250,63 @@ export default function KnowAboutUs() {
             <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
                 {/* ================= LEFT IMAGES ================= */}
-                <div className="relative h-[620px] hidden lg:block z-20">
+              <div className="relative overflow-visible h-[420px] sm:h-[500px] md:h-[580px] lg:h-[620px] z-20">
 
-                    {/* MAIN IMAGE */}
-                    <div className="absolute top-0">
-                        <Image
-                            src={about1}
-                            alt="About main"
-                            width={350}
-                            height={500}
-                            className="rounded"
-                            priority
-                        />
-                    </div>
+  {/* MAIN IMAGE (LEFT BIG) */}
+  <div className="absolute left-0 top-0 lg:absolute lg:top-0 z-10">
+    <Image
+      src={about1}
+      alt="About main"
+      width={350}
+      height={500}
+      className="rounded w-[220px] sm:w-[260px] md:w-[300px] lg:w-[300px]"
+      priority
+    />
+  </div>
 
-                    {/* TOP IMAGE (moves UP) */}
-                    <div
-                        ref={imgTopRef}
-                        className="absolute right-0 top-3"
-                    >
-                        <Image
-                            src={about2}
-                            alt="About top"
-                            width={250}
-                            height={200}
-                            className="rounded "
-                        />
-                    </div>
+  {/* TOP IMAGE (moves UP) */}
+  <div
+    ref={imgTopRef}
+    className="
+      absolute
+      right-0 top-[-10px]
+      sm:right-[10px] sm:top-[0px] 
+      md:right-[20px] md:top-[10px] 
+      lg:absolute lg:right-20 lg:top-12
+      z-20
+    "
+  >
+    <Image
+      src={about2}
+      alt="About top"
+      width={250}
+      height={200}
+      className="rounded w-[150px] sm:w-[180px] md:w-[200px] lg:w-[200px] "
+    />
+  </div>
 
-                    {/* BOTTOM IMAGE (moves DOWN) */}
-                    <div
-                        ref={imgBottomRef}
-                        className="absolute -right-[65px] -bottom-[30px]"
-                    >
-                        <Image
-                            src={about3}
-                            alt="About bottom"
-                            width={400}
-                            height={350}
-                            className="rounded "
-                        />
-                    </div>
+  {/* BOTTOM IMAGE (moves DOWN) */}
+  <div
+    ref={imgBottomRef}
+    className="
+      absolute
+      right-0 bottom-[-30px]
+      sm:right-[10px] sm:bottom-[-20px]
+      md:right-[20px] md:bottom-[-20px]
+      lg:absolute lg:-right-[65px] lg:-bottom-[30px]
+      z-30
+    "
+  >
+    <Image
+      src={about3}
+      alt="About bottom"
+      width={400}
+      height={350}
+      className="rounded w-[240px] sm:w-[280px] md:w-[320px] lg:w-[400px]"
+    />
+  </div>
 
-                </div>
+</div>
 
 
                 {/* ================= RIGHT CONTENT ================= */}

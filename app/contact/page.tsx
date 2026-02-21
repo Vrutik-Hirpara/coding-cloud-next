@@ -254,7 +254,7 @@ export default function ContactPage() {
           </motion.div>
 
           {/* RIGHT FORM */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
@@ -302,8 +302,55 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
               </button>
 
             </form>
-          </motion.div>
+          </motion.div> */}
+<motion.div
+  initial={{ opacity: 0, x: 80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: true }}
+  className="bg-white p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
+>
+  <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full uppercase tracking-wider">
+    EDUCATION FOR EVERYONE
+  </span>
 
+  <h2 className="text-xl md:text-4xl font-bold text-[var(--color-text)] mb-4 md:mb-6 leading-tight">
+    Get a Free Course You Can Contact With Me
+  </h2>
+
+  <form className="space-y-3 md:space-y-3">
+    <input
+      type="text"
+      placeholder="Name"
+      className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+    />
+
+    <input
+      type="email"
+      placeholder="Email"
+      className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+    />
+
+    <input
+      type="text"
+      placeholder="Your Subject"
+      className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+    />
+
+    <textarea
+      placeholder="Message"
+      rows={2}
+      className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent resize-none"
+    />
+
+    <button
+      type="submit"
+      className="w-full mt-2 md:mt-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white py-2.5 md:py-3 rounded-lg font-semibold hover:scale-[1.02] transition text-sm md:text-base"
+    >
+      GET IT NOW →
+    </button>
+  </form>
+</motion.div>
         </div>
       </section>
 

@@ -158,9 +158,9 @@ export default function AboutPage() {
     whileInView={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.6 }}
     viewport={{ once: true }}
-    className="lg:col-span-2 relative z-20"
+    className="lg:col-span-3 relative z-20"
   >
-    <div className="rounded-2xl p-10 backdrop-blur-md">
+    <div className="rounded-2xl p-10 backdrop-blur-md ">
 
       <div className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full">
         LEARNERS FEEDBACK
@@ -170,7 +170,7 @@ export default function AboutPage() {
         What Our <br /> Learners Say
       </h2>
 
-      <p className="text-gray-600 mb-8">
+      <p className="text-gray-600 mb-8 ">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Repudiandae consectetur adipisicing elit. Repudiandae
       </p>
@@ -184,7 +184,7 @@ export default function AboutPage() {
 
 
   {/* ================= RIGHT SIDE TESTIMONIALS (80%) ================= */}
-  <div className="lg:col-span-8 relative">
+  <div className="lg:col-span-7 relative">
 
     {/* LEFT FADE SHADOW */}
     <div className="hidden lg:block absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[var(--color-bg-soft)] to-transparent z-10" />
