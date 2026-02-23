@@ -167,18 +167,25 @@ export default function ContactPage() {
   const contactData = [
     {
       title: "Contact Phone Number",
-      values: ["+91 9537344018", "+91 9558216969"],
+      values: ["+91 95373 44018", "+91 95373 44018"],
       icon: <FaHeadphonesAlt />,
     },
     {
       title: "Our Email Address",
-      values: ["info@codingcloudinstitute.com"],
+      values: ["info@codingcloudinstitute.com","pune@codingcloudinstitute.com"],
       icon: <FaEnvelope />,
     },
     {
-      title: "Our Location",
+      title: "Head Office",
       values: [
         "Unit No, 201, 2nd Floor, Polaris, Near Noble Hospital, Hadapsar, Pune, Maharashtra 411060",
+      ],
+      icon: <FaMapMarkerAlt />,
+    },
+      {
+      title: "Branch",
+      values: [
+        "Office No. 401, 4th Floor, Sapphire Complex, C.G Road, Ahmedabad, Gujarat, 380009",
       ],
       icon: <FaMapMarkerAlt />,
     },
@@ -202,7 +209,7 @@ export default function ContactPage() {
 
       {/* ================= CONTACT CARDS ================= */}
       <section className="pb-16 md:pb-24">
-        <div className="container-custom grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="container-custom grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
 
           {contactData.map((item, i) => (
             <motion.div
@@ -362,7 +369,7 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
     <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)]">
 
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.886669550655!2d72.55469997455533!3d23.027933016129584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e837ae22fe273%3A0xe6c960874031d0f2!2sCODING%20CLOUD%20INSTITUTE%20%7C%20React%20js%20%2C%20Mern%20Stack%20%2C%20Data%20Science%20%2C%20Java%20%2CData%20Analyst%2CPython%20Training%20Classes%20in%20Ahmedabad!5e0!3m2!1sen!2sin!4v1771574626567!5m2!1sen!2sin"
+  src="https://www.google.com/maps?q=Office%20No.%20201%2C%202nd%20Floor%2C%20Polaris%20Building%2C%20Near%20Noble%20Hospital%2C%20Hadapsar%2C%20Pune%20411028&output=embed"
         width="100%"
         height="450"
         style={{ border: 0 }}

@@ -1131,6 +1131,303 @@
 //   );
 // }
 
+// "use client";
+
+// import { useState, useEffect } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { usePathname, useRouter } from "next/navigation";
+// import { API } from "@/lib/api";
+// import { motion } from "framer-motion";
+
+// // ICONS
+// import {
+//   FaInstagram, FaFacebookSquare, FaLinkedinIn, FaTwitter,
+//   FaChevronUp, FaSearch, FaBars, FaTimes,
+//   FaPython, FaJava, FaReact, FaNodeJs, FaAndroid, FaAws, FaPhp, FaCheckCircle
+// } from "react-icons/fa";
+
+// import {
+//   SiDjango, SiJavascript, SiFlutter, SiHtml5, SiC
+// } from "react-icons/si";
+
+// import { TbBrandCpp } from "react-icons/tb";
+// import { IoCallOutline } from "react-icons/io5";
+// import { BrainCircuit } from "lucide-react";
+// import { BsGraphUp } from "react-icons/bs";
+// import { MdOutlineScience } from "react-icons/md";
+
+// // ICON MAPPER
+// const getCourseIcon = (name: string) => {
+//   const n = name.toLowerCase();
+
+//   if (n.includes("python django")) return <SiDjango className="text-green-900 text-xl" />;
+//   if (n.includes("python")) return <FaPython className="text-yellow-500 text-2xl" />;
+//   if (n.includes("machine learning")) return <BrainCircuit className="text-pink-500 text-xl" />;
+//   if (n.includes("data science")) return <MdOutlineScience className="text-blue-400 text-2xl" />;
+//   if (n.includes("data analytics")) return <BsGraphUp className="text-yellow-600 text-xl" />;
+//   if (n.includes("testing")) return <FaCheckCircle className="text-red-500 text-xl" />;
+
+//   if (n.includes("javascript")) return <SiJavascript className="text-yellow-400 text-xl" />;
+//   if (n.includes("react")) return <FaReact className="text-blue-400 text-2xl" />;
+//   if (n.includes("node")) return <FaNodeJs className="text-green-600 text-2xl" />;
+//   if (n.includes("mern")) return <div className="flex text-xs"><FaReact /><FaNodeJs /></div>;
+//   if (n.includes("android")) return <FaAndroid className="text-green-500 text-2xl" />;
+//   if (n.includes("flutter")) return <SiFlutter className="text-blue-400 text-xl" />;
+
+//   if (n.includes("c++")) return <TbBrandCpp className="text-blue-700 text-2xl" />;
+//   if (n.includes("c programming")) return <SiC className="text-blue-500 text-2xl" />;
+//   if (n.includes("php")) return <FaPhp className="text-indigo-600 text-2xl" />;
+//   if (n.includes("java")) return <FaJava className="text-red-500 text-2xl" />;
+//   if (n.includes("web design")) return <SiHtml5 className="text-orange-500 text-xl" />;
+//   if (n.includes("aws")) return <FaAws className="text-orange-400 text-2xl" />;
+
+//   return <FaCheckCircle className="text-gray-400 text-xl" />;
+// };
+
+// export default function Navbar() {
+//   const pathname = usePathname();
+//   const router = useRouter();
+
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [courses, setCourses] = useState<any[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [scrolled, setScrolled] = useState(false);
+//   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+//   // FETCH COURSES
+//   useEffect(() => {
+//     const getCourses = async () => {
+//       try {
+//         const res = await fetch(API.COURSES.LIST, {
+//           cache: "no-store",
+//         });
+//         const data = await res.json();
+//         setCourses(data || []);
+//       } catch (err) {
+//         console.log(err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     getCourses();
+//   }, []);
+
+//   // Scroll effect
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setScrolled(window.scrollY > 20);
+//     };
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   // Close dropdown on pathname change
+//   useEffect(() => {
+//     setIsDropdownOpen(false);
+//     setIsMenuOpen(false);
+//   }, [pathname]);
+
+//   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  
+//   const handleDropdownMouseEnter = () => {
+//     setIsDropdownOpen(true);
+//   };
+
+//   const handleDropdownMouseLeave = () => {
+//     setIsDropdownOpen(false);
+//   };
+
+//   const handleCourseClick = (courseId: string) => {
+//     setIsDropdownOpen(false);
+//     setIsMenuOpen(false);
+//     router.push(`/courses/${courseId}`);
+//   };
+
+//   return (
+//     <motion.header 
+//       initial={{ y: -100 }}
+//       animate={{ y: 0 }}
+//       transition={{ duration: 0.5 }}
+//       className={`sticky top-0 z-[999] bg-white transition-shadow duration-300 ${
+//         scrolled ? "shadow-lg" : "shadow-sm"
+//       }`}
+//     >
+
+//       {/* TOP BAR - Visible on all devices */}
+//       <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-gray-400 text-xs sm:text-sm justify-between items-center px-3 sm:px-6 overflow-x-auto">
+//         <div className="flex gap-3 sm:gap-6 min-w-max">
+//           <motion.div 
+//             whileHover={{ scale: 1.05 }}
+//             className="flex items-center gap-1 sm:gap-2 hover:text-white cursor-pointer transition-colors"
+//           >
+//             <FaInstagram className="text-xs sm:text-base" /> 
+//             <span className="text-[10px] sm:text-sm">100K</span>
+//           </motion.div>
+//           <motion.div 
+//             whileHover={{ scale: 1.05 }}
+//             className="flex items-center gap-1 sm:gap-2 hover:text-white cursor-pointer transition-colors"
+//           >
+//             <FaFacebookSquare className="text-xs sm:text-base" /> 
+//             <span className="text-[10px] sm:text-sm">500K</span>
+//           </motion.div>
+//           <motion.div 
+//             whileHover={{ scale: 1.05 }}
+//             className="flex items-center gap-1 sm:gap-2 hover:text-white cursor-pointer transition-colors"
+//           >
+//             <IoCallOutline className="text-xs sm:text-base" /> 
+//             <span className="text-[10px] sm:text-sm">+91-9876543210</span>
+//           </motion.div>
+//         </div>
+        
+//         <div className="flex gap-2 sm:gap-4 min-w-max">
+//           {[FaInstagram, FaFacebookSquare, FaLinkedinIn, FaTwitter].map((Icon, i) => (
+//             <motion.div
+//               key={i}
+//               whileHover={{ scale: 1.2, rotate: 5 }}
+//               whileTap={{ scale: 0.9 }}
+//             >
+//               <Icon className="text-xs sm:text-base hover:text-white cursor-pointer transition-colors" />
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+
+//       {/* MAIN NAV */}
+//       <nav className="relative border-b border-gray-100">
+//         <div className="container mx-auto px-3 sm:px-4 lg:px-6 h-14 sm:h-16 md:h-20 flex items-center justify-between">
+
+//           {/* LOGO with animation */}
+//           <motion.div
+//             whileHover={{ scale: 1.05 }}
+//             whileTap={{ scale: 0.95 }}
+//           >
+//             <Link href="/" onClick={() => setIsDropdownOpen(false)}>
+//               <Image 
+//                 src="/logos/logo.png" 
+//                 alt="logo" 
+//                 width={130} 
+//                 height={40} 
+//                 className="w-[90px] sm:w-[110px] md:w-[130px] h-auto object-contain"
+//               />
+//             </Link>
+//           </motion.div>
+
+//           {/* DESKTOP MENU - Same for all screen sizes */}
+//           <div className="flex items-center gap-3 sm:gap-4 md:gap-8">
+//             <ul className="flex items-center gap-2 sm:gap-4 md:gap-8 font-bold text-gray-700">
+//               <motion.li whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
+//                 <Link 
+//                   href="/" 
+//                   onClick={() => setIsDropdownOpen(false)} 
+//                   className="hover:text-[var(--color-primary)] transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap"
+//                 >
+//                   Home
+//                 </Link>
+//               </motion.li>
+
+//               {/* COURSES with Hover Dropdown - Full Width */}
+//               <li 
+//                 className="relative py-3 sm:py-4 md:py-6"
+//                 onMouseEnter={handleDropdownMouseEnter}
+//                 onMouseLeave={handleDropdownMouseLeave}
+//               >
+//                 <motion.span 
+//                   whileHover={{ y: -2 }}
+//                   className="flex items-center gap-1 hover:text-[var(--color-primary)] text-xs sm:text-sm md:text-base whitespace-nowrap cursor-pointer"
+//                 >
+//                   Courses
+//                   <FaChevronUp className={`transition-transform duration-300 text-[10px] sm:text-xs ${isDropdownOpen ? 'rotate-180' : ''}`} />
+//                 </motion.span>
+
+//                 {/* Full Width Dropdown */}
+//                 {isDropdownOpen && (
+//                   <motion.div 
+//                     initial={{ opacity: 0, y: -10 }}
+//                     animate={{ opacity: 1, y: 0 }}
+//                     exit={{ opacity: 0, y: -10 }}
+//                     transition={{ duration: 0.2 }}
+//                     className="fixed left-0 w-screen bg-white shadow-2xl border-t z-50 py-6 sm:py-8"
+//                     style={{ 
+//                       top: scrolled ? '80px' : '96px',
+//                     }}
+//                   >
+//                     <div className="container mx-auto px-4 sm:px-6">
+//                       {loading ? (
+//                         <div className="text-center text-gray-400 py-8">Loading courses...</div>
+//                       ) : (
+//                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+//                           {courses.map((course: any) => (
+//                             <motion.div
+//                               key={course.id}
+//                               whileHover={{ scale: 1.05 }}
+//                               whileTap={{ scale: 0.95 }}
+//                               initial={{ opacity: 0, y: 10 }}
+//                               animate={{ opacity: 1, y: 0 }}
+//                               transition={{ duration: 0.2 }}
+//                             >
+//                               <button
+//                                 onClick={() => handleCourseClick(course.id)}
+//                                 className="w-full text-left flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-all border border-transparent hover:border-gray-200"
+//                               >
+//                                 <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center bg-gray-50 rounded-full flex-shrink-0">
+//                                   {getCourseIcon(course.name)}
+//                                 </div>
+//                                 <span className="text-[10px] sm:text-xs md:text-sm font-medium line-clamp-2">
+//                                   {course.name}
+//                                 </span>
+//                               </button>
+//                             </motion.div>
+//                           ))}
+//                         </div>
+//                       )}
+//                     </div>
+//                   </motion.div>
+//                 )}
+//               </li>
+
+//               <motion.li whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
+//                 <Link 
+//                   href="/about" 
+//                   onClick={() => setIsDropdownOpen(false)} 
+//                   className="hover:text-[var(--color-primary)] transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap"
+//                 >
+//                   About
+//                 </Link>
+//               </motion.li>
+
+//               <motion.li whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
+//                 <Link 
+//                   href="/contact" 
+//                   onClick={() => setIsDropdownOpen(false)} 
+//                   className="hover:text-[var(--color-primary)] transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap"
+//                 >
+//                   Contact
+//                 </Link>
+//               </motion.li>
+//             </ul>
+
+//             <motion.button 
+//               whileHover={{ scale: 1.05 }}
+//               whileTap={{ scale: 0.95 }}
+//               onClick={() => {
+//                 setIsDropdownOpen(false);
+//                 // Add your enroll logic here
+//               }}
+//               className="bg-[var(--color-primary)] text-white px-2 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
+//             >
+//               Enroll Now
+//             </motion.button>
+//           </div>
+//         </div>
+//       </nav>
+//     </motion.header>
+//   );
+// }
+
+
+
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -1139,7 +1436,6 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { API } from "@/lib/api";
 import { motion } from "framer-motion";
-
 // ICONS
 import {
   FaInstagram, FaFacebookSquare, FaLinkedinIn, FaTwitter,
@@ -1202,8 +1498,10 @@ export default function Navbar() {
         const res = await fetch(API.COURSES.LIST, {
           cache: "no-store",
         });
-        const data = await res.json();
-        setCourses(data || []);
+        // const data = await res.json();
+        // setCourses(data || []);
+        const json = await res.json();
+setCourses(Array.isArray(json.data) ? json.data : []);
       } catch (err) {
         console.log(err);
       } finally {
@@ -1238,11 +1536,11 @@ export default function Navbar() {
     setIsDropdownOpen(false);
   };
 
-  const handleCourseClick = (courseId: string) => {
-    setIsDropdownOpen(false);
-    setIsMenuOpen(false);
-    router.push(`/courses/${courseId}`);
-  };
+const handleCourseClick = (slug: string) => {
+  setIsDropdownOpen(false);
+  setIsMenuOpen(false);
+  router.push(`/courses/${slug}`);
+};
 
   return (
     <motion.header 
@@ -1367,7 +1665,7 @@ export default function Navbar() {
                               transition={{ duration: 0.2 }}
                             >
                               <button
-                                onClick={() => handleCourseClick(course.id)}
+                                onClick={() => handleCourseClick(course.slug)}
                                 className="w-full text-left flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-all border border-transparent hover:border-gray-200"
                               >
                                 <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center bg-gray-50 rounded-full flex-shrink-0">

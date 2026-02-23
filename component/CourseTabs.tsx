@@ -188,8 +188,8 @@ export default function CourseTabs({ course, events }: any) {
                 </ul>
             </section>
 
-            {/* 🔥 COURSE CONTENT */}
-            {/* <section
+
+            <section
                 id="content"
                 className="bg-white p-6 rounded-xl shadow border space-y-4"
             >
@@ -197,93 +197,59 @@ export default function CourseTabs({ course, events }: any) {
 
                 <div className="space-y-4">
 
-                    <div className="border rounded-lg p-4 space-y-3">
-                        <div className="flex justify-between items-center">
-                            <h4 className="font-semibold text-[var(--color-primary)]">
-                                Intro to Course
-                            </h4>
-                            <span className="text-xs bg-gray-200 px-2 py-1 rounded">
-                                {course.duration}
-                            </span>
-                        </div>
+                    {modules.map((mod, index) => {
+                        const isOpen = openId === mod.id;
 
-                        <div className="space-y-2 text-sm text-gray-600">
-                            <p>▶ Course Intro - 30 min</p>
-                            <p>▶ Watch Before Start - 5 min</p>
-                            <p>📄 Read Before You Start</p>
-                        </div>
-                    </div>
+                        return (
+                            <div
+                                key={mod.id}
+                                className="border rounded-xl overflow-hidden bg-gray-50"
+                            >
+                                {/* HEADER */}
+                                <button
+                                    onClick={() => setOpenId(isOpen ? null : mod.id)}
+                                    className="w-full flex items-center justify-between px-5 py-4 text-left"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-xl font-bold text-gray-700">+</span>
 
-                    <div className="border rounded-lg p-4">
-                        <div className="flex justify-between items-center">
-                            <h4 className="font-semibold text-[var(--color-primary)]">
-                                Course Fundamentals
-                            </h4>
-                            <span className="text-xs bg-gray-200 px-2 py-1 rounded">
-                                {course.lecture} Lectures
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-            <section
-  id="content"
-  className="bg-white p-6 rounded-xl shadow border space-y-4"
->
-  <h3 className="text-xl font-semibold">Course Content</h3>
-
-  <div className="space-y-4">
-
-    {modules.map((mod, index) => {
-      const isOpen = openId === mod.id;
-
-      return (
-        <div
-          key={mod.id}
-          className="border rounded-xl overflow-hidden bg-gray-50"
-        >
-          {/* HEADER */}
-          <button
-            onClick={() => setOpenId(isOpen ? null : mod.id)}
-            className="w-full flex items-center justify-between px-5 py-4 text-left"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-xl font-bold text-gray-700">+</span>
-
-              <h4 className="font-semibold text-[var(--color-primary)]">
+                                        {/* <h4 className="font-semibold text-[var(--color-primary)]">
                 Module {index + 1} - {mod.name}
-              </h4>
-            </div>
+              </h4> */}
+                                        <h4 className="font-semibold text-[var(--color-primary)]">
+                                            {mod.name}
+                                        </h4>
+                                    </div>
 
-            <span className="text-xl text-gray-500">
-              {isOpen ? "−" : "›"}
-            </span>
-          </button>
+                                    <span className="text-xl text-gray-500">
+                                        {isOpen ? "−" : "›"}
+                                    </span>
+                                </button>
 
-          {/* BODY */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.35 }}
-                className="px-5 pb-4 text-sm text-gray-600"
-              >
-                <div className="space-y-2">
-                  <p>▶ Lecture 1 - Introduction</p>
-                  <p>▶ Lecture 2 - Practical</p>
-                  <p>📄 Notes & Resources</p>
+                                {/* BODY */}
+                                <AnimatePresence>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.35 }}
+                                            className="px-5 pb-4 text-sm text-gray-600"
+                                        >
+                                            <div className="space-y-2">
+                                                <p>▶ Lecture 1 - Introduction</p>
+                                                <p>▶ Lecture 2 - Practical</p>
+                                                <p>📄 Notes & Resources</p>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        );
+                    })}
+
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      );
-    })}
-
-  </div>
-</section>
+            </section>
 
             {/* 🔥 REVIEW SECTION (UPDATED) */}
             <section

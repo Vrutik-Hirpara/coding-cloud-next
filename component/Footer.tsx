@@ -193,6 +193,8 @@
 // };
 
 // export default Footer;
+
+
 "use client";
 
 import Link from "next/link";
@@ -204,8 +206,7 @@ import Button from "./ui/Button";
 const Footer = () => {
   const our = [
     { id: 1, name: "Contact Us", link: "/contact" },
-    { id: 2, name: "Become Teacher", link: "#" },
-    { id: 3, name: "Blog", link: "/blogs" },
+    { id: 2, name: "Blog", link: "/blogs" },
   ];
 
   const linkIcon = [
@@ -248,7 +249,7 @@ const Footer = () => {
           </motion.div>
 
           {/* LINKS */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-12">
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-2">
 
             {/* COURSES */}
             <motion.div
@@ -262,7 +263,7 @@ const Footer = () => {
               </h3>
 
               <ul className="space-y-4 text-[var(--color-text)]">
-                {["Marketplace", "kindergarten", "University", "GYM Coaching", "FAQ"].map(
+                {["Java Programming", "MERN Stack ", "Data Science", "Machine Learnign", "Data Analytics"].map(
                   (item) => (
                     <li key={item}>
                       <Link
@@ -270,7 +271,7 @@ const Footer = () => {
                         className="relative group transition-colors duration-300 hover:text-[var(--color-primary)]"
                       >
                         {item}
-                        <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-100 group-hover:w-full" />
+                        <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full" />
                       </Link>
                     </li>
                   )
@@ -294,7 +295,7 @@ const Footer = () => {
                   <li key={item.id}>
                     <Link
                       href={item.link}
-                      className="relative group transition-colors duration-100 hover:text-[var(--color-primary)]"
+                      className="relative group transition-colors duration-300 hover:text-[var(--color-primary)]"
                     >
                       {item.name}
                       <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full" />
