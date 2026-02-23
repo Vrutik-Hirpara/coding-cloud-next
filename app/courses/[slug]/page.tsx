@@ -159,6 +159,7 @@ import event1 from "@/public/images/courses/course-online-01.jpg";
 import event2 from "@/public/images/courses/course-online-02.jpg";
 import user1 from "@/public/images/avatars/avatar-02.png";
 import user2 from "@/public/images/avatars/avatar-01.png";
+import { BASE_URL } from "@/lib/api";
 
 interface Course {
   id: number;
@@ -175,7 +176,11 @@ interface Course {
   certificate: string;
   category_details: { name: string };
 }
-
+const getImageUrl = (path: string) => {
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  return `${BASE_URL}${path}`;
+};
 export default function Page() {
   const { slug } = useParams();
   const [course, setCourse] = useState<Course | null>(null);
@@ -276,7 +281,14 @@ export default function Page() {
           animate={{ opacity: 1, scale: 1 }}
           className="relative h-[240px] md:h-[420px] rounded-2xl overflow-hidden shadow-xl border-4 border-white"
         >
-          <Image src={course.banner_img} alt="banner image" fill className="object-cover"  unoptimized/>
+          {/* <Image src={course.banner_img} alt="banner image" fill className="object-cover"  unoptimized/> */}
+        <Image
+  src={getImageUrl(course.banner_img || course.image)}
+  alt={course.name}
+  fill
+  className="object-cover"
+  unoptimized
+/>
         </motion.div>
       </div>
 

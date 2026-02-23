@@ -163,6 +163,7 @@ import { motion } from "framer-motion";
 import { FaHeadphonesAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import contactImg from '@/public/images/contact/contact.jpg'
+import { useState } from "react";
 export default function ContactPage() {
   const contactData = [
     {
@@ -190,7 +191,115 @@ export default function ContactPage() {
       icon: <FaMapMarkerAlt />,
     },
   ];
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  mobile: "",
+  subject: "",
+  message: "",
+});
 
+const [loading, setLoading] = useState(false);
+const [success, setSuccess] = useState(false);
+const [errors, setErrors] = useState<any>({});
+const [globalError, setGlobalError] = useState("");const handleChange = (e: any) => {
+  setForm({ ...form, [e.target.name]: e.target.value });
+};
+const validateForm = () => {
+  let newErrors: any = {};
+
+  // NAME
+  if (!form.name.trim()) {
+    newErrors.name = "Name is required";
+  }
+
+  // EMAIL
+  if (!form.email.trim()) {
+    newErrors.email = "Email is required";
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      newErrors.email = "Enter valid email";
+    }
+  }
+
+  // MOBILE
+  if (!form.mobile.trim()) {
+    newErrors.mobile = "Mobile number is required";
+  } else {
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(form.mobile)) {
+      newErrors.mobile = "Mobile must be 10 digits";
+    }
+  }
+
+  // SUBJECT
+  if (!form.subject.trim()) {
+    newErrors.subject = "Subject is required";
+  }
+
+  // MESSAGE
+  if (!form.message.trim()) {
+    newErrors.message = "Message is required";
+  }
+
+  setErrors(newErrors);
+
+  return Object.keys(newErrors).length === 0;
+};
+const handleSubmit = async (e: any) => {
+  e.preventDefault();
+
+  setGlobalError("");
+  setSuccess(false);
+
+  // 🔥 VALIDATE
+  if (!validateForm()) {
+    setGlobalError("⚠️ Please fix the errors below");
+    setTimeout(() => setGlobalError(""), 4000);
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const res = await fetch("https://codingcloud.pythonanywhere.com/contacts/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        full_name: form.name,
+        email: form.email,
+        mobile_no: form.mobile,
+        subject: form.subject,
+        message: form.message,
+      }),
+    });
+
+    if (res.ok) {
+      setSuccess(true);
+      setForm({
+        name: "",
+        email: "",
+        mobile: "",
+        subject: "",
+        message: "",
+      });
+      setErrors({});
+
+      setTimeout(() => setSuccess(false), 4000);
+    } else {
+      setGlobalError("❌ Something went wrong");
+      setTimeout(() => setGlobalError(""), 4000);
+    }
+  } catch (err) {
+    setGlobalError("❌ Server error");
+    setTimeout(() => setGlobalError(""), 4000);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="min-h-screen bg-soft-gradient">
 
@@ -310,7 +419,7 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
 
             </form>
           </motion.div> */}
-<motion.div
+{/* <motion.div
   initial={{ opacity: 0, x: 80 }}
   whileInView={{ opacity: 1, x: 0 }}
   transition={{ duration: 0.7 }}
@@ -356,6 +465,100 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
     >
       GET IT NOW →
     </button>
+  </form>
+</motion.div> */}
+
+<motion.div
+  initial={{ opacity: 0, x: 80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: true }}
+  className="bg-white p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
+>
+  <span className="inline-block px-4 py-1 mb-3 text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full uppercase tracking-wider">
+    EDUCATION FOR EVERYONE
+  </span>
+
+  <h2 className="text-xl md:text-4xl font-bold text-[var(--color-text)] mb-3 md:mb-5 leading-tight">
+    Get a Free Course You Can Contact With Me
+  </h2>
+{success && (
+  <p className="text-green-600 text-sm font-medium mb-2">
+    ✅ Message sent successfully!
+  </p>
+)}
+
+{globalError && (
+  <p className="text-red-500 text-sm font-medium mb-2">
+    {globalError}
+  </p>
+)}
+  {/* 🔥 FORM */}
+<form onSubmit={handleSubmit} className="space-y-2.5 md:space-y-3">    
+ <input
+  type="text"
+  name="name"
+  value={form.name}
+  onChange={handleChange}
+  placeholder="Name"
+  
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+/>
+{errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+<input
+  type="email"
+  name="email"
+  value={form.email}
+  onChange={handleChange}
+  placeholder="Email"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+/>
+{errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+    {/* 🔥 NEW MOBILE FIELD */}
+<input
+  type="tel"
+  name="mobile"
+  value={form.mobile}
+  onChange={(e) => {
+    const val = e.target.value.replace(/\D/g, "");
+    setForm({ ...form, mobile: val.slice(0, 10) });
+  }}
+  placeholder="Mobile Number"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+/>
+{errors.mobile && <p className="text-red-500 text-xs">{errors.mobile}</p>}
+
+<input
+  type="text"
+  name="subject"
+  value={form.subject}
+  onChange={handleChange}
+  placeholder="Your Subject"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+/>
+
+{/* 🔴 ERROR MESSAGE */}
+{errors.subject && (
+  <p className="text-red-500 text-xs mt-1">
+    {errors.subject}
+  </p>
+)}
+<textarea
+  name="message"
+  value={form.message}
+  onChange={handleChange}
+  placeholder="Message"
+  rows={1}
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+/>
+{errors.message && <p className="text-red-500 text-xs">{errors.message}</p>}
+<button
+  type="submit"
+  disabled={loading}
+  className="w-full mt-2 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white py-2.5 md:py-3 rounded-lg font-semibold hover:scale-[1.02] transition text-sm md:text-base"
+>
+  {loading ? "Sending..." : "GET IT NOW →"}
+</button>
   </form>
 </motion.div>
         </div>
