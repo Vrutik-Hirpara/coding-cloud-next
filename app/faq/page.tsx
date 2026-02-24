@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BASE_URL } from "@/lib/api";
 
 // 🔥 TYPE
 type FaqType = {
@@ -23,7 +24,7 @@ export default function Faq({ courseId }: { courseId: number }) {
     const fetchFaqs = async () => {
       try {
         const res = await fetch(
-          "https://codingcloud.pythonanywhere.com/faqs/"
+          `${BASE_URL}/faqs/`
         );
         const json = await res.json();
 

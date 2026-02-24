@@ -707,9 +707,7 @@ const getTopicsByModule = (moduleId: number) => {
                                     <Stars count={u.rating} />
                                     <p className="text-sm text-gray-600 mt-2">{u.review}</p>
 
-                                    <div className="flex gap-3 mt-3 text-gray-400 text-lg">
-                                        👍 👎
-                                    </div>
+                                  
                                 </div>
                             </motion.div>
                         ))

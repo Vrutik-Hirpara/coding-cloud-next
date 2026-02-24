@@ -225,12 +225,7 @@ export default function RelatedCourses() {
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <span className="text-xl font-bold text-gray-900">₹0</span>
-              <span className="text-sm line-through text-gray-400 ml-2">
-                ₹999
-              </span>
-            </div>
+           
 
             <button className="text-blue-600 font-semibold hover:underline">
               Learn More →

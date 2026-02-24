@@ -164,6 +164,7 @@ import { FaHeadphonesAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import contactImg from '@/public/images/contact/contact.jpg'
 import { useState } from "react";
+import { BASE_URL } from "@/lib/api";
 export default function ContactPage() {
   const contactData = [
     {
@@ -263,7 +264,7 @@ const handleSubmit = async (e: any) => {
   try {
     setLoading(true);
 
-    const res = await fetch("https://codingcloud.pythonanywhere.com/contacts/", {
+    const res = await fetch(`${BASE_URL}/contacts/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

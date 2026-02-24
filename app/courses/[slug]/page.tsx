@@ -190,7 +190,7 @@
       const getCourse = async () => {
         try {
           const res = await fetch(
-            `https://codingcloud.pythonanywhere.com/course/?slug=${slug}`
+            `${BASE_URL}/course/?slug=${slug}`
           );
 
           const json = await res.json();
