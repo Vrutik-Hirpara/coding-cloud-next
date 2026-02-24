@@ -22,7 +22,7 @@
 
 // interface Props {
 //   events: EventItem[];
-  
+
 // }
 
 // const EventsSection: React.FC<Props> = ({ events = [] }) => {
@@ -169,7 +169,7 @@ type EventItem = {
 
 interface Props {
   events: EventItem[];
-  
+
 }
 
 const EventsSection: React.FC<Props> = ({ events = [] }) => {
@@ -200,12 +200,12 @@ const EventsSection: React.FC<Props> = ({ events = [] }) => {
           {/* <span className="inline-block px-4 py-1 mb-5 text-sm font-bold text-white bg-white/20 rounded-full uppercase tracking-wider backdrop-blur-sm">
             SIMULATED TO TAKE PART IN?
           </span> */}
-<Pill
-  text="SIMULATED TO TAKE PART IN?"
-  textColor="#ffffff"
-  bgColor="rgba(255,255,255,0.2)"
-  blur="blur(6px)"
-/>
+          <Pill
+            text="SIMULATED TO TAKE PART IN?"
+            textColor="#ffffff"
+            bgColor="rgba(255,255,255,0.2)"
+            blur="blur(6px)"
+          />
           <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
             Upcoming Events
           </h2>
@@ -235,9 +235,9 @@ const EventsSection: React.FC<Props> = ({ events = [] }) => {
             ref={scrollRef}
             className="flex p-2 overflow-x-auto gap-6 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"
           >
-          {events.map((ev) => (
-  <EventCard key={ev.id} event={ev} />
-))}
+            {events.map((ev) => (
+              <EventCard key={ev.id} event={ev} />
+            ))}
           </div>
         </div>
       </div>

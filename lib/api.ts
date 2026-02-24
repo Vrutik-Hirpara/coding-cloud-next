@@ -8,6 +8,9 @@ export const API = {
   CATEGORY: {
     LIST: `${BASE_URL}/category/`,
     DETAIL: (id: number | string) => `${BASE_URL}/category/${id}/`,
+
+        TOTALS: `${BASE_URL}/category_totals/`,
+
   },
 
   COURSES: {

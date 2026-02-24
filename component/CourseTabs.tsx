@@ -633,7 +633,13 @@ const getTopicsByModule = (moduleId: number) => {
 
                 </div>
             </section>
-
+{/* 🔥 FAQ SECTION */}
+<section
+  id="faq"
+  className=""
+>
+  <Faq courseId={course.id} />
+</section>
             {/* 🔥 REVIEW SECTION (UPDATED) */}
             <section
                 id="review"
@@ -711,18 +717,12 @@ const getTopicsByModule = (moduleId: number) => {
                 </div>
             </section>
 
-{/* 🔥 FAQ SECTION */}
-<section
-  id="faq"
-  className="bg-white p-6 rounded-xl shadow border space-y-5"
->
-  <Faq courseId={course.id} />
-</section>
+
 
 
 
             {/* 🔥 EVENTS */}
-            <section className="pt-10">
+            {/* <section className="pt-10">
                 <h2 className="text-2xl font-bold mb-6">Upcoming Events</h2>
 
                 <div className="flex gap-6 overflow-x-auto pb-6">
@@ -730,7 +730,7 @@ const getTopicsByModule = (moduleId: number) => {
                         <EventCard key={ev.id} event={ev} />
                     ))}
                 </div>
-            </section>
+            </section> */}
 
         </div>
     );

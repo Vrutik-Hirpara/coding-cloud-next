@@ -305,102 +305,104 @@ const [isEnrollOpen, setIsEnrollOpen] = useState<boolean>(false);
         <FaTimes />
       </button>
 
-      <h2 className="text-xl font-bold mb-4">Enroll Now</h2>
+   <h2 className="text-2xl font-bold mb-1 text-gray-800">🎓 Enroll Now</h2>
+<p className="text-sm text-gray-500 mb-3">
+  Fill the form below to enroll in your desired course. Our team will contact you shortly 🚀
+</p>
+<p className="text-xs text-gray-400 mb-4">* All fields are required</p>
 
-      <form
-        onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
+<form
+  onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
 
-          const formData = new FormData(e.currentTarget);
+    const first_name = (formData.get("first_name") as string).trim();
+    const last_name = (formData.get("last_name") as string).trim();
+    const email = (formData.get("email") as string).trim();
+    const mobile = (formData.get("mobile") as string).trim();
+    const city = (formData.get("city") as string).trim();
+    const course_id = Number(formData.get("course_id"));
+    const course_name = (formData.get("course_name") as string).trim();
 
-      const first_name = (formData.get("first_name") as string).trim();
-const last_name = (formData.get("last_name") as string).trim();
-const email = (formData.get("email") as string).trim();
-const mobile = (formData.get("mobile") as string).trim();
-const city = (formData.get("city") as string).trim();
-const course_id = Number(formData.get("course_id"));
-const course_name = (formData.get("course_name") as string).trim();
+    if (!first_name || !last_name || !email || !mobile || !city || !course_id) {
+      alert("⚠️ Please fill all fields");
+      return;
+    }
 
-// 🔥 VALIDATION
-if (!first_name || !last_name || !email || !mobile || !city || !course_id) {
-  alert("⚠️ Please fill all fields");
-  return;
-}
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("⚠️ Invalid Email Address");
+      return;
+    }
 
-// email validation
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if (!emailRegex.test(email)) {
-  alert("⚠️ Invalid Email Address");
-  return;
-}
+    if (!/^[0-9]{10}$/.test(mobile)) {
+      alert("⚠️ Enter valid 10 digit mobile number");
+      return;
+    }
 
-// mobile validation (10 digit)
-if (!/^[0-9]{10}$/.test(mobile)) {
-  alert("⚠️ Enter valid 10 digit mobile number");
-  return;
-}
+    const payload = {
+      first_name,
+      last_name,
+      email,
+      mobile,
+      city,
+      course_id,
+      course_name,
+    };
 
-const payload = {
-  first_name,
-  last_name,
-  email,
-  mobile,
-  city,
-  course_id,
-  course_name,
-};
+    try {
+      const res = await fetch("https://codingcloud.pythonanywhere.com/enroll/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-          try {
-            const res = await fetch("https://codingcloud.pythonanywhere.com/enroll/", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
+      if (res.ok) {
+        alert("🎉 Enrollment Successful!");
+        setIsEnrollOpen(false);
+        router.push("/");
+      } else {
+        alert("❌ Failed to enroll");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error ❌");
+    }
+  }}
+  className="grid gap-3"
+>
+  <input name="first_name" placeholder="First Name" required className="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none" />
+  <input name="last_name" placeholder="Last Name" required className="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none" />
+  <input name="email" type="email" placeholder="Email" required className="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none" />
+  <input name="mobile" placeholder="Mobile" required className="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none" />
+  <input name="city" placeholder="City" required className="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none" />
 
-            if (res.ok) {
-              alert("🎉 Enrollment Successful!");
-              setIsEnrollOpen(false);
-            //  setTimeout(() => {
-  router.push("/");
-// }, 3000);
-            } else {
-              alert("❌ Failed to enroll");
-            }
-          } catch (err) {
-            console.error(err);
-            alert("Server error ❌");
-          }
-        }}
-        className="grid gap-3"
-      >
-        <input name="first_name" placeholder="First Name" required className="border p-2 rounded" />
-        <input name="last_name" placeholder="Last Name" required className="border p-2 rounded" />
-        <input name="email" type="email" placeholder="Email" required className="border p-2 rounded" />
-        <input name="mobile" placeholder="Mobile" required className="border p-2 rounded" />
-        <input name="city" placeholder="City" required className="border p-2 rounded" />
+  <select
+    name="course_id"
+    required
+    className="border p-2 rounded focus:ring-2 focus:ring-purple-400 outline-none"
+    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+      const selected = courses.find((c: any) => c.id == e.target.value);
+      const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
+      if (input) input.value = selected?.name || "";
+    }}
+  >
+    <option value="">Select Course</option>
+    {courses.map((c: any) => (
+      <option key={c.id} value={c.id}>{c.name}</option>
+    ))}
+  </select>
 
-        <select
-          name="course_id"
-          required
-          className="border p-2 rounded"
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            const selected = courses.find((c: any) => c.id == e.target.value);
-            const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
-            if (input) input.value = selected?.name || "";
-          }}
-        >
-          <option value="">Select Course</option>
-          {courses.map((c: any) => (
-            <option key={c.id} value={c.id}>{c.name}</option>
-          ))}
-        </select>
+  <input type="hidden" name="course_name" />
 
-        <input type="hidden" name="course_name" />
-
-        <button className="bg-[var(--color-primary)] text-white py-2 rounded">
-          Submit
-        </button>
-      </form>
+  {/* 🚀 Attractive Button */}
+  <button
+    type="submit"
+    className="mt-2 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 rounded-lg font-semibold shadow-md hover:scale-[1.02] hover:shadow-lg transition-all duration-200"
+  >
+    🎓 Enroll Now
+  </button>
+</form>
     </div>
   </div>
 )}

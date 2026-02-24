@@ -195,6 +195,8 @@
 //     </div>
 //   );
 // }
+
+
 "use client";
 
 import CardSlider from "@/component/CardSlider";
@@ -339,7 +341,7 @@ const eventsData = [
       </section>
 
       {/* EVENTS */}
-      <EventsSection events={eventsData} />
+      {/* <EventsSection events={eventsData} /> */}
 
       {/* BLOG */}
 
