@@ -373,16 +373,16 @@ export default function CourseTabs({ course, events }: any) {
                                 viewport={{ once: true }}
                                 className="flex gap-4 border-b pb-6"
                             >
-                              <div className="w-16 h-16 relative rounded-lg overflow-hidden bg-gray-100">
-  <Image
-    src={getFullImageUrl(u.image) || "/images/avatar-fallback.png"}
-    alt={u.name || "User"}
-    fill
-    sizes="64px"
-    unoptimized
-    className="object-cover"
-  />
-</div>
+                                <div className="w-16 h-16 relative rounded-lg overflow-hidden bg-gray-100">
+                                    <Image
+                                        src={getFullImageUrl(u.image) || "/images/avatar-fallback.png"}
+                                        alt={u.name || "User"}
+                                        fill
+                                        sizes="64px"
+                                        unoptimized
+                                        className="object-cover"
+                                    />
+                                </div>
 
                                 <div className="flex-1">
                                     <h5 className="font-semibold">{u.name}</h5>

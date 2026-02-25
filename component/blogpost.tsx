@@ -132,6 +132,8 @@
 //     </section>
 //   );
 // }
+
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -140,6 +142,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Button from "./ui/Button";
 import { BASE_URL } from "@/lib/api";
+import Heading from "./ui/Heading";
+import Pill from "./ui/Pill";
 
 interface Blog {
   id: number;
@@ -178,32 +182,38 @@ export default function BlogPost() {
       <div className="container-custom">
 
         {/* HEADER */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
-          <div>
-            <span className="hero-badge mb-3">BLOG POST</span>
+       <div className="flex flex-col md:flex-row md:items-center md:justify-center mb-10">
 
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-dark)]">
-              Latest Blog & Articles
-            </h2>
-          </div>
+  {/* LEFT SIDE (Heading + Pill) */}
+  <div className="flex flex-col items-center">
 
-          {/* <Link
-            href="/articles"
-            className="mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] transition"
-          >
-            See All Articles →
-          </Link> */}
+    <Pill
+      text="Blog Post"
+      textColor="var(--color-primary)"
+      bgColor="var(--color-primary-light)"
+    />
+
+    <Heading
+      title={<>Latest Blog & Article</>}
+      align="left"
+    />
+
+  </div>
 
 
-          <Button
-            className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 mt-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
-          >
-            <Link href="/blogs">
-              See All Blogs →
-            </Link>
-          </Button>
-        </div>
 
+</div>
+  {/* RIGHT SIDE BUTTON */}
+  <div className="mt-4 md:mt-0 flex md:justify-end">
+    <Button
+      className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] 
+      text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
+    >
+      <Link href="/blogs">
+        See All Blogs →
+      </Link>
+    </Button>
+  </div>
         {/* GRID */}
         <div className="grid lg:grid-cols-2 gap-8">
 
@@ -214,27 +224,27 @@ export default function BlogPost() {
             transition={{ duration: 0.6 }}
             className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
           >
-          <div className="relative h-[220px] sm:h-[260px] md:h-[320px] w-full overflow-hidden rounded-xl">
-  <Image
-    src={BASE_URL + mainBlog.featured_image}
-    alt={mainBlog.title}
-    fill
-    sizes="(max-width: 768px) 100vw, 600px"
-    priority
-    unoptimized
-    className="object-fill transition-transform duration-500 hover:scale-105"
-  />
+            <div className="relative h-[260px] sm:h-[320px] md:h-[380px] w-full overflow-hidden rounded-t-xl">
+              <Image
+                src={BASE_URL + mainBlog.featured_image}
+                alt={mainBlog.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                priority
+                unoptimized
+                className="object-fill transition-transform duration-500 hover:scale-105"
+              />
 
-  {/* optional overlay for readability */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
-</div>
+              {/* optional overlay for readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+            </div>
 
             <div className="p-6">
-              <h3 className="text-2xl font-bold text-[var(--color-dark)] mb-2">
+              <h3 className="text-2xl font-bold text-[var(--color-dark)]">
                 {mainBlog.title}
               </h3>
 
-              <p className="text-[var(--color-muted)] mb-4">
+              <p className="text-[var(--color-muted)]">
                 {mainBlog.short_description}
               </p>
 
@@ -257,16 +267,16 @@ export default function BlogPost() {
                 transition={{ delay: index * 0.2 }}
                 className="bg-white rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition"
               >
-               <div className="relative w-32 sm:w-40 h-24 sm:h-28 rounded-xl overflow-hidden flex-shrink-0">
-  <Image
-    src={BASE_URL + blog.featured_image}
-    alt={blog.title}
-    fill
-    sizes="(max-width: 640px) 128px, 160px"
-    unoptimized
-    className="object-cover transition-transform duration-300 hover:scale-105"
-  />
-</div>
+                <div className="relative w-32 sm:w-40 h-24 sm:h-28 rounded-xl overflow-hidden flex-shrink-0">
+                  <Image
+                    src={BASE_URL + blog.featured_image}
+                    alt={blog.title}
+                    fill
+                    sizes="(max-width: 640px) 128px, 160px"
+                    unoptimized
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
 
                 <div>
                   <h4 className="font-bold text-lg text-[var(--color-dark)] mb-1 line-clamp-2">

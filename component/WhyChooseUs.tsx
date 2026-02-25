@@ -16,7 +16,7 @@
 //   return (
 //     <section className="py-20 bg-[var(--color-bg-light)] overflow-hidden">
 //       <div className="container-custom text-center">
-        
+
 //         {/* Badge */}
 //         <span className="inline-block px-4 py-1 mb-5 text-sm font-semibold text-[var(--color-primary)] bg-blue-100 rounded-full uppercase tracking-wider">
 //           Why Choose Us
@@ -40,7 +40,7 @@
 
 //               return (
 //                 <div key={index} className="relative">
-                  
+
 //                   {/* Dot + Vertical Line */}
 //                   <div className="hidden md:flex flex-col items-center absolute top-0 left-1/2 -translate-x-1/2 w-full -z-0">
 //                     <div className="w-5 h-5 bg-white border-4 border-[var(--color-primary)] rounded-full -mt-2.5 z-10"></div>
@@ -87,6 +87,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Pill from "./ui/Pill";
+import Heading from "../component/ui/Heading";
 
 const CountUp = dynamic(
   () => import("react-countup").then((mod) => mod.default),
@@ -112,17 +113,20 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
         {/* <span className="inline-block px-4 py-1 mb-5 text-sm font-semibold text-[var(--color-primary)] bg-blue-100 rounded-full uppercase tracking-wider">
           Why Choose Us
         </span> */}
-<Pill 
-  text="Why Choose Us"
-  textColor="var(--color-primary)"
-  bgColor="var(--color-primary-light)"
-/>
+        <Pill
+          text="Why Choose Us"
+          textColor="var(--color-primary)"
+          bgColor="var(--color-primary-light)"
+        />
         {/* Heading */}
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-20">
-          Creating A Community Of
-          <br className="hidden md:block" />
-          Life Long Learners.
-        </h2>
+        <Heading
+          title={
+            <>
+              Creating A Community Of <br />
+              Life Long Learners.
+            </>
+          }
+        />
 
         <div className="relative">
 
@@ -147,7 +151,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
 
                   {/* DOT + LINE */}
                   <div className="hidden md:flex flex-col items-center absolute top-0 left-1/2 -translate-x-1/2">
-                    
+
                     {/* dot centered on line */}
                     <div className="w-5 h-5 bg-white border-4 border-[var(--color-primary)] rounded-full translate-y-[11px] z-10"></div>
 
@@ -157,9 +161,8 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
 
                   {/* CARD */}
                   <div
-                    className={`bg-white w-full max-w-[280px] p-8 pt-16 pb-12 rounded-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${
-                      isLower ? "mt-28" : "mt-16"
-                    }`}
+                    className={`bg-white w-full max-w-[280px] p-8 pt-16 pb-12 rounded-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${isLower ? "mt-28" : "mt-16"
+                      }`}
                   >
                     {/* icon */}
                     <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 ring-8 ring-white text-pink-500 text-2xl transition-transform duration-300 group-hover:scale-110">
@@ -168,12 +171,12 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
 
                     {/* number */}
                     <h3 className="text-4xl font-bold text-gray-900">
-<CountUp
-  end={stat.number}
-  duration={2}
-  enableScrollSpy
-//   scrollSpyOnce
-/>+
+                      <CountUp
+                        end={stat.number}
+                        duration={2}
+                        enableScrollSpy
+                      //   scrollSpyOnce
+                      />+
                     </h3>
 
                     {/* label */}

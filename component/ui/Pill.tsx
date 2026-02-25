@@ -1,32 +1,3 @@
-// "use client";
-
-// import React from "react";
-
-// type PillProps = {
-//   text: string;
-//   textColor?: string;        // text color
-//   bgColor?: string;          // background color
-//   className?: string;
-// };
-
-// export default function Pill({
-//   text,
-//   textColor = "#f43f5e",     // default pink
-//   bgColor = "#fdecec",       // default light pink
-//   className = "",
-// }: PillProps) {
-//   return (
-//     <span
-//       className={`courses-pill inline-block w-fit ${className}`}
-//       style={{
-//         color: textColor,
-//         backgroundColor: bgColor,
-//       }}
-//     >
-//       {text}
-//     </span>
-//   );
-// }
 
 "use client";
 

@@ -301,15 +301,15 @@ export default function CardSlider() {
                   {card.tag}
                 </div>
 
-               <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
-  <Image
-    src="https://i.pravatar.cc/300?img=5"
-    alt="avatar"
-    fill
-    sizes="(max-width: 640px) 64px, 80px"
-    className="object-cover"
-  />
-</div>
+                <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
+                  <Image
+                    src="https://i.pravatar.cc/300?img=5"
+                    alt="avatar"
+                    fill
+                    sizes="(max-width: 640px) 64px, 80px"
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
               {/* BODY */}

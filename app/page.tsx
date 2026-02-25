@@ -222,6 +222,8 @@ import EventsSection from "@/component/EventsSection";
 import '../app/globals.css'
 import Pill from "@/component/ui/Pill";
 import BlogPost from "@/component/blogpost";
+import KidsCoursesSection from "@/component/KidsCoursesSection";
+import Heading from "@/component/ui/Heading";
 // ============================
 // MAIN HOME PAGE
 // ============================
@@ -252,56 +254,56 @@ export default function HomePage() {
   ];
 
   // ================= EVENTS DATA =================
-const eventsData = [
-  {
-    id: 1,
-    image: event1.src,
-    title: "React Bootcamp",
-    subtitle: "Development",
-    author: "Coding Cloud",
-    dateRange: "10 - 15 Feb",
-    lessons: 12,
-    students: 50,
-    reviews: 10,
-    price: "$70",
-    oldPrice: "$120",
-    category: "Web",
-    instructor: "John",
-    instructorImage: user1.src,
-  },
-  {
-    id: 2,
-    image: event2.src,
-    title: "JavaScript Mastery",
-    subtitle: "Programming",
-    author: "Coding Cloud",
-    dateRange: "18 - 22 Feb",
-    lessons: 18,
-    students: 80,
-    reviews: 25,
-    price: "$60",
-    oldPrice: "$100",
-    category: "Programming",
-    instructor: "Emily",
-    instructorImage: user2.src,
-  },
-  {
-    id: 3,
-    image: event3.src,
-    title: "UI/UX Design Bootcamp",
-    subtitle: "Design",
-    author: "Coding Cloud",
-    dateRange: "1 - 5 Mar",
-    lessons: 20,
-    students: 65,
-    reviews: 30,
-    price: "$50",
-    oldPrice: "$90",
-    category: "Design",
-    instructor: "Michael",
-    instructorImage: user3.src,
-  },
-];
+  const eventsData = [
+    {
+      id: 1,
+      image: event1.src,
+      title: "React Bootcamp",
+      subtitle: "Development",
+      author: "Coding Cloud",
+      dateRange: "10 - 15 Feb",
+      lessons: 12,
+      students: 50,
+      reviews: 10,
+      price: "$70",
+      oldPrice: "$120",
+      category: "Web",
+      instructor: "John",
+      instructorImage: user1.src,
+    },
+    {
+      id: 2,
+      image: event2.src,
+      title: "JavaScript Mastery",
+      subtitle: "Programming",
+      author: "Coding Cloud",
+      dateRange: "18 - 22 Feb",
+      lessons: 18,
+      students: 80,
+      reviews: 25,
+      price: "$60",
+      oldPrice: "$100",
+      category: "Programming",
+      instructor: "Emily",
+      instructorImage: user2.src,
+    },
+    {
+      id: 3,
+      image: event3.src,
+      title: "UI/UX Design Bootcamp",
+      subtitle: "Design",
+      author: "Coding Cloud",
+      dateRange: "1 - 5 Mar",
+      lessons: 20,
+      students: 65,
+      reviews: 30,
+      price: "$50",
+      oldPrice: "$90",
+      category: "Design",
+      instructor: "Michael",
+      instructorImage: user3.src,
+    },
+  ];
 
   // ================= RENDER =================
   return (
@@ -326,26 +328,29 @@ const eventsData = [
             EDUCATION FOR EVERYONE
           </span> */}
           <Pill
-  text="Education For Everywhere"
-  textColor="var(--color-primary)"
-  bgColor="var(--color-primary-light)"
-/>
+            text="Education For Everywhere"
+            textColor="var(--color-primary)"
+            bgColor="var(--color-primary-light)"
+          />
 
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
-            People like Coding Cloud education.
-            <br />
-            No joking - here’s the proof!
-          </h2>
+          <Heading
+            title={
+              <>
+                People like Coding Cloud education. <br />
+                No joking - here’s the proof!
+              </>
+            }
+          />
         </div>
 
         <TestimonialSection />
       </section>
 
       {/* EVENTS */}
-      {/* <EventsSection events={eventsData} /> */}
-
+      <EventsSection events={eventsData} />
+      <KidsCoursesSection events={eventsData} />
       {/* BLOG */}
-<BlogPost/>
+      <BlogPost />
     </div>
   );
 }

@@ -166,26 +166,26 @@
 
 //         {/* BOTTOM */}
 
-        // <motion.div
-        //   initial={{ opacity: 0, y: 20 }}
-        //   whileInView={{ opacity: 1, y: 0 }}
-        //   transition={{ delay: 0.4, duration: 0.6 }}
-        //   viewport={{ once: true }}
-        //   className="border-t border-[var(--color-border)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--color-text)]"
-        // >
-        //   <p>
-        //     Copyright © 2025 <span className="font-semibold">Coding Cloud</span>. All Rights Reserved
-        //   </p>
+// <motion.div
+//   initial={{ opacity: 0, y: 20 }}
+//   whileInView={{ opacity: 1, y: 0 }}
+//   transition={{ delay: 0.4, duration: 0.6 }}
+//   viewport={{ once: true }}
+//   className="border-t border-[var(--color-border)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--color-text)]"
+// >
+//   <p>
+//     Copyright © 2025 <span className="font-semibold">Coding Cloud</span>. All Rights Reserved
+//   </p>
 
-        //   <div className="flex items-center gap-6">
-        //     <Link href="#" className="hover:text-[var(--color-primary)]">
-        //       Terms of service
-        //     </Link>
-        //     <Link href="/privacy" className="hover:text-[var(--color-primary)]">
-        //       Privacy policy
-        //     </Link>
-        //   </div>
-        // </motion.div>
+//   <div className="flex items-center gap-6">
+//     <Link href="#" className="hover:text-[var(--color-primary)]">
+//       Terms of service
+//     </Link>
+//     <Link href="/privacy" className="hover:text-[var(--color-primary)]">
+//       Privacy policy
+//     </Link>
+//   </div>
+// </motion.div>
 
 //       </div>
 //     </footer>
@@ -286,38 +286,38 @@ const Footer = () => {
 
           {/* BRAND */}
           <motion.div
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="lg:col-span-4 flex flex-col items-start"
->
-  {/* LOGO */}
-  <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
-    <Image
-      src="/logos/logo.png"
-      alt="Coding Cloud"
-      fill
-      sizes="(max-width: 640px) 150px, 170px"
-      className="object-contain"
-      priority
-    />
-  </div>
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="lg:col-span-4 flex flex-col items-start"
+          >
+            {/* LOGO */}
+            <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
+              <Image
+                src="/logos/logo.png"
+                alt="Coding Cloud"
+                fill
+                sizes="(max-width: 640px) 150px, 170px"
+                className="object-contain"
+                priority
+              />
+            </div>
 
-  {/* DESCRIPTION */}
-  <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm">
-    We’re always in search for talented and motivated people.
-  </p>
+            {/* DESCRIPTION */}
+            <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm">
+              We’re always in search for talented and motivated people.
+            </p>
 
-  {/* BUTTON */}
-  <Button
-    href="/contact"
-    icon={FaArrowRight}
-    className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
-  >
-    Contact With Us
-  </Button>
-</motion.div>
+            {/* BUTTON */}
+            <Button
+              href="/contact"
+              icon={FaArrowRight}
+              className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+            >
+              Contact With Us
+            </Button>
+          </motion.div>
 
           {/* LINKS */}
           <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -403,29 +403,29 @@ const Footer = () => {
               </div>
 
               {/* SOCIAL */}
-           <div className="flex gap-4">
-  {linkIcon.map((data) => {
-    const Icon = data.icon;
-    return (
-      <motion.a
-        key={data.id}
-        href={data.link}
-        target="_blank"
-        initial={{ y: 0, scale: 1 }}
-        whileHover={{ y: -6, scale: 1.08 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{
-          type: "spring",
-          stiffness: 300,
-          damping: 18,
-        }}
-        className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-primary)] hover:text-[var(--color-white)] hover:shadow-lg"
-      >
-        <Icon size={15} />
-      </motion.a>
-    );
-  })}
-</div>
+              <div className="flex gap-4">
+                {linkIcon.map((data) => {
+                  const Icon = data.icon;
+                  return (
+                    <motion.a
+                      key={data.id}
+                      href={data.link}
+                      target="_blank"
+                      initial={{ y: 0, scale: 1 }}
+                      whileHover={{ y: -6, scale: 1.08 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 18,
+                      }}
+                      className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-primary)] hover:text-[var(--color-white)] hover:shadow-lg"
+                    >
+                      <Icon size={15} />
+                    </motion.a>
+                  );
+                })}
+              </div>
             </motion.div>
 
 
