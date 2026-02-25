@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { API } from "@/lib/api";
+import { API, BASE_URL } from "@/lib/api";
 import { motion } from "framer-motion";
 // ICONS
 import {
@@ -351,7 +351,7 @@ const [isEnrollOpen, setIsEnrollOpen] = useState<boolean>(false);
     };
 
     try {
-      const res = await fetch("https://codingcloud.pythonanywhere.com/enroll/", {
+      const res = await fetch(`${BASE_URL}/enroll/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

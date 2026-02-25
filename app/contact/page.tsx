@@ -355,20 +355,25 @@ const handleSubmit = async (e: any) => {
       <section className="pb-20 md:pb-24">
 <div className="container-custom max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-10 items-stretch">
           {/* LEFT IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="relative w-full h-[500px] md:h-[520px] rounded-2xl overflow-hidden shadow-lg"
-          >
-            <Image
-              src={contactImg}
-              alt="Contact"
-              fill
-              className="object-cover"
-            />
-          </motion.div>
+       <motion.div
+  initial={{ opacity: 0, x: -80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: true }}
+  className="relative w-full h-[320px] sm:h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-lg"
+>
+  <Image
+    src={contactImg}
+    alt="Contact"
+    fill
+    sizes="(max-width: 768px) 100vw, 50vw"
+    priority
+    className="object-cover transition-transform duration-500 hover:scale-105"
+  />
+
+  {/* optional overlay */}
+  <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+</motion.div>
 
           {/* RIGHT FORM */}
           {/* <motion.div

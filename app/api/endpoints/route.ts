@@ -1,9 +1,9 @@
 // app/api/endpoints/route.ts
 
+import { BASE_URL } from "@/lib/api";
 import { NextResponse } from "next/server";
 
 // 🔥 Base URL
-export const BASE_URL = "https://codingcloud.pythonanywhere.com";
 
 // 🔥 Correct endpoints (NO /api/)
 export const API = {

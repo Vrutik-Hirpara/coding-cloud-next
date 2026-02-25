@@ -49,8 +49,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-gray-900 overflow-x-hidden">
+<html lang="en" data-scroll-behavior="smooth">
+        <body className="bg-white text-gray-900 overflow-x-hidden">
         <ScrollToTop />
 
         {/* FULL WIDTH NAVBAR */}

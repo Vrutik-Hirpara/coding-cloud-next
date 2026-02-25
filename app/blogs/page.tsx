@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { API, BASE_URL } from "@/lib/api";
 
 interface Blog {
   id: number;
@@ -12,8 +13,7 @@ interface Blog {
   slug: string;
 }
 
-const API_URL = "https://codingcloud.pythonanywhere.com/blogs/";
-const API_BASE_URL = "https://codingcloud.pythonanywhere.com";
+
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -26,9 +26,9 @@ export default function BlogsPage() {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(API_URL, {
-          cache: "no-store",
-        });
+      const res = await fetch(API.BLOGS.LIST, {
+  cache: "no-store",
+});
 
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -73,12 +73,13 @@ setBlogs(publishedBlogs);      } catch (err) {
   }, []);
 
   // 🔥 Image helper
-  const getFullImageUrl = (img?: string) => {
-    if (!img) return null;
-    if (img.startsWith("http")) return img;
-    const clean = img.startsWith("/") ? img.slice(1) : img;
-    return `${API_BASE_URL}/${clean}`;
-  };
+const getFullImageUrl = (img?: string) => {
+  if (!img) return null;
+  if (img.startsWith("http")) return img;
+
+  const clean = img.startsWith("/") ? img.slice(1) : img;
+  return `${BASE_URL}/${clean}`;
+};
 
   // ================= LOADING =================
   if (loading) {

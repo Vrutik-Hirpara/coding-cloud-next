@@ -13,14 +13,16 @@ export default function AboutPage() {
         <div className="min-h-screen bg-white">
 
             {/* ================= HERO SECTION ================= */}
-            <section className="relative w-full h-[60vh] md:h-[90vh] flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-[60vh] md:h-[82vh] flex items-center justify-center overflow-hidden">
 
                 {/* BACKGROUND IMAGE */}
+
                 <Image
                     src={aboutBg}
                     alt="About Coding Cloud"
                     fill
                     priority
+                    sizes="100vw"
                     className="object-cover"
                 />
 
@@ -55,9 +57,9 @@ export default function AboutPage() {
 
             {/* ================= REST OF ABOUT PAGE ================= */}
             <section className="py-20">
-                    <KnowAboutUs />
+                <KnowAboutUs />
 
-                
+
             </section>
 
             {/* ================= HOW WE WORK SECTION ================= */}
@@ -122,20 +124,22 @@ export default function AboutPage() {
                     >
                         <div className="relative rounded-xl overflow-hidden shadow-lg">
 
+                           
                             <Image
-                                src={learn}
-                                alt="How we work"
-                                width={600}
-                                height={400}
-                                className="w-full h-auto object-cover"
-                            />
+  src={learn}
+  alt="How we work"
+  width={600}
+  height={400}
+  className="w-full h-auto object-cover"
+  style={{ width: "100%", height: "auto" }}
+/>
 
-                            {/* PLAY BUTTON */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="bg-red-500 text-white p-5 rounded-full text-3xl shadow-lg cursor-pointer hover:scale-110 transition">
-                                    ▶
-                                </div>
-                            </div>
+                          {/* PLAY BUTTON */}
+<div className="absolute inset-0 flex items-center justify-center">
+  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-red-500 text-white text-lg sm:text-xl md:text-2xl shadow-lg cursor-pointer transition-transform duration-300 hover:scale-110">
+    ▶
+  </div>
+</div>
 
                         </div>
                     </motion.div>
@@ -145,66 +149,66 @@ export default function AboutPage() {
 
 
             {/* ================= TESTIMONIAL SECTION ================= */}
-      <section className="relative py-24 overflow-hidden bg-[var(--color-bg-soft)]">
+            <section className="relative py-24 overflow-hidden bg-[var(--color-bg-soft)]">
 
-      <div className=" relative">
+                <div className=" relative">
 
-        {/* MAIN GRID */}
-       <div className="grid lg:grid-cols-10 gap-10 items-center">
+                    {/* MAIN GRID */}
+                    <div className="grid lg:grid-cols-10 gap-10 items-center">
 
-  {/* ================= LEFT SIDE CARD (20%) ================= */}
-  <motion.div
-    initial={{ opacity: 0, x: -60 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-    className="lg:col-span-3 relative z-20"
-  >
-    <div className="rounded-2xl p-10 backdrop-blur-md ">
+                        {/* ================= LEFT SIDE CARD (20%) ================= */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="lg:col-span-3 relative z-20"
+                        >
+                            <div className="rounded-2xl p-10 backdrop-blur-md ">
 
-      <div className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full">
-        LEARNERS FEEDBACK
-      </div>
+                                <div className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full">
+                                    LEARNERS FEEDBACK
+                                </div>
 
-      <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--color-text)] leading-tight mb-6">
-        What Our <br /> Learners Say
-      </h2>
+                                <h2 className="text-3xl md:text-5xl font-extrabold text-[var(--color-text)] leading-tight mb-6">
+                                    What Our <br /> Learners Say
+                                </h2>
 
-      <p className="text-gray-600 mb-8 ">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Repudiandae consectetur adipisicing elit. Repudiandae
-      </p>
-      <Button
-        className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
-      >
-        Contact Us
-      </Button>
-    </div>
-  </motion.div>
+                                <p className="text-gray-600 mb-8 ">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Repudiandae consectetur adipisicing elit. Repudiandae
+                                </p>
+                                <Button
+                                    className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
+                                >
+                                    Contact Us
+                                </Button>
+                            </div>
+                        </motion.div>
 
 
-  {/* ================= RIGHT SIDE TESTIMONIALS (80%) ================= */}
-  <div className="lg:col-span-7 relative">
+                        {/* ================= RIGHT SIDE TESTIMONIALS (80%) ================= */}
+                        <div className="lg:col-span-7 relative">
 
-    {/* LEFT FADE SHADOW */}
-    <div className="hidden lg:block absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[var(--color-bg-soft)] to-transparent z-10" />
+                            {/* LEFT FADE SHADOW */}
+                            <div className="hidden lg:block absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[var(--color-bg-soft)] to-transparent z-10" />
 
-    <motion.div
-      initial={{ opacity: 0, x: 80 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.7 }}
-      viewport={{ once: true }}
-      className="relative z-0"
-    >
-      <TestimonialSection />
-    </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, x: 80 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.7 }}
+                                viewport={{ once: true }}
+                                className="relative z-0"
+                            >
+                                <TestimonialSection />
+                            </motion.div>
 
-  </div>
+                        </div>
 
-</div>
+                    </div>
 
-      </div>
-    </section>
+                </div>
+            </section>
 
 
         </div>

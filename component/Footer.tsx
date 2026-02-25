@@ -286,25 +286,41 @@ const Footer = () => {
 
           {/* BRAND */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="lg:col-span-4"
-          >
-            <Image src="/logos/logo.png" alt="Coding Cloud" width={170} height={50} className="mb-6" />
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="lg:col-span-4 flex flex-col items-start"
+>
+  {/* LOGO */}
+  <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
+    <Image
+      src="/logos/logo.png"
+      alt="Coding Cloud"
+      fill
+      sizes="(max-width: 640px) 150px, 170px"
+      className="object-contain"
+      priority
+    />
+  </div>
 
-            <p className="text-[var(--color-text)] leading-relaxed mb-10 max-w-sm">
-              We’re always in search for talented and motivated people.
-            </p>
+  {/* DESCRIPTION */}
+  <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm">
+    We’re always in search for talented and motivated people.
+  </p>
 
-            <Button href="/contact" icon={FaArrowRight}>
-              Contact With Us
-            </Button>
-          </motion.div>
+  {/* BUTTON */}
+  <Button
+    href="/contact"
+    icon={FaArrowRight}
+    className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+  >
+    Contact With Us
+  </Button>
+</motion.div>
 
           {/* LINKS */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-6">
 
             {/* COURSES */}
             <motion.div

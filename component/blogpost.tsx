@@ -139,6 +139,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Button from "./ui/Button";
+import { BASE_URL } from "@/lib/api";
 
 interface Blog {
   id: number;
@@ -150,13 +151,12 @@ interface Blog {
 
 export default function BlogPost() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const baseURL = "https://codingcloud.pythonanywhere.com";
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const res = await fetch(
-          "https://codingcloud.pythonanywhere.com/blogs/"
+          `${BASE_URL}/blogs/`
         );
         const data = await res.json();
         setBlogs(data.data || []);
@@ -214,14 +214,20 @@ export default function BlogPost() {
             transition={{ duration: 0.6 }}
             className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
           >
-            <div className="relative h-[260px] md:h-[320px]">
-              <Image
-                src={baseURL + mainBlog.featured_image}
-                alt={mainBlog.title}
-                fill
-                className="object-fill"
-              />
-            </div>
+          <div className="relative h-[220px] sm:h-[260px] md:h-[320px] w-full overflow-hidden rounded-xl">
+  <Image
+    src={BASE_URL + mainBlog.featured_image}
+    alt={mainBlog.title}
+    fill
+    sizes="(max-width: 768px) 100vw, 600px"
+    priority
+    unoptimized
+    className="object-fill transition-transform duration-500 hover:scale-105"
+  />
+
+  {/* optional overlay for readability */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+</div>
 
             <div className="p-6">
               <h3 className="text-2xl font-bold text-[var(--color-dark)] mb-2">
@@ -251,14 +257,16 @@ export default function BlogPost() {
                 transition={{ delay: index * 0.2 }}
                 className="bg-white rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition"
               >
-                <div className="relative w-40 h-28 rounded-xl overflow-hidden">
-                  <Image
-                    src={baseURL + blog.featured_image}
-                    alt={blog.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+               <div className="relative w-32 sm:w-40 h-24 sm:h-28 rounded-xl overflow-hidden flex-shrink-0">
+  <Image
+    src={BASE_URL + blog.featured_image}
+    alt={blog.title}
+    fill
+    sizes="(max-width: 640px) 128px, 160px"
+    unoptimized
+    className="object-cover transition-transform duration-300 hover:scale-105"
+  />
+</div>
 
                 <div>
                   <h4 className="font-bold text-lg text-[var(--color-dark)] mb-1 line-clamp-2">
