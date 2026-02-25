@@ -49,8 +49,8 @@ export const API = {
       `${BASE_URL}/register_msg/${id}/`,
   },
 
-  ARTICLES: {
-    LIST: `${BASE_URL}/articles/`,
-    DETAIL: (id: number | string) => `${BASE_URL}/articles/${id}/`,
+  BLOGS: {
+    LIST: `${BASE_URL}/blogs/`,
+    DETAIL: (slug: string) => `${BASE_URL}/blogs/${slug}/`,
   },
 };

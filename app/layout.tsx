@@ -31,6 +31,7 @@ import "./globals.css";
 import Navbar from "@/component/Navbar";
 import Footer from "@/component/Footer";
 import type { Metadata } from "next";
+import ScrollToTop from "@/component/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Coding Cloud",
@@ -50,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-gray-900 overflow-x-hidden">
+        <ScrollToTop />
 
         {/* FULL WIDTH NAVBAR */}
         <Navbar />

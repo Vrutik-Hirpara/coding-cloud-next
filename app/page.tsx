@@ -221,6 +221,7 @@ import WhyChooseUs from "@/component/WhyChooseUs";
 import EventsSection from "@/component/EventsSection";
 import '../app/globals.css'
 import Pill from "@/component/ui/Pill";
+import BlogPost from "@/component/blogpost";
 // ============================
 // MAIN HOME PAGE
 // ============================
@@ -344,7 +345,7 @@ const eventsData = [
       {/* <EventsSection events={eventsData} /> */}
 
       {/* BLOG */}
-
+<BlogPost/>
     </div>
   );
 }

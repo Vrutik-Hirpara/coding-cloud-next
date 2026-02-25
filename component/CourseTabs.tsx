@@ -358,6 +358,7 @@ import user3 from "@/public/images/avatars/avatar-03.png";
 import EventsSection from "./EventsSection";
 import EventCard from "./EventCard";
 import Faq from "@/app/faq/page";
+import { BASE_URL } from "@/lib/api";
 
 type Testimonial = {
     id: number;
@@ -389,21 +390,38 @@ export default function CourseTabs({ course, events }: any) {
 
     const [topicsData, setTopicsData] = useState<any[]>([]);
     // 🔥 FETCH REVIEWS
-    useEffect(() => {
-        const fetchReviews = async () => {
-            try {
-                const res = await fetch("https://codingcloud.pythonanywhere.com/testimonials/");
-                const json = await res.json();
-                setReviews(json.data || []);
-            } catch (e) {
-                console.error(e);
-            } finally {
-                setLoading(false);
-            }
-        };
+useEffect(() => {
+  const fetchReviews = async () => {
+    try {
+      const res = await fetch("https://codingcloud.pythonanywhere.com/testimonials/");
+      const json = await res.json();
 
-        fetchReviews();
-    }, []);
+      const list: Testimonial[] = json.data || [];
+
+      // 🔥 filter by course category
+      const filtered = list.filter(
+        (item) => item.category === course?.category
+      );
+
+      // 🔥 sort latest first (optional)
+      const sorted = filtered.sort((a, b) => b.id - a.id);
+
+      // ❌ DO NOT slice
+      setReviews(sorted);
+    } catch (e) {
+      console.error("Testimonial fetch error", e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (course?.category) {
+    fetchReviews();
+  }
+}, [course]);
+useEffect(() => {
+  console.log("COURSE TABS EVENTS 👉", events);
+}, [events]);
 useEffect(() => {
   const fetchTopics = async () => {
     try {
@@ -486,7 +504,17 @@ useEffect(() => {
             </div>
         );
     };
+const getFullImageUrl = (img?: string) => {
+  if (!img) return "/images/fallback.png";
 
+  // jo already full url hoy
+  if (img.startsWith("http")) return img;
+
+  // jo "/media/..." hoy to BASE_URL sathe join karo
+  const clean = img.startsWith("/") ? img.slice(1) : img;
+
+  return `${BASE_URL}/${clean}`;
+};
     // 🔥 CALCULATIONS
     const total = reviews.length;
 
@@ -510,10 +538,8 @@ useEffect(() => {
             (a, b) =>
                 new Date(b.created_at).getTime() -
                 new Date(a.created_at).getTime()
-        )
-        .slice(0, 3);
+        );
 
-    console.log("COURSE TABS EVENTS 👉", events);
 
 
 const getTopicsByModule = (moduleId: number) => {
@@ -694,12 +720,19 @@ const getTopicsByModule = (moduleId: number) => {
                                 className="flex gap-4 border-b pb-6"
                             >
                                 <div className="w-16 h-16 relative rounded-lg overflow-hidden">
-                                    <Image
+                                    {/* <Image
                                         src={u.image}
                                         alt={u.name}
                                         fill
                                         className="object-cover"
-                                    />
+                                    /> */}
+                                    <Image
+  src={getFullImageUrl(u.image)}
+  alt={u.name}
+  fill
+  unoptimized
+  className="object-cover"
+/>
                                 </div>
 
                                 <div className="flex-1">
