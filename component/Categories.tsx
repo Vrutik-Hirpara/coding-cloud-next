@@ -330,7 +330,7 @@ export default function Categories() {
 
         {/* HEADER */}
         <div className="text-center mb-8 md:mb-12">
-          <span className="px-4 py-1 rounded-full text-sm font-semibold bg-[var(--color-accent-purple)]/10 text-[var(--color-accent-purple)]">
+          <span className="px-4 py-1 rounded-full text-sm font-semibold bg-[var(--color-accent-purple)] text-[var(--color-accent-purple)]">
             CATEGORIES
           </span>
           <h2 className="text-2xl md:text-3xl font-bold mt-4 text-[var(--color-text-main)]">

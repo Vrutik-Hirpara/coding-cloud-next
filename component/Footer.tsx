@@ -293,7 +293,7 @@ const Footer = () => {
             className="lg:col-span-4 flex flex-col items-start"
           >
             {/* LOGO */}
-            <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
+            {/* <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
               <Image
                 src="/logos/logo.png"
                 alt="Coding Cloud"
@@ -302,7 +302,20 @@ const Footer = () => {
                 className="object-contain"
                 priority
               />
-            </div>
+            </div> */}
+
+<Link href="/" className="inline-block">
+  <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
+    <Image
+      src="/logos/logo.png"
+      alt="Coding Cloud"
+      fill
+      sizes="(max-width: 640px) 150px, 170px"
+      className="object-contain"
+      priority
+    />
+  </div>
+</Link>
 
             {/* DESCRIPTION */}
             <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm">
@@ -313,7 +326,7 @@ const Footer = () => {
             <Button
               href="/contact"
               icon={FaArrowRight}
-              className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+              className="bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
             >
               Contact With Us
             </Button>
@@ -338,10 +351,10 @@ const Footer = () => {
                   <li key={course.id}>
                     <Link
                       href={`/courses/${course.slug}`}
-                      className="relative group hover:text-[var(--color-primary)]"
+                      className="relative group hover:text-[var(--color-accent-purple)]"
                     >
                       {course.name}
-                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full "/>
                     </Link>
                   </li>
                 ))}
@@ -367,10 +380,10 @@ const Footer = () => {
                   <li key={item.id}>
                     <Link
                       href={item.link}
-                      className="relative group transition-colors duration-300 hover:text-[var(--color-primary)]"
+          className="relative group transition-colors duration-300 hover:text-[var(--color-accent-purple)]"
                     >
                       {item.name}
-                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full" />
                     </Link>
                   </li>
                 ))}
@@ -390,10 +403,10 @@ const Footer = () => {
               </h3>
 
               <div className="space-y-4 text-sm text-[var(--color-text)] mb-8">
-                <p className="hover:text-[var(--color-primary)] cursor-pointer">
+                <p className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                   Phone: +91 95373 44018
                 </p>
-                <p className="hover:text-[var(--color-primary)] cursor-pointer break-all">
+                <p className="hover:text-[var(--color-accent-purple)] cursor-pointer break-all">
                   E-mail: pune@codingcloudinstitute.com
                 </p>
                 <p>
@@ -419,7 +432,7 @@ const Footer = () => {
                         stiffness: 300,
                         damping: 18,
                       }}
-                      className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-primary)] hover:text-[var(--color-white)] hover:shadow-lg"
+                      className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] hover:shadow-lg"
                     >
                       <Icon size={15} />
                     </motion.a>

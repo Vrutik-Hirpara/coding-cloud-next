@@ -260,24 +260,32 @@ const KidsCoursesSection: React.FC = () => {
       <div className="relative group/slider flex items-center justify-center">
 
         {/* LEFT BUTTON */}
-        <button
+        {/* <button
           onClick={() => scroll("left")}
           className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 
             bg-yellow-400 hover:bg-yellow-500 text-[var(--color-white)] w-12 h-12 rounded-full 
             flex items-center justify-center shadow-lg 
             opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:scale-110"
-        >
+        > */}
+            <button
+            onClick={() => scroll("left")}
+            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover/slider:opacity-100 transition"
+          >
           <FaArrowLeft />
         </button>
 
         {/* RIGHT BUTTON */}
-        <button
+        {/* <button
           onClick={() => scroll("right")}
           className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 
             bg-pink-400 hover:bg-pink-500 text-[var(--color-white)] w-12 h-12 rounded-full 
             flex items-center justify-center shadow-lg 
             opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:scale-110"
-        >
+        > */}
+        <button
+            onClick={() => scroll("right")}
+            className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover/slider:opacity-100 transition"
+          >
           <FaArrowRight />
         </button>
 
