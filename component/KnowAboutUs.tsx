@@ -49,7 +49,7 @@
 
 
 //   return (
-//     <section className="about-section py-20 bg-white">
+//     <section className="about-section py-20 bg-[var(--color-white)]">
 //       <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
 //         {/* ================= LEFT IMAGES ================= */}
@@ -89,7 +89,7 @@
 //             Know About Coding Cloud <br /> Learning Platform
 //           </h2>
 
-//           <p className="text-gray-600 mb-6">
+//           <p className="text-[var(--color-muted)] mb-6">
 //             Far far away, behind the word mountains, far from the countries
 //             Vokalia and Consonantia, there live the blind texts.
 //           </p>
@@ -103,7 +103,7 @@
 //               </div>
 //               <div>
 //                 <h4 className="font-bold text-lg">Flexible Classes</h4>
-//                 <p className="text-gray-500 text-sm">
+//                 <p className="text-[var(--color-muted)] text-sm">
 //                   Readable content helps users stay focused.
 //                 </p>
 //               </div>
@@ -115,7 +115,7 @@
 //               </div>
 //               <div>
 //                 <h4 className="font-bold text-lg">Learn From Anywhere</h4>
-//                 <p className="text-gray-500 text-sm">
+//                 <p className="text-[var(--color-muted)] text-sm">
 //                   Access courses anytime, anywhere.
 //                 </p>
 //               </div>
@@ -246,28 +246,28 @@ export default function KnowAboutUs() {
     //   }, []);
 
     return (
-        <section className="container-custom  about-section bg-white pb-10">
+        <section className="container-custom  about-section bg-[var(--color-white)] pb-10">
             <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
                 {/* ================= LEFT IMAGES ================= */}
-              <div className="relative overflow-visible h-[420px] sm:h-[500px] md:h-[580px] lg:h-[620px] z-20">
+                <div className="relative overflow-visible h-[420px] sm:h-[500px] md:h-[580px] lg:h-[620px] z-20">
 
-  {/* MAIN IMAGE (LEFT BIG) */}
-  <div className="absolute left-0 top-0 lg:absolute lg:top-0 z-10">
-    <Image
-      src={about1}
-      alt="About main"
-      width={350}
-      height={500}
-      className="rounded w-[220px] sm:w-[260px] md:w-[300px] lg:w-[300px]"
-      priority
-    />
-  </div>
+                    {/* MAIN IMAGE (LEFT BIG) */}
+                    <div className="absolute left-0 top-0 lg:absolute lg:top-0 z-10">
+                        <Image
+                            src={about1}
+                            alt="About main"
+                            width={350}
+                            height={500}
+                            className="rounded w-[220px] sm:w-[260px] md:w-[300px] lg:w-[300px]"
+                            priority
+                        />
+                    </div>
 
-  {/* TOP IMAGE (moves UP) */}
-  <div
-    ref={imgTopRef}
-    className="
+                    {/* TOP IMAGE (moves UP) */}
+                    <div
+                        ref={imgTopRef}
+                        className="
       absolute
       right-0 top-[-10px]
       sm:right-[10px] sm:top-[0px] 
@@ -275,20 +275,20 @@ export default function KnowAboutUs() {
       lg:absolute lg:right-20 lg:top-12
       z-20
     "
-  >
-    <Image
-      src={about2}
-      alt="About top"
-      width={250}
-      height={200}
-      className="rounded w-[150px] sm:w-[180px] md:w-[200px] lg:w-[200px] "
-    />
-  </div>
+                    >
+                        <Image
+                            src={about2}
+                            alt="About top"
+                            width={250}
+                            height={200}
+                            className="rounded w-[150px] sm:w-[180px] md:w-[200px] lg:w-[200px] "
+                        />
+                    </div>
 
-  {/* BOTTOM IMAGE (moves DOWN) */}
-  <div
-    ref={imgBottomRef}
-    className="
+                    {/* BOTTOM IMAGE (moves DOWN) */}
+                    <div
+                        ref={imgBottomRef}
+                        className="
       absolute
       right-0 bottom-[-30px]
       sm:right-[10px] sm:bottom-[-20px]
@@ -296,17 +296,17 @@ export default function KnowAboutUs() {
       lg:absolute lg:-right-[65px] lg:-bottom-[30px]
       z-30
     "
-  >
-    <Image
-      src={about3}
-      alt="About bottom"
-      width={400}
-      height={350}
-      className="rounded w-[240px] sm:w-[280px] md:w-[320px] lg:w-[400px]"
-    />
-  </div>
+                    >
+                        <Image
+                            src={about3}
+                            alt="About bottom"
+                            width={400}
+                            height={350}
+                            className="rounded w-[240px] sm:w-[280px] md:w-[320px] lg:w-[400px]"
+                        />
+                    </div>
 
-</div>
+                </div>
 
 
                 {/* ================= RIGHT CONTENT ================= */}
@@ -322,14 +322,14 @@ export default function KnowAboutUs() {
                         Know About Coding Cloud Learning Platform
                     </h2>
 
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-[var(--color-muted)] mb-6">
                         Far far away, behind the word mountains, far from the countries
                         Vokalia and Consonantia, there live the blind texts.
                     </p>
 
                     {/* FEATURES */}
                     <div className="">
-                        <div className="group flex items-start z-0 gap-4 p-6 min-h-[160px] rounded-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 cursor-pointer">
+                        <div className="group flex items-start z-0 gap-4 p-6 min-h-[160px] rounded-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--color-bg-softest)] cursor-pointer">
 
                             {/* ICON */}
                             <div className="w-14 h-14 flex items-center justify-center rounded-full 
@@ -344,17 +344,17 @@ export default function KnowAboutUs() {
 
                             {/* TEXT */}
                             <div>
-                                <h4 className="font-bold text-lg text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+                                <h4 className="font-bold text-lg text-[var(--color-dark)] group-hover:text-[var(--color-accent-indigo)] transition-colors duration-300">
                                     Flexible Classes
                                 </h4>
-                                <p className="text-gray-500 text-sm">
+                                <p className="text-[var(--color-muted)] text-sm">
                                     Readable content helps users stay focused lorem100
                                 </p>
                             </div>
                         </div>
 
 
-                        <div className="group flex items-start gap-4 p-6 min-h-[160px] rounded-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 cursor-pointer">
+                        <div className="group flex items-start gap-4 p-6 min-h-[160px] rounded-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--color-bg-softest)] cursor-pointer">
 
                             {/* ICON */}
                             <div className="w-14 h-14 flex items-center justify-center rounded-full 
@@ -369,10 +369,10 @@ export default function KnowAboutUs() {
 
                             {/* TEXT */}
                             <div>
-                                <h4 className="font-bold text-lg text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+                                <h4 className="font-bold text-lg text-[var(--color-dark)] group-hover:text-[var(--color-accent-indigo)] transition-colors duration-300">
                                     Learn From Anywhere
                                 </h4>
-                                <p className="text-gray-500 text-sm">
+                                <p className="text-[var(--color-muted)] text-sm">
                                     Access courses anytime, anywhere.
                                 </p>
                             </div>

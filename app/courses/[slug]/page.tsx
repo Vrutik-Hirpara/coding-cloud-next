@@ -109,21 +109,21 @@ export default function Page() {
       {/* 🔥 HEADER */}
       <section className="bg-gradient-to-b from-[#ede9fe] to-white pt-16 pb-28 text-center">
         <div className="flex justify-center items-center gap-4 text-sm mb-4 flex-wrap">
-          <span className="bg-white px-3 py-1 rounded-full shadow text-[var(--color-primary)] font-semibold">
+          <span className="bg-[var(--color-white)] px-3 py-1 rounded-full shadow text-[var(--color-accent-purple)] font-semibold">
             Bestseller
           </span>
           <span className="text-yellow-500 font-semibold">1.2 ★★★★★</span>
-          <span className="text-gray-500">(6 ratings)</span>
-          <span className="text-gray-500">
+          <span className="text-[var(--color-muted)]">(6 ratings)</span>
+          <span className="text-[var(--color-muted)]">
             {course.students || 0} students
           </span>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-bold text-[var(--color-primary)]">
+        <h1 className="text-3xl md:text-5xl font-bold text-[var(--color-accent-purple)]">
           {course.name}
         </h1>
 
-        <p className="mt-3 text-gray-500 text-sm">
+        <p className="mt-3 text-[var(--color-muted)] text-sm">
           Updated 12/2024 • {course.language}
         </p>
       </section>

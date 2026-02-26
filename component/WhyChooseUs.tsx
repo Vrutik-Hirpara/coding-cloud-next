@@ -23,7 +23,7 @@
 //         </span>
 
 //         {/* Heading */}
-//         <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-20">
+//         <h2 className="text-3xl md:text-5xl font-bold text-[var(--color-dark)] leading-tight mb-20">
 //           Creating A Community Of
 //           <br className="hidden md:block" />
 //           Life Long Learners.
@@ -43,13 +43,13 @@
 
 //                   {/* Dot + Vertical Line */}
 //                   <div className="hidden md:flex flex-col items-center absolute top-0 left-1/2 -translate-x-1/2 w-full -z-0">
-//                     <div className="w-5 h-5 bg-white border-4 border-[var(--color-primary)] rounded-full -mt-2.5 z-10"></div>
+//                     <div className="w-5 h-5 bg-[var(--color-white)] border-4 border-[var(--color-primary)] rounded-full -mt-2.5 z-10"></div>
 //                     <div className={`w-[2px] bg-blue-200 ${isLower ? "h-24" : "h-12"}`}></div>
 //                   </div>
 
 //                   {/* Card */}
 //                   <div
-//                     className={`bg-white overflow-hidden p-8 py-20 rounded-xl shadow-xl relative transition-transform duration-300 hover:-translate-y-2 group ${
+//                     className={`bg-[var(--color-white)] overflow-hidden p-8 py-20 rounded-xl shadow-xl relative transition-transform duration-300 hover:-translate-y-2 group ${
 //                       isLower ? "mt-0 md:mt-24" : "mt-0 md:mt-12"
 //                     }`}
 //                   >
@@ -59,12 +59,12 @@
 //                     </div>
 
 //                     {/* Number */}
-//                     <h3 className="text-4xl font-bold text-gray-900">
+//                     <h3 className="text-4xl font-bold text-[var(--color-dark)]">
 //                       <CountUp end={stat.number} duration={2} />
 //                     </h3>
 
 //                     {/* Label */}
-//                     <p className="text-gray-500 mt-2">{stat.label}</p>
+//                     <p className="text-[var(--color-muted)] mt-2">{stat.label}</p>
 
 //                     {/* Bottom Gradient Line */}
 //                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-b-3xl"></div>
@@ -115,7 +115,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
         </span> */}
         <Pill
           text="Why Choose Us"
-          textColor="var(--color-primary)"
+          textColor="var(--color-accent-purple)"
           bgColor="var(--color-primary-light)"
         />
         {/* Heading */}
@@ -153,7 +153,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
                   <div className="hidden md:flex flex-col items-center absolute top-0 left-1/2 -translate-x-1/2">
 
                     {/* dot centered on line */}
-                    <div className="w-5 h-5 bg-white border-4 border-[var(--color-primary)] rounded-full translate-y-[11px] z-10"></div>
+                    <div className="w-5 h-5 bg-[var(--color-white)] border-4 border-[var(--color-accent-purple)] rounded-full translate-y-[11px] z-10"></div>
 
                     {/* vertical connector */}
                     <div className={`w-[2px] bg-blue-200 ${isLower ? "h-28" : "h-16"}`}></div>
@@ -161,16 +161,16 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
 
                   {/* CARD */}
                   <div
-                    className={`bg-white w-full max-w-[280px] p-8 pt-16 pb-12 rounded-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${isLower ? "mt-28" : "mt-16"
+                    className={`bg-[var(--color-white)] w-full max-w-[280px] p-8 pt-16 pb-12 rounded-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${isLower ? "mt-28" : "mt-16"
                       }`}
                   >
                     {/* icon */}
-                    <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 ring-8 ring-white text-pink-500 text-2xl transition-transform duration-300 group-hover:scale-110">
+                    <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 ring-8 ring-white text-[var(--color-accent-pink)] text-2xl transition-transform duration-300 group-hover:scale-110">
                       {stat.icon}
                     </div>
 
                     {/* number */}
-                    <h3 className="text-4xl font-bold text-gray-900">
+                    <h3 className="text-4xl font-bold text-[var(--color-dark)]">
                       <CountUp
                         end={stat.number}
                         duration={2}
@@ -180,7 +180,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
                     </h3>
 
                     {/* label */}
-                    <p className="text-gray-500 mt-2 text-sm">
+                    <p className="text-[var(--color-muted)] mt-2 text-sm">
                       {stat.label}
                     </p>
 

@@ -59,7 +59,7 @@ export default function BlogDetailPage() {
   if (loading) {
     return (
       <div className="container-custom py-20 text-center">
-        <p className="text-gray-500">Loading blog...</p>
+        <p className="text-[var(--color-muted)]">Loading blog...</p>
       </div>
     );
   }
@@ -67,13 +67,13 @@ export default function BlogDetailPage() {
   if (!blog) {
     return (
       <div className="container-custom py-20 text-center">
-        <p className="text-red-500">Blog not found</p>
+        <p className="text-[var(--color-danger)]">Blog not found</p>
       </div>
     );
   }
 
   return (
-    <section className="bg-white">
+    <section className="bg-[var(--color-white)]">
 
       {/* 🔥 HERO SECTION (gradient header) */}
       <div className="w-full bg-soft-gradient py-16 md:py-24 text-center">

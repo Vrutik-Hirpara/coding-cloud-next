@@ -35,14 +35,14 @@ export default function Button({
       )}
       style={{
         background:
-          "linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))",
+          "linear-gradient(135deg, var(--color-accent-purple), var(--color-primary-dark))",
       }}
     >
       {/* soft glow */}
       <span
         className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition duration-100"
         style={{
-          boxShadow: "0 0 24px var(--color-primary)",
+          boxShadow: "0 0 24px var(--color-accent-purple)",
         }}
       />
  

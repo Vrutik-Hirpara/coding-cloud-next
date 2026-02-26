@@ -34,7 +34,7 @@
 //   }, []);
 
 //   return (
-//     <section className=" bg-white">
+//     <section className=" bg-[var(--color-white)]">
 //       <div className="py-16 container-custom flex flex-col items-center">
 
 //         <div className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full">
@@ -61,7 +61,7 @@
 //                 <div
 //                   key={cat.id}
 //                   onClick={() => router.push(`/category/${cat.id}`)}
-//                   className="h-60 shadow-xl bg-white rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
+//                   className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
 //                 >
 //                   <div className="relative h-20 w-20 mb-5">
 //                     <Image
@@ -149,7 +149,7 @@
 //   };
 
 //   return (
-//     <section className="bg-white py-16 overflow-hidden">
+//     <section className="bg-[var(--color-white)] py-16 overflow-hidden">
 //       <div className="container-custom">
 
 //         {/* HEADER */}
@@ -174,14 +174,14 @@
 //               <>
 //                 <button
 //                   onClick={scrollLeft}
-//                   className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition"
+//                   className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-[var(--color-white)] transition"
 //                 >
 //                   ‹
 //                 </button>
 
 //                 <button
 //                   onClick={scrollRight}
-//                   className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition"
+//                   className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-[var(--color-white)] transition"
 //                 >
 //                   ›
 //                 </button>
@@ -227,7 +227,7 @@
 //                       ">
 //                         <div className="
 //                           bg-gradient-to-r from-[var(--color-primary)] to-purple-600
-//                           text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-xl
+//                           text-[var(--color-white)] text-sm font-semibold px-4 py-2 rounded-xl shadow-xl
 //                           transform scale-75 group-hover:scale-100 transition-all duration-300
 //                         ">
 //                           {categoryTotals[cat.id] ?? 0}
@@ -297,7 +297,7 @@ export default function Categories() {
         const catData = await catRes.json();
         const totalData = await totalRes.json();
 
-        setCategories(catData);
+        setCategories(catData.data);
 
         const totalsMap: Record<number, number> = {};
         totalData.data.forEach((item: any) => {
@@ -325,12 +325,12 @@ export default function Categories() {
   };
 
   return (
-    <section className="bg-white py-12 md:py-16 overflow-hidden">
+    <section className="bg-[var(--color-white)] py-12 md:py-16 overflow-hidden">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
 
         {/* HEADER */}
         <div className="text-center mb-8 md:mb-12">
-          <span className="px-4 py-1 rounded-full text-sm font-semibold bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+          <span className="px-4 py-1 rounded-full text-sm font-semibold bg-[var(--color-accent-purple)]/10 text-[var(--color-accent-purple)]">
             CATEGORIES
           </span>
           <h2 className="text-2xl md:text-3xl font-bold mt-4 text-[var(--color-text-main)]">
@@ -339,7 +339,7 @@ export default function Categories() {
         </div>
 
         {loading ? (
-          <div className="text-center font-semibold text-[var(--color-primary)]">
+          <div className="text-center font-semibold text-[var(--color-accent-purple)]">
             Loading...
           </div>
         ) : (
@@ -350,14 +350,14 @@ export default function Categories() {
               <>
                 <button
                   onClick={scrollLeft}
-                  className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition"
+                  className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md items-center justify-center hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] transition"
                 >
                   ‹
                 </button>
 
                 <button
                   onClick={scrollRight}
-                  className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md items-center justify-center hover:bg-[var(--color-primary)] hover:text-white transition"
+                  className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md items-center justify-center hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] transition"
                 >
                   ›
                 </button>
@@ -404,8 +404,8 @@ export default function Categories() {
                         opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out
                       ">
                         <div className="
-                          bg-gradient-to-r from-[var(--color-primary)] to-purple-600
-                          text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-xl
+                          bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600
+                          text-[var(--color-white)] text-sm font-semibold px-4 py-2 rounded-xl shadow-xl
                           transform scale-75 group-hover:scale-100 transition-all duration-300
                         ">
                           {categoryTotals[cat.id] ?? 0}
@@ -420,7 +420,7 @@ export default function Categories() {
                       font-semibold text-sm sm:text-base md:text-lg
                       text-[var(--color-text-main)]
                       transition-colors duration-300
-                      group-hover:text-[var(--color-primary)]
+                      group-hover:text-[var(--color-accent-purple)]
                     ">
                       {cat.name}
                     </h4>

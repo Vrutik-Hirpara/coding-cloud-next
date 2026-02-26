@@ -9,7 +9,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import user1 from "@/public/images/avatars/avatar-02.png";
 import user2 from "@/public/images/avatars/avatar-01.png";
 import user3 from "@/public/images/avatars/avatar-03.png";
-import EventsSection from "./EventsSection";
 import EventCard from "./EventCard";
 import Faq from "@/app/faq/page";
 import { BASE_URL } from "@/lib/api";
@@ -151,7 +150,7 @@ export default function CourseTabs({ course, events }: any) {
         return (
             <div className="flex gap-[2px] text-lg">
                 {[1, 2, 3, 4, 5].map((i) => (
-                    <span key={i} className={i <= count ? "text-orange-500" : "text-gray-300"}>
+                    <span key={i} className={i <= count ? "text-orange-500" : "border border-[var(--color-border-light)]"}>
                         ★
                     </span>
                 ))}
@@ -216,8 +215,8 @@ export default function CourseTabs({ course, events }: any) {
                             onClick={() => scrollTo(t.id)}
                             className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
               ${active === t.id
-                                    ? "bg-gradient-to-r from-[var(--color-primary)] to-purple-500 text-white shadow"
-                                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                                    ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
+                                    : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
                                 }`}
                         >
                             {t.label}
@@ -229,12 +228,12 @@ export default function CourseTabs({ course, events }: any) {
             {/* 🔥 OVERVIEW CARD */}
             <section
                 id="overview"
-                className="bg-white p-6 rounded-xl shadow border space-y-4"
+                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4"
             >
                 <h3 className="text-xl font-semibold">What you'll learn</h3>
-                <p className="text-gray-600 leading-relaxed">{course.text}</p>
+                <p className="text-[var(--color-muted)] leading-relaxed">{course.text}</p>
 
-                <ul className="grid md:grid-cols-2 gap-3 text-gray-600 text-sm">
+                <ul className="grid md:grid-cols-2 gap-3 text-[var(--color-muted)] text-sm">
                     <li>✔ Become confident developer</li>
                     <li>✔ Learn modern tools</li>
                     <li>✔ Build real world projects</li>
@@ -245,7 +244,7 @@ export default function CourseTabs({ course, events }: any) {
 
             <section
                 id="content"
-                className="bg-white p-6 rounded-xl shadow border space-y-4"
+                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4"
             >
                 <h3 className="text-xl font-semibold">Course Content</h3>
 
@@ -257,7 +256,7 @@ export default function CourseTabs({ course, events }: any) {
                         return (
                             <div
                                 key={mod.id}
-                                className="border rounded-xl overflow-hidden bg-gray-50"
+                                className="border rounded-xl overflow-hidden bg-[var(--color-bg-softest)]"
                             >
                                 {/* HEADER */}
                                 <button
@@ -265,7 +264,7 @@ export default function CourseTabs({ course, events }: any) {
                                     className="w-full flex items-center justify-between px-5 py-4 text-left"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <span className="text-xl font-bold text-gray-700">+</span>
+                                        <span className="text-xl font-bold text-[var(--color-text-medium)]">+</span>
 
                                         {/* <h4 className="font-semibold text-[var(--color-primary)]">
                 Module {index + 1} - {mod.name}
@@ -273,12 +272,12 @@ export default function CourseTabs({ course, events }: any) {
                                         {/* <h4 className="font-semibold text-[var(--color-primary)]">
                                             {mod.name}
                                         </h4> */}
-                                        <h4 className="font-semibold text-[var(--color-primary)]">
+                                        <h4 className="font-semibold text-[var(--color-accent-purple)]">
                                             Module {index + 1} - {mod.name.replace(/Module\s*\d+\s*-\s*/i, "")}
                                         </h4>
                                     </div>
 
-                                    <span className="text-xl text-gray-500">
+                                    <span className="text-xl text-[var(--color-muted)]">
                                         {isOpen ? "−" : "›"}
                                     </span>
                                 </button>
@@ -291,7 +290,7 @@ export default function CourseTabs({ course, events }: any) {
                                             animate={{ height: "auto", opacity: 1 }}
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.35 }}
-                                            className="px-5 pb-4 text-sm text-gray-600"
+                                            className="px-5 pb-4 text-sm text-[var(--color-muted)]"
                                         >
                                             <div className="space-y-2">
                                                 {getTopicsByModule(mod.id).length > 0 ? (
@@ -301,7 +300,7 @@ export default function CourseTabs({ course, events }: any) {
                                                         </p>
                                                     ))
                                                 ) : (
-                                                    <p className="text-gray-400">No topics available</p>
+                                                    <p className="text-[var(--color-muted-light)]">No topics available</p>
                                                 )}
                                             </div>
                                         </motion.div>
@@ -323,25 +322,25 @@ export default function CourseTabs({ course, events }: any) {
             {/* 🔥 REVIEW SECTION (UPDATED) */}
             <section
                 id="review"
-                className="bg-white p-6 rounded-xl shadow border space-y-8"
+                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-8"
             >
                 <h3 className="text-xl font-semibold">Review</h3>
 
                 {/* ⭐ SUMMARY */}
                 <div className="flex flex-col md:flex-row gap-6 items-center">
-                    <div className="bg-gray-100 p-6 rounded-lg text-center w-[150px]">
-                        <p className="text-5xl font-bold text-[var(--color-primary)]">
+                    <div className="bg-[var(--color-bg-light)] p-6 rounded-lg text-center w-[150px]">
+                        <p className="text-5xl font-bold text-[var(--color-accent-purple)]">
                             {avg}
                         </p>
                         <Stars count={Math.round(Number(avg))} />
-                        <p className="text-sm text-gray-500 mt-1">Course Rating</p>
+                        <p className="text-sm text-[var(--color-muted)] mt-1">Course Rating</p>
                     </div>
 
                     <div className="flex-1 w-full space-y-2">
                         {[5, 4, 3, 2, 1].map((star, i) => (
                             <div key={star} className="flex items-center gap-3 text-sm">
                                 <Stars count={star} />
-                                <div className="flex-1 h-2 bg-gray-200 rounded">
+                                <div className="flex-1 h-2 bg-[var(--color-light)] rounded">
                                     <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: `${percentages[i]}%` }}
@@ -349,7 +348,7 @@ export default function CourseTabs({ course, events }: any) {
                                         className="h-2 bg-orange-500 rounded"
                                     />
                                 </div>
-                                <span className="text-gray-500 w-[40px] text-right">
+                                <span className="text-[var(--color-muted)] w-[40px] text-right">
                                     {percentages[i]}%
                                 </span>
                             </div>
@@ -373,7 +372,7 @@ export default function CourseTabs({ course, events }: any) {
                                 viewport={{ once: true }}
                                 className="flex gap-4 border-b pb-6"
                             >
-                                <div className="w-16 h-16 relative rounded-lg overflow-hidden bg-gray-100">
+                                <div className="w-16 h-16 relative rounded-lg overflow-hidden bg-[var(--color-bg-light)]">
                                     <Image
                                         src={getFullImageUrl(u.image) || "/images/avatar-fallback.png"}
                                         alt={u.name || "User"}
@@ -387,7 +386,7 @@ export default function CourseTabs({ course, events }: any) {
                                 <div className="flex-1">
                                     <h5 className="font-semibold">{u.name}</h5>
                                     <Stars count={u.rating} />
-                                    <p className="text-sm text-gray-600 mt-2">{u.review}</p>
+                                    <p className="text-sm text-[var(--color-muted)] mt-2">{u.review}</p>
 
 
                                 </div>

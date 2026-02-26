@@ -45,7 +45,7 @@ export default function Faq({ courseId }: { courseId: number }) {
   }, [courseId]);
 
   return (
-    <section className="bg-white p-6 rounded-xl shadow border space-y-5">
+    <section className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-5">
       {/* 🔥 TITLE */}
       <h3 className="text-xl font-semibold text-[var(--color-text)]">
         Frequently Asked Questions
@@ -53,12 +53,12 @@ export default function Faq({ courseId }: { courseId: number }) {
 
       {/* 🔥 LOADING */}
       {loading && (
-        <p className="text-gray-400 text-sm">Loading FAQs...</p>
+        <p className="text-[var(--color-muted-light)] text-sm">Loading FAQs...</p>
       )}
 
       {/* 🔥 EMPTY */}
       {!loading && faqs.length === 0 && (
-        <p className="text-gray-400 text-sm">
+        <p className="text-[var(--color-muted-light)] text-sm">
           No FAQs available for this course.
         </p>
       )}
@@ -71,18 +71,18 @@ export default function Faq({ courseId }: { courseId: number }) {
           return (
             <div
               key={faq.id}
-              className="border rounded-xl overflow-hidden bg-gray-50"
+              className="border rounded-xl overflow-hidden bg-[var(--color-bg-softest)]"
             >
               {/* 🔥 HEADER */}
               <button
                 onClick={() => setOpenId(isOpen ? null : faq.id)}
                 className="w-full flex items-center justify-between px-5 py-4 text-left"
               >
-                <h4 className="font-semibold text-[var(--color-primary)] pr-4">
+                <h4 className="font-semibold text-[var(--color-accent-purple)] pr-4">
                   {faq.question}
                 </h4>
 
-                <span className="text-xl text-gray-500">
+                <span className="text-xl text-[var(--color-muted)]">
                   {isOpen ? "−" : "+"}
                 </span>
               </button>
@@ -95,7 +95,7 @@ export default function Faq({ courseId }: { courseId: number }) {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.35 }}
-                    className="px-5 pb-4 text-sm text-gray-600 leading-relaxed"
+                    className="px-5 pb-4 text-sm text-[var(--color-muted)] leading-relaxed"
                   >
                     {faq.answer}
                   </motion.div>

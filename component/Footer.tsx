@@ -313,7 +313,7 @@ const Footer = () => {
             <Button
               href="/contact"
               icon={FaArrowRight}
-              className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
+              className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
             >
               Contact With Us
             </Button>
@@ -447,10 +447,10 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-[var(--color-primary)]">
+            <Link href="#" className="hover:text-[var(--color-accent-purple)]">
               Terms of service
             </Link>
-            <Link href="/privacy" className="hover:text-[var(--color-primary)]">
+            <Link href="/privacy" className="hover:text-[var(--color-accent-purple)]">
               Privacy policy
             </Link>
           </div>

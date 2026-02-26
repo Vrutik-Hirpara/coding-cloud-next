@@ -52,7 +52,7 @@
 //             MORE SIMILAR COURSES
 //           </span>
 
-//           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+//           <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-dark)]">
 //             Related Courses
 //           </h2>
 //         </div>
@@ -74,7 +74,7 @@
 //     return (
 //       <div
 //         key={course.id}
-//         className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
+//         className="bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
 //       >
 //         {/* IMAGE */}
 //         <div className="relative h-[200px] overflow-hidden">
@@ -85,7 +85,7 @@
 //             className="object-cover group-hover:scale-105 transition duration-500"
 //           />
 
-//           <span className="absolute top-3 left-3 bg-white/90 text-xs px-3 py-1 rounded-full font-semibold">
+//           <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
 //             {course.duration || "Course"}
 //           </span>
 //         </div>
@@ -93,23 +93,23 @@
 //         {/* CONTENT */}
 //         <div className="p-6">
 //           <div className="text-orange-400 text-sm mb-2">
-//             ⭐⭐⭐⭐⭐ <span className="text-gray-500 ml-2">(5 Reviews)</span>
+//             ⭐⭐⭐⭐⭐ <span className="text-[var(--color-muted)] ml-2">(5 Reviews)</span>
 //           </div>
 
-//           <h3 className="text-xl font-bold text-gray-900 mb-2">
+//           <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
 //             {course.name}
 //           </h3>
 
-//           <div className="flex gap-4 text-sm text-gray-500 mb-3">
+//           <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
 //             <span>📘 {course.lecture || 0} Lessons</span>
 //             <span>👨‍🎓 {course.students || 0} Students</span>
 //           </div>
 
-//           <p className="text-gray-500 text-sm mb-4 line-clamp-2">
+//           <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
 //             {course.text}
 //           </p>
 
-//           <div className="text-xs text-gray-400 mb-4">
+//           <div className="text-xs text-[var(--color-muted-light)] mb-4">
 //             Category: {course.category_details?.name}
 //           </div>
 
@@ -203,7 +203,7 @@ export default function RelatedCourses() {
 
         {/* HEADER */}
         <div className="mb-12">
-          <span className="inline-block px-4 py-1 mb-3 text-sm font-semibold text-[var(--color-primary)] bg-[var(--color-primary-light)] rounded-full">
+          <span className="inline-block px-4 py-1 mb-3 text-sm font-semibold text-[var(--color-accent-purple)] bg-[var(--color-primary-light)] rounded-full">
             MORE SIMILAR COURSES
           </span>
 
@@ -214,7 +214,7 @@ export default function RelatedCourses() {
 
         {/* LOADING */}
         {loading ? (
-          <div className="text-center font-semibold text-[var(--color-primary)]">
+          <div className="text-center font-semibold text-[var(--color-accent-purple)]">
             Loading courses...
           </div>
         ) : (
@@ -226,7 +226,7 @@ export default function RelatedCourses() {
               return (
                 <div
                   key={course.id}
-                  className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
+                  className="bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
                 >
                   {/* IMAGE */}
                   <div className="relative h-[200px] sm:h-[240px] md:h-[260px] lg:h-[280px] overflow-hidden">                    <Image
@@ -237,7 +237,7 @@ export default function RelatedCourses() {
                     className="object-fill group-hover:scale-101 transition duration-500"
                   />
 
-                    <span className="absolute top-3 left-3 bg-white/90 text-xs px-3 py-1 rounded-full font-semibold">
+                    <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
                       {course.duration || "Course"}
                     </span>
                   </div>
@@ -245,7 +245,7 @@ export default function RelatedCourses() {
                   {/* CONTENT */}
                   <div className="p-6">
                     <div className="text-orange-400 text-sm mb-2">
-                      ⭐⭐⭐⭐⭐ <span className="text-gray-500 ml-2">(5 Reviews)</span>
+                      ⭐⭐⭐⭐⭐ <span className="text-[var(--color-muted)] ml-2">(5 Reviews)</span>
                     </div>
 
                     <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
@@ -261,14 +261,14 @@ export default function RelatedCourses() {
                       {course.text}
                     </p>
 
-                    <div className="text-xs text-gray-400 mb-4">
+                    <div className="text-xs text-[var(--color-muted-light)] mb-4">
                       Category: {course.category_details?.name}
                     </div>
 
                     <div className="flex items-center justify-between">
                       <Link
                         href={`/courses/${course.slug}`}
-                        className="text-[var(--color-primary)] font-semibold hover:underline"
+                        className="text-[var(--color-accent-purple)] font-semibold hover:underline"
                       >
                         Learn More →
                       </Link>

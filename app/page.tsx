@@ -68,22 +68,22 @@
 // export default function HomePage() {
 // const stats = [
 //   {
-//     icon: <FaUserGraduate className="text-pink-500 text-3xl" />,
+//     icon: <FaUserGraduate className="text-[var(--color-accent-pink)] text-3xl" />,
 //     number: 500,
 //     label: "Learners & counting",
 //   },
 //   {
-//     icon: <FaLaptopCode className="text-pink-500 text-3xl" />,
+//     icon: <FaLaptopCode className="text-[var(--color-accent-pink)] text-3xl" />,
 //     number: 800,
 //     label: "Courses & Video",
 //   },
 //   {
-//     icon: <FaAward className="text-pink-500 text-3xl" />,
+//     icon: <FaAward className="text-[var(--color-accent-pink)] text-3xl" />,
 //     number: 999,
 //     label: "Certified Students",
 //   },
 //   {
-//     icon: <FaUsers className="text-pink-500 text-3xl" />,
+//     icon: <FaUsers className="text-[var(--color-accent-pink)] text-3xl" />,
 //     number: 100,
 //     label: "Registered Enrolls",
 //   },
@@ -113,7 +113,7 @@
 //   return <EventsSection events={eventsData} />;
 // }
 //   return (
-//     <div className="bg-white min-h-screen ">
+//     <div className="bg-[var(--color-white)] min-h-screen ">
 
 //       {/* ================= HERO ================= */}
 //     <HeroSection />
@@ -138,16 +138,16 @@
 //             Know About Coding Cloud Learning Platform
 //           </h2>
 
-//           <p className="text-gray-600 mb-6">
+//           <p className="text-[var(--color-muted)] mb-6">
 //             Far far away, behind the word mountains, far from the countries.
 //           </p>
 
 //           <div className="space-y-4">
 //             <div className="flex gap-4">
-//               <CiHeart className="text-red-500 text-3xl" />
+//               <CiHeart className="text-[var(--color-danger)] text-3xl" />
 //               <div>
 //                 <h4 className="font-bold">Flexible Classes</h4>
-//                 <p className="text-gray-500 text-sm">
+//                 <p className="text-[var(--color-muted)] text-sm">
 //                   Learn anytime anywhere.
 //                 </p>
 //               </div>
@@ -157,7 +157,7 @@
 //               <FiBook className="text-blue-500 text-3xl" />
 //               <div>
 //                 <h4 className="font-bold">Offline Mode</h4>
-//                 <p className="text-gray-500 text-sm">
+//                 <p className="text-[var(--color-muted)] text-sm">
 //                   Download lessons offline.
 //                 </p>
 //               </div>
@@ -171,14 +171,14 @@
 // <WhyChooseUs stats={stats} />
 
 //       {/* TESTIMONIAL */}
-//       <section className="py-24 bg-white overflow-hidden relative border-t-4 border-[var(--color-primary)]">
+//       <section className="py-24 bg-[var(--color-white)] overflow-hidden relative border-t-4 border-[var(--color-primary)]">
 
 //   <div className="container-custom text-center mb-16">
 //     <span className="inline-block px-4 py-1 mb-5 text-sm font-semibold text-[var(--color-primary)] bg-blue-100 rounded-full uppercase tracking-wider">
 //       EDUCATION FOR EVERYONE
 //     </span>
 
-//     <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
+//     <h2 className="text-3xl md:text-5xl font-bold text-[var(--color-dark)] leading-tight">
 //       People like Coding Cloud education.
 //       <br />
 //       No joking - here’s the proof!
@@ -218,12 +218,12 @@ import TestimonialSection from "@/component/TestimonialSection";
 import HeroSection from "@/component/HeroSection";
 import KnowAboutUs from "@/component/KnowAboutUs";
 import WhyChooseUs from "@/component/WhyChooseUs";
-import EventsSection from "@/component/EventsSection";
 import '../app/globals.css'
 import Pill from "@/component/ui/Pill";
 import BlogPost from "@/component/blogpost";
 import KidsCoursesSection from "@/component/KidsCoursesSection";
 import Heading from "@/component/ui/Heading";
+import FeaturedCoursesSection from "@/component/FeaturedCoursesSection";
 // ============================
 // MAIN HOME PAGE
 // ============================
@@ -232,22 +232,22 @@ export default function HomePage() {
   // ================= STATS DATA =================
   const stats = [
     {
-      icon: <FaUserGraduate className="text-pink-500 text-3xl" />,
+      icon: <FaUserGraduate className="text-[var(--color-accent-pink)] text-3xl" />,
       number: 500,
       label: "Learners & counting",
     },
     {
-      icon: <FaLaptopCode className="text-pink-500 text-3xl" />,
+      icon: <FaLaptopCode className="text-[var(--color-accent-pink)] text-3xl" />,
       number: 800,
       label: "Courses & Video",
     },
     {
-      icon: <FaAward className="text-pink-500 text-3xl" />,
+      icon: <FaAward className="text-[var(--color-accent-pink)] text-3xl" />,
       number: 999,
       label: "Certified Students",
     },
     {
-      icon: <FaUsers className="text-pink-500 text-3xl" />,
+      icon: <FaUsers className="text-[var(--color-accent-pink)] text-3xl" />,
       number: 100,
       label: "Registered Enrolls",
     },
@@ -307,7 +307,7 @@ export default function HomePage() {
 
   // ================= RENDER =================
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[var(--color-white)] min-h-screen">
 
       {/* HERO */}
       <HeroSection />
@@ -322,14 +322,14 @@ export default function HomePage() {
       <WhyChooseUs stats={stats} />
 
       {/* TESTIMONIAL */}
-      <section className="py-24 bg-white overflow-hidden relative border-t-4 border-[var(--color-primary)]">
+      <section className="py-24 bg-[var(--color-white)] overflow-hidden relative border-t-4 border-[var(--color-accent-purple)]">
         <div className="container-custom text-center mb-16">
           {/* <span className="inline-block px-4 py-1 mb-5 text-sm font-semibold text-[var(--color-primary)] bg-blue-100 rounded-full uppercase tracking-wider">
             EDUCATION FOR EVERYONE
           </span> */}
           <Pill
             text="Education For Everywhere"
-            textColor="var(--color-primary)"
+            textColor="var(--color-accent-purple)"
             bgColor="var(--color-primary-light)"
           />
 
@@ -347,8 +347,8 @@ export default function HomePage() {
       </section>
 
       {/* EVENTS */}
-      <EventsSection events={eventsData} />
-      <KidsCoursesSection events={eventsData} />
+      <FeaturedCoursesSection />
+      <KidsCoursesSection/>
       {/* BLOG */}
       <BlogPost />
     </div>

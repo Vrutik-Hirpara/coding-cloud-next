@@ -108,18 +108,18 @@
 //             <div
 //               key={card.id}
 //               style={style}
-//               className="absolute top-0 left-0 w-full h-full bg-white rounded-2xl shadow-xl overflow-hidden border"
+//               className="absolute top-0 left-0 w-full h-full bg-[var(--color-white)] rounded-2xl shadow-xl overflow-hidden border"
 //             >
 //               {/* HEADER */}
 //               <div
-//                 className="h-[160px] p-5 relative text-white"
+//                 className="h-[160px] p-5 relative text-[var(--color-white)]"
 //                 style={{ background: card.color }}
 //               >
 //                 <h3 className="text-sm font-bold w-2/3 leading-snug">
 //                   Difficult Things About Education.
 //                 </h3>
 
-//                 <span className="absolute bottom-4 left-4 text-xs bg-white/20 px-2 py-1 rounded">
+//                 <span className="absolute bottom-4 left-4 text-xs bg-[var(--color-white)]/20 px-2 py-1 rounded">
 //                   {card.lessons} Class
 //                 </span>
 
@@ -139,28 +139,28 @@
 
 //               {/* BODY */}
 //               <div className="p-5 text-sm">
-//                 <div className="flex justify-between text-gray-400 text-xs mb-2">
+//                 <div className="flex justify-between text-[var(--color-muted-light)] text-xs mb-2">
 //                   <span>{card.lessons} Lessons</span>
 //                   <span>{card.students} Students</span>
 //                 </div>
 
 //                 <h2 className="text-xl font-bold">{card.title}</h2>
 
-//                 <p className="text-gray-500 text-xs">{card.desc}</p>
+//                 <p className="text-[var(--color-muted)] text-xs">{card.desc}</p>
 
-//                 <div className="text-yellow-400 my-2">
+//                 <div className="text-[var(--color-accent-yellow-light)] my-2">
 //                   ⭐⭐⭐⭐⭐ ({card.rating})
 //                 </div>
 
 //                 <div className="flex justify-between items-center border-t pt-3 mt-3">
 //                   <div>
 //                     <span className="font-bold text-lg">${card.price}</span>
-//                     <span className="text-gray-400 line-through ml-2 text-xs">
+//                     <span className="text-[var(--color-muted-light)] line-through ml-2 text-xs">
 //                       ${card.oldPrice}
 //                     </span>
 //                   </div>
 
-//                   <button className="text-sm text-indigo-600 font-semibold">
+//                   <button className="text-sm text-[var(--color-accent-indigo)] font-semibold">
 //                     Learn More →
 //                   </button>
 //                 </div>
@@ -282,18 +282,18 @@ export default function CardSlider() {
             <div
               key={card.id}
               style={style}
-              className="absolute top-0 left-0 w-full h-full bg-white rounded-2xl shadow-2xl overflow-hidden border"
+              className="absolute top-0 left-0 w-full h-full bg-[var(--color-white)] rounded-2xl shadow-2xl overflow-hidden border"
             >
               {/* HEADER */}
               <div
-                className="h-[190px] p-6 relative text-white"
+                className="h-[190px] p-6 relative text-[var(--color-white)]"
                 style={{ background: card.color }}
               >
                 <h3 className="text-base font-bold w-2/3 leading-snug">
                   Difficult Things About Education.
                 </h3>
 
-                <span className="absolute bottom-5 left-5 text-xs bg-white/20 px-3 py-1 rounded">
+                <span className="absolute bottom-5 left-5 text-xs bg-[var(--color-white)]/20 px-3 py-1 rounded">
                   {card.lessons} Class
                 </span>
 
@@ -314,30 +314,30 @@ export default function CardSlider() {
 
               {/* BODY */}
               <div className="p-6 text-sm">
-                <div className="flex justify-between text-gray-400 text-xs mb-3">
+                <div className="flex justify-between text-[var(--color-muted-light)] text-xs mb-3">
                   <span>{card.lessons} Lessons</span>
                   <span>{card.students} Students</span>
                 </div>
 
                 <h2 className="text-2xl font-bold mb-1">{card.title}</h2>
 
-                <p className="text-gray-500 text-sm mb-3">
+                <p className="text-[var(--color-muted)] text-sm mb-3">
                   {card.desc}
                 </p>
 
-                <div className="text-yellow-400 mb-3 text-sm">
+                <div className="text-[var(--color-accent-yellow-light)] mb-3 text-sm">
                   ⭐⭐⭐⭐⭐ ({card.rating})
                 </div>
 
                 <div className="flex justify-between items-center border-t pt-4 mt-3">
-                  <div>
+                  {/* <div>
                     <span className="font-bold text-xl">${card.price}</span>
-                    <span className="text-gray-400 line-through ml-2 text-sm">
+                    <span className="text-[var(--color-muted-light)] line-through ml-2 text-sm">
                       ${card.oldPrice}
                     </span>
-                  </div>
+                  </div> */}
 
-                  <button className="text-sm text-indigo-600 font-semibold">
+                  <button className="text-sm text-[var(--color-accent-indigo)] font-semibold">
                     Learn More →
                   </button>
                 </div>

@@ -57,9 +57,9 @@
 //               whileInView={{ opacity: 1, y: 0 }}
 //               transition={{ duration: 0.5, delay: i * 0.2 }}
 //               viewport={{ once: true }}
-//               className="bg-white border border-[var(--color-border)] p-10 rounded-2xl text-center shadow-sm hover:shadow-lg transition-all duration-300"
+//               className="bg-[var(--color-white)] border border-[var(--color-border)] p-10 rounded-2xl text-center shadow-sm hover:shadow-lg transition-all duration-300"
 //             >
-//               <div className="w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-xl text-white text-2xl bg-[var(--color-primary)] shadow">
+//               <div className="w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-xl text-[var(--color-white)] text-2xl bg-[var(--color-primary)] shadow">
 //                 {item.icon}
 //               </div>
 
@@ -68,7 +68,7 @@
 //               </h3>
 
 //               {item.values.map((val, idx) => (
-//                 <p key={idx} className="text-gray-600 text-sm leading-relaxed">
+//                 <p key={idx} className="text-[var(--color-muted)] text-sm leading-relaxed">
 //                   {val}
 //                 </p>
 //               ))}
@@ -103,13 +103,13 @@
 //             whileInView={{ opacity: 1, x: 0 }}
 //             transition={{ duration: 0.7 }}
 //             viewport={{ once: true }}
-//             className="bg-white p-6 md:p-10 rounded-2xl shadow-lg"
+//             className="bg-[var(--color-white)] p-6 md:p-10 rounded-2xl shadow-lg"
 //           >
 //             <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-primary)] bg-purple-100 rounded-full uppercase tracking-wider">
 //               EDUCATION FOR EVERYONE
 //             </span>
 
-//             <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+//             <h2 className="text-2xl md:text-4xl font-bold text-[var(--color-dark)] mb-6 leading-tight">
 //               Get a Free Course You Can Contact With Me
 //             </h2>
 
@@ -118,30 +118,30 @@
 //               <input
 //                 type="text"
 //                 placeholder="Name"
-//                 className="w-full border-b border-gray-300 p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
+//                 className="w-full border-b border border-[var(--color-border-light)] p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
 //               />
 
 //               <input
 //                 type="email"
 //                 placeholder="Email"
-//                 className="w-full border-b border-gray-300 p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
+//                 className="w-full border-b border border-[var(--color-border-light)] p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
 //               />
 
 //               <input
 //                 type="text"
 //                 placeholder="Your Subject"
-//                 className="w-full border-b border-gray-300 p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
+//                 className="w-full border-b border border-[var(--color-border-light)] p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
 //               />
 
 //               <textarea
 //                 placeholder="Message"
 //                 rows={4}
-//                 className="w-full border-b border-gray-300 p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
+//                 className="w-full border-b border border-[var(--color-border-light)] p-3 outline-none focus:border-[var(--color-primary)] bg-transparent"
 //               />
 
 //               <button
 //                 type="submit"
-//                 className="w-full mt-4 bg-gradient-to-r from-[var(--color-primary)] to-blue-600 text-white py-3 rounded-lg font-semibold hover:scale-[1.02] transition"
+//                 className="w-full mt-4 bg-gradient-to-r from-[var(--color-primary)] to-blue-600 text-[var(--color-white)] py-3 rounded-lg font-semibold hover:scale-[1.02] transition"
 //               >
 //                 GET IT NOW →
 //               </button>
@@ -307,7 +307,7 @@ const handleSubmit = async (e: any) => {
       {/* ================= HEADER ================= */}
       <section className="py-20 md:py-10 text-center">
         <div className="container-custom">
-          <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full">
+          <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)]/10 rounded-full">
             CONTACT US
           </span>
 
@@ -328,10 +328,10 @@ const handleSubmit = async (e: any) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white border border-[var(--color-border)] p-8 md:p-10 rounded-2xl text-center shadow-sm hover:shadow-lg transition-all duration-300"
+              className="bg-[var(--color-white)] border border-[var(--color-border)] p-8 md:p-10 rounded-2xl text-center shadow-sm hover:shadow-lg transition-all duration-300"
             >
               {/* ICON */}
-              <div className="w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-xl text-white text-2xl bg-[var(--color-primary)] shadow">
+              <div className="w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-xl text-[var(--color-white)] text-2xl bg-[var(--color-accent-purple)] shadow">
                 {item.icon}
               </div>
 
@@ -342,7 +342,7 @@ const handleSubmit = async (e: any) => {
 
               {/* VALUES */}
               {item.values.map((val, idx) => (
-                <p key={idx} className="text-gray-600 text-sm leading-relaxed">
+                <p key={idx} className="text-[var(--color-muted)] text-sm leading-relaxed">
                   {val}
                 </p>
               ))}
@@ -381,7 +381,7 @@ const handleSubmit = async (e: any) => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-center h-[320px] md:h-[520px]"          >
+className="bg-[var(--color-white)] p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-center h-[320px] md:h-[520px]"          >
             <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full uppercase tracking-wider">
               EDUCATION FOR EVERYONE
             </span>
@@ -418,7 +418,7 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
 
               <button
                 type="submit"
-                className="w-full mt-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white py-3 rounded-lg font-semibold hover:scale-[1.02] transition"
+                className="w-full mt-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-[var(--color-white)] py-3 rounded-lg font-semibold hover:scale-[1.02] transition"
               >
                 GET IT NOW →
               </button>
@@ -430,7 +430,7 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
   whileInView={{ opacity: 1, x: 0 }}
   transition={{ duration: 0.7 }}
   viewport={{ once: true }}
-  className="bg-white p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
+  className="bg-[var(--color-white)] p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
 >
   <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full uppercase tracking-wider">
     EDUCATION FOR EVERYONE
@@ -467,7 +467,7 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
 
     <button
       type="submit"
-      className="w-full mt-2 md:mt-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white py-2.5 md:py-3 rounded-lg font-semibold hover:scale-[1.02] transition text-sm md:text-base"
+      className="w-full mt-2 md:mt-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-[var(--color-white)] py-2.5 md:py-3 rounded-lg font-semibold hover:scale-[1.02] transition text-sm md:text-base"
     >
       GET IT NOW →
     </button>
@@ -479,9 +479,9 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
   whileInView={{ opacity: 1, x: 0 }}
   transition={{ duration: 0.7 }}
   viewport={{ once: true }}
-  className="bg-white p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
+  className="bg-[var(--color-white)] p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
 >
-  <span className="inline-block px-4 py-1 mb-3 text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full uppercase tracking-wider">
+  <span className="inline-block px-4 py-1 mb-3 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)]/10 rounded-full uppercase tracking-wider">
     EDUCATION FOR EVERYONE
   </span>
 
@@ -495,7 +495,7 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
 )}
 
 {globalError && (
-  <p className="text-red-500 text-sm font-medium mb-2">
+  <p className="text-[var(--color-danger)] text-sm font-medium mb-2">
     {globalError}
   </p>
 )}
@@ -508,18 +508,18 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
   onChange={handleChange}
   placeholder="Name"
   
-  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
 />
-{errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+{errors.name && <p className="text-[var(--color-danger)] text-xs">{errors.name}</p>}
 <input
   type="email"
   name="email"
   value={form.email}
   onChange={handleChange}
   placeholder="Email"
-  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
 />
-{errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+{errors.email && <p className="text-[var(--color-danger)] text-xs">{errors.email}</p>}
     {/* 🔥 NEW MOBILE FIELD */}
 <input
   type="tel"
@@ -530,9 +530,9 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
     setForm({ ...form, mobile: val.slice(0, 10) });
   }}
   placeholder="Mobile Number"
-  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
 />
-{errors.mobile && <p className="text-red-500 text-xs">{errors.mobile}</p>}
+{errors.mobile && <p className="text-[var(--color-danger)] text-xs">{errors.mobile}</p>}
 
 <input
   type="text"
@@ -540,12 +540,12 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
   value={form.subject}
   onChange={handleChange}
   placeholder="Your Subject"
-  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
 />
 
 {/* 🔴 ERROR MESSAGE */}
 {errors.subject && (
-  <p className="text-red-500 text-xs mt-1">
+  <p className="text-[var(--color-danger)] text-xs mt-1">
     {errors.subject}
   </p>
 )}
@@ -555,13 +555,13 @@ className="bg-white p-6 md:p-8 rounded-2xl shadow-lg flex flex-col justify-cente
   onChange={handleChange}
   placeholder="Message"
   rows={1}
-  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-primary)] bg-transparent"
+  className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
 />
-{errors.message && <p className="text-red-500 text-xs">{errors.message}</p>}
+{errors.message && <p className="text-[var(--color-danger)] text-xs">{errors.message}</p>}
 <button
   type="submit"
   disabled={loading}
-  className="w-full mt-2 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white py-2.5 md:py-3 rounded-lg font-semibold hover:scale-[1.02] transition text-sm md:text-base"
+  className="w-full mt-2 bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] py-2.5 md:py-3 rounded-lg font-semibold hover:scale-[1.02] transition text-sm md:text-base"
 >
   {loading ? "Sending..." : "GET IT NOW →"}
 </button>

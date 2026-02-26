@@ -13,7 +13,7 @@ type PillProps = {
 
 export default function Pill({
   text,
-  textColor = "var(--color-primary)",
+  textColor = "var(--color-accent-purple)",
   bgColor = "rgba(106,77,244,0.12)",
   blur,
   className = "",

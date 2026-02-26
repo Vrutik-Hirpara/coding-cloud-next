@@ -10,7 +10,7 @@
 // }) {
 //   return (
 //     <html lang="en">
-//       <body className="bg-white text-gray-900 overflow-x-hidden">
+//       <body className="bg-[var(--color-white)] text-[var(--color-dark)] overflow-x-hidden">
 
 //         {/* FULL WIDTH NAVBAR */}
 //         <Navbar />
@@ -50,7 +50,7 @@ export default function RootLayout({
 }) {
   return (
 <html lang="en" data-scroll-behavior="smooth">
-        <body className="bg-white text-gray-900 overflow-x-hidden">
+        <body className="bg-[var(--color-white)] text-[var(--color-dark)] overflow-x-hidden">
         <ScrollToTop />
 
         {/* FULL WIDTH NAVBAR */}

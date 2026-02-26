@@ -11,18 +11,18 @@
 //         {/* HEADER */}
 //         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
 //           <div>
-//             <span className="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-pink-100 text-pink-500 mb-3">
+//             <span className="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-pink-100 text-[var(--color-accent-pink)] mb-3">
 //               BLOG POST
 //             </span>
 
-//             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+//             <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-dark)]">
 //               Post Popular Post.
 //             </h2>
 //           </div>
 
 //           <Link
 //             href="/articles"
-//             className="mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 transition"
+//             className="mt-4 md:mt-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-[var(--color-white)] font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 transition"
 //           >
 //             See All Articles →
 //           </Link>
@@ -32,7 +32,7 @@
 //         <div className="grid lg:grid-cols-2 gap-8">
 
 //           {/* LEFT BIG CARD */}
-//           <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+//           <div className="bg-[var(--color-white)] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
 //             <div className="relative h-[260px] md:h-[300px]">
 //               <Image
 //                 src="/images/blog/blog-big.jpg"
@@ -43,11 +43,11 @@
 //             </div>
 
 //             <div className="p-6">
-//               <h3 className="text-2xl font-bold text-gray-900 mb-2">
+//               <h3 className="text-2xl font-bold text-[var(--color-dark)] mb-2">
 //                 React
 //               </h3>
 
-//               <p className="text-gray-500 mb-4">
+//               <p className="text-[var(--color-muted)] mb-4">
 //                 It is a long established fact that a reader.
 //               </p>
 
@@ -64,7 +64,7 @@
 //           <div className="flex flex-col gap-6">
 
 //             {/* ITEM 1 */}
-//             <div className="bg-white rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition">
+//             <div className="bg-[var(--color-white)] rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition">
 //               <div className="relative w-40 h-28 rounded-xl overflow-hidden">
 //                 <Image
 //                   src="/images/blog/blog-1.jpg"
@@ -75,17 +75,17 @@
 //               </div>
 
 //               <div>
-//                 <h4 className="font-bold text-lg text-gray-900 mb-1">
+//                 <h4 className="font-bold text-lg text-[var(--color-dark)] mb-1">
 //                   Why Is Education So Famous?
 //                 </h4>
-//                 <Link href="#" className="text-sm text-gray-500 hover:text-blue-600">
+//                 <Link href="#" className="text-sm text-[var(--color-muted)] hover:text-blue-600">
 //                   Read Article →
 //                 </Link>
 //               </div>
 //             </div>
 
 //             {/* ITEM 2 */}
-//             <div className="bg-white rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition">
+//             <div className="bg-[var(--color-white)] rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition">
 //               <div className="relative w-40 h-28 rounded-xl overflow-hidden">
 //                 <Image
 //                   src="/images/blog/blog-2.jpg"
@@ -96,17 +96,17 @@
 //               </div>
 
 //               <div>
-//                 <h4 className="font-bold text-lg text-gray-900 mb-1">
+//                 <h4 className="font-bold text-lg text-[var(--color-dark)] mb-1">
 //                   Difficult Things About Education.
 //                 </h4>
-//                 <Link href="#" className="text-sm text-gray-500 hover:text-blue-600">
+//                 <Link href="#" className="text-sm text-[var(--color-muted)] hover:text-blue-600">
 //                   Read Article →
 //                 </Link>
 //               </div>
 //             </div>
 
 //             {/* ITEM 3 */}
-//             <div className="bg-white rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition">
+//             <div className="bg-[var(--color-white)] rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition">
 //               <div className="relative w-40 h-28 rounded-xl overflow-hidden">
 //                 <Image
 //                   src="/images/blog/blog-3.jpg"
@@ -117,10 +117,10 @@
 //               </div>
 
 //               <div>
-//                 <h4 className="font-bold text-lg text-gray-900 mb-1">
+//                 <h4 className="font-bold text-lg text-[var(--color-dark)] mb-1">
 //                   Education Is So Famous, But Why?
 //                 </h4>
-//                 <Link href="#" className="text-sm text-gray-500 hover:text-blue-600">
+//                 <Link href="#" className="text-sm text-[var(--color-muted)] hover:text-blue-600">
 //                   Read Article →
 //                 </Link>
 //               </div>
@@ -182,14 +182,14 @@ export default function BlogPost() {
       <div className="container-custom">
 
         {/* HEADER */}
-       <div className="flex flex-col md:flex-row md:items-center md:justify-center mb-10">
+       <div className="flex flex-col md:flex-row md:items-center md:justify-center mb-4">
 
   {/* LEFT SIDE (Heading + Pill) */}
   <div className="flex flex-col items-center">
 
     <Pill
       text="Blog Post"
-      textColor="var(--color-primary)"
+      textColor="var(--color-accent-purple)"
       bgColor="var(--color-primary-light)"
     />
 
@@ -204,10 +204,10 @@ export default function BlogPost() {
 
 </div>
   {/* RIGHT SIDE BUTTON */}
-  <div className="mt-4 md:mt-0 flex md:justify-end">
+  <div className="mt-4 md:mt-0 flex md:justify-end mb-4">
     <Button
-      className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] 
-      text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
+      className="bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] 
+      text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
     >
       <Link href="/blogs">
         See All Blogs →
@@ -222,7 +222,7 @@ export default function BlogPost() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
+            className="bg-[var(--color-white)] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
           >
             <div className="relative h-[260px] sm:h-[320px] md:h-[380px] w-full overflow-hidden rounded-t-xl">
               <Image
@@ -232,7 +232,7 @@ export default function BlogPost() {
                 sizes="(max-width: 768px) 100vw, 600px"
                 priority
                 unoptimized
-                className="object-fill transition-transform duration-500 hover:scale-105"
+                className="object-contain transition-transform duration-500 hover:scale-105"
               />
 
               {/* optional overlay for readability */}
@@ -250,7 +250,7 @@ export default function BlogPost() {
 
               <Link
                 href={`/blogs/${mainBlog.slug}`}
-                className="text-[var(--color-primary)] font-semibold hover:underline"
+                className="text-[var(--color-accent-purple)] font-semibold hover:underline"
               >
                 Learn More →
               </Link>
@@ -265,7 +265,7 @@ export default function BlogPost() {
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-white rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition"
+                className="bg-[var(--color-white)] rounded-2xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition"
               >
                 <div className="relative w-32 sm:w-40 h-24 sm:h-28 rounded-xl overflow-hidden flex-shrink-0">
                   <Image
@@ -274,7 +274,7 @@ export default function BlogPost() {
                     fill
                     sizes="(max-width: 640px) 128px, 160px"
                     unoptimized
-                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    className="object-contain transition-transform duration-300 hover:scale-105"
                   />
                 </div>
 
@@ -289,7 +289,7 @@ export default function BlogPost() {
 
                   <Link
                     href={`/blogs/${blog.slug}`}
-                    className="text-sm text-[var(--color-primary)] hover:underline"
+                    className="text-sm text-[var(--color-accent-purple)] hover:underline"
                   >
                     Read Article →
                   </Link>

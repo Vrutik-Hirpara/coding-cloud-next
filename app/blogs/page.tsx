@@ -91,11 +91,11 @@ const getFullImageUrl = (img?: string) => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1,2,3,4,5,6].map((i)=>(
-            <div key={i} className="bg-white rounded-xl p-4 shadow animate-pulse">
-              <div className="h-44 w-full bg-gray-200 rounded-lg mb-4"></div>
-              <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-4 bg-gray-200 rounded w-full mb-1"></div>
-              <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+            <div key={i} className="bg-[var(--color-white)] rounded-xl p-4 shadow animate-pulse">
+              <div className="h-44 w-full bg-[var(--color-light)] rounded-lg mb-4"></div>
+              <div className="h-6 bg-[var(--color-light)] rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-[var(--color-light)] rounded w-full mb-1"></div>
+              <div className="h-4 bg-[var(--color-light)] rounded w-2/3"></div>
             </div>
           ))}
         </div>
@@ -108,10 +108,10 @@ const getFullImageUrl = (img?: string) => {
     return (
       <div className="container-custom py-16 text-center">
         <h1 className="text-3xl font-bold mb-6">All Blogs</h1>
-        <p className="text-red-500 mb-4">{error}</p>
+        <p className="text-[var(--color-danger)] mb-4">{error}</p>
         <button
           onClick={() => window.location.reload()}
-          className="px-6 py-2 rounded-full bg-[var(--color-primary)] text-white"
+          className="px-6 py-2 rounded-full bg-[var(--color-accent-purple)] text-[var(--color-white)]"
         >
           Retry
         </button>
@@ -123,7 +123,7 @@ const getFullImageUrl = (img?: string) => {
   if (blogs.length === 0) {
     return (
       <div className="container-custom py-16 text-center">
-        <p className="text-gray-500">No blogs available</p>
+        <p className="text-[var(--color-muted)]">No blogs available</p>
       </div>
     );
   }
@@ -157,9 +157,9 @@ const getFullImageUrl = (img?: string) => {
             >
               <Link
                 href={`/blogs/${blog.slug}`}
-                className="block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition h-full"
+                className="block bg-[var(--color-white)] rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition h-full"
               >
-                <div className="h-48 w-full bg-gray-100 overflow-hidden">
+                <div className="h-48 w-full bg-[var(--color-bg-light)] overflow-hidden">
                   {img ? (
                     <img
                       src={img}
@@ -167,7 +167,7 @@ const getFullImageUrl = (img?: string) => {
                       className="w-full h-full object-fill hover:scale-110 transition duration-500"
                     />
                   ) : (
-                    <div className="flex items-center justify-center h-full text-gray-400">
+                    <div className="flex items-center justify-center h-full text-[var(--color-muted-light)]">
                       No Image
                     </div>
                   )}
@@ -182,7 +182,7 @@ const getFullImageUrl = (img?: string) => {
                     {blog.short_description}
                   </p>
 
-                  <span className="text-[var(--color-primary)] font-medium text-sm">
+                  <span className="text-[var(--color-accent-purple)] font-medium text-sm">
                     Learn More →
                   </span>
                 </div>

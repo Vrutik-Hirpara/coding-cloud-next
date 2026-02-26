@@ -77,16 +77,16 @@ export default function CategoryCoursesPage() {
             <Link
               key={course.id}
               href={`/courses/${course.slug}`}
-              className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
+              className="bg-[var(--color-white)] rounded-xl shadow hover:shadow-lg transition overflow-hidden"
             >
-              <div className="h-44 bg-gray-100">
+              <div className="h-44 bg-[var(--color-bg-light)]">
                 {img && (
                   <Image
                     src={img}
                     alt={course.name}
                     width={400}
                     height={300}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 )}
               </div>
@@ -95,7 +95,7 @@ export default function CategoryCoursesPage() {
                 <h3 className="font-semibold text-lg mb-2">
                   {course.name}
                 </h3>
-                <p className="text-sm text-gray-500 line-clamp-2">
+                <p className="text-sm text-[var(--color-muted)] line-clamp-2">
                   {course.text}
                 </p>
               </div>

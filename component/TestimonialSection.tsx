@@ -24,25 +24,25 @@
 //     <div
 //       className={`shrink-0 w-[280px] sm:w-[320px] md:w-[380px] p-6 md:p-8 rounded-2xl mx-4 flex flex-col justify-between transition-all duration-300 hover:scale-105 ${
 //         isColor
-//           ? "bg-gradient-to-r from-[var(--color-primary)] to-purple-600 text-white"
-//           : "bg-white text-gray-600 border border-gray-100"
+//           ? "bg-gradient-to-r from-[var(--color-primary)] to-purple-600 text-[var(--color-white)]"
+//           : "bg-[var(--color-white)] text-[var(--color-muted)] border-[var(--color-border-light)]"
 //       }`}
 //     >
 //       {/* stars + quote */}
 //       <div className="flex justify-between items-start mb-6">
-//         <div className="flex gap-1 text-yellow-400 text-sm">
+//         <div className="flex gap-1 text-[var(--color-accent-yellow-light)] text-sm">
 //           {[...Array(5)].map((_, i) => (
 //             <FaStar
 //               key={i}
 //               className={
-//                 i < (item.rating || 5) ? "text-yellow-400" : "text-gray-300"
+//                 i < (item.rating || 5) ? "text-[var(--color-accent-yellow-light)]" : "border border-[var(--color-border-light)]"
 //               }
 //             />
 //           ))}
 //         </div>
 //         <FaQuoteRight
 //           className={`text-4xl opacity-30 ${
-//             isColor ? "text-white" : "text-gray-300"
+//             isColor ? "text-[var(--color-white)]" : "border border-[var(--color-border-light)]"
 //           }`}
 //         />
 //       </div>
@@ -50,7 +50,7 @@
 //       {/* review */}
 //       <p
 //         className={`text-base md:text-lg mb-8 italic ${
-//           isColor ? "text-blue-50" : "text-gray-500"
+//           isColor ? "text-blue-50" : "text-[var(--color-muted)]"
 //         }`}
 //       >
 //         "{item.review}"
@@ -69,14 +69,14 @@
 //         <div>
 //           <h4
 //             className={`font-bold ${
-//               isColor ? "text-white" : "text-gray-900"
+//               isColor ? "text-[var(--color-white)]" : "text-[var(--color-dark)]"
 //             }`}
 //           >
 //             {item.name}
 //           </h4>
 //           <p
 //             className={`text-sm ${
-//               isColor ? "text-blue-200" : "text-gray-400"
+//               isColor ? "text-blue-200" : "text-[var(--color-muted-light)]"
 //             }`}
 //           >
 //             Student
@@ -142,10 +142,10 @@
 // }, []);
 
 //   if (loading)
-//     return <div className="py-20 text-center text-gray-400">Loading...</div>;
+//     return <div className="py-20 text-center text-[var(--color-muted-light)]">Loading...</div>;
 
 //   if (!data.length)
-//     return <div className="text-center text-gray-400">No reviews</div>;
+//     return <div className="text-center text-[var(--color-muted-light)]">No reviews</div>;
 
 //   const mid = Math.ceil(data.length / 2);
 //   const row1 = data.slice(0, mid);
@@ -221,18 +221,18 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
     <div
       className={`shrink-0 w-[280px] sm:w-[320px] md:w-[380px] p-6 md:p-8 rounded-2xl mx-4 flex flex-col justify-between transition-all duration-300 hover:scale-105 ${
         isColor
-          ? "bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white"
-          : "bg-white text-gray-600 border border-gray-100"
+          ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)]"
+          : "bg-[var(--color-white)] text-[var(--color-muted)] border-[var(--color-border-light)]"
       }`}
     >
       {/* stars + quote */}
       <div className="flex justify-between items-start mb-6">
-        <div className="flex gap-1 text-yellow-400 text-sm">
+        <div className="flex gap-1 text-[var(--color-accent-yellow-light)] text-sm">
           {[...Array(5)].map((_, i) => (
             <FaStar
               key={i}
               className={
-                i < (item.rating || 5) ? "text-yellow-400" : "text-gray-300"
+                i < (item.rating || 5) ? "text-[var(--color-accent-yellow-light)]" : "border border-[var(--color-border-light)]"
               }
             />
           ))}
@@ -240,7 +240,7 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
 
         <FaQuoteRight
           className={`text-4xl opacity-30 ${
-            isColor ? "text-white" : "text-gray-300"
+            isColor ? "text-[var(--color-white)]" : "border border-[var(--color-border-light)]"
           }`}
         />
       </div>
@@ -248,7 +248,7 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
       {/* review */}
       <p
         className={`text-base md:text-lg mb-8 italic ${
-          isColor ? "text-blue-50" : "text-gray-500"
+          isColor ? "text-blue-50" : "text-[var(--color-muted)]"
         }`}
       >
         "{item.review}"
@@ -267,14 +267,14 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
         <div>
           <h4
             className={`font-bold ${
-              isColor ? "text-white" : "text-gray-900"
+              isColor ? "text-[var(--color-white)]" : "text-[var(--color-dark)]"
             }`}
           >
             {item.name}
           </h4>
           <p
             className={`text-sm ${
-              isColor ? "text-blue-200" : "text-gray-400"
+              isColor ? "text-blue-200" : "text-[var(--color-muted-light)]"
             }`}
           >
             Student
@@ -343,10 +343,10 @@ const TestimonialSection = () => {
   }, []);
 
   if (loading)
-    return <div className="py-20 text-center text-gray-400">Loading...</div>;
+    return <div className="py-20 text-center text-[var(--color-muted-light)]">Loading...</div>;
 
   if (!data.length)
-    return <div className="text-center text-gray-400">No reviews</div>;
+    return <div className="text-center text-[var(--color-muted-light)]">No reviews</div>;
 
   const mid = Math.ceil(data.length / 2);
   const row1 = data.slice(0, mid);

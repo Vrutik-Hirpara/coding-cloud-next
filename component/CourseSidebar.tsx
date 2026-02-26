@@ -45,7 +45,7 @@
 //   ];
 
 //   return (
-//     <div className="bg-white rounded-xl shadow border sticky top-[140px] overflow-hidden h-fit self-start w-fit min-w-[260px]">
+//     <div className="bg-[var(--color-white)] rounded-xl shadow border sticky top-[140px] overflow-hidden h-fit self-start w-fit min-w-[260px]">
 
 //       <div className="divide-y">
 
@@ -55,14 +55,14 @@
 //             className="flex items-center gap-3 px-5 py-3"
 //           >
 //             {/* ICON */}
-//             <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-[var(--color-primary)]">
+//             <div className="w-9 h-9 rounded-full bg-[var(--color-bg-light)] flex items-center justify-center text-[var(--color-primary)]">
 //               {item.icon}
 //             </div>
 
 //             {/* TEXT */}
 //             <div className="text-[13px] leading-none">
-//               <span className="text-gray-500">{item.label}: </span>
-//               <span className="font-semibold text-gray-800">
+//               <span className="text-[var(--color-muted)]">{item.label}: </span>
+//               <span className="font-semibold text-[var(--color-text-strong)]">
 //                 {item.value}
 //               </span>
 //             </div>
@@ -140,7 +140,7 @@ export default function CourseSidebar({ course }: any) {
               className="flex-shrink-0 bg-[var(--color-bg-primary)] rounded-lg shadow-[var(--shadow-sm)] border border-[var(--color-border)] p-3 min-w-[140px]"
             >
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[var(--color-bg-light)] flex items-center justify-center text-[var(--color-primary)]">
+                <div className="w-8 h-8 rounded-full bg-[var(--color-bg-light)] flex items-center justify-center text-[var(--color-accent-purple)]">
                   {item.icon}
                 </div>
                 <div>
@@ -174,7 +174,7 @@ export default function CourseSidebar({ course }: any) {
             className="flex items-center gap-3 px-4 py-3 hover:bg-[var(--color-bg-light)] transition-colors"
           >
             {/* ICON */}
-            <div className="w-9 h-9 rounded-full bg-[var(--color-bg-light)] flex items-center justify-center text-[var(--color-primary)]">
+            <div className="w-9 h-9 rounded-full bg-[var(--color-bg-light)] flex items-center justify-center text-[var(--color-accent-purple)]">
               {item.icon}
             </div>
 

@@ -4,9 +4,11 @@
 
 
 /* 🔥 minimum layout width */
-html, body {
+html,
+body {
   min-width: 392px;
 }
+
 /* ===============================
    🎨 ROOT VARIABLES
 ================================= */
@@ -14,26 +16,33 @@ html, body {
   --color-text: #333;
   --color-white: #ffffff;
   --color-bg: #f8fafc;
-
-  --color-primary: #6A4DF4;
+  --color-overlay-dark: rgba(0, 0, 0, 0.6);
   --color-primary-dark: #5538e0;
   --color-primary-light: rgba(106, 77, 244, 0.12);
   --color-light: #e5e7eb;
   --color-dark: #0f172a;
-
+  --color-danger: #ef4444;
   --color-bg-light: #f5f7ff;
   --color-bg-soft: #eef1ff;
   --color-muted: #6b7280;
-
+  --color-muted-light: #9ca3af;
   --color-border: #ccc;
-
+  --color-text-strong: #1f2937;
   --color-accent-purple: #6A4DF4;
   --color-accent-yellow: #FFB800;
-
-    --nav-height: 64px;
+  --color-bg-softest: #f9fafb;
+  --nav-height: 64px;
   --nav-font: 14px;
-    --nav-gap: 24px;
-
+  --nav-gap: 24px;
+--color-bg-softest: #f9fafb;
+--color-accent-pink: #ec4899;
+--color-text-medium: #374151;
+--color-accent-indigo: #4f46e5;
+--color-border-light: #d1d5db;
+--color-accent-yellow-light: #facc15;
+--color-gradient-pink-soft: #FFE4F1;
+--color-gradient-blue-soft: #E0F7FF;
+--color-gradient-purple-soft: #F3E8FF;
 }
 
 /* ===============================
@@ -57,7 +66,7 @@ body {
 
 html {
   scroll-behavior: smooth;
-  
+
 }
 
 /* ===============================
@@ -75,11 +84,9 @@ html {
 
 /* 🔥 GRADIENT BACKGROUND CLASS (IMPORTANT) */
 .bg-soft-gradient {
-  background: linear-gradient(
-    to right,
-    var(--color-bg-soft),
-    var(--color-bg-light)
-  );
+  background: linear-gradient(to right,
+      var(--color-bg-soft),
+      var(--color-bg-light));
 }
 
 /* Swiper dots */
@@ -105,6 +112,7 @@ html {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -121,6 +129,7 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -136,17 +145,16 @@ html {
 
   color: #2563eb;
 
-  background-image: linear-gradient(
-    90deg,
-    rgba(99, 102, 241, 0.18),
-    rgba(59, 130, 246, 0.18)
-  );
+  background-image: linear-gradient(90deg,
+      rgba(99, 102, 241, 0.18),
+      rgba(59, 130, 246, 0.18));
   border-radius: 999px;
   /* 🔑 THIS FIXES THE TOP LINE */
   border: 1px solid rgba(99, 102, 241, 0.25);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    0 10px 28px rgba(99, 102, 241, 0.22);  /* backdrop-filter: blur(6px); */
+    0 10px 28px rgba(99, 102, 241, 0.22);
+  /* backdrop-filter: blur(6px); */
 }
 
 .courses-pill {

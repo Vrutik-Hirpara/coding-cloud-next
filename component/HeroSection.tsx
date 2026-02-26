@@ -14,7 +14,7 @@
 // <div className="container-custom grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 //         {/* ================= LEFT CONTENT ================= */}
 //         {/* <div className="lg:col-span-5 space-y-6 z-10">
-//           <div className="bg-white px-4 py-2 rounded shadow text-sm font-bold border">
+//           <div className="bg-[var(--color-white)] px-4 py-2 rounded shadow text-sm font-bold border">
 //             🏆 The Leader in Online Learning
 //           </div>
 
@@ -22,7 +22,7 @@
 //             Build The Skills <br /> To Drive Your Career.
 //           </h1>
 
-//           <p className="text-gray-500 text-lg">
+//           <p className="text-[var(--color-muted)] text-lg">
 //             Amet minim mollit non deserunt ullamco est sit aliqua dolor.
 //           </p>
 
@@ -49,7 +49,7 @@
 //           </h1>
 
 //           {/* TEXT */}
-//           <p className="text-gray-600 text-lg">
+//           <p className="text-[var(--color-muted)] text-lg">
 //             Join over <strong>3000+</strong> students to boost your skills and
 //             build a successful professional career.
 //           </p>
@@ -234,11 +234,8 @@ export default function HeroSection({ data = defaultData }: { data?: HeroData })
 relative md:static lg:absolute
     absolute lg:absolute
     md:static
-
     lg:right-0 lg:bottom-8
-
     z-20
-
     mt-6 md:mt-0
     px-5 md:px-0
   "

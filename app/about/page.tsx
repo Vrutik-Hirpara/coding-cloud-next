@@ -10,7 +10,7 @@ import TestimonialSection from "@/component/TestimonialSection";
 import { Link } from "lucide-react";
 export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-[var(--color-white)]">
 
             {/* ================= HERO SECTION ================= */}
             <section className="relative w-full h-[60vh] md:h-[82vh] flex items-center justify-center overflow-hidden">
@@ -27,7 +27,7 @@ export default function AboutPage() {
                 />
 
                 {/* DARK OVERLAY */}
-                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="absolute inset-0 bg-[var(--color-overlay-dark)]"></div>
 
                 {/* CONTENT */}
                 <div className="relative z-10 text-center px-4">
@@ -37,9 +37,9 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: -30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="inline-block px-8 md:px-12 py-3 md:py-4 mb-6 rounded-xl bg-white/10 backdrop-blur-md text-white text-xl sm:text-2xl md:text-3xl font-extrabold tracking-widest shadow-lg"
+                        className="inline-block px-8 md:px-12 py-3 md:py-4 mb-6 rounded-xl bg-[var(--color-white)]/10 backdrop-blur-md text-[var(--color-white)] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-widest shadow-lg"
                     >
-                        CODING <span className="text-blue-400">CLOUD</span>
+                        CODING <span className="text-[var(--color-accent-purple)]">CLOUD</span>
                     </motion.div>
 
                     {/* MAIN HEADING */}
@@ -47,7 +47,7 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight"
+                        className="text-3xl sm:text-4xl md:text-6xl font-bold text-[var(--color-white)] leading-tight"
                     >
                         Your Door To The Future.
                     </motion.h1>
@@ -74,7 +74,7 @@ export default function AboutPage() {
                         viewport={{ once: true }}
                     >
                         {/* TAG */}
-                        <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full uppercase tracking-wider">
+                        <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)]/10 rounded-full uppercase tracking-wider">
                             HOW WE WORK
                         </span>
 
@@ -88,28 +88,28 @@ export default function AboutPage() {
 
                             <div>
                                 <h4 className="font-semibold text-lg">For Creative learning</h4>
-                                <p className="text-gray-600">Developing the creative innovators of tomorrow</p>
+                                <p className="text-[var(--color-muted)]">Developing the creative innovators of tomorrow</p>
                             </div>
 
                             <div>
                                 <h4 className="font-semibold text-lg">For a better tomorrow</h4>
-                                <p className="text-gray-600">A Success-oriented learning environment.</p>
+                                <p className="text-[var(--color-muted)]">A Success-oriented learning environment.</p>
                             </div>
 
                             <div>
                                 <h4 className="font-semibold text-lg">Ignite young minds</h4>
-                                <p className="text-gray-600">Learning to lead with technology</p>
+                                <p className="text-[var(--color-muted)]">Learning to lead with technology</p>
                             </div>
 
                             <div>
                                 <h4 className="font-semibold text-lg">Technology that inspires</h4>
-                                <p className="text-gray-600">Looking to the future with hope</p>
+                                <p className="text-[var(--color-muted)]">Looking to the future with hope</p>
                             </div>
 
                         </div>
 
                         {/* BUTTON */}
-                        <Button className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white font-semibold hover:scale-105 transition">
+                        <Button className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-semibold hover:scale-105 transition">
                             Learn More About Us →
                         </Button>
                     </motion.div>
@@ -136,7 +136,7 @@ export default function AboutPage() {
 
                           {/* PLAY BUTTON */}
 <div className="absolute inset-0 flex items-center justify-center">
-  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-red-500 text-white text-lg sm:text-xl md:text-2xl shadow-lg cursor-pointer transition-transform duration-300 hover:scale-110">
+  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-[var(--color-accent-yellow)] text-[var(--color-white)] text-lg sm:text-xl md:text-2xl shadow-lg cursor-pointer transition-transform duration-300 hover:scale-110">
     ▶
   </div>
 </div>
@@ -166,7 +166,7 @@ export default function AboutPage() {
                         >
                             <div className="rounded-2xl p-10 backdrop-blur-md ">
 
-                                <div className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-full">
+                                <div className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)]/10 rounded-full">
                                     LEARNERS FEEDBACK
                                 </div>
 
@@ -174,12 +174,12 @@ export default function AboutPage() {
                                     What Our <br /> Learners Say
                                 </h2>
 
-                                <p className="text-gray-600 mb-8 ">
+                                <p className="text-[var(--color-muted)] mb-8 ">
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                     Repudiandae consectetur adipisicing elit. Repudiandae
                                 </p>
                                 <Button
-                                    className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
+                                    className="bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
                                 >
                                     Contact Us
                                 </Button>
