@@ -150,7 +150,7 @@ export default function CourseTabs({ course, events }: any) {
         return (
             <div className="flex gap-[2px] text-lg">
                 {[1, 2, 3, 4, 5].map((i) => (
-                    <span key={i} className={i <= count ? "text-orange-500" : "border border-[var(--color-border-light)]"}>
+                    <span key={i} className={i <= count ? "text-orange-500" : ""}>
                         ★
                     </span>
                 ))}

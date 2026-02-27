@@ -307,7 +307,7 @@ const handleSubmit = async (e: any) => {
       {/* ================= HEADER ================= */}
       <section className="py-20 md:py-10 text-center">
         <div className="container-custom">
-          <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)] rounded-full">
+          <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-[var(--color-accent-purple)] rounded-full">
             CONTACT US
           </span>
 
@@ -481,7 +481,7 @@ className="bg-[var(--color-white)] p-6 md:p-8 rounded-2xl shadow-lg flex flex-co
   viewport={{ once: true }}
   className="bg-[var(--color-white)] p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
 >
-  <span className="inline-block px-4 py-1 mb-3 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)] rounded-full uppercase tracking-wider">
+  <span className="inline-block px-4 py-1 mb-3 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple-10)] rounded-full uppercase tracking-wider">
     EDUCATION FOR EVERYONE
   </span>
 

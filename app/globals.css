@@ -29,6 +29,7 @@ body {
   --color-border: #ccc;
   --color-text-strong: #1f2937;
   --color-accent-purple: #6A4DF4;
+  --color-accent-purple-10: rgba(106, 77, 244, 0.1);
   --color-accent-yellow: #FFB800;
   --color-bg-softest: #f9fafb;
   --nav-height: 64px;

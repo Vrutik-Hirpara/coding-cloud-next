@@ -37,7 +37,7 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: -30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="inline-block px-8 md:px-12 py-3 md:py-4 mb-6 rounded-xl bg-[var(--color-white)] backdrop-blur-md text-[var(--color-white)] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-widest shadow-lg"
+                        className="inline-block px-8 md:px-12 py-3 md:py-4 mb-6 rounded-xl bg-[var(--color-white)] backdrop-blur-md text-[var(--color-accent-purple)] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-widest shadow-lg"
                     >
                         CODING <span className="text-[var(--color-accent-purple)]">CLOUD</span>
                     </motion.div>
@@ -74,7 +74,7 @@ export default function AboutPage() {
                         viewport={{ once: true }}
                     >
                         {/* TAG */}
-                        <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)] rounded-full uppercase tracking-wider">
+                        <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold text-[var(--color-accent-purple)]  rounded-full uppercase tracking-wider">
                             HOW WE WORK
                         </span>
 
@@ -166,7 +166,7 @@ export default function AboutPage() {
                         >
                             <div className="rounded-2xl p-10 backdrop-blur-md ">
 
-                                <div className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple)] rounded-full">
+                                <div className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[var(--color-accent-purple)]  rounded-full">
                                     LEARNERS FEEDBACK
                                 </div>
 
