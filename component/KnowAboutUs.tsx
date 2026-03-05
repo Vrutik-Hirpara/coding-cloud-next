@@ -380,11 +380,11 @@ export default function KnowAboutUs() {
 
                     </div>
                     {/* BUTTON */}
-                    <div className="mt-8">
+                    {/* <div className="mt-8">
                         <Button icon={FaArrowRight}>
                             More About Us
                         </Button>
-                    </div>
+                    </div> */}
 
                 </div>
 

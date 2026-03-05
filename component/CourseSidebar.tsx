@@ -122,8 +122,12 @@ export default function CourseSidebar({ course }: any) {
     {
       icon: <Award size={isMobile ? 16 : 18} />,
       label: "Certificate",
-      value: course.certificate || "No",
-    },
+value:
+  course.certificate === true
+    ? "Yes"
+    : course.certificate === false
+    ? "No"
+    : "No",    },
   ];
 
   // Mobile: Horizontal scrollable bar
@@ -148,6 +152,7 @@ export default function CourseSidebar({ course }: any) {
                   <p className="text-sm font-semibold text-[var(--color-text-primary)]">
                     {item.value}
                   </p>
+                  
                 </div>
               </div>
             </motion.div>

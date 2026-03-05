@@ -426,7 +426,9 @@ import { motion } from "framer-motion";
 import {
   FaInstagram, FaFacebookSquare, FaLinkedinIn, FaTwitter,
   FaChevronUp, FaSearch, FaBars, FaTimes,
-  FaPython, FaJava, FaReact, FaNodeJs, FaAndroid, FaAws, FaPhp, FaCheckCircle
+  FaPython, FaJava, FaReact, FaNodeJs, FaAndroid, FaAws, FaPhp, FaCheckCircle,
+  FaFacebookF,
+  FaYoutube
 } from "react-icons/fa";
 
 import {
@@ -484,7 +486,28 @@ export default function Navbar() {
     }
     return pathname.startsWith(path);
   };
-
+  const linkIcon = [
+    {
+      id: 1,
+      icon: FaFacebookF,
+      link: "https://www.facebook.com/codingcloudinstitute",
+    },
+    {
+      id: 2,
+      icon: FaYoutube,
+      link: "https://www.youtube.com/@CodingHunt",
+    },
+    {
+      id: 3,
+      icon: FaInstagram,
+      link: "https://www.instagram.com/codingcloud_institute/",
+    },
+    {
+      id: 4,
+      icon: FaLinkedinIn,
+      link: "https://www.linkedin.com/company/coding-cloud/",
+    },
+  ];
   // FETCH COURSES
   useEffect(() => {
     const getCourses = async () => {
@@ -546,40 +569,60 @@ export default function Navbar() {
       {/* TOP BAR - Visible on all devices */}
       <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-3 sm:px-6 overflow-x-auto">
         <div className="flex gap-3 sm:gap-6 min-w-max">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-1 sm:gap-2 hover:text-[var(--color-white)] cursor-pointer transition-colors"
-          >
-            <FaInstagram className="text-xs sm:text-base" />
-            <span className="text-[10px] sm:text-sm">100K</span>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-1 sm:gap-2 hover:text-[var(--color-white)] cursor-pointer transition-colors"
-          >
-            <FaFacebookSquare className="text-xs sm:text-base" />
-            <span className="text-[10px] sm:text-sm">500K</span>
-          </motion.div>
+        <a
+  href="https://www.instagram.com/codingcloud_institute/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    className="flex items-center gap-1 sm:gap-2 hover:text-[var(--color-white)] cursor-pointer transition-colors"
+  >
+    <FaInstagram className="text-xs sm:text-base" />
+    <span className="text-[10px] sm:text-sm">100K</span>
+  </motion.div>
+</a>
+
+<a
+  href="https://www.facebook.com/codingcloudinstitute"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    className="flex items-center gap-1 sm:gap-2 hover:text-[var(--color-white)] cursor-pointer transition-colors"
+  >
+    <FaFacebookSquare className="text-xs sm:text-base" />
+    <span className="text-[10px] sm:text-sm">500K</span>
+  </motion.div>
+</a>
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-1 sm:gap-2 hover:text-[var(--color-white)] cursor-pointer transition-colors"
           >
             <IoCallOutline className="text-xs sm:text-base" />
-            <span className="text-[10px] sm:text-sm">+91-9876543210</span>
+            <span className="text-[10px] sm:text-sm"> +91 95373 44018</span>
           </motion.div>
         </div>
 
-        <div className="flex gap-2 sm:gap-4 min-w-max">
-          {[FaInstagram, FaFacebookSquare, FaLinkedinIn, FaTwitter].map((Icon, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Icon className="text-xs sm:text-base hover:text-[var(--color-white)] cursor-pointer transition-colors" />
-            </motion.div>
-          ))}
-        </div>
+       <div className="flex gap-2 sm:gap-4 min-w-max">
+  {linkIcon.map((item) => {
+    const Icon = item.icon;
+
+    return (
+      <motion.a
+        key={item.id}
+        href={item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ scale: 1.2, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <Icon className="text-xs sm:text-base hover:text-[var(--color-white)] cursor-pointer transition-colors" />
+      </motion.a>
+    );
+  })}
+</div>
       </div>
 
       {/* MAIN NAV */}

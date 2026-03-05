@@ -258,7 +258,7 @@ export default function RelatedCourses() {
                     </div>
 
                     <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
-                      {course.text}
+                      {course?.text?.replace(/<[^>]*>/g, "")}
                     </p>
 
                     <div className="text-xs text-[var(--color-muted-light)] mb-4">

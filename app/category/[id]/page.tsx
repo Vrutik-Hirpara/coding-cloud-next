@@ -96,7 +96,7 @@ export default function CategoryCoursesPage() {
                   {course.name}
                 </h3>
                 <p className="text-sm text-[var(--color-muted)] line-clamp-2">
-                  {course.text}
+                  {course?.text?.replace(/<[^>]*>/g, "")}
                 </p>
               </div>
             </Link>

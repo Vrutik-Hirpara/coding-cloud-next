@@ -8,6 +8,7 @@ import learn from '@/public/images/about/learn.jpeg'
 import Button from "@/component/ui/Button";
 import TestimonialSection from "@/component/TestimonialSection";
 import { Link } from "lucide-react";
+import RegisterPage from "../register/page";
 export default function AboutPage() {
     return (
         <div className="min-h-screen bg-[var(--color-white)]">
@@ -61,7 +62,7 @@ export default function AboutPage() {
 
 
             </section>
-
+<RegisterPage/>
             {/* ================= HOW WE WORK SECTION ================= */}
             <section className="py-20 md:py-24 bg-[var(--color-bg-light)]">
                 <div className="container-custom grid md:grid-cols-2 gap-10 items-center">
@@ -124,22 +125,22 @@ export default function AboutPage() {
                     >
                         <div className="relative rounded-xl overflow-hidden shadow-lg">
 
-                           
-                            <Image
-  src={learn}
-  alt="How we work"
-  width={600}
-  height={400}
-  className="w-full h-auto object-cover"
-  style={{ width: "100%", height: "auto" }}
-/>
 
-                          {/* PLAY BUTTON */}
-<div className="absolute inset-0 flex items-center justify-center">
-  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-[var(--color-accent-yellow)] text-[var(--color-white)] text-lg sm:text-xl md:text-2xl shadow-lg cursor-pointer transition-transform duration-300 hover:scale-110">
-    ▶
-  </div>
-</div>
+                            <Image
+                                src={learn}
+                                alt="How we work"
+                                width={600}
+                                height={400}
+                                className="w-full h-auto object-cover"
+                                style={{ width: "100%", height: "auto" }}
+                            />
+
+                            {/* PLAY BUTTON */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-[var(--color-accent-yellow)] text-[var(--color-white)] text-lg sm:text-xl md:text-2xl shadow-lg cursor-pointer transition-transform duration-300 hover:scale-110">
+                                    ▶
+                                </div>
+                            </div>
 
                         </div>
                     </motion.div>

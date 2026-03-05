@@ -224,6 +224,8 @@ import BlogPost from "@/component/blogpost";
 import KidsCoursesSection from "@/component/KidsCoursesSection";
 import Heading from "@/component/ui/Heading";
 import FeaturedCoursesSection from "@/component/FeaturedCoursesSection";
+import RegisterPage from "./register/page";
+import Accreditation from "@/component/Accreditation";
 // ============================
 // MAIN HOME PAGE
 // ============================
@@ -345,12 +347,14 @@ export default function HomePage() {
 
         <TestimonialSection />
       </section>
-
+      
+<RegisterPage/>
       {/* EVENTS */}
       <FeaturedCoursesSection />
       <KidsCoursesSection/>
       {/* BLOG */}
       <BlogPost />
+      <Accreditation/>
     </div>
   );
 }
