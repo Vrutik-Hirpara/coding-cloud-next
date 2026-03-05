@@ -235,7 +235,7 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
             <FaStar
               key={i}
               className={
-                i < (item.rating || 5) ? "text-[var(--color-accent-yellow-light)]" : "border border-[var(--color-border-light)]"
+                i < (item.rating || 5) ? "text-[var(--color-accent-yellow-light)]" : "text-[var(--color-dark)]"
               }
             />
           ))}
@@ -308,7 +308,7 @@ const TestimonialSection = () => {
         if (Array.isArray(json)) arr = json;
         else if (json.results) arr = json.results;
         else if (json.data) arr = json.data;
-
+else if (json.testimonials) arr = json.testimonials;
         const processed: TestimonialItem[] = arr.map((item, i) => {
           let img = item.image;
 

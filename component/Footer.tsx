@@ -194,6 +194,8 @@
 
 // export default Footer;
 
+
+
 "use client";
 
 import Link from "next/link";
@@ -460,10 +462,10 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-[var(--color-accent-purple)]">
+            <Link href="terms-of-service" className="hover:text-[var(--color-accent-purple)]">
               Terms of service
             </Link>
-            <Link href="/privacy" className="hover:text-[var(--color-accent-purple)]">
+            <Link href="/privacy-policy" className="hover:text-[var(--color-accent-purple)]">
               Privacy policy
             </Link>
           </div>

@@ -163,7 +163,7 @@ type Course = {
 export default function RelatedCourses() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const [ratings, setRatings] = useState<Record<number, any>>({});
   // 🔥 helper for full image url
   const getImageUrl = (path?: string) => {
     if (!path) return "/images/fallback.png";
@@ -186,7 +186,9 @@ export default function RelatedCourses() {
         const list = data.data || [];
 
         // only first 2 courses
-        setCourses(list.slice(0, 2));
+        const selected = list.slice(0, 2);
+        setCourses(selected);
+        fetchRatings(selected);
       } catch (err) {
         console.error("Course fetch error:", err);
       } finally {
@@ -195,6 +197,32 @@ export default function RelatedCourses() {
     };
 
     fetchCourses();
+
+    const fetchRatings = async (courseList: Course[]) => {
+      const ratingData: Record<number, any> = {};
+
+      await Promise.all(
+        courseList.map(async (course) => {
+          try {
+            const res = await fetch(
+              `${BASE_URL}/course_average_rating/?course_id=${course.id}`
+            );
+
+            const json = await res.json();
+
+            const data = json.course_average_rating?.[0];
+
+            if (data) {
+              ratingData[course.id] = data;
+            }
+          } catch (err) {
+            console.error("Rating error", err);
+          }
+        })
+      );
+
+      setRatings(ratingData);
+    };
   }, []);
 
   return (
@@ -245,7 +273,11 @@ export default function RelatedCourses() {
                   {/* CONTENT */}
                   <div className="p-6">
                     <div className="text-orange-400 text-sm mb-2">
-                      ⭐⭐⭐⭐⭐ <span className="text-[var(--color-muted)] ml-2">(5 Reviews)</span>
+                      ★ {ratings[course.id]?.average_rating || 0}
+
+                      <span className="text-[var(--color-muted)] ml-2">
+                        ({ratings[course.id]?.total_reviews || 0} Reviews)
+                      </span>
                     </div>
 
                     <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">

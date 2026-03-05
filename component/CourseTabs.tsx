@@ -20,8 +20,7 @@ type Testimonial = {
     rating: number;
     created_at: string;
     image: string;
-    category: number;
-};
+course: number;};
 
 type Module = {
     id: number;
@@ -35,7 +34,7 @@ export default function CourseTabs({ course, events }: any) {
     // 🔥 REVIEW STATE
     const [reviews, setReviews] = useState<Testimonial[]>([]);
     const [loading, setLoading] = useState(true);
-const [apiAvg, setApiAvg] = useState<number | null>(null);
+    const [apiAvg, setApiAvg] = useState<number | null>(null);
     // 🔥 MODULE STATE
     const [modules, setModules] = useState<Module[]>([]);
     const [openId, setOpenId] = useState<number | null>(null);
@@ -43,120 +42,92 @@ const [apiAvg, setApiAvg] = useState<number | null>(null);
 
     const [topicsData, setTopicsData] = useState<any[]>([]);
     const [showForm, setShowForm] = useState(false);
-const [formData, setFormData] = useState({
-  name: "",
-  review: "",
-  rating: 5,
-  image: null as File | null,
-});
-
-
-const handleSubmit = async () => {
-  try {
-    const form = new FormData();
-
-    form.append("name", formData.name);
-    form.append("review", formData.review);
-    form.append("rating", formData.rating.toString());
-    form.append("course", course.id.toString()); // if required
-
-    if (formData.image) {
-      form.append("image", formData.image);
-    }
-
-    const res = await fetch(
-      "https://codingcloud.pythonanywhere.com/testimonials/",
-      {
-        method: "POST",
-        body: form, // ❗ no headers
-      }
-    );
-
-  if (!res.ok) {
-  const errData = await res.json();
-  console.log("Backend Error:", errData);
-  throw new Error("Failed to submit review");
-}
-
-    const data = await res.json();
-
-    // update UI instantly
-    setReviews((prev) => [data.data, ...prev]);
-
-    setShowForm(false);
-    setFormData({
-      name: "",
-      review: "",
-      rating: 5,
-      image: null,
+    const [formData, setFormData] = useState({
+        name: "",
+        review: "",
+        rating: 5,
+        image: null as File | null,
     });
 
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong!");
-  }
-};
-    // 🔥 FETCH REVIEWS
-    useEffect(() => {
-        const fetchReviews = async () => {
-            try {
-                const res = await fetch(`${BASE_URL}/testimonials/`);
-                const json = await res.json();
 
-                const list: Testimonial[] = json.data || [];
+    const handleSubmit = async () => {
+        try {
+            const form = new FormData();
 
-                // 🔥 filter by course category
-                const filtered = list.filter(
-                    (item) => item.category === course?.category
-                );
+            form.append("name", formData.name);
+            form.append("review", formData.review);
+            form.append("rating", formData.rating.toString());
+            form.append("course", course.id.toString()); // if required
 
-                // 🔥 sort latest first (optional)
-                const sorted = filtered.sort((a, b) => b.id - a.id);
-
-                // ❌ DO NOT slice
-                setReviews(sorted);
-            } catch (e) {
-                console.error("Testimonial fetch error", e);
-            } finally {
-                setLoading(false);
+            if (formData.image) {
+                form.append("image", formData.image);
             }
-        };
 
-        if (course?.category) {
-            fetchReviews();
+            const res = await fetch(
+                "https://codingcloud.pythonanywhere.com/testimonials/",
+                {
+                    method: "POST",
+                    body: form, // ❗ no headers
+                }
+            );
+
+            if (!res.ok) {
+                const errData = await res.json();
+                console.log("Backend Error:", errData);
+                throw new Error("Failed to submit review");
+            }
+
+            const data = await res.json();
+
+            // update UI instantly
+            setReviews((prev) => [data.data, ...prev]);
+
+            setShowForm(false);
+            setFormData({
+                name: "",
+                review: "",
+                rating: 5,
+                image: null,
+            });
+
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong!");
         }
-    }, [course]);
-//    useEffect(() => {
-//   const fetchAverage = async () => {
-//     try {
-//       const res = await fetch(
-//         "https://codingcloud.pythonanywhere.com/course-average-rating/"
-//       );
+    };
+    // 🔥 FETCH REVIEWS
 
-//       if (!res.ok) {
-//         throw new Error(`HTTP error! Status: ${res.status}`);
-//       }
+    //    useEffect(() => {
+    //   const fetchAverage = async () => {
+    //     try {
+    //       const res = await fetch(
+    //         "https://codingcloud.pythonanywhere.com/course-average-rating/"
+    //       );
 
-//       const json = await res.json();
+    //       if (!res.ok) {
+    //         throw new Error(`HTTP error! Status: ${res.status}`);
+    //       }
 
-//       const list = json.course_average_rating || [];
+    //       const json = await res.json();
 
-//       const found = list.find(
-//         (item: any) => item.course_id === course.id
-//       );
+    //       const list = json.course_average_rating || [];
 
-//       if (found) {
-//         setApiAvg(found.average_rating);
-//       }
-//     } catch (err) {
-//       console.error("Average rating error:", err);
-//     }
-//   };
+    //       const found = list.find(
+    //         (item: any) => item.course_id === course.id
+    //       );
 
-//   if (course?.id) {
-//     fetchAverage();
-//   }
-// }, [course?.id]);
+    //       if (found) {
+    //         setApiAvg(found.average_rating);
+    //       }
+    //     } catch (err) {
+    //       console.error("Average rating error:", err);
+    //     }
+    //   };
+
+    //   if (course?.id) {
+    //     fetchAverage();
+    //   }
+    // }, [course?.id]);
     useEffect(() => {
         console.log("COURSE TABS EVENTS 👉", events);
     }, [events]);
@@ -194,7 +165,27 @@ const handleSubmit = async () => {
 
         fetchModules();
     }, [course.id]);
+useEffect(() => {
+  const fetchReviews = async () => {
+    try {
+      const res = await fetch(
+        `${BASE_URL}/testimonials/?course_id=${course.id}`
+      );
 
+      const json = await res.json();
+
+      const list = json.testimonials || [];
+
+      setReviews(list);
+    } catch (err) {
+      console.error("Review fetch error", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (course?.id) fetchReviews();
+}, [course?.id]);
     // 🔥 SCROLL SPY
     useEffect(() => {
         const sections = ["overview", "content", "review"];
@@ -316,9 +307,9 @@ const handleSubmit = async () => {
                 className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4"
             >
                 <h3 className="text-xl font-semibold">What you'll learn</h3>
-<p className="text-[var(--color-muted)] leading-relaxed">
-  {course?.text?.replace(/<[^>]*>/g, "")}
-</p>
+                <p className="text-[var(--color-muted)] leading-relaxed">
+                    {course?.text?.replace(/<[^>]*>/g, "")}
+                </p>
                 <ul className="grid md:grid-cols-2 gap-3 text-[var(--color-muted)] text-sm">
                     <li>✔ Become confident developer</li>
                     <li>✔ Learn modern tools</li>
@@ -411,15 +402,15 @@ const handleSubmit = async () => {
                 className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-8"
             >
                 <div className="flex justify-between items-center">
-  <h3 className="text-xl font-semibold">Review</h3>
+                    <h3 className="text-xl font-semibold">Review</h3>
 
-  <button
-    onClick={() => setShowForm(true)}
-    className="px-4 py-2 text-sm font-semibold bg-[var(--color-accent-purple)] text-white rounded-lg hover:opacity-90 transition"
-  >
-    Add Review
-  </button>
-</div>
+                    <button
+                        onClick={() => setShowForm(true)}
+                        className="px-4 py-2 text-sm font-semibold bg-[var(--color-accent-purple)] text-white rounded-lg hover:opacity-90 transition"
+                    >
+                        Add Review
+                    </button>
+                </div>
 
                 {/* ⭐ SUMMARY */}
                 <div className="flex flex-col md:flex-row gap-6 items-center">
@@ -450,72 +441,72 @@ const handleSubmit = async () => {
                         ))}
                     </div>
                 </div>
-{showForm && (
-  <div className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4">
+                {showForm && (
+                    <div className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4">
 
-    <input
-      type="text"
-      placeholder="Your Name"
-      value={formData.name}
-      onChange={(e) =>
-        setFormData({ ...formData, name: e.target.value })
-      }
-      className="w-full border rounded px-3 py-2"
-    />
+                        <input
+                            type="text"
+                            placeholder="Your Name"
+                            value={formData.name}
+                            onChange={(e) =>
+                                setFormData({ ...formData, name: e.target.value })
+                            }
+                            className="w-full border rounded px-3 py-2"
+                        />
 
-    <textarea
-      placeholder="Write your review..."
-      value={formData.review}
-      onChange={(e) =>
-        setFormData({ ...formData, review: e.target.value })
-      }
-      className="w-full border rounded px-3 py-2"
-    />
+                        <textarea
+                            placeholder="Write your review..."
+                            value={formData.review}
+                            onChange={(e) =>
+                                setFormData({ ...formData, review: e.target.value })
+                            }
+                            className="w-full border rounded px-3 py-2"
+                        />
 
-    <select
-      value={formData.rating}
-      onChange={(e) =>
-        setFormData({ ...formData, rating: Number(e.target.value) })
-      }
-      className="w-full border rounded px-3 py-2"
-    >
-      {[5,4,3,2,1].map((r) => (
-        <option key={r} value={r}>
-          {r} Star
-        </option>
-      ))}
-    </select>
+                        <select
+                            value={formData.rating}
+                            onChange={(e) =>
+                                setFormData({ ...formData, rating: Number(e.target.value) })
+                            }
+                            className="w-full border rounded px-3 py-2"
+                        >
+                            {[5, 4, 3, 2, 1].map((r) => (
+                                <option key={r} value={r}>
+                                    {r} Star
+                                </option>
+                            ))}
+                        </select>
 
-    {/* IMAGE INPUT */}
-    <input
-      type="file"
-      accept="image/*"
-      onChange={(e) =>
-        setFormData({
-          ...formData,
-          image: e.target.files ? e.target.files[0] : null,
-        })
-      }
-      className="w-full border rounded px-3 py-2"
-    />
+                        {/* IMAGE INPUT */}
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    image: e.target.files ? e.target.files[0] : null,
+                                })
+                            }
+                            className="w-full border rounded px-3 py-2"
+                        />
 
-    <div className="flex gap-3">
-      <button
-        onClick={handleSubmit}
-        className="px-4 py-2 bg-green-600 text-white rounded"
-      >
-        Submit
-      </button>
+                        <div className="flex gap-3">
+                            <button
+                                onClick={handleSubmit}
+                                className="px-4 py-2 bg-green-600 text-white rounded"
+                            >
+                                Submit
+                            </button>
 
-      <button
-        onClick={() => setShowForm(false)}
-        className="px-4 py-2 bg-gray-400 text-white rounded"
-      >
-        Cancel
-      </button>
-    </div>
-  </div>
-)}
+                            <button
+                                onClick={() => setShowForm(false)}
+                                className="px-4 py-2 bg-gray-400 text-white rounded"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                )}
                 {/* ⭐ FEATURED REVIEWS */}
                 <div className="space-y-6">
                     <h4 className="font-semibold text-lg">Featured review</h4>

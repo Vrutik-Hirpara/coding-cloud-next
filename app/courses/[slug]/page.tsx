@@ -38,7 +38,8 @@ const getImageUrl = (path: string) => {
 export default function Page() {
   const { slug } = useParams();
   const [course, setCourse] = useState<Course | null>(null);
-
+  const [avgRating, setAvgRating] = useState(0);
+  const [totalReviews, setTotalReviews] = useState(0);
   // 🔥 FETCH COURSE BY SLUG
   useEffect(() => {
     const getCourse = async () => {
@@ -63,7 +64,28 @@ export default function Page() {
 
     getCourse();
   }, [slug]);
+  useEffect(() => {
+    const fetchRating = async () => {
+      try {
+        const res = await fetch(
+          `https://codingcloud.pythonanywhere.com/course_average_rating/?course_id=${course?.id}`
+        );
 
+        const json = await res.json();
+
+        const data = json.course_average_rating?.[0];
+
+        if (data) {
+          setAvgRating(data.average_rating);
+          setTotalReviews(data.total_reviews);
+        }
+      } catch (err) {
+        console.error("Rating fetch error", err);
+      }
+    };
+
+    if (course?.id) fetchRating();
+  }, [course?.id]);
   if (!course) {
     return <div className="p-10 text-center">Loading...</div>;
   }
@@ -112,8 +134,13 @@ export default function Page() {
           <span className="bg-[var(--color-white)] px-3 py-1 rounded-full shadow text-[var(--color-accent-purple)] font-semibold">
             Bestseller
           </span>
-          <span className="text-yellow-500 font-semibold">1.2 ★★★★★</span>
-          <span className="text-[var(--color-muted)]">(6 ratings)</span>
+          <span className="text-yellow-500 font-semibold">
+            {avgRating} ★★★★★
+          </span>
+
+          <span className="text-[var(--color-muted)]">
+            ({totalReviews} ratings)
+          </span>
           <span className="text-[var(--color-muted)]">
             {course.students || 0} students
           </span>
