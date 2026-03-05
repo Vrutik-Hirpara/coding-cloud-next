@@ -149,40 +149,49 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  setForm({
+    ...form,
+    [e.target.name]: e.target.value,
+  });
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    let newErrors: any = {};
-
-    if (!form.first_name) newErrors.first_name = "First name required";
-    if (!form.last_name) newErrors.last_name = "Last name required";
-    if (!form.phone) newErrors.phone = "Phone number required";
-    if (form.phone && form.phone.length < 10) newErrors.phone = "Phone number must be 10 digits";
-    if (!form.message) newErrors.message = "Message required";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    setErrors({});
-    setSuccess(true);
-    
-    setTimeout(() => setSuccess(false), 3000);
-
-    setForm({
-      first_name: "",
-      last_name: "",
-      phone: "",
-      message: "",
+  try {
+    const res = await fetch("https://codingcloud.pythonanywhere.com/register_msg/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: form.first_name,
+        last_name: form.last_name,
+        mobile: form.phone,
+        message: form.message,
+      }),
     });
-  };
+
+    if (res.ok) {
+      setSuccess(true);
+
+      // 🔥 3 sec pachi message hide
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+
+      setForm({
+        first_name: "",
+        last_name: "",
+        phone: "",
+        message: "",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 
@@ -207,11 +216,11 @@ export default function RegisterPage() {
               transition={{ delay: 0.2 }}
               className="text-4xl md:text-5xl font-bold"
             >
-              <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              {/* <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 Start Your
-              </span>
+              </span> */}
               <br />
-              <span className="text-gray-800">Learning Journey</span>
+              <span className="text-gray-800">Explore Our IT Training. Register For a Demo. Sign Up Now!</span>
             </motion.h1>
             
             <motion.p 
@@ -220,10 +229,10 @@ export default function RegisterPage() {
               transition={{ delay: 0.3 }}
               className="text-gray-600 text-lg"
             >
-              Join thousands of students and transform your future with our expert-led courses.
+Discover innovation, expertise, and career advancement.
             </motion.p>
 
-            <motion.div 
+            {/* <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -235,7 +244,7 @@ export default function RegisterPage() {
                   <span className="text-gray-700">{item}</span>
                 </div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Right Side - Registration Form */}
@@ -245,21 +254,23 @@ export default function RegisterPage() {
             transition={{ duration: 0.7 }}
             className="bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/20"
           >
-            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-2 text-[var(--color-accent-purple)]">
               Register Now
             </h2>
             <p className="text-gray-500 mb-8">Fill in your details to get started</p>
 
-            {success && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center space-x-2"
-              >
-                <CheckCircle className="w-5 h-5 text-green-600" />
-                <p className="text-green-700">✅ Registration successful! We'll contact you soon.</p>
-              </motion.div>
-            )}
+          {success && (
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center space-x-2"
+  >
+    <CheckCircle className="w-5 h-5 text-green-600" />
+    <p className="text-green-700">
+      ✅ Registration successful! We'll contact you soon.
+    </p>
+  </motion.div>
+)}
 
             <form onSubmit={handleSubmit} className="space-y-5">
               
@@ -374,13 +385,13 @@ export default function RegisterPage() {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full group relative overflow-hidden bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                className="w-full rounded-xl group relative overflow-hidden  text-white py-4 bg-[var(--color-accent-purple)] font-semibold text-lg  hover:shadow-xl transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   SUBMIT
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-[var(--color-accent-purple)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.button>
             </form>
           </motion.div>

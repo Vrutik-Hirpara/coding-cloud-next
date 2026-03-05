@@ -14,9 +14,8 @@ export default function AboutPage() {
         <div className="min-h-screen bg-[var(--color-white)]">
 
             {/* ================= HERO SECTION ================= */}
-            <section className="relative w-full h-[60vh] md:h-[82vh] flex items-center justify-center overflow-hidden">
+            {/* <section className="relative w-full h-[60vh] md:h-[82vh] flex items-center justify-center overflow-hidden">
 
-                {/* BACKGROUND IMAGE */}
 
                 <Image
                     src={aboutBg}
@@ -27,13 +26,10 @@ export default function AboutPage() {
                     className="object-cover"
                 />
 
-                {/* DARK OVERLAY */}
                 <div className="absolute inset-0 bg-[var(--color-overlay-dark)]"></div>
 
-                {/* CONTENT */}
                 <div className="relative z-10 text-center px-4">
 
-                    {/* CODING CLOUD TAG */}
                     <motion.div
                         initial={{ opacity: 0, y: -30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -43,7 +39,6 @@ export default function AboutPage() {
                         CODING <span className="text-[var(--color-accent-purple)]">CLOUD</span>
                     </motion.div>
 
-                    {/* MAIN HEADING */}
                     <motion.h1
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -54,6 +49,61 @@ export default function AboutPage() {
                     </motion.h1>
 
                 </div>
+            </section> */}
+            <section className="relative h-[50vh] flex items-center justify-center text-center overflow-hidden">
+
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <Image
+                        src={aboutBg}
+                        alt="About Coding Cloud"
+                        fill
+                        priority
+                        sizes="100vw"
+                        className="object-cover opacity-60"
+                    />
+                </div>
+
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
+
+                {/* Content */}
+                <div className="relative z-10 max-w-4xl px-6">
+
+                    {/* Badge */}
+                    {/* <div className="inline-block   px-8 py-3 rounded-xl">
+                        <span className="tracking-[0px] font-extrabold text-blue-600 text-3xl">
+                            About Us
+                        </span>
+                    </div> */}
+
+                    {/* Heading */}
+                    <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">
+                        {/* Your Door To The */}
+                        <span className="block text-blue-400 animate-pulse">
+                            About Us
+                        </span>
+                    </h1>
+
+                    {/* Subtitle */}
+                    <p className="text-gray-200 mt-6 text-lg max-w-xl mx-auto">
+                        Start your journey in IT with expert training and guaranteed career growth.
+                    </p>
+
+                    {/* Button */}
+                    <div className="mt-8 flex justify-center gap-4">
+                        <Button
+                            href="/courses">
+                            Explore Courses
+                        </Button>
+
+                        <button className="px-8 py-3 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+                            Contact Us
+                        </button>
+                    </div>
+
+                </div>
+
             </section>
 
             {/* ================= REST OF ABOUT PAGE ================= */}
@@ -62,7 +112,7 @@ export default function AboutPage() {
 
 
             </section>
-<RegisterPage/>
+            <RegisterPage />
             {/* ================= HOW WE WORK SECTION ================= */}
             <section className="py-20 md:py-24 bg-[var(--color-bg-light)]">
                 <div className="container-custom grid md:grid-cols-2 gap-10 items-center">

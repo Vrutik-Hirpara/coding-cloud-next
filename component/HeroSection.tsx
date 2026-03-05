@@ -107,7 +107,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Button from "@/component/ui/Button";
 import CardSlider from "@/component/CardSlider";
 import { motion } from "framer-motion";
-
+import { useRouter } from "next/navigation";
 type HeroData = {
   titleLine1: string;
   highlight1: string;
@@ -119,10 +119,10 @@ type HeroData = {
 };
 
 const defaultData: HeroData = {
-  titleLine1: "Build The",
-  highlight1: "Skills",
-  titleLine2: "To Drive Your",
-  highlight2: "Career",
+  titleLine1: "Learn New",
+  highlight1: "Things",
+  titleLine2: "Daily",
+  highlight2: "",
   description:
     "Join over 3000+ students to boost your skills and build a successful professional career.",
   students: 3000,
@@ -132,6 +132,7 @@ const defaultData: HeroData = {
 const blobImg = "/images/hero/blob2.png";
 
 export default function HeroSection({ data = defaultData }: { data?: HeroData }) {
+  const router = useRouter();
   return (
     <section
       className="pt-12 md:pt-16 lg:pt-20 overflow-hidden"
@@ -152,8 +153,8 @@ export default function HeroSection({ data = defaultData }: { data?: HeroData })
           transition={{ duration: 0.6 }}
           className="lg:col-span-5 space-y-5 lg:space-y-6 text-center lg:text-left z-10"
         >
-          <span className="hero-badge mx-auto lg:mx-0">
-            EDUCATION FOR EVERYONE
+          <span className="hero-badge mx-auto lg:mx-0 text-lg lg:text-2xl">
+            Ignite Young Minds
           </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-tight text-[var(--color-text)]">
@@ -164,12 +165,19 @@ export default function HeroSection({ data = defaultData }: { data?: HeroData })
           </h1>
 
           <p className="text-[var(--color-text-light)] text-base md:text-lg max-w-md mx-auto lg:mx-0">
-            Join over <strong>{data.students}+</strong> students to boost your skills
-            and build a successful professional career.
+            {/* Join over <strong>{data.students}+</strong> students to boost your skills
+            and build a successful professional career. */}
+            Transform your career with us! IT Training and Placement Institute for exceptional learning experience. Join now!
           </p>
 
           <div className="flex justify-center lg:justify-start">
-            <Button icon={FaArrowRight}>View Course</Button>
+            {/* <Button icon={FaArrowRight}>View Course</Button> */}
+            <Button
+              onClick={() => router.push("/courses")}
+              className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-semibold hover:scale-105 transition"
+            >
+              All Course
+            </Button>
           </div>
         </motion.div>
 

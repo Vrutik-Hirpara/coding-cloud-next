@@ -144,13 +144,21 @@ import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import Button from "@/component/ui/Button";
 import Pill from "./ui/Pill";
-
+import { CheckCircle, Target, BookOpen, Rocket } from "lucide-react";
+import { useRouter } from "next/navigation";
+const points = [
+    { text: "Empowering Your Success with IT Training", icon: CheckCircle },
+    { text: "Top Priority: Your Career Growth", icon: Target },
+    { text: "Comprehensive IT Training Solutions for Success", icon: BookOpen },
+    { text: "Unlock Your Potential with Our IT Programs", icon: Rocket },
+];
 // images (public folder)
 const about1 = "/images/about/about-01.png";
 const about2 = "/images/about/about-02.png";
 const about3 = "/images/about/about-03.png";
-
 export default function KnowAboutUs() {
+    const router = useRouter();
+
     const imgTopRef = useRef<HTMLDivElement | null>(null);
     const imgBottomRef = useRef<HTMLDivElement | null>(null);
 
@@ -319,72 +327,38 @@ export default function KnowAboutUs() {
                     </div>
 
                     <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                        Know About Coding Cloud Learning Platform
-                    </h2>
+                        IT TRAINING & PLACEMENT INSTITUTE                    </h2>
 
                     <p className="text-[var(--color-muted)] mb-6">
-                        Far far away, behind the word mountains, far from the countries
-                        Vokalia and Consonantia, there live the blind texts.
+                        We strive to provide you with comprehensive training, cutting-edge resources, and personalized guidance to help you excel in the tech industry. Join us and let us support your journey towards a successful and fulfilling career in IT.
+
+
                     </p>
+                    <div className="space-y-3">
+  {points.map((item, index) => {
+    const Icon = item.icon;
 
-                    {/* FEATURES */}
-                    <div className="">
-                        <div className="group flex items-start z-0 gap-4 p-6 min-h-[160px] rounded-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--color-bg-softest)] cursor-pointer">
-
-                            {/* ICON */}
-                            <div className="w-14 h-14 flex items-center justify-center rounded-full 
-      bg-red-100 text-red-600 text-2xl
-      transition-all duration-300
-      group-hover:scale-110">
-
-                                <span className="transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6">
-                                    ❤
-                                </span>
-                            </div>
-
-                            {/* TEXT */}
-                            <div>
-                                <h4 className="font-bold text-lg text-[var(--color-dark)] group-hover:text-[var(--color-accent-indigo)] transition-colors duration-300">
-                                    Flexible Classes
-                                </h4>
-                                <p className="text-[var(--color-muted)] text-sm">
-                                    Readable content helps users stay focused lorem100
-                                </p>
-                            </div>
-                        </div>
-
-
-                        <div className="group flex items-start gap-4 p-6 min-h-[160px] rounded-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--color-bg-softest)] cursor-pointer">
-
-                            {/* ICON */}
-                            <div className="w-14 h-14 flex items-center justify-center rounded-full 
-      bg-blue-100 text-blue-600 text-2xl
-      transition-all duration-300
-      group-hover:scale-110">
-
-                                <span className="transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6">
-                                    📱
-                                </span>
-                            </div>
-
-                            {/* TEXT */}
-                            <div>
-                                <h4 className="font-bold text-lg text-[var(--color-dark)] group-hover:text-[var(--color-accent-indigo)] transition-colors duration-300">
-                                    Learn From Anywhere
-                                </h4>
-                                <p className="text-[var(--color-muted)] text-sm">
-                                    Access courses anytime, anywhere.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
+    return (
+      <div key={index} className="flex items-center gap-4">
+        <Icon className="w-5 h-5 text-blue-600" />
+        <p className="text-[var(--color-muted)]">{item.text}</p>
+      </div>
+    );
+  })}
+</div>
                     {/* BUTTON */}
                     {/* <div className="mt-8">
                         <Button icon={FaArrowRight}>
                             More About Us
                         </Button>
                     </div> */}
+
+                    <Button
+                        onClick={() => router.push("/courses")}
+                        className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-semibold hover:scale-105 transition"
+                    >
+                        All Course
+                    </Button>
 
                 </div>
 

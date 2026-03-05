@@ -33,16 +33,15 @@ export default function Button({
         "group shadow-md hover:shadow-xl transition-all duration-100",
         className
       )}
-      style={{
-        background:
-          "linear-gradient(135deg, var(--color-accent-purple), var(--color-primary-dark))",
-      }}
+     style={{
+  background: "var(--color-accent-purple)",
+}}
     >
       {/* soft glow */}
       <span
         className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition duration-100"
         style={{
-          boxShadow: "0 0 24px var(--color-accent-purple)",
+          boxShadow: "0 0 16px var(--color-accent-purple)",
         }}
       />
  

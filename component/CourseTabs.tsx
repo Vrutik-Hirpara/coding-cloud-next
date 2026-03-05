@@ -20,7 +20,8 @@ type Testimonial = {
     rating: number;
     created_at: string;
     image: string;
-course: number;};
+    course: number;
+};
 
 type Module = {
     id: number;
@@ -165,27 +166,27 @@ export default function CourseTabs({ course, events }: any) {
 
         fetchModules();
     }, [course.id]);
-useEffect(() => {
-  const fetchReviews = async () => {
-    try {
-      const res = await fetch(
-        `${BASE_URL}/testimonials/?course_id=${course.id}`
-      );
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const res = await fetch(
+                    `${BASE_URL}/testimonials/?course_id=${course.id}`
+                );
 
-      const json = await res.json();
+                const json = await res.json();
 
-      const list = json.testimonials || [];
+                const list = json.testimonials || [];
 
-      setReviews(list);
-    } catch (err) {
-      console.error("Review fetch error", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+                setReviews(list);
+            } catch (err) {
+                console.error("Review fetch error", err);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-  if (course?.id) fetchReviews();
-}, [course?.id]);
+        if (course?.id) fetchReviews();
+    }, [course?.id]);
     // 🔥 SCROLL SPY
     useEffect(() => {
         const sections = ["overview", "content", "review"];
@@ -286,7 +287,18 @@ useEffect(() => {
                         { id: "content", label: "Course Content" },
                         { id: "review", label: "Review" },
                     ].map((t) => (
-                        <button
+            //             <button
+            //                 key={t.id}
+            //                 onClick={() => scrollTo(t.id)}
+            //                 className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+            //   ${active === t.id
+            //                         ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
+            //                         : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+            //                     }`}
+            //             >
+            //                 {t.label}
+            //             </button>
+             <button
                             key={t.id}
                             onClick={() => scrollTo(t.id)}
                             className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300

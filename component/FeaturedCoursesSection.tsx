@@ -385,7 +385,7 @@ const FeaturedCoursesSection = () => {
   // ⏳ Loading UI
   if (loading) {
     return (
-      <section className="py-24 bg-gradient-to-r from-[var(--color-accent-purple)] to-[#A088F8] text-[var(--color-white)] text-center">
+      <section className="py-24 bg-[#2663eb] text-[var(--color-white)] text-center">
         <p className="text-lg">Loading featured courses...</p>
       </section>
     );
@@ -394,15 +394,15 @@ const FeaturedCoursesSection = () => {
   // Empty state - if no featured courses
   if (events.length === 0) {
     return (
-      <section className="py-24 bg-gradient-to-r from-[var(--color-accent-purple)] to-[#A088F8] text-[var(--color-white)] text-center">
+      <section className="py-24 bg-[#2663eb] text-[var(--color-white)] text-center">
         <p className="text-lg">No featured courses available at the moment.</p>
       </section>
     );
   }
 
   return (
-    <section className="py-24 bg-gradient-to-r from-[var(--color-accent-purple)] to-[#A088F8]">
-      <div className="container-custom relative">
+<section className="py-24 bg-[#2663eb]">
+        <div className="container-custom relative">
 
         {/* HEADER */}
         <div className="text-center mb-16 px-5">
