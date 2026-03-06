@@ -1,3 +1,65 @@
+// "use client";
+ 
+// import Link from "next/link";
+// import { motion } from "framer-motion";
+// import { ReactNode } from "react";
+// import clsx from "clsx";
+ 
+// type ButtonProps = {
+//   children: ReactNode;
+//   href?: string;
+//   onClick?: () => void;
+//   icon?: React.ElementType;
+//   className?: string;
+// };
+ 
+// export default function Button({
+//   children,
+//   href,
+//   onClick,
+//   icon: Icon,
+//   className,
+// }: ButtonProps) {
+//   const base =
+//     "relative inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-semibold text-[var(--color-white)]";
+ 
+//   const inner = (
+//     <motion.div
+//       whileHover={{ y: -3, scale: 1.03 }}
+//       whileTap={{ scale: 0.95 }}
+//       transition={{ type: "spring", stiffness: 260, damping: 18 }}
+//       className={clsx(
+//         base,
+//         "group shadow-md hover:shadow-xl transition-all duration-100",
+//         className
+//       )}
+//      style={{
+//   background: "var(--color-accent-purple)",
+// }}
+//     >
+//       {/* soft glow */}
+//       <span
+//         className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition duration-100"
+//         style={{
+//           boxShadow: "0 0 16px var(--color-accent-purple)",
+//         }}
+//       />
+ 
+//       <span className="relative z-10 flex items-center gap-2">
+//         {children}
+//         {Icon && (
+//           <span className="transition-transform duration-100 group-hover:translate-x-1">
+//             <Icon />
+//           </span>
+//         )}
+//       </span>
+//     </motion.div>
+//   );
+ 
+//   if (href) return <Link href={href}>{inner}</Link>;
+//   return <button onClick={onClick}>{inner}</button>;
+// }
+  
 "use client";
  
 import Link from "next/link";
@@ -20,43 +82,65 @@ export default function Button({
   icon: Icon,
   className,
 }: ButtonProps) {
+ 
   const base =
-    "relative inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-semibold text-[var(--color-white)]";
+    "relative inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-semibold text-[var(--color-white)] overflow-hidden";
  
   const inner = (
     <motion.div
-      whileHover={{ y: -3, scale: 1.03 }}
+      whileHover={{ y: -3, scale: 1.04 }}
+transition={{ type: "spring", stiffness: 180, damping: 18 }}
       whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 260, damping: 18 }}
       className={clsx(
         base,
-        "group shadow-md hover:shadow-xl transition-all duration-100",
+        "group shadow-md hover:shadow-xl transition-all duration-200",
         className
       )}
-     style={{
-  background: "var(--color-accent-purple)",
-}}
+      style={{
+  background: "var(--color-logo-gradient)",
+      }}
     >
-      {/* soft glow */}
+ 
+      {/* glow layer */}
       <span
-        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition duration-100"
+        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition duration-200"
         style={{
-          boxShadow: "0 0 16px var(--color-accent-purple)",
+          boxShadow: "0 0 18px rgba(37,99,235,0.6)",
         }}
       />
  
+      {/* shine sweep */}
+      <span className="absolute left-[-40%] top-0 h-full w-[40%] bg-white/20 skew-x-[-25deg] transition-all duration-700 group-hover:left-[140%]" />
+ 
+      {/* content */}
       <span className="relative z-10 flex items-center gap-2">
-        {children}
+ 
+        <span className="transition-all duration-300">
+          {children}
+        </span>
+ 
         {Icon && (
-          <span className="transition-transform duration-100 group-hover:translate-x-1">
-            <Icon />
+          <span className="relative flex items-center w-[18px] overflow-hidden">
+ 
+            {/* first arrow */}
+            <span className="transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-x-2 group-hover:opacity-0">
+              <Icon />
+            </span>
+ 
+            {/* second arrow */}
+            <span className="absolute left-0 translate-x-2 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100">
+              <Icon />
+            </span>
+ 
           </span>
         )}
+ 
       </span>
     </motion.div>
   );
  
   if (href) return <Link href={href}>{inner}</Link>;
+ 
   return <button onClick={onClick}>{inner}</button>;
 }
  

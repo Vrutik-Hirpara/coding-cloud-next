@@ -424,17 +424,20 @@ Discover innovation, expertise, and career advancement.
               </div>
 
               <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full rounded-xl group relative overflow-hidden  text-white py-4 bg-[var(--color-accent-purple)] font-semibold text-lg  hover:shadow-xl transition-all duration-300"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  SUBMIT
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-[var(--color-accent-purple)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.button>
+  type="submit"
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+  className="w-full rounded-xl group relative overflow-hidden text-white py-4 
+  bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)]
+  font-semibold text-lg hover:shadow-xl transition-all duration-300"
+>
+  <span className="relative z-10 flex items-center justify-center gap-2">
+    SUBMIT
+    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+  </span>
+
+  <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</motion.button>
             </form>
           </motion.div>
         </div>

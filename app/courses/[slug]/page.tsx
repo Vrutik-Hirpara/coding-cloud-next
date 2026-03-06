@@ -160,7 +160,7 @@ export default function Page() {
     whileInView={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.5 }}
     viewport={{ once: true }}
-    className="relative w-full h-[440px] sm:h-[260px] md:h-[400px] overflow-hidden shadow-xl border-y-4 border-white"
+    className="relative w-full h-[440px] sm:h-[260px] md:h-[500px] overflow-hidden shadow-xl border-y-4 border-white"
   >
     <Image
       src={getImageUrl(course.banner_img || course.image)}

@@ -48,6 +48,23 @@ body {
 --color-gradient-pink-soft: #FFE4F1;
 --color-gradient-blue-soft: #E0F7FF;
 --color-gradient-purple-soft: #F3E8FF;
+/* Logo inspired gradient */
+--color-logo-dark: #1E3A8A;
+--color-logo-main: #2563EB;
+--color-logo-light: #0EA5E9;
+ 
+--color-logo-gradient: linear-gradient(
+  90deg,
+  var(--color-logo-dark),
+  var(--color-logo-main),
+  var(--color-logo-light)
+);
+ 
+}
+
+.gradient-text {
+  color: var(--color-logo-main)!important;
+ 
 }
 
 /* ===============================
@@ -68,7 +85,15 @@ body {
 *::after {
   box-sizing: border-box;
 }
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 html {
   scroll-behavior: smooth;
 

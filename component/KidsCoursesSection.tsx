@@ -501,18 +501,17 @@ const KidsCoursesSection: React.FC = () => {
           {/* SCROLL CONTAINER */}
           <div
             ref={scrollRef}
-            className="flex p-2 overflow-x-auto gap-6 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"
+            className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"
           >
             {events.map((ev) => (
               <div
-                key={ev.id}
-                onClick={() => handleCardClick(ev.id, ev.slug)}
-                className="min-w-[280px] sm:min-w-[320px] md:min-w-[340px] pt-2
-                  rounded-3xl border-[var(--color-border-light)]
-                  transition-all duration-300 hover:-translate-y-2  cursor-pointer"
-              >
-                <EventCard event={ev} />
-              </div>
+  key={ev.id}
+  onClick={() => handleCardClick(ev.id, ev.slug)}
+  className="w-full sm:w-1/2 md:w-1/2 flex-shrink-0 pt-2
+  rounded-3xl border-[var(--color-border-light)]
+  transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+>
+<EventCard event={ev} variant="kids" /></div>
             ))}
           </div>
         </div>

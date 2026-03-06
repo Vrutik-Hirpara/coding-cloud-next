@@ -2,11 +2,11 @@
 
 // import { motion } from "framer-motion";
 // import Image from "next/image";
-// import { Award, AwardIcon, CheckCircle, Star } from "lucide-react";
+// import { Award, CheckCircle, Star } from "lucide-react";
+
 // import iao from "@/public/images/Accreditation/IAO.png";
 // import iso from "@/public/images/Accreditation/ISO.png";
 // import msme from "@/public/images/Accreditation/msme.png";
-// import Pill from "./ui/Pill";
 
 // const accreditations = [
 //     {
@@ -45,18 +45,11 @@
 //                     viewport={{ once: true }}
 //                     className="text-center max-w-3xl mx-auto mb-14"
 //                 >
-//                     {/* <div className="flex justify-center mb-4">
+//                     <div className="flex justify-center mb-4">
 //                         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
 //                             <Award className="w-4 h-4" />
 //                             Accreditation
 //                         </span>
-//                     </div> */}
-//                     <div className="flex justify-center mb-4">
-//                         <Pill
-//                             text="Accreditation"
-//                             textColor="var(--color-accent-purple)"
-//                             bgColor="var(--color-primary-light)"
-//                         />
 //                     </div>
 
 //                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -147,11 +140,13 @@
 
 
 
+
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Award, CheckCircle, Star, Shield, Sparkles, ExternalLink } from "lucide-react";
+import { Award, CheckCircle, Star, ExternalLink, Shield, BadgeCheck } from "lucide-react";
+
 import iao from "@/public/images/Accreditation/IAO.png";
 import iso from "@/public/images/Accreditation/ISO.png";
 import msme from "@/public/images/Accreditation/msme.png";
@@ -163,215 +158,200 @@ const accreditations = [
         name: "IAO",
         logo: iao,
         description: "International Accreditation Organization",
+        fullDesc: "Globally recognized accreditation body",
         link: "https://www.iao.org/India-Gujarat/Coding-Cloud",
-        gradient: "from-blue-600 to-indigo-600",
+        badge: "International",
+        color: "from-blue-500 to-indigo-500",
         lightBg: "bg-blue-50",
-        borderColor: "border-blue-200",
-        shadow: "shadow-blue-100",
+        borderColor: "group-hover:border-blue-900",
+        textColor: "text-blue-600",
+        icon: Shield,
     },
     {
         id: 2,
         name: "ISO 9001:2015",
         logo: iso,
         description: "Quality Management System Certification",
+        fullDesc: "International quality standard",
         link: "/images/Accreditation/Coding-Cloud-ISO_2024-25.jpg",
-        gradient: "from-emerald-600 to-teal-600",
+        badge: "Quality",
+        color: "from-emerald-500 to-teal-500",
         lightBg: "bg-emerald-50",
-        borderColor: "border-emerald-200",
-        shadow: "shadow-emerald-100",
+        borderColor: "group-hover:border-emerald-900",
+        textColor: "text-emerald-600",
+        icon: BadgeCheck,
     },
     {
         id: 3,
         name: "MSME",
         logo: msme,
         description: "Ministry of Micro, Small & Medium Enterprises",
+        fullDesc: "Government of India recognition",
         link: "https://codingcloudinstitute.com/wp-content/uploads/2024/10/Coding_Cloud_MSME_New.pdf",
-        gradient: "from-amber-600 to-orange-600",
+        badge: "Government",
+        color: "from-amber-500 to-orange-500",
         lightBg: "bg-amber-50",
-        borderColor: "border-amber-200",
-        shadow: "shadow-amber-100",
+        borderColor: "group-hover:border-amber-900",
+        textColor: "text-amber-600",
+        icon: Award,
     },
 ];
 
+
+
 export default function Accreditation() {
+ 
     return (
-        <section className="relative py-20 md:py-28 overflow-hidden">
-            {/* Animated Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-indigo-50">
-                <div className="absolute top-0 left-0 w-full h-full">
-                    <div className="absolute top-20 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-                    <div className="absolute top-40 right-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-                    <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-                </div>
-            </div>
-
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-center opacity-5"></div>
-
+        <section className="relative py-20 bg-gradient-to-b from-purple-50 via-white to-indigo-50 overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
+            
             <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
+                    transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center max-w-4xl mx-auto mb-16"
+                    className="text-center max-w-3xl mx-auto mb-16"
                 >
-                    <div className="flex justify-center mb-6">
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 200 }}
-                            viewport={{ once: true }}
-                        >
-                            <Pill
-                                text="Accreditation & Recognition"
-                                textColor="text-purple-700"
-                                bgColor="bg-purple-100"
-                            />
-                        </motion.div>
+                    <div className="flex justify-center mb-4">
+                        <Pill
+                                    text="Accreditation"
+                                    textColor="var(--color-accent-purple)"
+                                    bgColor="var(--color-primary-light)"
+                                  />
                     </div>
 
-                    <motion.h2 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-                    >
-                        <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                            Recognized & 
-                        </span>
-                        <span className="block md:inline bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                            {" "}Certified
-                        </span>
-                    </motion.h2>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                        Recognized & <span className="text-purple-600">Certified</span>
+                    </h2>
 
-                    <motion.p 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        viewport={{ once: true }}
-                        className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto"
-                    >
-                        Coding Cloud is proudly accredited by prestigious international and national 
-                        certification bodies, ensuring quality education and global standards.
-                    </motion.p>
+                    <p className="text-gray-600 text-lg">
+                        Coding Cloud is proudly accredited and recognized by reputed
+                        international and national certification bodies.
+                    </p>
                 </motion.div>
 
-                {/* Cards */}
+                {/* Certificate Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {accreditations.map((item, index) => (
-                        <motion.div
-                            key={item.id}
-                            onClick={() => window.open(item.link, "_blank")}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            whileHover={{ y: -10 }}
-                            className="group cursor-pointer"
-                        >
-                            <div className={`relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 ${item.borderColor} hover:border-transparent h-full flex flex-col`}>
-                                
-                                {/* Gradient Border on Hover */}
-                                <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
-                                
-                                {/* Logo */}
-                                <div className="relative mb-6 flex justify-center">
-                                    <div className={`absolute inset-0 ${item.lightBg} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                                    <div className="relative w-[220px] h-[240px] group-hover:scale-110 transition-transform duration-500">
-                                        <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white rounded-full"></div>
-                                        <Image
-                                            src={item.logo}
-                                            alt={item.name}
-                                            fill
-                                            sizes="220px"
-                                            className="object-contain p-6 relative z-10"
-                                            priority
-                                            unoptimized
-                                        />
-                                    </div>
-                                </div>
+                    {accreditations.map((item, index) => {
+                        const Icon = item.icon;
 
-                                {/* Content */}
-                                <div className="text-center">
-                                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
-                                        {item.name}
-                                    </h3>
-                                    <p className="text-gray-500 text-sm mb-6">
-                                        {item.description}
-                                    </p>
+                        return (
+                            <motion.div
+                                key={item.id}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                                whileHover={{ y: -8 }}
+                                onClick={() => window.open(item.link, "_blank")}
+                                className="group cursor-pointer"
+                            >
+                                <div className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-purple-200">
                                     
-                                    {/* View Credential Button */}
-                                    <motion.div 
-                                        whileHover={{ scale: 1.05 }}
-                                        className={`inline-flex items-center gap-2 px-4 py-2 ${item.lightBg} rounded-full text-sm font-medium text-gray-700 border ${item.borderColor} shadow-sm`}
-                                    >
-                                        <CheckCircle className={`w-4 h-4 ${
-                                            item.gradient.includes('blue') ? 'text-blue-500' : 
-                                            item.gradient.includes('emerald') ? 'text-emerald-500' : 
-                                            'text-amber-500'
-                                        }`} />
-                                        <span>View Credential</span>
-                                        <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
-                                    </motion.div>
+                                    {/* Certificate Ribbon */}
+                                    {/* <div className={`absolute -top-2 -right-2 w-16 h-16 overflow-hidden`}>
+                                        <div className={`absolute rotate-45 bg-gradient-to-r ${item.color} text-white text-xs font-bold py-1 right-[-35px] top-[32px] w-[170px] text-center shadow-lg`}>
+                                            {item.badge}
+                                        </div>
+                                    </div> */}
+
+                                    {/* Certificate Border Design */}
+                                    <div className={`absolute inset-0 rounded-2xl border-2 border-dashed border-gray-200 ${item.borderColor} transition-colors duration-300 m-3`}></div>
+
+                                    {/* Certificate Header */}
+                                    <div className="relative flex justify-between items-start">
+                                        <div className={`w-12 h-12 ${item.lightBg} rounded-xl flex items-center justify-center`}>
+                                            <Icon className={`w-6 h-6 ${item.textColor}`} />
+                                        </div>
+                                        <div className="text-right">
+                                            <span className={`text-xs font-semibold ${item.textColor} bg-opacity-10 ${item.lightBg} px-3 py-1 rounded-full`}>
+                                                #{item.badge}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Certificate Image/Logo */}
+                                    <div className="relative mb-6 flex justify-center">
+                                        <div className={`absolute inset-0 ${item.lightBg} rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity`}></div>
+                                        <div className="relative w-[205px] h-[200px] group-hover:scale-105 transition-transform duration-300">
+                                            <div className={`absolute inset-0 bg-gradient-to-b ${item.color} opacity-5 group-hover:opacity-5 rounded-full transition-opacity `}></div>
+                                            <Image
+                                                src={item.logo}
+                                                alt={item.name}
+                                                fill
+                                                sizes="175px"
+                                                className="object-cover  p-4"
+                                                priority
+                                                unoptimized
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Certificate Content */}
+                                    <div className={`relative text-center border-t ${item.borderColor}   border-gray-100`}>
+                                        <h3 className={`text-xl font-bold mb-1 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}>
+                                            {item.name}
+                                        </h3>
+                                        
+                                        <p className="text-gray-600 text-sm mb-2">
+                                            {item.description}
+                                        </p>
+                                        
+                                        <p className="text-gray-400 text-xs mb-4">
+                                            {item.fullDesc}
+                                        </p>
+
+                                        {/* Certificate Footer */}
+                                        <div className={`flex items-center justify-between text-xs text-gray-400 border-t ${item.borderColor}  border-gray-100 pt-4`}>
+                                            <div className="flex items-center gap-1">
+                                                <CheckCircle className="w-3 h-3 text-green-500" />
+                                                <span>Verified</span>
+                                            </div>
+                                            
+                                            <div className="flex items-center gap-1 group-hover:text-purple-600 transition-colors">
+                                                <span>View Certificate</span>
+                                                <ExternalLink className="w-3 h-3" />
+                                            </div>
+                                            
+                                            <div className="flex items-center gap-1">
+                                                <Shield className="w-3 h-3 text-gray-400" />
+                                                <span>Valid</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Certificate Seal Effect */}
+                                    {/* <div className={`absolute bottom-4 right-4 w-16 h-16 opacity-0 group-hover:opacity-10 transition-opacity`}>
+                                        <div className={`w-full h-full rounded-full bg-gradient-to-r ${item.color}`}></div>
+                                    </div> */}
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        );
+                    })}
                 </div>
 
-                {/* Bottom Stats */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                {/* Bottom Recognition */}
+                {/* <motion.div
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     viewport={{ once: true }}
-                    className="mt-20 text-center"
+                    className="mt-16 text-center"
                 >
-                    <div className="inline-flex flex-wrap justify-center gap-6 bg-white/80 backdrop-blur-sm px-8 py-4 rounded-full shadow-lg border border-purple-100">
-                        <div className="flex items-center gap-2">
-                            <Sparkles className="w-5 h-5 text-purple-500" />
-                            <span className="text-sm font-semibold text-gray-800">10,000+ Students</span>
-                        </div>
-                        
-                        <div className="hidden sm:block w-px h-6 bg-purple-200"></div>
-                        
-                        <div className="flex items-center gap-2">
-                            {[...Array(5)].map((_, i) => (
-                                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                            ))}
-                            <span className="text-sm text-gray-600">4.9/5</span>
-                        </div>
-                        
-                        <div className="hidden sm:block w-px h-6 bg-purple-200"></div>
-                        
-                        <div className="flex items-center gap-2">
-                            <Shield className="w-5 h-5 text-green-500" />
-                            <span className="text-sm text-gray-800 font-medium">ISO Certified</span>
-                        </div>
+                    <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm px-8 py-4 rounded-full shadow-lg border border-gray-200">
+                        <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                        <span className="text-sm text-gray-700 font-medium">
+                            Trusted by 10,000+ Students • 50+ Placement Partners
+                        </span>
+                        <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
                     </div>
-                </motion.div>
-            </div>
+                </motion.div> */}
 
-            <style jsx>{`
-                @keyframes blob {
-                    0%, 100% { transform: translate(0, 0) scale(1); }
-                    33% { transform: translate(30px, -50px) scale(1.1); }
-                    66% { transform: translate(-20px, 20px) scale(0.9); }
-                }
-                .animate-blob {
-                    animation: blob 7s infinite;
-                }
-                .animation-delay-2000 {
-                    animation-delay: 2s;
-                }
-                .animation-delay-4000 {
-                    animation-delay: 4s;
-                }
-            `}</style>
+            </div>
         </section>
     );
 }

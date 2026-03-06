@@ -322,7 +322,7 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
  
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-tight text-[var(--color-text)]">
             {data.titleLine1} <br />
-            <span className="text-gradient">{data.highlight1}</span> <br />
+            <span className="gradient-text" >{data.highlight1}</span> <br />
             {data.titleLine2} <br />
             <span className="text-gradient-light">{data.highlight2}</span>
           </h1>

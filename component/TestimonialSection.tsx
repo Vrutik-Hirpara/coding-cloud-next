@@ -221,13 +221,18 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
   const isColor = item.variant === "color";
 
   return (
-    <div
-      className={`shrink-0 w-[280px] sm:w-[320px] md:w-[380px] p-6 md:p-8 rounded-2xl mx-4 flex flex-col justify-between transition-all duration-300 hover:scale-105 ${
-        isColor
-          ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)]"
-          : "bg-[var(--color-white)] text-[var(--color-muted)] border-[var(--color-border-light)]"
-      }`}
-    >
+  <div
+  className={`shrink-0 w-[280px] sm:w-[320px] md:w-[380px] p-6 md:p-8 rounded-2xl mx-4 flex flex-col justify-between transition-all duration-300 hover:scale-105 ${
+    isColor
+      ? "text-[var(--color-white)]"
+      : "bg-[var(--color-white)] text-[var(--color-muted)] border-[var(--color-border-light)]"
+  }`}
+  style={
+    isColor
+      ? { background: "var(--color-logo-gradient)" }
+      : {}
+  }
+>
       {/* stars + quote */}
       <div className="flex justify-between items-start mb-6">
         <div className="flex gap-1 text-[var(--color-accent-yellow-light)] text-sm">

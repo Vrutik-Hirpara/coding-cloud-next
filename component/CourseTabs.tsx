@@ -30,14 +30,14 @@ type Module = {
     course_data: any;
 };
 type Course = {
-  id: number;
-  name: string;
-  price?: number;
+    id: number;
+    name: string;
+    price?: number;
 };
 
 export default function CourseTabs({ course, events }: any) {
     const [isEnrollOpen, setIsEnrollOpen] = useState(false);
- const [courses, setCourses] = useState<Course[]>([]);
+    const [courses, setCourses] = useState<Course[]>([]);
     const [active, setActive] = useState("overview");
 
     // 🔥 REVIEW STATE
@@ -58,7 +58,7 @@ export default function CourseTabs({ course, events }: any) {
         image: null as File | null,
     });
 
-// console.log("CourseTabs Rendered with course:", course);
+    // console.log("CourseTabs Rendered with course:", course);
     const handleSubmit = async () => {
         try {
             const form = new FormData();
@@ -146,7 +146,7 @@ export default function CourseTabs({ course, events }: any) {
                 const res = await fetch(`${BASE_URL}/topics/`);
                 const json = await res.json();
                 setTopicsData(json.data || []);
-                
+
             } catch (err) {
                 console.error("topics error", err);
             }
@@ -163,14 +163,14 @@ export default function CourseTabs({ course, events }: any) {
                 const filtered = (json.data || []).filter(
                     (m: any) => m.course_data === course.id
                 );
-                
+
                 console.log("Fetched Modules:", filtered);
                 // 🔥 sort ascending by id
                 const sorted = filtered.sort((a: any, b: any) => a.id - b.id);
-                
+
                 setModules(sorted);
-                console.log(course,"ok")
-                setCourses([{...course}])
+                console.log(course, "ok")
+                setCourses([{ ...course }])
             } catch (e) {
                 console.error("module error", e);
             }
@@ -386,17 +386,34 @@ export default function CourseTabs({ course, events }: any) {
                         //             >
                         //                 {t.label}
                         //             </button>
-                        <button
-                            key={t.id}
-                            onClick={() => scrollTo(t.id)}
-                            className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-              ${active === t.id
-                                    ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
-                                    : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-                                }`}
-                        >
-                            {t.label}
-                        </button>
+            //             <button
+            //                 key={t.id}
+            //                 onClick={() => scrollTo(t.id)}
+            //                 className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+            //   ${active === t.id
+            //                         ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
+            //                         : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+            //                     }`}
+            //             >
+            //                 {t.label}
+            //             </button>
+            <button
+  key={t.id}
+  onClick={() => scrollTo(t.id)}
+  style={
+    active === t.id
+      ? { background: "var(--color-logo-gradient)" }
+      : {}
+  }
+  className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+  ${
+    active === t.id
+      ? "text-white shadow"
+      : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+  }`}
+>
+  {t.label}
+</button>
                     ))}
                 </div>
             </div>
@@ -649,7 +666,7 @@ export default function CourseTabs({ course, events }: any) {
                     courses={courses}
                 />
 
-                  <motion.button
+                {/* <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
@@ -659,9 +676,19 @@ export default function CourseTabs({ course, events }: any) {
               className="bg-[var(--color-accent-purple)] text-[var(--color-white)] px-2 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
             >
               Enroll Now
-            </motion.button>
+            </motion.button> */}
             </section>
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
 
+                    setIsEnrollOpen(true);
+                }}
+                className="bg-[var(--color-accent-purple)] text-[var(--color-white)] px-2 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
+            >
+                Enroll Now
+            </motion.button>
 
 
 

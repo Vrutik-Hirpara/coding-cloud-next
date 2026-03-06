@@ -401,8 +401,8 @@ const FeaturedCoursesSection = () => {
   }
 
   return (
-<section className="py-12 bg-[var(--color-bg-light)]">
-        <div className="container-custom relative">
+    <section className="py-12 bg-[var(--color-bg-light)]">
+      <div className="container-custom relative">
 
         {/* HEADER */}
         <div className="text-center mb-16 px-5" >
@@ -413,10 +413,10 @@ const FeaturedCoursesSection = () => {
             blur="blur(6px)"
           /> */}
           <Pill
-  text="SIMULATED TO TAKE PART IN?"
-  textColor="var(--color-accent-purple)"
-  bgColor="var(--color-primary-light)"
-/>
+            text="SIMULATED TO TAKE PART IN?"
+            textColor="var(--color-accent-purple)"
+            bgColor="var(--color-primary-light)"
+          />
           <Heading title={<>Feature Course</>} />
         </div>
 
@@ -442,15 +442,14 @@ const FeaturedCoursesSection = () => {
           {/* SCROLL CONTAINER */}
           <div
             ref={scrollRef}
-            className="flex p-2 overflow-x-auto gap-6 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"
-          >
+            className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"          >
             {events.map((ev) => (
               <div
                 key={ev.id}
                 onClick={() => handleCardClick(ev.id, ev.slug)}
-                className="min-w-[280px] p-2 sm:min-w-[320px] md:min-w-[340px]
-                  rounded-3xl border border-white/20
-                  transition-all duration-300 hover:-translate-y-2  cursor-pointer"
+                className="w-full md:w-1/3 flex-shrink-0 p-2
+  rounded-3xl border border-white/20
+  transition-all duration-300 hover:-translate-y-2 cursor-pointer"
               >
                 <EventCard event={ev} />
               </div>
