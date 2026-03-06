@@ -150,31 +150,10 @@ export default function Page() {
           {course.name}
         </h1>
 
-        {/* <p className="mt-3 text-[var(--color-muted)] text-sm">
-          Updated 12/2024 • {course.language}
-        </p> */}
+   
       </section>
 
-      {/* <div className="max-w-5xl mx-auto -mt-20 md:-mt-24 px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="relative h-[220px] sm:h-[280px] md:h-[520px] rounded-2xl overflow-hidden shadow-xl border-4 border-white"
-        >
-          <Image
-            src={getImageUrl(course.banner_img || course.image)}
-            alt={course.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 900px"
-            priority
-            unoptimized
-            className="object-fill transition-transform duration-500 "
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent pointer-events-none" />
-        </motion.div>
-      </div> */}
+ 
       <div className="w-full -mt-20 md:-mt-24">
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}

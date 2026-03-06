@@ -334,13 +334,13 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
           </p>
  
           <div className="flex justify-center lg:justify-start">
-            {/* <Button icon={FaArrowRight}>View Course</Button> */}
-            <Button
+            <Button icon={FaArrowRight} onClick={() => router.push("/courses")}>View Course</Button>
+            {/* <Button
               onClick={() => router.push("/courses")}
               className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-semibold hover:scale-105 transition"
             >
               All Course
-            </Button>
+            </Button> */}
           </div>
         </motion.div>
  

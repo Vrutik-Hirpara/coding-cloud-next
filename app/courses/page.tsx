@@ -221,7 +221,7 @@ export default function CoursesPage() {
                   {course.description || "No description available"}
                 </p>
 
-                <div className="mt-3 text-[var(--color-accent-purple)] text-xs sm:text-sm font-medium">
+                <div className="mt-3 text-[var(--color-accent-purple)] text-xs sm:text-sm font-semibold">
                   View Course →
                 </div>
               </Link>

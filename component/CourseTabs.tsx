@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import EnrollModal from "./EnrollModal";  // 👈 IMPORT HERE
 
 import user1 from "@/public/images/avatars/avatar-02.png";
 import user2 from "@/public/images/avatars/avatar-01.png";
@@ -28,8 +29,15 @@ type Module = {
     name: string;
     course_data: any;
 };
+type Course = {
+  id: number;
+  name: string;
+  price?: number;
+};
 
 export default function CourseTabs({ course, events }: any) {
+    const [isEnrollOpen, setIsEnrollOpen] = useState(false);
+ const [courses, setCourses] = useState<Course[]>([]);
     const [active, setActive] = useState("overview");
 
     // 🔥 REVIEW STATE
@@ -50,7 +58,7 @@ export default function CourseTabs({ course, events }: any) {
         image: null as File | null,
     });
 
-
+// console.log("CourseTabs Rendered with course:", course);
     const handleSubmit = async () => {
         try {
             const form = new FormData();
@@ -138,6 +146,7 @@ export default function CourseTabs({ course, events }: any) {
                 const res = await fetch(`${BASE_URL}/topics/`);
                 const json = await res.json();
                 setTopicsData(json.data || []);
+                
             } catch (err) {
                 console.error("topics error", err);
             }
@@ -154,11 +163,14 @@ export default function CourseTabs({ course, events }: any) {
                 const filtered = (json.data || []).filter(
                     (m: any) => m.course_data === course.id
                 );
-
+                
+                console.log("Fetched Modules:", filtered);
                 // 🔥 sort ascending by id
                 const sorted = filtered.sort((a: any, b: any) => a.id - b.id);
-
+                
                 setModules(sorted);
+                console.log(course,"ok")
+                setCourses([{...course}])
             } catch (e) {
                 console.error("module error", e);
             }
@@ -211,72 +223,72 @@ export default function CourseTabs({ course, events }: any) {
     //     return () => window.removeEventListener("scroll", handleScroll);
     // }, []);
 
-// useEffect(() => {
-//   const sections = ["overview", "content", "faqs", "review"];
-  
-//   const handleScroll = () => {
-//     let current = "overview";
-//     const scrollPosition = window.scrollY + 120; // Small offset from top
+    // useEffect(() => {
+    //   const sections = ["overview", "content", "faqs", "review"];
 
-//     // Check from bottom to top (reverse order) so lower sections take priority
-//     for (let i = sections.length - 1; i >= 0; i--) {
-//       const sec = sections[i];
-//       const el = document.getElementById(sec);
-//       if (!el) continue;
+    //   const handleScroll = () => {
+    //     let current = "overview";
+    //     const scrollPosition = window.scrollY + 120; // Small offset from top
 
-//       const sectionTop = el.offsetTop;
-      
-//       // If we've scrolled past this section's top, it becomes active
-//       if (scrollPosition >= sectionTop) {
-//         current = sec;
-//         break;
-//       }
-//     }
+    //     // Check from bottom to top (reverse order) so lower sections take priority
+    //     for (let i = sections.length - 1; i >= 0; i--) {
+    //       const sec = sections[i];
+    //       const el = document.getElementById(sec);
+    //       if (!el) continue;
 
-//     setActive(current);
-//   };
+    //       const sectionTop = el.offsetTop;
 
-//   window.addEventListener("scroll", handleScroll);
-//   handleScroll(); // Initial check
-  
-//   return () => window.removeEventListener("scroll", handleScroll);
-// }, []);
-useEffect(() => {
-  const sections = ["overview", "content", "faqs", "review"];
-  
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    let current = "overview";
+    //       // If we've scrolled past this section's top, it becomes active
+    //       if (scrollPosition >= sectionTop) {
+    //         current = sec;
+    //         break;
+    //       }
+    //     }
 
-    // Find which section is currently in view
-    for (let sec of sections) {
-      const el = document.getElementById(sec);
-      if (!el) continue;
+    //     setActive(current);
+    //   };
 
-      const rect = el.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      // Check if section is significantly in view
-      // More than 30% of section visible OR section top is near viewport top
-      const visiblePercentage = Math.min(
-        (Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)) / rect.height,
-        1
-      );
-      
-      if (visiblePercentage > 0.3 || (rect.top <= 150 && rect.bottom > 150)) {
-        current = sec;
-        break;
-      }
-    }
+    //   window.addEventListener("scroll", handleScroll);
+    //   handleScroll(); // Initial check
 
-    setActive(current);
-  };
+    //   return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
+    useEffect(() => {
+        const sections = ["overview", "content", "faqs", "review"];
 
-  window.addEventListener("scroll", handleScroll);
-  handleScroll();
-  
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            let current = "overview";
+
+            // Find which section is currently in view
+            for (let sec of sections) {
+                const el = document.getElementById(sec);
+                if (!el) continue;
+
+                const rect = el.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+
+                // Check if section is significantly in view
+                // More than 30% of section visible OR section top is near viewport top
+                const visiblePercentage = Math.min(
+                    (Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)) / rect.height,
+                    1
+                );
+
+                if (visiblePercentage > 0.3 || (rect.top <= 150 && rect.bottom > 150)) {
+                    current = sec;
+                    break;
+                }
+            }
+
+            setActive(current);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
     const scrollTo = (id: string) => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -594,7 +606,7 @@ useEffect(() => {
                     </div>
                 )}
                 {/* ⭐ FEATURED REVIEWS */}
-                <div className="space-y-6">
+                {/* <div className="space-y-6">
                     <h4 className="font-semibold text-lg">Featured review</h4>
 
                     {loading ? (
@@ -630,7 +642,24 @@ useEffect(() => {
                             </motion.div>
                         ))
                     )}
-                </div>
+                </div> */}
+                <EnrollModal
+                    isOpen={isEnrollOpen}
+                    onClose={() => setIsEnrollOpen(false)}
+                    courses={courses}
+                />
+
+                  <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+              
+                setIsEnrollOpen(true);
+              }}
+              className="bg-[var(--color-accent-purple)] text-[var(--color-white)] px-2 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
+            >
+              Enroll Now
+            </motion.button>
             </section>
 
 
