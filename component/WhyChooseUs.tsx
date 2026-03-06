@@ -108,11 +108,6 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
   return (
     <section className="py-20 bg-[var(--color-bg-light)] overflow-hidden">
       <div className="container-custom text-center">
-
-        {/* Badge */}
-        {/* <span className="inline-block px-4 py-1 mb-5 text-sm font-semibold text-[var(--color-primary)] bg-blue-100 rounded-full uppercase tracking-wider">
-          Why Choose Us
-        </span> */}
         <Pill
           text="Why Choose Us"
           textColor="var(--color-accent-purple)"
@@ -161,7 +156,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
 
                   {/* CARD */}
                   <div
-                    className={`bg-[var(--color-white)] w-full max-w-[280px] p-8 pt-16 pb-12 rounded-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${isLower ? "mt-28" : "mt-16"
+                    className={`bg-[var(--color-white)] w-full max-w-[280px] p-8 pt-16 pb-12 rounded-t-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${isLower ? "mt-28" : "mt-16"
                       }`}
                   >
                     {/* icon */}

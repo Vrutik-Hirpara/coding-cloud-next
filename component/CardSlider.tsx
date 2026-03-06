@@ -172,77 +172,247 @@
 //     </div>
 //   );
 // }
+//maru
+
+// "use client";
+
+// import { useState, useRef } from "react";
+// import Image from "next/image";
+
+// export default function CardSlider() {
+//   const [cards, setCards] = useState([
+//     {
+//       id: 1,
+//       title: "React",
+//       desc: "It is a long established fact that a reader will be distracted.",
+//       lessons: 12,
+//       students: 50,
+//       color: "linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%)",
+//       price: 70,
+//       oldPrice: 120,
+//       rating: 15,
+//       tag: "-40% Off",
+//     },
+//     {
+//       id: 2,
+//       title: "JavaScript",
+//       desc: "Mastering the web language.",
+//       lessons: 18,
+//       students: 120,
+//       color: "linear-gradient(135deg, #34d399 0%, #10b981 100%)",
+//       price: 60,
+//       oldPrice: 100,
+//       rating: 20,
+//       tag: "Popular",
+//     },
+//     {
+//       id: 3,
+//       title: "UI/UX Design",
+//       desc: "Designing for user experience.",
+//       lessons: 20,
+//       students: 80,
+//       color: "linear-gradient(135deg, #f472b6 0%, #ec4899 100%)",
+//       price: 50,
+//       oldPrice: 90,
+//       rating: 18,
+//       tag: "New",
+//     },
+//   ]);
+
+//   const [dragX, setDragX] = useState(0);
+//   const [isDragging, setIsDragging] = useState(false);
+//   const startX = useRef(0);
+
+//   const handleMouseDown = (e: any) => {
+//     setIsDragging(true);
+//     startX.current = e.clientX;
+//   };
+
+//   const handleMouseMove = (e: any) => {
+//     if (!isDragging) return;
+//     setDragX(e.clientX - startX.current);
+//   };
+
+//   const handleMouseUp = () => {
+//     setIsDragging(false);
+//     if (dragX > 120 || dragX < -120) {
+//       setCards((prev) => {
+//         const arr = [...prev];
+//         arr.push(arr.shift()!);
+//         return arr;
+//       });
+//     }
+//     setDragX(0);
+//   };
+
+//   return (
+//     <div className="w-full h-[520px] flex items-center justify-center relative">
+//       <div
+//         className="relative w-[340px] h-[460px] cursor-grab active:cursor-grabbing"
+//         onMouseDown={handleMouseDown}
+//         onMouseMove={handleMouseMove}
+//         onMouseUp={handleMouseUp}
+//         onMouseLeave={handleMouseUp}
+//       >
+//         {cards.map((card, index) => {
+//           let style: any = {};
+
+//           if (index === 0) {
+//             style = {
+//               zIndex: 3,
+//               transform: isDragging
+//                 ? `translateX(${dragX}px) rotate(${dragX * 0.05}deg)`
+//                 : "translateX(0)",
+//               transition: isDragging ? "none" : "transform 0.3s",
+//             };
+//           } else if (index === 1) {
+//             style = {
+//               zIndex: 2,
+//               transform: "translateX(20px) translateY(20px) scale(0.96)",
+//             };
+//           } else {
+//             style = {
+//               zIndex: 1,
+//               opacity: 0.5,
+//               transform: "translateX(40px) translateY(40px) scale(0.9)",
+//             };
+//           }
+
+//           if (index > 2) return null;
+
+//           return (
+//             <div
+//               key={card.id}
+//               style={style}
+//               className="absolute top-0 left-0 w-full h-full bg-[var(--color-white)] rounded-2xl shadow-2xl overflow-hidden border"
+//             >
+//               {/* HEADER */}
+//               <div
+//                 className="h-[190px] p-6 relative text-[var(--color-white)]"
+//                 style={{ background: card.color }}
+//               >
+//                 <h3 className="text-base font-bold w-2/3 leading-snug">
+//                   Difficult Things About Education.
+//                 </h3>
+
+//                 <span className="absolute bottom-5 left-5 text-xs bg-[var(--color-white)]/20 px-3 py-1 rounded">
+//                   {card.lessons} Class
+//                 </span>
+
+//                 <div className="absolute top-5 right-5 w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-xs font-bold border border-dashed border-white">
+//                   {card.tag}
+//                 </div>
+
+//                 <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
+//                   <Image
+//                     src="https://i.pravatar.cc/300?img=5"
+//                     alt="avatar"
+//                     fill
+//                     sizes="(max-width: 640px) 64px, 80px"
+//                     className="object-cover"
+//                   />
+//                 </div>
+//               </div>
+
+//               {/* BODY */}
+//               <div className="p-6 text-sm">
+//                 <div className="flex justify-between text-[var(--color-muted-light)] text-xs mb-3">
+//                   <span>{card.lessons} Lessons</span>
+//                   <span>{card.students} Students</span>
+//                 </div>
+
+//                 <h2 className="text-2xl font-bold mb-1">{card.title}</h2>
+
+//                 <p className="text-[var(--color-muted)] text-sm mb-3">
+//                   {card.desc}
+//                 </p>
+
+//                 <div className="text-[var(--color-accent-yellow-light)] mb-3 text-sm">
+//                   ⭐⭐⭐⭐⭐ ({card.rating})
+//                 </div>
+
+//                 <div className="flex justify-between items-center border-t pt-4 mt-3">
+//                   {/* <div>
+//                     <span className="font-bold text-xl">${card.price}</span>
+//                     <span className="text-[var(--color-muted-light)] line-through ml-2 text-sm">
+//                       ${card.oldPrice}
+//                     </span>
+//                   </div> */}
+
+//                   <button className="text-sm text-[var(--color-accent-indigo)] font-semibold">
+//                     Learn More →
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+//mansi
+ 
 "use client";
-
-import { useState, useRef } from "react";
+ 
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-
-export default function CardSlider() {
-  const [cards, setCards] = useState([
-    {
-      id: 1,
-      title: "React",
-      desc: "It is a long established fact that a reader will be distracted.",
-      lessons: 12,
-      students: 50,
-      color: "linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%)",
-      price: 70,
-      oldPrice: 120,
-      rating: 15,
-      tag: "-40% Off",
-    },
-    {
-      id: 2,
-      title: "JavaScript",
-      desc: "Mastering the web language.",
-      lessons: 18,
-      students: 120,
-      color: "linear-gradient(135deg, #34d399 0%, #10b981 100%)",
-      price: 60,
-      oldPrice: 100,
-      rating: 20,
-      tag: "Popular",
-    },
-    {
-      id: 3,
-      title: "UI/UX Design",
-      desc: "Designing for user experience.",
-      lessons: 20,
-      students: 80,
-      color: "linear-gradient(135deg, #f472b6 0%, #ec4899 100%)",
-      price: 50,
-      oldPrice: 90,
-      rating: 18,
-      tag: "New",
-    },
-  ]);
-
+import { useRouter } from "next/navigation";
+import { BASE_URL } from "@/lib/api";
+export default function CardSlider({ courses = [] }: { courses?: any[] }) {
+ 
+  const [cards, setCards] = useState<any[]>([]);
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);
-
+const router = useRouter();
+  // 🔥 convert API courses to slider cards
+  useEffect(() => {
+    if (!courses.length) return;
+ 
+const mapped = courses.map((course: any) => ({
+  id: course.id,
+  slug: course.slug,
+  title: course.name,
+  desc: course.text?.replace(/<[^>]+>/g, "").slice(0, 80),
+  lessons: Number(course.lecture) || 0,
+  students: course.students,
+  rating: course.rating,
+  tag: course.level || "Course",
+  image: `${BASE_URL}${course.image}`,
+}));
+ 
+    setCards(mapped);
+  }, [courses]);
+ 
   const handleMouseDown = (e: any) => {
     setIsDragging(true);
     startX.current = e.clientX;
   };
-
+ 
   const handleMouseMove = (e: any) => {
     if (!isDragging) return;
     setDragX(e.clientX - startX.current);
   };
-
+ 
   const handleMouseUp = () => {
     setIsDragging(false);
+ 
     if (dragX > 120 || dragX < -120) {
-      setCards((prev) => {
+      setCards((prev: any[]) => {
         const arr = [...prev];
         arr.push(arr.shift()!);
         return arr;
       });
     }
+ 
     setDragX(0);
   };
-
+ 
   return (
     <div className="w-full h-[520px] flex items-center justify-center relative">
       <div
@@ -253,8 +423,9 @@ export default function CardSlider() {
         onMouseLeave={handleMouseUp}
       >
         {cards.map((card, index) => {
+ 
           let style: any = {};
-
+ 
           if (index === 0) {
             style = {
               zIndex: 3,
@@ -275,9 +446,9 @@ export default function CardSlider() {
               transform: "translateX(40px) translateY(40px) scale(0.9)",
             };
           }
-
+ 
           if (index > 2) return null;
-
+ 
           return (
             <div
               key={card.id}
@@ -285,23 +456,25 @@ export default function CardSlider() {
               className="absolute top-0 left-0 w-full h-full bg-[var(--color-white)] rounded-2xl shadow-2xl overflow-hidden border"
             >
               {/* HEADER */}
-              <div
-                className="h-[190px] p-6 relative text-[var(--color-white)]"
-                style={{ background: card.color }}
-              >
-                <h3 className="text-base font-bold w-2/3 leading-snug">
-                  Difficult Things About Education.
-                </h3>
-
-                <span className="absolute bottom-5 left-5 text-xs bg-[var(--color-white)]/20 px-3 py-1 rounded">
-                  {card.lessons} Class
-                </span>
-
-                <div className="absolute top-5 right-5 w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-xs font-bold border border-dashed border-white">
+              <div className="h-[190px] relative overflow-hidden">
+  <Image
+    src={card.image}
+    alt={card.title}
+    fill
+    className="object-contain"
+  />
+ 
+ 
+  <div className="absolute inset-0 p-6 text-white">
+               
+ 
+               
+ 
+                <div className="absolute top-5 right-5 w-20 h-10 bg-indigo-600 rounded-md flex items-center justify-center text-xs font-bold border border border-white">
                   {card.tag}
                 </div>
-
-                <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
+ 
+                {/* <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
                   <Image
                     src="https://i.pravatar.cc/300?img=5"
                     alt="avatar"
@@ -309,43 +482,43 @@ export default function CardSlider() {
                     sizes="(max-width: 640px) 64px, 80px"
                     className="object-cover"
                   />
-                </div>
+                </div> */}
               </div>
-
+</div>
+ 
               {/* BODY */}
               <div className="p-6 text-sm">
                 <div className="flex justify-between text-[var(--color-muted-light)] text-xs mb-3">
                   <span>{card.lessons} Lessons</span>
                   <span>{card.students} Students</span>
                 </div>
-
+ 
                 <h2 className="text-2xl font-bold mb-1">{card.title}</h2>
-
+ 
                 <p className="text-[var(--color-muted)] text-sm mb-3">
                   {card.desc}
                 </p>
-
+ 
                 <div className="text-[var(--color-accent-yellow-light)] mb-3 text-sm">
-                  ⭐⭐⭐⭐⭐ ({card.rating})
+                  ⭐ {card.rating} / 5
                 </div>
-
+ 
                 <div className="flex justify-between items-center border-t pt-4 mt-3">
-                  {/* <div>
-                    <span className="font-bold text-xl">${card.price}</span>
-                    <span className="text-[var(--color-muted-light)] line-through ml-2 text-sm">
-                      ${card.oldPrice}
-                    </span>
-                  </div> */}
-
-                  <button className="text-sm text-[var(--color-accent-indigo)] font-semibold">
-                    Learn More →
-                  </button>
+                  <button
+  onClick={() => router.push(`/courses/${card.slug}`)}
+  className="text-sm text-[var(--color-accent-indigo)] font-semibold"
+>
+  Learn More →
+</button>
                 </div>
               </div>
             </div>
+           
           );
         })}
+       
       </div>
     </div>
   );
 }
+ 

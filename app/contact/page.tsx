@@ -381,9 +381,9 @@ const handleSubmit = async (e: any) => {
   viewport={{ once: true }}
   className="bg-[var(--color-white)] p-4 md:p-8 rounded-2xl shadow-lg flex flex-col justify-start h-auto min-h-[400px] md:min-h-[520px] max-h-[600px] md:max-h-none overflow-y-auto md:overflow-visible"
 >
-  <span className="inline-block px-4 py-1 mb-3 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple-10)] rounded-full uppercase ">
-    EDUCATION FOR EVERYONE
-  </span>
+  <span className="inline-block w-fit px-4 py-1 mb-3 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple-10)] rounded-full uppercase">
+  EDUCATION FOR EVERYONE
+</span>
 
   <h2 className="text-xl md:text-4xl font-bold text-[var(--color-text)] mb-3 md:mb-5 leading-tight">
     Get a Free Course You Can Contact With Me

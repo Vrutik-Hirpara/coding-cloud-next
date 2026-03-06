@@ -243,20 +243,29 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
 
         <FaQuoteRight
           className={`text-4xl opacity-30 ${
-            isColor ? "text-[var(--color-white)]" : "border border-[var(--color-border-light)]"
+            isColor ? "text-[var(--color-white)]" : ""
           }`}
         />
       </div>
 
       {/* review */}
-      <p
+      {/* <p
         className={`text-base md:text-lg mb-8 italic ${
           isColor ? "text-blue-50" : "text-[var(--color-muted)]"
         }`}
       >
         "{item.review}"
-      </p>
-
+      </p> */}
+<p
+  className={`text-base md:text-lg mb-8 italic ${
+    isColor ? "text-blue-50" : "text-[var(--color-muted)]"
+  }`}
+>
+  "
+  {item.review?.split(" ").slice(0, 40).join(" ")}
+  {item.review?.split(" ").length > 40 ? "..." : ""}
+  "
+</p>
       {/* user */}
       <div className="flex items-center gap-4">
         <img

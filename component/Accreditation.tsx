@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Award, CheckCircle, Star } from "lucide-react";
-
+import { Award, AwardIcon, CheckCircle, Star } from "lucide-react";
 import iao from "@/public/images/Accreditation/IAO.png";
 import iso from "@/public/images/Accreditation/ISO.png";
 import msme from "@/public/images/Accreditation/msme.png";
+import Pill from "./ui/Pill";
 
 const accreditations = [
     {
@@ -45,11 +45,18 @@ export default function Accreditation() {
                     viewport={{ once: true }}
                     className="text-center max-w-3xl mx-auto mb-14"
                 >
-                    <div className="flex justify-center mb-4">
+                    {/* <div className="flex justify-center mb-4">
                         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
                             <Award className="w-4 h-4" />
                             Accreditation
                         </span>
+                    </div> */}
+                    <div className="flex justify-center mb-4">
+                        <Pill
+                            text="Accreditation"
+                            textColor="var(--color-accent-purple)"
+                            bgColor="var(--color-primary-light)"
+                        />
                     </div>
 
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">

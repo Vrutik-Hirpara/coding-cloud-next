@@ -95,9 +95,15 @@ export default function CategoryCoursesPage() {
                 <h3 className="font-semibold text-lg mb-2">
                   {course.name}
                 </h3>
-                <p className="text-sm text-[var(--color-muted)] line-clamp-2">
+                {/* <p className="text-sm text-[var(--color-muted)] line-clamp-2">
                   {course?.text?.replace(/<[^>]*>/g, "")}
-                </p>
+                </p> */}
+                 <div
+                  className="text-sm text-[var(--color-muted)] line-clamp-2"
+                  dangerouslySetInnerHTML={{
+                    __html: course?.text || "",
+                  }}
+                />
               </div>
             </Link>
           );

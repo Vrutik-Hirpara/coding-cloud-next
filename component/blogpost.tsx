@@ -232,7 +232,7 @@ export default function BlogPost() {
                 sizes="(max-width: 768px) 100vw, 600px"
                 priority
                 unoptimized
-                className="object-contain transition-transform duration-500 hover:scale-105"
+                className="object-fill transition-transform duration-500 hover:scale-105"
               />
 
               {/* optional overlay for readability */}
@@ -291,7 +291,7 @@ export default function BlogPost() {
                     href={`/blogs/${blog.slug}`}
                     className="text-sm text-[var(--color-accent-purple)] hover:underline"
                   >
-                    Read Article →
+                    Read More →
                   </Link>
                 </div>
               </motion.div>

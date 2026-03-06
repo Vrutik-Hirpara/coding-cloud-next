@@ -160,9 +160,9 @@ export default function AboutPage() {
                         </div>
 
                         {/* BUTTON */}
-                        <Button className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-semibold hover:scale-105 transition">
+                        {/* <Button className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-semibold hover:scale-105 transition">
                             Learn More About Us →
-                        </Button>
+                        </Button> */}
                     </motion.div>
 
                     {/* RIGHT VIDEO IMAGE */}
@@ -230,6 +230,7 @@ export default function AboutPage() {
                                     Repudiandae consectetur adipisicing elit. Repudiandae
                                 </p>
                                 <Button
+                                href="/contact"
                                     className="bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
                                 >
                                     Contact Us

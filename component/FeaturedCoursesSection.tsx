@@ -301,7 +301,7 @@ type EventItem = {
   category: string;
   instructor: string;
   instructorImage: string;
-  slug?: string; // Add slug to EventItem
+  slug: string; // Add slug to EventItem
 };
 
 const FeaturedCoursesSection = () => {
@@ -401,17 +401,22 @@ const FeaturedCoursesSection = () => {
   }
 
   return (
-<section className="py-24 bg-[#2663eb]">
+<section className="py-12 bg-[var(--color-bg-light)]">
         <div className="container-custom relative">
 
         {/* HEADER */}
-        <div className="text-center mb-16 px-5">
-          <Pill
+        <div className="text-center mb-16 px-5" >
+          {/* <Pill
             text="SIMULATED TO TAKE PART IN?"
             textColor="#ffffff"
             bgColor="rgba(255,255,255,0.2)"
             blur="blur(6px)"
-          />
+          /> */}
+          <Pill
+  text="SIMULATED TO TAKE PART IN?"
+  textColor="var(--color-accent-purple)"
+  bgColor="var(--color-primary-light)"
+/>
           <Heading title={<>Feature Course</>} />
         </div>
 
@@ -443,9 +448,9 @@ const FeaturedCoursesSection = () => {
               <div
                 key={ev.id}
                 onClick={() => handleCardClick(ev.id, ev.slug)}
-                className="min-w-[280px] sm:min-w-[320px] md:min-w-[340px]
+                className="min-w-[280px] p-2 sm:min-w-[320px] md:min-w-[340px]
                   rounded-3xl border border-white/20
-                  transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer"
+                  transition-all duration-300 hover:-translate-y-2  cursor-pointer"
               >
                 <EventCard event={ev} />
               </div>

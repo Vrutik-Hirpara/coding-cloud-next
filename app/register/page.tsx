@@ -154,10 +154,53 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElemen
     ...form,
     [e.target.name]: e.target.value,
   });
+
+  setErrors({
+    ...errors,
+    [e.target.name]: "",
+  });
 };
 
+
+
+const validate = () => {
+  let newErrors: any = {};
+
+  if (!form.first_name.trim()) {
+    newErrors.first_name = "First name is required";
+  } else if (form.first_name.length < 2) {
+    newErrors.first_name = "First name must be at least 2 characters";
+  }
+
+  if (!form.last_name.trim()) {
+    newErrors.last_name = "Last name is required";
+  }
+
+  if (!form.phone) {
+    newErrors.phone = "Phone number is required";
+  } else if (!/^[0-9]{10}$/.test(form.phone)) {
+    newErrors.phone = "Phone number must be 10 digits";
+  }
+
+  if (!form.message.trim()) {
+    newErrors.message = "Message is required";
+  } else if (form.message.length < 5) {
+    newErrors.message = "Message must be at least 5 characters";
+  }
+
+  return newErrors;
+};
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+
+  const validationErrors = validate();
+
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+
+  setErrors({});
 
   try {
     const res = await fetch("https://codingcloud.pythonanywhere.com/register_msg/", {
@@ -176,7 +219,6 @@ const handleSubmit = async (e: React.FormEvent) => {
     if (res.ok) {
       setSuccess(true);
 
-      // 🔥 3 sec pachi message hide
       setTimeout(() => {
         setSuccess(false);
       }, 3000);

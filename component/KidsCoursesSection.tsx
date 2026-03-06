@@ -357,7 +357,7 @@ type EventItem = {
   category: string;
   instructor: string;
   instructorImage: string;
-  slug?: string; // Add slug to EventItem
+  slug: string; // Add slug to EventItem
 };
 
 const KidsCoursesSection: React.FC = () => {
@@ -439,8 +439,8 @@ const KidsCoursesSection: React.FC = () => {
   // ⏳ loading UI
   if (loading) {
     return (
-      <section className="py-24 bg-gradient-to-r from-[var(--color-gradient-pink-soft)] via-[var(--color-gradient-blue-soft)] to-[var(--color-gradient-purple-soft)] text-center">   
-           <p className="text-[var(--color-muted)] text-lg">Loading Junior Courses...</p>
+      <section className="py-24 bg-gradient-to-r from-[var(--color-gradient-pink-soft)] via-[var(--color-gradient-blue-soft)] to-[var(--color-gradient-purple-soft)] text-center">
+        <p className="text-[var(--color-muted)] text-lg">Loading Junior Courses...</p>
       </section>
     );
   }
@@ -455,18 +455,22 @@ const KidsCoursesSection: React.FC = () => {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-r from-[var(--color-gradient-pink-soft)] via-[var(--color-gradient-blue-soft)] to-[var(--color-gradient-purple-soft)]">      
+    <section className="bg-[var(--color-bg-light)]">
       <div className="container-custom relative">
 
         {/* HEADER */}
         <div className="text-center mb-16 px-5">
-          <Pill
+          {/* <Pill
             text="FUN LEARNING FOR KIDS"
             textColor="#6B4EFF"
             bgColor="rgba(255,255,255,0.8)"
             blur="blur(10px)"
+          /> */}
+          <Pill
+            text="FUN LEARNING FOR KIDS"
+            textColor="var(--color-accent-purple)"
+            bgColor="var(--color-primary-light)"
           />
-
           <Heading title={<>Junior Courses</>} />
 
           <p className="text-[var(--color-muted)] mt-3 text-sm md:text-base max-w-xl mx-auto">

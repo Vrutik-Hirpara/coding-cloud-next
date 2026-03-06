@@ -188,40 +188,113 @@ export default function CourseTabs({ course, events }: any) {
         if (course?.id) fetchReviews();
     }, [course?.id]);
     // 🔥 SCROLL SPY
-    useEffect(() => {
-        const sections = ["overview", "content", "review"];
+    // useEffect(() => {
+    //     const sections = ["overview", "content", "review"];
 
-        const handleScroll = () => {
-            let current = "overview";
+    //     const handleScroll = () => {
+    //         let current = "overview";
 
-            for (let sec of sections) {
-                const el = document.getElementById(sec);
-                if (!el) continue;
+    //         for (let sec of sections) {
+    //             const el = document.getElementById(sec);
+    //             if (!el) continue;
 
-                const top = el.offsetTop - 160;
-                if (window.scrollY >= top) {
-                    current = sec;
-                }
-            }
+    //             const top = el.offsetTop - 160;
+    //             if (window.scrollY >= top) {
+    //                 current = sec;
+    //             }
+    //         }
 
-            setActive(current);
-        };
+    //         setActive(current);
+    //     };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    //     window.addEventListener("scroll", handleScroll);
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
 
+// useEffect(() => {
+//   const sections = ["overview", "content", "faqs", "review"];
+  
+//   const handleScroll = () => {
+//     let current = "overview";
+//     const scrollPosition = window.scrollY + 120; // Small offset from top
 
+//     // Check from bottom to top (reverse order) so lower sections take priority
+//     for (let i = sections.length - 1; i >= 0; i--) {
+//       const sec = sections[i];
+//       const el = document.getElementById(sec);
+//       if (!el) continue;
+
+//       const sectionTop = el.offsetTop;
+      
+//       // If we've scrolled past this section's top, it becomes active
+//       if (scrollPosition >= sectionTop) {
+//         current = sec;
+//         break;
+//       }
+//     }
+
+//     setActive(current);
+//   };
+
+//   window.addEventListener("scroll", handleScroll);
+//   handleScroll(); // Initial check
+  
+//   return () => window.removeEventListener("scroll", handleScroll);
+// }, []);
+useEffect(() => {
+  const sections = ["overview", "content", "faqs", "review"];
+  
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    let current = "overview";
+
+    // Find which section is currently in view
+    for (let sec of sections) {
+      const el = document.getElementById(sec);
+      if (!el) continue;
+
+      const rect = el.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Check if section is significantly in view
+      // More than 30% of section visible OR section top is near viewport top
+      const visiblePercentage = Math.min(
+        (Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)) / rect.height,
+        1
+      );
+      
+      if (visiblePercentage > 0.3 || (rect.top <= 150 && rect.bottom > 150)) {
+        current = sec;
+        break;
+      }
+    }
+
+    setActive(current);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
+  
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
     const scrollTo = (id: string) => {
         const el = document.getElementById(id);
         if (!el) return;
 
+        const y =
+            el.getBoundingClientRect().top + window.pageYOffset - 140;
+
         window.scrollTo({
-            top: el.offsetTop - 140,
+            top: y,
             behavior: "smooth",
         });
     };
-
+    const decodeHtml = (html: string) => {
+        if (typeof window === "undefined") return html;
+        const txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    };
     // ⭐ STAR COMPONENT
     const Stars = ({ count }: { count: number }) => {
         return (
@@ -281,24 +354,27 @@ export default function CourseTabs({ course, events }: any) {
 
             {/* 🔥 STICKY TABS */}
             <div className="sticky top-[140px] z-20 bg-[var(--color-bg-light)] py-3">
+                {/* <div className="sticky top-[140px] z-20 py-3"> */}
+
                 <div className="flex gap-3 overflow-x-auto px-1">
                     {[
                         { id: "overview", label: "Overview" },
                         { id: "content", label: "Course Content" },
+                        { id: "faqs", label: "FAQs" },
                         { id: "review", label: "Review" },
                     ].map((t) => (
-            //             <button
-            //                 key={t.id}
-            //                 onClick={() => scrollTo(t.id)}
-            //                 className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-            //   ${active === t.id
-            //                         ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
-            //                         : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-            //                     }`}
-            //             >
-            //                 {t.label}
-            //             </button>
-             <button
+                        //             <button
+                        //                 key={t.id}
+                        //                 onClick={() => scrollTo(t.id)}
+                        //                 className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+                        //   ${active === t.id
+                        //                         ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
+                        //                         : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+                        //                     }`}
+                        //             >
+                        //                 {t.label}
+                        //             </button>
+                        <button
                             key={t.id}
                             onClick={() => scrollTo(t.id)}
                             className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
@@ -316,24 +392,22 @@ export default function CourseTabs({ course, events }: any) {
             {/* 🔥 OVERVIEW CARD */}
             <section
                 id="overview"
-                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4"
+                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
             >
                 <h3 className="text-xl font-semibold">What you'll learn</h3>
-                <p className="text-[var(--color-muted)] leading-relaxed">
-                    {course?.text?.replace(/<[^>]*>/g, "")}
-                </p>
-                <ul className="grid md:grid-cols-2 gap-3 text-[var(--color-muted)] text-sm">
-                    <li>✔ Become confident developer</li>
-                    <li>✔ Learn modern tools</li>
-                    <li>✔ Build real world projects</li>
-                    <li>✔ Improve problem solving</li>
-                </ul>
+                <div
+                    className="prose max-w-none text-[var(--color-dark)]"
+                    dangerouslySetInnerHTML={{
+                        __html: course?.text || "",
+                    }}
+                />
+
             </section>
 
 
             <section
                 id="content"
-                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4"
+                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
             >
                 <h3 className="text-xl font-semibold">Course Content</h3>
 
@@ -403,15 +477,15 @@ export default function CourseTabs({ course, events }: any) {
             </section>
             {/* 🔥 FAQ SECTION */}
             <section
-                id="faq"
-                className=""
+                id="faqs"
+                className="bg-[var(--color-white)] p-6 rounded-xl shadow border scroll-mt-[200px]"
             >
                 <Faq courseId={course.id} />
             </section>
             {/* 🔥 REVIEW SECTION (UPDATED) */}
             <section
                 id="review"
-                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-8"
+                className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-8 scroll-mt-[200px]"
             >
                 <div className="flex justify-between items-center">
                     <h3 className="text-xl font-semibold">Review</h3>

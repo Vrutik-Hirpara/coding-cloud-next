@@ -155,8 +155,7 @@ export default function Page() {
         </p> */}
       </section>
 
-      {/* 🔥 VIDEO IMAGE */}
-      <div className="max-w-5xl mx-auto -mt-20 md:-mt-24 px-4">
+      {/* <div className="max-w-5xl mx-auto -mt-20 md:-mt-24 px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -173,11 +172,30 @@ export default function Page() {
             unoptimized
             className="object-fill transition-transform duration-500 "
           />
-
-          {/* optional gradient overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent pointer-events-none" />
         </motion.div>
-      </div>
+      </div> */}
+      <div className="w-full -mt-20 md:-mt-24">
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+    className="relative w-full h-[440px] sm:h-[260px] md:h-[400px] overflow-hidden shadow-xl border-y-4 border-white"
+  >
+    <Image
+      src={getImageUrl(course.banner_img || course.image)}
+      alt={course.name}
+      fill
+      sizes="100vw"
+      priority
+      unoptimized
+      className="object-fill"
+    />
+
+    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent pointer-events-none" />
+  </motion.div>
+</div>
 
       {/* 🔥 MAIN CONTENT */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">

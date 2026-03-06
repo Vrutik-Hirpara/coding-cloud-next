@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 
 type EventItem = {
   id: number;
+    slug: string;
   image: string;
   title: string;
   subtitle: string;
@@ -65,9 +67,14 @@ const EventCard: React.FC<Props> = ({ event }) => {
             </span>
           </div> */}
 
-          <button className="w-full border border border-[var(--color-border-light)] text-[var(--color-text-medium)] py-3 rounded-xl font-semibold hover:bg-[var(--color-bg-light)] transition">
-            Learn More →
-          </button>
+          <div className="flex items-center justify-between">
+            <Link
+              href={`/courses/${event.slug}`}
+              className="text-[var(--color-accent-purple)] font-semibold hover:underline"
+            >
+              Learn More →
+            </Link>
+          </div>
         </div>
       </div>
     </div>
