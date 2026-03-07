@@ -362,7 +362,7 @@ const FeaturedCoursesSection = () => {
             lessons: Number(course.lecture || 0),
             students: course.students ? parseInt(String(course.students).replace(/\D/g, "")) : 0,
             reviews: 0,
-            
+
             oldPrice: "",
             category: course.category_details?.name || "",
             instructor: "Coding Cloud",
@@ -444,14 +444,25 @@ const FeaturedCoursesSection = () => {
             ref={scrollRef}
             className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"          >
             {events.map((ev) => (
+              //             <div
+              //               key={ev.id}
+              //               onClick={() => handleCardClick(ev.id, ev.slug)}
+              //               className="w-full md:w-1/3 flex-shrink-0 p-2
+              // rounded-3xl border border-white/20
+              // transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+              //             >
+              //               <EventCard event={ev} />
+              //             </div>
               <div
                 key={ev.id}
                 onClick={() => handleCardClick(ev.id, ev.slug)}
-                className="w-full md:w-1/3 flex-shrink-0 p-2
+                className="w-full md:w-1/3 flex-shrink-0 p-2 flex
   rounded-3xl border border-white/20
   transition-all duration-300 hover:-translate-y-2 cursor-pointer"
               >
-                <EventCard event={ev} />
+                <div className="flex flex-col w-full h-full">
+                  <EventCard event={ev} />
+                </div>
               </div>
             ))}
           </div>

@@ -13,6 +13,7 @@ import user3 from "@/public/images/avatars/avatar-03.png";
 import EventCard from "./EventCard";
 import Faq from "@/app/faq/page";
 import { BASE_URL } from "@/lib/api";
+import Button from "./ui/Button";
 
 type Testimonial = {
     id: number;
@@ -34,7 +35,11 @@ type Course = {
     name: string;
     price?: number;
 };
-
+const getImageUrl = (path: string) => {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    return `${BASE_URL}${path}`;
+};
 export default function CourseTabs({ course, events }: any) {
     const [isEnrollOpen, setIsEnrollOpen] = useState(false);
     const [courses, setCourses] = useState<Course[]>([]);
@@ -363,7 +368,20 @@ export default function CourseTabs({ course, events }: any) {
     };
     return (
         <div className="space-y-8">
+            {/* Image Section */}
+            <div className="mt-12 flex justify-center">
+                <div className="relative w-full max-w-3xl h-[220px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden shadow-lg">
 
+                    <Image
+                        src={getImageUrl(course.banner_img || course.image)}
+                        alt={course.name}
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+
+                </div>
+            </div>
             {/* 🔥 STICKY TABS */}
             <div className="sticky top-[140px] z-20 bg-[var(--color-bg-light)] py-3">
                 {/* <div className="sticky top-[140px] z-20 py-3"> */}
@@ -386,34 +404,40 @@ export default function CourseTabs({ course, events }: any) {
                         //             >
                         //                 {t.label}
                         //             </button>
-            //             <button
-            //                 key={t.id}
-            //                 onClick={() => scrollTo(t.id)}
-            //                 className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-            //   ${active === t.id
-            //                         ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
-            //                         : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-            //                     }`}
-            //             >
-            //                 {t.label}
-            //             </button>
-            <button
-  key={t.id}
-  onClick={() => scrollTo(t.id)}
-  style={
-    active === t.id
-      ? { background: "var(--color-logo-gradient)" }
-      : {}
-  }
-  className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-  ${
-    active === t.id
-      ? "text-white shadow"
-      : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-  }`}
->
-  {t.label}
-</button>
+
+                        //                         <button
+                        //                             key={t.id}
+                        //                             onClick={() => scrollTo(t.id)}
+                        //                             style={
+                        //                                 active === t.id
+                        //                                     ? { background: "var(--color-logo-gradient)" }
+                        //                                     : {}
+                        //                             }
+                        //                             className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+                        //   ${active === t.id
+                        //                                     ? "text-white shadow"
+                        //                                     : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+                        //                                 }`}
+                        //                         >
+                        //                             {t.label}
+                        //                         </button>
+                        <Button
+                            key={t.id}
+                            onClick={() => scrollTo(t.id)}
+                            size="md"
+                            className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+  ${active === t.id
+                                    ? "text-white shadow"
+                                    : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+                                }`}
+                            style={
+                                active === t.id
+                                    ? { background: "var(--color-logo-gradient)" }
+                                    : {}
+                            }
+                        >
+                            {t.label}
+                        </Button>
                     ))}
                 </div>
             </div>
@@ -678,7 +702,7 @@ export default function CourseTabs({ course, events }: any) {
               Enroll Now
             </motion.button> */}
             </section>
-            <motion.button
+            {/* <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
@@ -688,7 +712,7 @@ export default function CourseTabs({ course, events }: any) {
                 className="bg-[var(--color-accent-purple)] text-[var(--color-white)] px-2 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
             >
                 Enroll Now
-            </motion.button>
+            </motion.button> */}
 
 
 

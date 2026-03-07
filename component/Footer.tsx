@@ -325,13 +325,15 @@ const Footer = () => {
             </p>
 
             {/* BUTTON */}
-            <Button
-              href="/contact"
-              icon={FaArrowRight}
-              className="bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-300"
-            >
-              Contact With Us
-            </Button>
+           <Button
+  href="/contact"
+  icon={FaArrowRight}
+  variant="navbar"
+  size="md"
+  className="rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300"
+>
+  Contact With Us
+</Button>
           </motion.div>
 
           {/* LINKS */}

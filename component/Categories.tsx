@@ -535,9 +535,13 @@ export default function Categories() {
                   </h3>
 
                   {/* 🔥 TOTAL COURSES */}
-                  <p className="text-sm text-gray-500 mt-1">
-                    {categoryTotals[cat.id] ?? 0} Courses
-                  </p>
+                      <p className="text-sm text-gray-500 mt-1 inline-block relative
+after:content-[''] after:absolute after:left-0 after:-bottom-1
+after:h-[2px] after:w-0 after:bg-[var(--color-accent-purple)]
+after:transition-all after:duration-300
+group-hover:after:w-full">
+  {categoryTotals[cat.id] ?? 0} Courses
+</p>
 
                 </div>
               );

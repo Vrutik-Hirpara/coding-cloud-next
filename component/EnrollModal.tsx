@@ -188,6 +188,7 @@
 import { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { BASE_URL } from "@/lib/api";
+import { createPortal } from "react-dom";
 
 interface EnrollModalProps {
   isOpen: boolean;
@@ -203,7 +204,17 @@ type MessageType = {
 export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<MessageType>({ text: "", type: "" });
+useEffect(() => {
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
 
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [isOpen]);
   // Auto-hide message after 3 seconds
   useEffect(() => {
     if (message.text) {
@@ -315,9 +326,10 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm">
-      <div className="bg-[var(--color-white)] rounded-2xl w-full max-w-lg p-6 relative shadow-2xl animate-fadeIn">
+  
+return createPortal(
+  <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">   
+     <div className="bg-[var(--color-white)]  rounded-2xl w-full max-w-lg p-6 relative shadow-2xl animate-fadeIn">
 
         {/* CLOSE BUTTON */}
         <button
@@ -422,6 +434,7 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
           </button>
         </form>
       </div>
-    </div>
+    </div>,
+  document.body
   );
 }

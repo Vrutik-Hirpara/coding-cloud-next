@@ -204,16 +204,15 @@ export default function BlogPost() {
 
 </div>
   {/* RIGHT SIDE BUTTON */}
-  <div className="mt-4 md:mt-0 flex md:justify-end mb-4">
-    <Button
-      className="bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] 
-      text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
-    >
-      <Link href="/blogs">
-        See All Blogs →
-      </Link>
-    </Button>
-  </div>
+<div className="mt-4 md:mt-0 flex md:justify-end mb-4">
+  <Button
+    href="/blogs"
+    variant="navbar"
+    className="px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
+  >
+    See All Blogs →
+  </Button>
+</div>
         {/* GRID */}
         <div className="grid lg:grid-cols-2 gap-8">
 
@@ -291,7 +290,7 @@ export default function BlogPost() {
                     href={`/blogs/${blog.slug}`}
                     className="text-sm text-[var(--color-accent-purple)] hover:underline"
                   >
-                    Read More →
+                    Learn More →
                   </Link>
                 </div>
               </motion.div>

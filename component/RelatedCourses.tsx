@@ -257,13 +257,14 @@ export default function RelatedCourses() {
                   className="bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
                 >
                   {/* IMAGE */}
-                  <div className="relative h-[200px] sm:h-[240px] md:h-[260px] lg:h-[280px] overflow-hidden">                    <Image
-                    src={imageUrl}
-                    alt={course.name}
-                    fill
-                    unoptimized
-                    className="object-fill group-hover:scale-101 transition duration-500"
-                  />
+                  <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt={course.name}
+                      fill
+                      unoptimized
+                      className="absolute object-contain group-hover:scale-101 transition duration-500"
+                    />
 
                     <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
                       {course.duration || "Course"}

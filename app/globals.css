@@ -71,7 +71,8 @@ body {
    🔤 BASE BODY STYLE
 ================================= */
 body {
-  font-family: Arial, sans-serif;
+  /* font-family: Arial, sans-serif; */
+  font-family: "Euclid Circular", Inter, Arial, sans-serif;
   color: var(--color-text);
   background: var(--color-white);
   line-height: 1.6;
@@ -196,4 +197,89 @@ html {
   letter-spacing: 0.6px;
   text-transform: uppercase;
   border-radius: 999px;
+}
+
+.btn-navbar {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+
+  background-size: 300% 100%;
+  background-position: 0% 0%;
+  background-image: linear-gradient(
+    to right,
+    #2f57ef,
+    #b966e7,
+    #b966e7,
+    #2f57ef
+  );
+
+  box-shadow: 0 15px 35px rgba(79, 70, 229, 0.45);
+  transition: background-position 0.5s ease;
+}
+
+
+/* gradient move */
+.btn-navbar:hover {
+  background-position: 100% 0;
+}
+
+/* ================= TEXT ================= */
+.btn-navbar-text {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* ================= TRIGGER CLASSES ================= */
+.btn-navbar-text.river-in {
+  animation: river-in 0.5s ease forwards;
+}
+
+.btn-navbar-text.river-out {
+  animation: river-out 0.5s ease forwards;
+}
+
+/* ================= KEYFRAMES ================= */
+@keyframes river-in {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  51% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes river-out {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  51% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

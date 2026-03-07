@@ -335,17 +335,17 @@ export default function KnowAboutUs() {
 
                     </p>
                     <div className="space-y-3">
-  {points.map((item, index) => {
-    const Icon = item.icon;
+                        {points.map((item, index) => {
+                            const Icon = item.icon;
 
-    return (
-      <div key={index} className="flex items-center gap-4">
-        <Icon className="w-5 h-5 text-blue-600" />
-        <p className="text-[var(--color-muted)]">{item.text}</p>
-      </div>
-    );
-  })}
-</div>
+                            return (
+                                <div key={index} className="flex items-center gap-4">
+                                    <Icon className="w-5 h-5 text-blue-600" />
+                                    <p className="text-[var(--color-muted)]">{item.text}</p>
+                                </div>
+                            );
+                        })}
+                    </div>
                     {/* BUTTON */}
                     {/* <div className="mt-8">
                         <Button icon={FaArrowRight}>
@@ -353,13 +353,20 @@ export default function KnowAboutUs() {
                         </Button>
                     </div> */}
 
-                    <Button
+                    {/* <Button
                         onClick={() => router.push("/courses")}
                         className="mt-8 px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
                     >
                         All Course
-                    </Button>
+                    </Button> */}
+                    <Button
+                        href="/courses"
+                        variant="navbar"
+                        className="mt-8 px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
 
+                    >
+                        All Course →
+                    </Button>
                 </div>
 
             </div>
