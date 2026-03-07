@@ -362,7 +362,7 @@ const FeaturedCoursesSection = () => {
             lessons: Number(course.lecture || 0),
             students: course.students ? parseInt(String(course.students).replace(/\D/g, "")) : 0,
             reviews: 0,
-            price: "Free",
+            
             oldPrice: "",
             category: course.category_details?.name || "",
             instructor: "Coding Cloud",

@@ -207,10 +207,10 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
       {/* instructor */}
       <div className="flex items-center gap-2 mb-4">
-        <img
+        {/* <img
           src={event.instructorImage}
           className="w-8 h-8 rounded-full"
-        />
+        /> */}
 
         <span className="text-gray-500">
           By {event.instructor}
@@ -220,7 +220,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
       {/* footer */}
       <div className="flex justify-between items-center">
         <span className="font-bold text-lg">
-          {event.price}
+          {/* {event.price} */}
         </span>
 
         <Link

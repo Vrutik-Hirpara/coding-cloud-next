@@ -200,12 +200,12 @@ const accreditations = [
 
 
 export default function Accreditation() {
- 
+
     return (
         <section className="relative py-20 bg-gradient-to-b from-purple-50 via-white to-indigo-50 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
-            
+
             <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}
@@ -218,14 +218,14 @@ export default function Accreditation() {
                 >
                     <div className="flex justify-center mb-4">
                         <Pill
-                                    text="Accreditation"
-                                    textColor="var(--color-accent-purple)"
-                                    bgColor="var(--color-primary-light)"
-                                  />
+                            text="Accreditation"
+                            textColor="var(--color-accent-purple)"
+                            bgColor="var(--color-primary-light)"
+                        />
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        Recognized & <span className="text-purple-600">Certified</span>
+                        Recognized & <span className="gradient-text">Certified</span>
                     </h2>
 
                     <p className="text-gray-600 text-lg">
@@ -251,7 +251,7 @@ export default function Accreditation() {
                                 className="group cursor-pointer"
                             >
                                 <div className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-purple-200">
-                                    
+
                                     {/* Certificate Ribbon */}
                                     {/* <div className={`absolute -top-2 -right-2 w-16 h-16 overflow-hidden`}>
                                         <div className={`absolute rotate-45 bg-gradient-to-r ${item.color} text-white text-xs font-bold py-1 right-[-35px] top-[32px] w-[170px] text-center shadow-lg`}>
@@ -296,11 +296,11 @@ export default function Accreditation() {
                                         <h3 className={`text-xl font-bold mb-1 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}>
                                             {item.name}
                                         </h3>
-                                        
+
                                         <p className="text-gray-600 text-sm mb-2">
                                             {item.description}
                                         </p>
-                                        
+
                                         <p className="text-gray-400 text-xs mb-4">
                                             {item.fullDesc}
                                         </p>
@@ -311,12 +311,12 @@ export default function Accreditation() {
                                                 <CheckCircle className="w-3 h-3 text-green-500" />
                                                 <span>Verified</span>
                                             </div>
-                                            
+
                                             <div className="flex items-center gap-1 group-hover:text-purple-600 transition-colors">
                                                 <span>View Certificate</span>
                                                 <ExternalLink className="w-3 h-3" />
                                             </div>
-                                            
+
                                             <div className="flex items-center gap-1">
                                                 <Shield className="w-3 h-3 text-gray-400" />
                                                 <span>Valid</span>

@@ -222,7 +222,7 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
 
   return (
   <div
-  className={`shrink-0 w-[280px] sm:w-[320px] md:w-[380px] p-6 md:p-8 rounded-2xl mx-4 flex flex-col justify-between transition-all duration-300 hover:scale-105 ${
+  className={`shrink-0 w-[300px] sm:w-[360px] md:w-[460px] p-6 md:p-8 rounded-2xl mx-4 flex flex-col justify-between transition-all duration-300 hover:scale-105 ${
     isColor
       ? "text-[var(--color-white)]"
       : "bg-[var(--color-white)] text-[var(--color-muted)] border-[var(--color-border-light)]"
