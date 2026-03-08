@@ -145,7 +145,7 @@ export default function Page() {
       <section className="bg-gradient-to-b from-[#f6f3ff] to-white pt-16 pb-16 pl-4 md:pl-12">
         <div className="container-custom max-w-7xl mx-auto px-4">
           {/* Main Content */}
-          <div className="max-w-5xl">
+          <div className="max-w-xl">
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
               {/* Home */}
@@ -255,20 +255,21 @@ export default function Page() {
             />
           </div> */}
           {/* RIGHT SIDEBAR - NAVBAR HEIGHT MATCHING */}
-<div 
+    <div
   className="hidden lg:block"
   style={{
     position: 'sticky',
-    top: '140px',  // Total navbar height
+    top: '140px',
     alignSelf: 'start',
-    width: '340px'
+    width: '340px',
+    marginTop: '-200px'
   }}
 >
-  <CourseSidebar
-    course={course}
-    setIsEnrollOpen={setIsEnrollOpen}
-  />
-</div>
+            <CourseSidebar
+              course={course}
+              setIsEnrollOpen={setIsEnrollOpen}
+            />
+          </div>
         </div>
       </div>
 

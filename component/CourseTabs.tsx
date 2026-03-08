@@ -404,7 +404,7 @@ export default function CourseTabs({ course, events }: any) {
                         src={getImageUrl(course.banner_img || course.image)}
                         alt={course.name}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         priority
                     />
 
