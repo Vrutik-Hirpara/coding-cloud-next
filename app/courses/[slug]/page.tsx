@@ -171,7 +171,7 @@ export default function Page() {
 
             {/* Heading */}
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              <span className="text-[var(--color-accent-purple)]">{course.name}</span>
+              <span className="text-[var(--color-black)]">{course.name}</span>
             </h1>
 
             {/* Description */}
@@ -221,7 +221,12 @@ export default function Page() {
           <div className="w-full">
             <CourseTabs course={course} />
           </div>
-
+          <div className="lg:hidden mt-8">
+            <CourseSidebar
+              course={course}
+              setIsEnrollOpen={setIsEnrollOpen}
+            />
+          </div>
           {/* RIGHT SIDEBAR */}
           {/* <div className="lg:sticky lg:top-[140px] lg:self-start"> */}
           {/* <div className="lg:-mt-40 lg:sticky lg:top-[120px] lg:self-start">
@@ -255,16 +260,16 @@ export default function Page() {
             />
           </div> */}
           {/* RIGHT SIDEBAR - NAVBAR HEIGHT MATCHING */}
-    <div
-  className="hidden lg:block"
-  style={{
-    position: 'sticky',
-    top: '140px',
-    alignSelf: 'start',
-    width: '340px',
-    marginTop: '-200px'
-  }}
->
+          <div
+            className="hidden lg:block"
+            style={{
+              position: 'sticky',
+              top: '140px',
+              alignSelf: 'start',
+              width: '340px',
+              marginTop: '-200px'
+            }}
+          >
             <CourseSidebar
               course={course}
               setIsEnrollOpen={setIsEnrollOpen}

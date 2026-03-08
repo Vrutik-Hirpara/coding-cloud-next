@@ -1,7 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.course-tabs-sticky {
+  position: sticky;
+  top: 140px;
+}
 
+/* tablet screens */
+@media (max-width: 768px) {
+  .course-tabs-sticky {
+    top: 120px; /* navbar height approx */
+  }
+}
+
+/* mobile screens */
+@media (max-width: 572px) {
+  .course-tabs-sticky {
+    position: static;
+    top: auto;
+  }
+}
 
 /* Fix for sticky positioning */
 main.w-full.max-w-full.overflow-x-hidden {
@@ -53,7 +71,7 @@ body {
 --color-text-medium: #374151;
 /* --color-accent-indigo: #4f46e5; */
 --color-accent-indigo: #2663eb;
-
+--color-black: #000000;
 --color-border-light: #d1d5db;
 --color-accent-yellow-light: #facc15;
 --color-gradient-pink-soft: #FFE4F1;

@@ -309,7 +309,7 @@ type ButtonProps = {
   onClick?: () => void;
   icon?: React.ElementType;
   className?: string;
-  variant?: "gradient" | "purple" | "outline" | "navbar";
+  variant?: "gradient" | "purple" |"outlineWhite"| "outline" | "navbar";
   size?: "sm" | "md" | "lg";
   type?: "submit"
   style?: React.CSSProperties;
@@ -338,14 +338,26 @@ const sizes = {
 };
 
   /* ================= VARIANTS ================= */
-  const variants = {
-    gradient: "text-white",
-    purple: "bg-[var(--color-accent-purple)] text-white",
-    outline:
-      "border border-[var(--color-accent-purple)] text-[var(--color-accent-purple)] bg-transparent",
-    navbar: "btn-navbar",
-  };
+  // const variants = {
+  //   gradient: "text-white",
+  //   purple: "bg-[var(--color-accent-purple)] text-white",
+  //   outline:
+  //     "border border-[var(--color-accent-purple)] text-[var(--color-accent-purple)] bg-transparent",
+  //   navbar: "btn-navbar",
+  // };
+const variants = {
+  gradient: "text-white",
 
+  purple: "bg-[var(--color-accent-purple)] text-white",
+
+  outline:
+    "border border-[var(--color-accent-purple)] text-[var(--color-accent-purple)] bg-transparent",
+
+  outlineWhite:
+    "border border-white text-white bg-transparent hover:bg-transparent hover:text-white",
+
+  navbar: "btn-navbar",
+};
   const base =
     "relative inline-flex items-center justify-center gap-2 rounded-lg font-semibold overflow-hidden group";
   const inner = (
