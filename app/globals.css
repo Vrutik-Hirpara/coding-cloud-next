@@ -23,21 +23,23 @@
 
 /* Fix for sticky positioning */
 main.w-full.max-w-full.overflow-x-hidden {
-  overflow: visible !important;
-  overflow-x: visible !important;
+   overflow-y: visible !important;
+  overflow-x: hidden !important;
 }
 
 /* Alternative: target all main elements */
 main {
-  overflow: visible !important;
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
 }
 
 /* 🔥 minimum layout width */
 html,
 body {
-  min-width: 392px;
-  height: 100%;
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* ===============================
