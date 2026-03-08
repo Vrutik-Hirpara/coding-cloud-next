@@ -68,7 +68,6 @@
 // }
 
 
-
 import "./globals.css";
 import Navbar from "@/component/Navbar";
 import Footer from "@/component/Footer";
@@ -92,23 +91,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className="bg-[var(--color-white)] text-[var(--color-dark)] overflow-x-hidden w-full relative">
+      <body className="bg-[var(--color-white)] text-[var(--color-dark)] overflow-x-hidden relative">
+
         <ScrollToTop />
 
-        {/* FULL WIDTH NAVBAR - Ensure it doesn't overflow */}
-          <Navbar />
+        <Navbar />
 
-        {/* CONTENT - Add container for safety */}
-        <main className="w-full max-w-full overflow-x-visible">
-          <div className="w-full max-w-full">
-            {children}
-          </div>
+        <main className="w-full">
+          {children}
         </main>
 
-        {/* FULL WIDTH FOOTER */}
-        <div className="w-full max-w-full overflow-x-hidden">
-          <Footer />
-        </div>
+        <Footer />
 
       </body>
     </html>

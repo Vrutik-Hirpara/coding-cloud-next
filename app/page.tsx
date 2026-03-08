@@ -514,9 +514,10 @@ useEffect(() => {
   ];
  
   // ================= RENDER =================
-  return (
-    <div className="bg-[var(--color-white)] min-h-screen">
- 
+  // return (
+  //   <div className="bg-[var(--color-white)] min-h-screen">
+ return (
+  <div className="bg-[var(--color-white)] min-h-screen overflow-x-hidden">
       {/* HERO */}
       <HeroSection courses={courses} />
  
