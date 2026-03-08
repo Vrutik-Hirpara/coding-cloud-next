@@ -720,7 +720,7 @@ export default function RegisterPage() {
                 <Button
                   type="submit"
                   icon={ArrowRight}
-                  variant="navbar"
+                 variant="gradient"
                   className="w-[420px] !py-4 text-2xl"
                 >
                   SUBMIT

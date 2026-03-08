@@ -94,11 +94,12 @@ export default function AboutPage() {
                     {/* Button */}
                     <div className="mt-8 flex justify-center gap-4">
                         <Button
-                            href="/courses">
+                            href="/courses"
+                            variant="gradient">
                             Explore Courses
                         </Button>
 
-                        <button className="px-8 py-3 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+                        <button className="px-8 py-3 border border-white text-white rounded hover:bg-white hover:text-black transition">
                             Contact Us
                         </button>
                     </div>
@@ -371,7 +372,7 @@ export default function AboutPage() {
                                 </p>
                                 <Button
                                 href="/contact"
-                                    className="bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
+                                variant="gradient"
                                 >
                                     Contact Us
                                 </Button>

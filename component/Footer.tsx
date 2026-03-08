@@ -306,18 +306,18 @@ const Footer = () => {
               />
             </div> */}
 
-<Link href="/" className="inline-block">
-  <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
-    <Image
-      src="/logos/logo.png"
-      alt="Coding Cloud"
-      fill
-      sizes="(max-width: 640px) 150px, 170px"
-      className="object-contain"
-      priority
-    />
-  </div>
-</Link>
+            <Link href="/" className="inline-block">
+              <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
+                <Image
+                  src="/logos/logo.png"
+                  alt="Coding Cloud"
+                  fill
+                  sizes="(max-width: 640px) 150px, 170px"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </Link>
 
             {/* DESCRIPTION */}
             <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm">
@@ -325,15 +325,15 @@ const Footer = () => {
             </p>
 
             {/* BUTTON */}
-           <Button
-  href="/contact"
-  icon={FaArrowRight}
-  variant="navbar"
-  size="md"
-  className="rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300"
->
-  Contact With Us
-</Button>
+            <Button
+              href="/contact"
+              icon={FaArrowRight}
+              variant="gradient"
+              size="md"
+              className="rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300"
+            >
+              Contact With Us
+            </Button>
           </motion.div>
 
           {/* LINKS */}
@@ -358,7 +358,7 @@ const Footer = () => {
                       className="relative group hover:text-[var(--color-accent-purple)]"
                     >
                       {course.name}
-                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full "/>
+                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full " />
                     </Link>
                   </li>
                 ))}
@@ -384,7 +384,7 @@ const Footer = () => {
                   <li key={item.id}>
                     <Link
                       href={item.link}
-          className="relative group transition-colors duration-300 hover:text-[var(--color-accent-purple)]"
+                      className="relative group transition-colors duration-300 hover:text-[var(--color-accent-purple)]"
                     >
                       {item.name}
                       <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full" />
@@ -424,6 +424,22 @@ const Footer = () => {
                 {linkIcon.map((data) => {
                   const Icon = data.icon;
                   return (
+                    // <motion.a
+                    //   key={data.id}
+                    //   href={data.link}
+                    //   target="_blank"
+                    //   initial={{ y: 0, scale: 1 }}
+                    //   whileHover={{ y: -6, scale: 1.08 }}
+                    //   whileTap={{ scale: 0.95 }}
+                    //   transition={{
+                    //     type: "spring",
+                    //     stiffness: 300,
+                    //     damping: 18,
+                    //   }}
+                    //   className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] hover:shadow-lg"
+                    // >
+                    //   <Icon size={15} />
+                    // </motion.a>
                     <motion.a
                       key={data.id}
                       href={data.link}
@@ -436,9 +452,11 @@ const Footer = () => {
                         stiffness: 300,
                         damping: 18,
                       }}
-                      className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] hover:shadow-lg"
+                      className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] 
+  flex items-center justify-center text-[var(--color-text)] shadow-sm hover:shadow-lg
+hover:[background:var(--color-logo-gradient)]  hover:text-white"
                     >
-                      <Icon size={15} />
+                      <data.icon />
                     </motion.a>
                   );
                 })}

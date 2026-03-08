@@ -165,6 +165,7 @@ import Image from "next/image";
 import contactImg from '@/public/images/contact/contact.jpg'
 import { useState } from "react";
 import { BASE_URL } from "@/lib/api";
+import Button from "@/component/ui/Button";
 export default function ContactPage() {
   const contactData = [
     {
@@ -458,13 +459,23 @@ export default function ContactPage() {
                 className="w-full border-b border-[var(--color-border)] p-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
               />
               {errors.message && <p className="text-[var(--color-danger)] text-xs">{errors.message}</p>}
-              <button
+              {/* <button
                 type="submit"
                 disabled={loading}
                 className="w-full mt-2 bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] py-2.5 md:py-3 rounded-lg font-semibold hover:scale-[1.02] transition text-sm md:text-base"
               >
                 {loading ? "Sending..." : "GET IT NOW →"}
-              </button>
+              </button> */}
+            <div className="flex justify-center mt-4">
+  <Button
+    type="submit"
+    variant="gradient"
+    size="lg"
+    className="rounded-lg font-semibold"
+  >
+    {loading ? "Sending..." : "GET IT NOW →"}
+  </Button>
+</div>
             </form>
           </motion.div>
         </div>

@@ -175,15 +175,15 @@ export default function CourseSidebar({
                     Enroll Now
                 </motion.button> */}
 
-                  <Button
-  variant="navbar"
-  size="md"
-  onClick={() => {
-    setIsEnrollOpen(true);
-  }}
->
-  Enroll Now
-</Button>
+                    <Button
+                        variant="gradient"
+                        size="md"
+                        onClick={() => {
+                            setIsEnrollOpen(true);
+                        }}
+                    >
+                        Enroll Now
+                    </Button>
 
                     {/* COURSE INFO */}
                     {/* <div className="space-y-3 text-sm">
@@ -239,7 +239,7 @@ export default function CourseSidebar({
                                 target="_blank"
                                 whileHover={{ y: -6, scale: 1.08 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 shadow-sm hover:bg-purple-600 hover:text-white"
+                                className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 shadow-sm hover:[background:var(--color-logo-gradient)] hover:text-white"
                             >
                                 <Icon size={15} />
                             </motion.a>

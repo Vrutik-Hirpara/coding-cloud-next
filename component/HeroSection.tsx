@@ -325,7 +325,7 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
             <div className="flex justify-center lg:justify-start">
               <Button
                 href="/courses"
-                variant="navbar"
+                variant="gradient"
                 size="md"
               >
                 View Course →

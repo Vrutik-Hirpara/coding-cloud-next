@@ -258,31 +258,59 @@ export default function CourseTabs({ course, events }: any) {
 
     //   return () => window.removeEventListener("scroll", handleScroll);
     // }, []);
+    // useEffect(() => {
+    //     const sections = ["overview", "content", "faqs", "review"];
+
+    //     const handleScroll = () => {
+    //         const scrollY = window.scrollY;
+    //         let current = "overview";
+
+    //         // Find which section is currently in view
+    //         for (let sec of sections) {
+    //             const el = document.getElementById(sec);
+    //             if (!el) continue;
+
+    //             const rect = el.getBoundingClientRect();
+    //             const viewportHeight = window.innerHeight;
+
+    //             // Check if section is significantly in view
+    //             // More than 30% of section visible OR section top is near viewport top
+    //             const visiblePercentage = Math.min(
+    //                 (Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)) / rect.height,
+    //                 1
+    //             );
+
+    //             if (visiblePercentage > 0.3 || (rect.top <= 150 && rect.bottom > 150)) {
+    //                 current = sec;
+    //                 break;
+    //             }
+    //         }
+
+    //         setActive(current);
+    //     };
+
+    //     window.addEventListener("scroll", handleScroll);
+    //     handleScroll();
+
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
     useEffect(() => {
         const sections = ["overview", "content", "faqs", "review"];
 
         const handleScroll = () => {
-            const scrollY = window.scrollY;
+            const scrollPosition = window.scrollY + 200;
+            // 180 = navbar + sticky tabs height
+
             let current = "overview";
 
-            // Find which section is currently in view
             for (let sec of sections) {
                 const el = document.getElementById(sec);
                 if (!el) continue;
 
-                const rect = el.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
+                const sectionTop = el.offsetTop;
 
-                // Check if section is significantly in view
-                // More than 30% of section visible OR section top is near viewport top
-                const visiblePercentage = Math.min(
-                    (Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)) / rect.height,
-                    1
-                );
-
-                if (visiblePercentage > 0.3 || (rect.top <= 150 && rect.bottom > 150)) {
+                if (scrollPosition >= sectionTop) {
                     current = sec;
-                    break;
                 }
             }
 
@@ -299,7 +327,7 @@ export default function CourseTabs({ course, events }: any) {
         if (!el) return;
 
         const y =
-            el.getBoundingClientRect().top + window.pageYOffset - 140;
+            el.getBoundingClientRect().top + window.pageYOffset - 200;
 
         window.scrollTo({
             top: y,
@@ -393,51 +421,34 @@ export default function CourseTabs({ course, events }: any) {
                         { id: "faqs", label: "FAQs" },
                         { id: "review", label: "Review" },
                     ].map((t) => (
-                        //             <button
-                        //                 key={t.id}
-                        //                 onClick={() => scrollTo(t.id)}
-                        //                 className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+                        // <button
+                        //     key={t.id}
+                        //     onClick={() => scrollTo(t.id)}
+                        //     className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
                         //   ${active === t.id
-                        //                         ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
-                        //                         : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-                        //                     }`}
-                        //             >
-                        //                 {t.label}
-                        //             </button>
+                        //             ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
+                        //             : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+                        //         }`}
+                        // >
+                        //     {t.label}
+                        // </button>
 
-                        //                         <button
-                        //                             key={t.id}
-                        //                             onClick={() => scrollTo(t.id)}
-                        //                             style={
-                        //                                 active === t.id
-                        //                                     ? { background: "var(--color-logo-gradient)" }
-                        //                                     : {}
-                        //                             }
-                        //                             className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-                        //   ${active === t.id
-                        //                                     ? "text-white shadow"
-                        //                                     : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-                        //                                 }`}
-                        //                         >
-                        //                             {t.label}
-                        //                         </button>
-                        <Button
+                        <button
                             key={t.id}
                             onClick={() => scrollTo(t.id)}
-                            size="md"
-                            className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-  ${active === t.id
-                                    ? "text-white shadow"
-                                    : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-                                }`}
                             style={
                                 active === t.id
                                     ? { background: "var(--color-logo-gradient)" }
                                     : {}
                             }
+                            className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+                          ${active === t.id
+                                    ? "text-white shadow"
+                                    : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
+                                }`}
                         >
                             {t.label}
-                        </Button>
+                        </button>
                     ))}
                 </div>
             </div>
@@ -543,12 +554,20 @@ export default function CourseTabs({ course, events }: any) {
                 <div className="flex justify-between items-center">
                     <h3 className="text-xl font-semibold">Review</h3>
 
-                    <button
+                    {/* <button
                         onClick={() => setShowForm(true)}
                         className="px-4 py-2 text-sm font-semibold bg-[var(--color-accent-purple)] text-white rounded-lg hover:opacity-90 transition"
                     >
                         Add Review
-                    </button>
+                    </button> */}
+                    <Button
+  onClick={() => setShowForm(true)}
+  variant="gradient"
+  size="md"
+  className="px-4 py-2 text-sm rounded-lg"
+>
+  Add Review
+</Button>
                 </div>
 
                 {/* ⭐ SUMMARY */}

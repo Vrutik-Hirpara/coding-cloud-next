@@ -1954,16 +1954,16 @@ export default function Navbar() {
                 <span className="btn-navbar-text">Join Now</span>
               </button>
             </div> */}
-           <Button
-  variant="navbar"
-  size="md"
-  onClick={() => {
-    setIsDropdownOpen(false);
-    setIsEnrollOpen(true);
-  }}
->
-  Enroll Now
-</Button>
+            <Button
+              variant="gradient"
+              size="md"
+              onClick={() => {
+                setIsDropdownOpen(false);
+                setIsEnrollOpen(true);
+              }}
+            >
+              Enroll Now
+            </Button>
           </div>
         </div>
       </nav>
@@ -2072,12 +2072,20 @@ export default function Navbar() {
               <input type="hidden" name="course_name" />
 
               {/* 🚀 Attractive Button */}
-              <button
+              {/* <button
                 type="submit"
                 className="mt-2 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-[var(--color-white)] py-2.5 rounded-lg font-semibold shadow-md hover:scale-[1.02] hover:shadow-lg transition-all duration-200"
               >
                 🎓 Enroll Now
-              </button>
+              </button> */}
+              <Button
+                type="submit"
+                variant="gradient"
+                size="md"
+                className="mt-2 flex items-center justify-center gap-2 py-2.5 rounded-lg font-semibold shadow-md hover:scale-[1.02] hover:shadow-lg transition-all duration-200"
+              >
+                🎓 Enroll Now
+              </Button>
             </form>
           </div>
         </div>

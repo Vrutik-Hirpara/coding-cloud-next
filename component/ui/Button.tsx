@@ -201,11 +201,11 @@ export default function Button({
   const [riverClass, setRiverClass] = useState("");
 
   /* ================= SIZE ================= */
-  const sizes = {
-    sm: "px-3 py-1 text-xs",
-    md: "px-6 py-4 text-sm",
-    lg: "px-12 py-6 text-lg"
-  };
+const sizes = {
+  sm: "px-3 py-1 text-xs",
+  md: "px-6 py-3 text-sm",
+  lg: "px-20 py-4 text-xl"
+};
 
   /* ================= VARIANTS ================= */
   const variants = {

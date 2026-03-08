@@ -356,52 +356,52 @@
 
 
 //mansi
- 
+
 "use client";
- 
+
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BASE_URL } from "@/lib/api";
 export default function CardSlider({ courses = [] }: { courses?: any[] }) {
- 
+
   const [cards, setCards] = useState<any[]>([]);
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);
-const router = useRouter();
+  const router = useRouter();
   // 🔥 convert API courses to slider cards
   useEffect(() => {
     if (!courses.length) return;
- 
-const mapped = courses.map((course: any) => ({
-  id: course.id,
-  slug: course.slug,
-  title: course.name,
-  desc: course.text?.replace(/<[^>]+>/g, "").slice(0, 80),
-  lessons: Number(course.lecture) || 0,
-  students: course.students,
-  rating: course.rating,
-  tag: course.level || "Course",
-  image: `${BASE_URL}${course.image}`,
-}));
- 
+
+    const mapped = courses.map((course: any) => ({
+      id: course.id,
+      slug: course.slug,
+      title: course.name,
+      desc: course.text?.replace(/<[^>]+>/g, "").slice(0, 80),
+      lessons: Number(course.lecture) || 0,
+      students: course.students,
+      rating: course.rating,
+      tag: course.level || "Course",
+      image: `${BASE_URL}${course.image}`,
+    }));
+
     setCards(mapped);
   }, [courses]);
- 
+
   const handleMouseDown = (e: any) => {
     setIsDragging(true);
     startX.current = e.clientX;
   };
- 
+
   const handleMouseMove = (e: any) => {
     if (!isDragging) return;
     setDragX(e.clientX - startX.current);
   };
- 
+
   const handleMouseUp = () => {
     setIsDragging(false);
- 
+
     if (dragX > 120 || dragX < -120) {
       setCards((prev: any[]) => {
         const arr = [...prev];
@@ -409,10 +409,10 @@ const mapped = courses.map((course: any) => ({
         return arr;
       });
     }
- 
+
     setDragX(0);
   };
- 
+
   return (
     <div className="w-full h-[520px] flex items-center justify-center relative">
       <div
@@ -423,9 +423,9 @@ const mapped = courses.map((course: any) => ({
         onMouseLeave={handleMouseUp}
       >
         {cards.map((card, index) => {
- 
+
           let style: any = {};
- 
+
           if (index === 0) {
             style = {
               zIndex: 3,
@@ -446,9 +446,9 @@ const mapped = courses.map((course: any) => ({
               transform: "translateX(40px) translateY(40px) scale(0.9)",
             };
           }
- 
+
           if (index > 2) return null;
- 
+
           return (
             <div
               key={card.id}
@@ -457,24 +457,24 @@ const mapped = courses.map((course: any) => ({
             >
               {/* HEADER */}
               <div className="h-[190px] relative overflow-hidden">
-  <Image
-    src={card.image}
-    alt={card.title}
-    fill
-    className="object-contain"
-  />
- 
- 
-  <div className="absolute inset-0 p-6 text-white">
-               
- 
-               
- 
-                <div className="absolute top-5 right-5 w-20 h-10 bg-indigo-600 rounded-md flex items-center justify-center text-xs font-bold border border border-white">
-                  {card.tag}
-                </div>
- 
-                {/* <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-contain"
+                />
+
+
+                <div className="absolute inset-0 p-6 text-white">
+
+
+
+
+                  <div className="absolute top-5 right-5 w-20 h-10 bg-indigo-600 rounded-md flex items-center justify-center text-xs font-bold border border border-white">
+                    {card.tag}
+                  </div>
+
+                  {/* <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
                   <Image
                     src="https://i.pravatar.cc/300?img=5"
                     alt="avatar"
@@ -483,42 +483,41 @@ const mapped = courses.map((course: any) => ({
                     className="object-cover"
                   />
                 </div> */}
+                </div>
               </div>
-</div>
- 
+
               {/* BODY */}
               <div className="p-6 text-sm">
                 <div className="flex justify-between text-[var(--color-muted-light)] text-xs mb-3">
                   <span>{card.lessons} Lessons</span>
                   <span>{card.students} Students</span>
                 </div>
- 
+
                 <h2 className="text-2xl font-bold mb-1">{card.title}</h2>
- 
+
                 <p className="text-[var(--color-muted)] text-sm mb-3">
                   {card.desc}
                 </p>
- 
+
                 <div className="text-[var(--color-accent-yellow-light)] mb-3 text-sm">
                   ⭐ {card.rating} / 5
                 </div>
- 
+
                 <div className="flex justify-between items-center border-t pt-4 mt-3">
                   <button
-  onClick={() => router.push(`/courses/${card.slug}`)}
-  className="text-sm text-[var(--color-accent-indigo)] font-semibold"
->
-  Learn More →
-</button>
+                    onClick={() => router.push(`/courses/${card.slug}`)}
+                    className="text-sm text-[var(--color-accent-indigo)] font-semibold"
+                  >
+                    Learn More →
+                  </button>
                 </div>
               </div>
             </div>
-           
+
           );
         })}
-       
+
       </div>
     </div>
   );
 }
- 

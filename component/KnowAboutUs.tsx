@@ -361,7 +361,7 @@ export default function KnowAboutUs() {
                     </Button> */}
                     <Button
                         href="/courses"
-                        variant="navbar"
+                        variant="gradient"
                         className="mt-8 px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
 
                     >

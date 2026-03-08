@@ -207,7 +207,7 @@ export default function BlogPost() {
 <div className="mt-4 md:mt-0 flex md:justify-end mb-4">
   <Button
     href="/blogs"
-    variant="navbar"
+    variant="gradient"
     className="px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
   >
     See All Blogs →
