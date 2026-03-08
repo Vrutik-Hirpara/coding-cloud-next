@@ -411,7 +411,7 @@ export default function CourseTabs({ course, events }: any) {
                 </div>
             </div>
             {/* 🔥 STICKY TABS */}
-            <div className="sticky top-[140px] z-20 bg-[var(--color-bg-light)] py-3">
+<div className="sticky top-[140px] z-20 bg-[var(--color-bg-light)] py-3">
                 {/* <div className="sticky top-[140px] z-20 py-3"> */}
 
                 <div className="flex gap-3 overflow-x-auto px-1">

@@ -14,6 +14,31 @@
 // };
 
 // export default nextConfig;
+
+
+// import type { NextConfig } from "next";
+
+// const nextConfig: NextConfig = {
+//   reactStrictMode: true,
+
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: "https",
+//         hostname: "codingcloud.pythonanywhere.com",
+//       },
+//       {
+//         protocol: "https",
+//         hostname: "i.pravatar.cc",
+//       },
+//     ],
+//   },
+// };
+
+// export default nextConfig;
+
+
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -24,12 +49,15 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "codingcloud.pythonanywhere.com",
+        pathname: "/media/**",
       },
       {
         protocol: "https",
         hostname: "i.pravatar.cc",
       },
     ],
+
+    dangerouslyAllowLocalIP: true,
   },
 };
 

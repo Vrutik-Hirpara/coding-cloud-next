@@ -613,54 +613,60 @@ export default function RegisterPage() {
             <form onSubmit={handleSubmit} className="space-y-5">
 
               {/* FIRST NAME */}
-              <motion.div
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <User className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${focusedField === "first_name" ? "text-purple-600" : "text-gray-400"}`} />
-                  <input
-                    type="text"
-                    name="first_name"
-                    value={form.first_name}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField("first_name")}
-                    onBlur={() => setFocusedField(null)}
-                    placeholder="First Name"
-                    className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl outline-none focus:border-purple-500 bg-white/60"
-                  />
-                </div>
+             <motion.div
+  initial={{ opacity: 0, y: 25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+>
+  <div className="relative">
+    <User className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${focusedField === "first_name" ? "text-purple-600" : "text-gray-400"}`} />
+    <input
+      type="text"
+      name="first_name"
+      value={form.first_name}
+      onChange={handleChange}
+      onFocus={() => setFocusedField("first_name")}
+      onBlur={() => setFocusedField(null)}
+      placeholder="First Name"
+      className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl outline-none focus:border-purple-500 bg-white/60"
+    />
+  </div>
 
-                <p className="text-red-500 text-xs mt-1 ml-2 min-h-[16px]">
-                  {errors.first_name}
-                </p>
-              </motion.div>
+  {/* Error message - only shows when there's an error */}
+  {errors.first_name && (
+    <p className="text-red-500 text-xs mt-1 ml-2">
+      {errors.first_name}
+    </p>
+  )}
+</motion.div>
 
               {/* LAST NAME */}
               <motion.div
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <User className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${focusedField === "last_name" ? "text-purple-600" : "text-gray-400"}`} />
-                  <input
-                    type="text"
-                    name="last_name"
-                    value={form.last_name}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField("last_name")}
-                    onBlur={() => setFocusedField(null)}
-                    placeholder="Last Name"
-                    className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl outline-none focus:border-purple-500 bg-white/60"
-                  />
-                </div>
+  initial={{ opacity: 0, y: 25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+>
+  <div className="relative">
+    <User className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${focusedField === "last_name" ? "text-purple-600" : "text-gray-400"}`} />
+    <input
+      type="text"
+      name="last_name"
+      value={form.last_name}
+      onChange={handleChange}
+      onFocus={() => setFocusedField("last_name")}
+      onBlur={() => setFocusedField(null)}
+      placeholder="Last Name"
+      className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl outline-none focus:border-purple-500 bg-white/60"
+    />
+  </div>
 
-                <p className="text-red-500 text-xs mt-1 ml-2 min-h-[16px]">
-                  {errors.last_name}
-                </p>
-              </motion.div>
+  {/* Error message - only shows when there's an error */}
+  {errors.last_name && (
+    <p className="text-red-500 text-xs mt-1 ml-2">
+      {errors.last_name}
+    </p>
+  )}
+</motion.div>
 
               {/* PHONE */}
               <motion.div
@@ -685,9 +691,11 @@ export default function RegisterPage() {
                   />
                 </div>
 
-                <p className="text-red-500 text-xs mt-1 ml-2 min-h-[16px]">
-                  {errors.phone}
-                </p>
+                  {errors.phone && (
+    <p className="text-red-500 text-xs mt-1 ml-2">
+      {errors.phone}
+    </p>
+  )}
               </motion.div>
 
               {/* MESSAGE */}
@@ -710,9 +718,11 @@ export default function RegisterPage() {
                   />
                 </div>
 
-                <p className="text-red-500 text-xs mt-1 ml-2 min-h-[16px]">
-                  {errors.message}
-                </p>
+                  {errors.message && (
+    <p className="text-red-500 text-xs mt-1 ml-2">
+      {errors.message}
+    </p>
+  )}
               </motion.div>
 
               {/* BUTTON */}
@@ -721,7 +731,7 @@ export default function RegisterPage() {
                   type="submit"
                   icon={ArrowRight}
                  variant="gradient"
-                  className="w-[420px] !py-4 text-2xl"
+                 size="lg"
                 >
                   SUBMIT
                 </Button>

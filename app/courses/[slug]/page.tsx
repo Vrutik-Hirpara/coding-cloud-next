@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -143,7 +142,7 @@ export default function Page() {
         </motion.div>
       </div> */}
 
-      <section className="bg-gradient-to-b from-[#f6f3ff] to-white pt-16 pb-16 pl-12">
+      <section className="bg-gradient-to-b from-[#f6f3ff] to-white pt-16 pb-16 pl-4 md:pl-12">
         <div className="container-custom max-w-7xl mx-auto px-4">
           {/* Main Content */}
           <div className="max-w-5xl">
@@ -244,12 +243,32 @@ export default function Page() {
               setIsEnrollOpen={setIsEnrollOpen}
             />
           </div> */}
-          <div className="pt-4 lg:-mt-[220px] lg:sticky lg:top-[120px] lg:self-start">
+          {/* <div className="pt-4 lg:-mt-[220px] lg:sticky lg:top-[120px] lg:self-start">
             <CourseSidebar
               course={course}
               setIsEnrollOpen={setIsEnrollOpen}
             />
-          </div>
+          </div> */}
+          {/* <div className="pt-4 lg:sticky lg:top-[120px] lg:self-start h-fit">
+            <CourseSidebar course={course}
+              setIsEnrollOpen={setIsEnrollOpen}
+            />
+          </div> */}
+          {/* RIGHT SIDEBAR - NAVBAR HEIGHT MATCHING */}
+<div 
+  className="hidden lg:block"
+  style={{
+    position: 'sticky',
+    top: '140px',  // Total navbar height
+    alignSelf: 'start',
+    width: '340px'
+  }}
+>
+  <CourseSidebar
+    course={course}
+    setIsEnrollOpen={setIsEnrollOpen}
+  />
+</div>
         </div>
       </div>
 

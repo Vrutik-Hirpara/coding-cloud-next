@@ -1737,8 +1737,7 @@ export default function Navbar() {
     >
 
       {/* TOP BAR - Visible on all devices */}
-      <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-3 sm:px-6 overflow-x-auto">
-        <div className="flex gap-3 sm:gap-6 min-w-max">
+<div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-3 sm:px-6">        <div className="flex gap-3 sm:gap-6 min-w-max">
           <a
             href="https://www.instagram.com/codingcloud_institute/"
             target="_blank"
@@ -1797,8 +1796,7 @@ export default function Navbar() {
 
       {/* MAIN NAV */}
       <nav className="relative border-b border-gray-100">
-        <div className="container mx-auto px-3 sm:px-4 lg:px-6 h-14 sm:h-16 md:h-20 flex items-center justify-between">
-
+<div className="w-full px-4 lg:px-10 h-14 sm:h-16 md:h-20 flex items-center justify-between">
           {/* LOGO with animation */}
           <motion.div
             whileHover={{ scale: 1.05 }}

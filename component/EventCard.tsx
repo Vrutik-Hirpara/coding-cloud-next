@@ -278,7 +278,8 @@ interface Props {
 
 const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
   return (
-    <div className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[350px] h-full">
+    // <div className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[350px] h-full">
+<div className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[350px] w-full max-w-[90vw] sm:max-w-none">
 
       {/* ---------- DESIGN 1 ---------- */}
       {variant === "default" && (

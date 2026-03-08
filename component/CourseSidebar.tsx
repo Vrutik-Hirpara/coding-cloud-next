@@ -155,8 +155,7 @@ export default function CourseSidebar({
                 onClose={() => setIsEnrollOpen(false)}
                 courses={[course]}
             />
-            <div className="bg-white border border-purple-300 rounded-xl shadow-md overflow-hidden">
-
+<div className="bg-white border border-purple-300 rounded-xl shadow-md overflow-visible">
                 {/* PRICE */}
                 <div className="p-6">
 
@@ -277,3 +276,6 @@ function Info({ label, value }: any) {
 
     );
 }
+
+
+
