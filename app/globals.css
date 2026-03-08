@@ -36,6 +36,8 @@ main {
 html,
 body {
   min-width: 392px;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* ===============================
