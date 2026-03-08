@@ -260,7 +260,7 @@ export default function Page() {
             />
           </div> */}
           {/* RIGHT SIDEBAR - NAVBAR HEIGHT MATCHING */}
-          <div
+          {/* <div
             className="hidden lg:block"
             style={{
               position: 'sticky',
@@ -270,6 +270,12 @@ export default function Page() {
               marginTop: '-200px'
             }}
           >
+            <CourseSidebar
+              course={course}
+              setIsEnrollOpen={setIsEnrollOpen}
+            />
+          </div> */}
+          <div className="hidden lg:block -mt-[280px] lg:sticky lg:top-[140px] self-start h-fit">
             <CourseSidebar
               course={course}
               setIsEnrollOpen={setIsEnrollOpen}

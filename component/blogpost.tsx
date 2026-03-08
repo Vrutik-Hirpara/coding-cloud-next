@@ -231,7 +231,7 @@ export default function BlogPost() {
                 sizes="(max-width: 768px) 100vw, 600px"
                 priority
                 unoptimized
-                className="object-fill transition-transform duration-500 hover:scale-105"
+                className="object-contain transition-transform duration-500 hover:scale-105"
               />
 
               {/* optional overlay for readability */}
