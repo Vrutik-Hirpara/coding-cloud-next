@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 
-/* 🔥 minimum layout width */
 html,
 body {
-  min-width: 392px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ===============================

@@ -1856,7 +1856,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed left-0 w-screen bg-[var(--color-white)] shadow-2xl border-t z-50 py-6 sm:py-8"
+                    className="fixed left-0 w-full bg-[var(--color-white)] shadow-2xl border-t z-50 py-6 sm:py-8"
                     style={{
                       top: scrolled ? '120px' : '120px',
                     }}
