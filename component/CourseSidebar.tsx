@@ -133,6 +133,7 @@ import { motion } from "framer-motion";
 import { FaFacebookF, FaYoutube, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import EnrollModal from "./EnrollModal";
 import Button from "./ui/Button";
+import { BASE_URL } from "@/lib/api";
 
 export default function CourseSidebar({
     course,
@@ -140,14 +141,19 @@ export default function CourseSidebar({
     riverLeave,
 }: any) {
     const [isEnrollOpen, setIsEnrollOpen] = useState(false);
-
+    console.log("CourseSidebar rendered with course:", course);
     const social = [
-        { id: 1, icon: FaFacebookF, link: "#" },
-        { id: 2, icon: FaYoutube, link: "#" },
-        { id: 3, icon: FaInstagram, link: "#" },
-        { id: 4, icon: FaLinkedinIn, link: "#" },
+        { id: 1, icon: FaFacebookF, link: "https://www.facebook.com/codingcloudinstitute" },
+        { id: 2, icon: FaYoutube, link: "https://www.youtube.com/@CodingHunt" },
+        { id: 3, icon: FaInstagram, link: "https://www.instagram.com/codingcloud_institute/" },
+        { id: 4, icon: FaLinkedinIn, link: "https://www.linkedin.com/company/coding-cloud/" },
     ];
-
+    const getImage = (img?: string) => {
+        console.log("getImage called with:", img);
+        if (!img) return "";
+        if (img.startsWith("http")) return img;
+        return `${BASE_URL}${img}`;
+    };
     return (
         <>
             <EnrollModal
@@ -155,25 +161,18 @@ export default function CourseSidebar({
                 onClose={() => setIsEnrollOpen(false)}
                 courses={[course]}
             />
-<div className="bg-white border border-purple-300 rounded-xl shadow-md overflow-visible">
+            <div className="bg-white border border-purple-300 rounded-xl shadow-md overflow-visible">
                 {/* PRICE */}
                 <div className="p-6">
-
-
-
-                    {/* ENROLL BUTTON */}
-                    {/* <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-
-                        setIsEnrollOpen(true);
-                    }}
-                    className="z-999 bg-[var(--color-accent-purple)] text-[var(--color-white)] px-2 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-base whitespace-nowrap hover:opacity-90 transition-opacity"
-                >
-                    Enroll Now
-                </motion.button> */}
-
+                    <div className="mb-4 bg-[var(--color-bg-light)]">
+                        {course?.image2 && (
+                            <img
+                                src={getImage(course.image2)}
+                                alt={course.name}
+                                className="w-full h-full object-contain"
+                            />
+                        )}
+                    </div>
                     <Button
                         variant="gradient"
                         size="md"
@@ -184,19 +183,7 @@ export default function CourseSidebar({
                         Enroll Now
                     </Button>
 
-                    {/* COURSE INFO */}
-                    {/* <div className="space-y-3 text-sm">
 
-                    <Info label="Start Date" value={course.duration || "5 Hrs 20 Min"} />
-                    <Info label="Enrolled" value={course.students || "100"} />
-                    <Info label="Lectures" value={course.lecture || "50"} />
-                    <Info label="Skill Level" value={course.level || "Basic"} />
-
-                    {showMore && (
-                        <Info label="Language" value={course.language || "English"} />
-                    )}
-
-                </div> */}
                     <div className="divide-y mt-4">
 
                         {[
@@ -214,8 +201,8 @@ export default function CourseSidebar({
                                 transition={{ delay: i * 0.05 }}
                                 className="flex justify-between items-center py-2 text-sm"
                             >
-                                <span className="text-gray-500">{item.label}</span>
-                                <span className="font-semibold text-gray-700">{item.value}</span>
+                                <span className="text-gray-500 text-lg">{item.label}</span>
+                                <span className="font-semibold text-gray-700 text-lg">{item.value}</span>
                             </motion.div>
                         ))}
 

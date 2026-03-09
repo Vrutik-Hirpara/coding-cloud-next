@@ -706,7 +706,7 @@ export default function ContactPage() {
 
       {/* ================= CONTACT FORM SECTION ================= */}
       <section className="pb-20 md:pb-24 w-full">
-        <div className="container-custom px-4 sm:px-6 mx-auto max-w-6xl">
+        <div className="container-custom px-4 sm:px-6 mx-auto">
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-stretch">
             {/* LEFT IMAGE */}
             <motion.div
@@ -714,7 +714,7 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="relative w-full h-[300px] sm:h-[380px] md:h-[500px] lg:h-[550px] rounded-2xl overflow-hidden shadow-lg"
+              className="relative w-full h-full min-h-[300px] sm:min-h-[380px] md:min-h-[500px] lg:min-h-[550px] rounded-2xl overflow-hidden shadow-lg"
             >
               <Image
                 src={contactImg}
@@ -722,8 +722,7 @@ export default function ContactPage() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
-                className="object-cover transition-transform duration-500 hover:scale-105"
-              />
+className="object-contain w-full h-full transition-transform duration-500 hover:scale-105"              />
               <div className="absolute inset-0 bg-black/10 pointer-events-none" />
             </motion.div>
 
@@ -733,7 +732,7 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="bg-[var(--color-white)] p-5 md:p-6 lg:p-8 rounded-2xl shadow-lg flex flex-col justify-start w-full max-w-full overflow-hidden"
+              className="bg-[var(--color-white)] p-5 md:p-6 lg:p-8 rounded-2xl shadow-lg flex flex-col justify-start w-full max-w-full overflow-hidden h-full"
             >
               <span className="inline-block w-fit px-3 md:px-4 py-1 mb-2 md:mb-3 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple-10)] rounded-full uppercase">
                 EDUCATION FOR EVERYONE

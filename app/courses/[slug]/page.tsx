@@ -29,11 +29,12 @@ interface Course {
   certificate: string;
   category_details: { name: string };
 }
-const getImageUrl = (path: string) => {
+const getImageUrl = (path?: string) => {
   if (!path) return "";
   if (path.startsWith("http")) return path;
   return `${BASE_URL}${path}`;
 };
+
 export default function Page() {
   const { slug } = useParams();
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
@@ -143,7 +144,7 @@ export default function Page() {
       </div> */}
 
       <section className="bg-gradient-to-b from-[#f6f3ff] to-white pt-16 pb-16 pl-4 md:pl-12">
-        <div className="container-custom max-w-7xl mx-auto px-4">
+        <div className="container-custom  mx-auto px-4">
           {/* Main Content */}
           <div className="max-w-xl">
             {/* Breadcrumb */}
@@ -170,12 +171,22 @@ export default function Page() {
             </div>
 
             {/* Heading */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              <span className="text-[var(--color-black)]">{course.name}</span>
+            <h1 className="flex items-center gap-4 text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              {/* <Image
+                src={getImageUrl(course.image)}
+                alt={course.name}
+                width={80}
+                height={100}
+                className="w-16 h-16 md:w-20 md:h-20 object-contain"
+              /> */}
+
+              <span className="text-[var(--color-black)]">
+                {course.name}
+              </span>
             </h1>
 
             {/* Description */}
-            <p className="text-gray-600 max-w-3xl  mb-8">
+            <p className="text-[var(--color-black)] text-lg max-w-3xl  mb-8">
               Master Python by building 100 projects in 100 days. Learn data science,
               automation, build websites, games and apps!
             </p>
@@ -212,7 +223,7 @@ export default function Page() {
         </div>
       </section>
       {/* 🔥 MAIN CONTENT */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
         {/* <div className="flex flex-col lg:grid lg:grid-cols-[1fr_280px] gap-6 lg:gap-8"> */}
         <div className="flex flex-col lg:grid lg:grid-cols-[0.9fr_340px] gap-6 lg:gap-8">

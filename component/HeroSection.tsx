@@ -424,6 +424,7 @@
 //     </>
 //   );
 // }
+
 "use client";
 
 import Image from "next/image";
@@ -460,8 +461,15 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
           backgroundPosition: "center",
         }}
       >
-        <div className="container-custom grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-0 items-center">
-
+        <div className="
+          w-full 
+          px-4 sm:px-6 lg:px-8 
+          xl:px-10 2xl:px-12 3xl:px-16
+          mx-auto 
+          max-w-7xl xl:max-w-screen-xl 
+          2xl:max-w-screen-2xl 3xl:max-w-screen-3xl
+          grid grid-cols-1 xl:grid-cols-12 gap-6 xl:gap-0 items-center
+        ">
           {/* ================= LEFT CONTENT ================= */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -469,17 +477,33 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
             transition={{ duration: 0.6 }}
             className="xl:col-span-5 space-y-5 xl:space-y-6 text-center xl:text-left z-10"
           >
-            <span className="hero-badge mx-auto xl:mx-0 text-lg xl:text-2xl">
+            <span className="hero-badge mx-auto xl:mx-0 text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
               Ignite Young Minds
             </span>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-[45px] font-extrabold leading-tight text-[var(--color-text)]">
-              Learn New Things Daily
-            </h1>
+            <h1 className="
+  text-2xl sm:text-3xl md:text-4xl 
+  xl:text-[45px] 
+  2xl:text-[55px] 
+  3xl:text-[65px] 
+  font-extrabold
+  leading-snug sm:leading-snug md:leading-tight
+  xl:leading-[55px] 
+  2xl:leading-[65px] 
+  3xl:leading-[75px]
+  text-[var(--color-text)]
+">
+  Learn New Things Daily
+</h1>
 
-            <p className="text-[var(--color-text-light)] text-base md:text-lg max-w-md mx-auto xl:mx-0">
-              {/* Join over <strong>{data.students}+</strong> students to boost your skills
-            and build a successful professional career. */}
+            <p className="
+              text-[var(--color-text-light)] 
+              text-base md:text-lg 
+              xl:text-xl 
+              2xl:text-2xl 
+              3xl:text-3xl
+              max-w-md mx-auto xl:mx-0
+            ">
               Transform your career with us! IT Training and Placement Institute for exceptional learning experience. Join now!
             </p>
 
@@ -487,84 +511,94 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
               <Button
                 href="/courses"
                 variant="gradient"
-                size="md"
+                size="md" // size prop change karvo to theme ma vadharo
               >
                 View Course →
-              </Button>               {/* <Button
-              onClick={() => router.push("/courses")}
-              className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-[var(--color-accent-purple)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-semibold hover:scale-105 transition"
-            >
-              All Course
-            </Button> */}
+              </Button>
             </div>
           </motion.div>
 
           {/* ================= RIGHT SIDE ================= */}
-          <motion.div
+         <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             className="
-  xl:col-span-7
-  flex flex-col md:flex-row
-  items-center md:items-end
-  justify-center md:justify-center xl:justify-start
-  gap-4
-  relative
-  md:px-4
-  xl:px-0
-  xl:-ml-20
-"
+              xl:col-span-7
+              flex flex-col md:flex-row
+              items-center md:items-end
+              justify-center md:justify-center xl:justify-start
+              gap-4 xl:gap-6 2xl:gap-8 3xl:gap-10
+              relative
+              md:px-4
+              xl:px-0
+              xl:-ml-20 2xl:-ml-24 3xl:-ml-28
+            "
           >
 
             {/* ===== IMAGE BLOCK (RIGHT ALIGNED ALWAYS) ===== */}
-            <div
+             <div
               className="
-              relative
-              w-[260px] sm:w-[340px] md:w-[380px] xl:w-[420px]
-              h-full
-              flex items-end
-              justify-center xl:justify-end
-            "
+                relative
+                w-[260px] sm:w-[340px] md:w-[380px] 
+                xl:w-[420px] 
+                2xl:w-[480px] 
+                3xl:w-[540px]
+                h-full
+                flex items-end
+                justify-center xl:justify-end
+              "
             >
               {/* BLOB */}
-              <Image
+                 <Image
                 src={blobImg}
                 alt="blob"
                 width={420}
                 height={420}
                 className="
-                absolute
-bottom-0
-                right-0
-                w-full
-                opacity-80
-                z-0
-              "
+                  absolute
+                  bottom-0
+                  right-0
+                  w-full
+                  opacity-80
+                  z-0
+                  xl:w-[420px] 
+                  2xl:w-[480px] 
+                  3xl:w-[540px]
+                "
               />
 
               {/* GIRL IMAGE */}
-              <Image
+               <Image
                 src={data.image}
                 alt="student"
                 width={420}
                 height={600}
-                className="relative z-10 object-contain w-full h-auto"
+                className="
+                  relative z-10 object-contain 
+                  w-full h-auto
+                  xl:w-[420px] 
+                  2xl:w-[480px] 
+                  3xl:w-[540px]
+                "
                 priority
               />
             </div>
 
             {/* ===== CARD SLIDER ===== */}
-            <div
+           <div
               className="
-relative md:static xl:absolute
-    absolute xl:absolute
-    md:static
-    xl:right-0 xl:bottom-8
-    z-20
-    mt-6 md:mt-0
-    px-5 md:px-0
-  "
+                relative md:static xl:absolute
+                xl:right-0 
+                2xl:right-[-20px] 
+                3xl:right-[-40px]
+                xl:bottom-8 
+                2xl:bottom-12 
+                3xl:bottom-16
+                z-20
+                mt-6 md:mt-0
+                px-5 md:px-0
+              "
             >
               <CardSlider courses={courses} />
 
@@ -573,12 +607,20 @@ relative md:static xl:absolute
           </motion.div>
 
         </div>
-        <Image
+           <Image
           src="/images/hero/bg-2.svg"
           alt="wave"
           width={1920}
           height={145}
-          className="absolute bottom-[-2px] left-0 w-full h-[145px] object-cover pointer-events-none"
+          className="
+            absolute bottom-[-2px] left-0 
+            w-full 
+            h-[145px] 
+            xl:h-[160px] 
+            2xl:h-[180px] 
+            3xl:h-[200px] 
+            object-cover pointer-events-none
+          "
         />
       </section>
 

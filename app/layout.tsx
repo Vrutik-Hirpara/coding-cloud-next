@@ -91,7 +91,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className="bg-[var(--color-white)] text-[var(--color-dark)] overflow-x-hidden relative">
+      <body className="bg-[var(--color-white)] text-[var(--color-dark)] overflow-x-hidden relative min-h-screen pt-[122px]">
 
         <ScrollToTop />
 

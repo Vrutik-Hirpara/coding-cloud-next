@@ -132,7 +132,7 @@ html {
 ================================= */
 @layer components {
   .container-custom {
-    @apply max-w-7xl mx-auto px-3 sm:px-4 lg:px-10;
+    @apply  mx-auto px-3 sm:px-4 lg:px-10;
   }
 }
 
@@ -309,4 +309,15 @@ html {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+/* Marquee button text animation */
+@keyframes marqueeText {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee-text {
+  display: inline-block;
+  animation: marqueeText 4s linear infinite;
 }

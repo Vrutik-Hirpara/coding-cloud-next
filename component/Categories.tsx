@@ -439,6 +439,124 @@
 //   );
 // }
 
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import { useRouter } from "next/navigation";
+// import Image from "next/image";
+// import { API, BASE_URL } from "@/lib/api";
+
+// type Category = {
+//   id: number;
+//   name: string;
+//   slug: string;
+//   image: string | null;
+// };
+
+// export default function Categories() {
+//   const [categories, setCategories] = useState<Category[]>([]);
+//   const [categoryTotals, setCategoryTotals] = useState<Record<number, number>>({});
+//   const [loading, setLoading] = useState(true);
+
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const [catRes, totalRes] = await Promise.all([
+//           fetch(API.CATEGORY.LIST),
+//           fetch(API.CATEGORY.TOTALS),
+//         ]);
+
+//         const catData = await catRes.json();
+//         const totalData = await totalRes.json();
+
+//         setCategories(catData.data || catData || []);
+
+//         const totalsMap: Record<number, number> = {};
+
+//         (totalData.data || []).forEach((item: any) => {
+//           totalsMap[item.id] = item.total_courses;
+//         });
+
+//         setCategoryTotals(totalsMap);
+
+//       } catch (err) {
+//         console.error("Category fetch error:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   return (
+//     <section className="bg-[var(--color-white)]">
+//       <div className="py-16 container-custom flex flex-col items-center">
+
+//         <div className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full">
+//           CATEGORIES
+//         </div>
+
+//         <h2 className="text-2xl md:text-4xl font-bold text-center mt-5 mb-12">
+//           Explore Top Categories
+//         </h2>
+
+//         {loading ? (
+//           <div className="animate-pulse text-blue-600 font-bold">
+//             Loading...
+//           </div>
+//         ) : (
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 w-full">
+
+//             {categories.map((cat) => {
+//               const imageUrl = cat.image
+//                 ? `${BASE_URL}${cat.image}`
+//                 : "/images/fallback.png";
+
+//               return (
+//                 <div
+//                   key={cat.id}
+//                   // onClick={() => router.push(`/category/${cat.id}`)}
+//                   onClick={() => router.push(`/category/${cat.slug}`)}
+//                   className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
+//                 >
+
+//                   <div className="relative h-20 w-20 mb-5">
+//                     <Image
+//                       src={imageUrl}
+//                       alt={cat.name}
+//                       fill
+//                       className="object-contain group-hover:scale-110 transition-transform duration-300"
+//                     />
+//                   </div>
+
+//                   <h3 className="text-lg font-semibold text-center">
+//                     {cat.name}
+//                   </h3>
+
+//                   {/* 🔥 TOTAL COURSES */}
+//                   <p className="text-sm text-gray-500 mt-1 inline-block relative
+// after:content-[''] after:absolute after:left-0 after:-bottom-1
+// after:h-[2px] after:w-0 after:bg-[var(--color-accent-purple)]
+// after:transition-all after:duration-300
+// group-hover:after:w-full">
+//                     {categoryTotals[cat.id] ?? 0} Courses
+//                   </p>
+
+//                 </div>
+//               );
+//             })}
+
+//           </div>
+//         )}
+//       </div>
+//     </section>
+//   );
+// }
+
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -449,6 +567,7 @@ import { API, BASE_URL } from "@/lib/api";
 type Category = {
   id: number;
   name: string;
+  slug: string;
   image: string | null;
 };
 
@@ -462,6 +581,8 @@ export default function Categories() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("🔍 Fetching categories from:", API.CATEGORY.LIST);
+        
         const [catRes, totalRes] = await Promise.all([
           fetch(API.CATEGORY.LIST),
           fetch(API.CATEGORY.TOTALS),
@@ -470,7 +591,17 @@ export default function Categories() {
         const catData = await catRes.json();
         const totalData = await totalRes.json();
 
-        setCategories(catData.data || catData || []);
+        console.log("📦 Categories API Response:", catData);
+        console.log("📦 Totals API Response:", totalData);
+
+        // 🔥 Check karo ke data kya chhe
+        const categoriesList = catData.data || catData || [];
+        setCategories(categoriesList);
+        
+        // 🔥 Check first category ni slug
+        if (categoriesList.length > 0) {
+          console.log("🏷️ First category slug:", categoriesList[0].slug);
+        }
 
         const totalsMap: Record<number, number> = {};
 
@@ -481,7 +612,7 @@ export default function Categories() {
         setCategoryTotals(totalsMap);
 
       } catch (err) {
-        console.error("Category fetch error:", err);
+        console.error("❌ Category fetch error:", err);
       } finally {
         setLoading(false);
       }
@@ -514,10 +645,16 @@ export default function Categories() {
                 ? `${BASE_URL}${cat.image}`
                 : "/images/fallback.png";
 
+              // 🔥 Debug: Click thay to slug check
+              const handleClick = () => {
+                console.log("🖱️ Clicked category:", cat.name, "with slug:", cat.slug);
+                router.push(`/category/${cat.slug}`);
+              };
+
               return (
                 <div
                   key={cat.id}
-                  onClick={() => router.push(`/category/${cat.id}`)}
+                  onClick={handleClick}  // 🔥 Updated with debug
                   className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
                 >
 

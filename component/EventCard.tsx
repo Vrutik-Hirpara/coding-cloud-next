@@ -509,7 +509,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
             <div className="flex gap-3 mt-3">
               <span className="bg-gray-100 text-xs px-3 py-2 rounded-md shadow flex items-center gap-1">
-                🎥 {event.lessons || 0} Videos
+                🎥 {event.lessons || 0} lesson
               </span>
 
               <span className="bg-gray-100 text-xs px-3 py-2 rounded-md shadow flex items-center gap-1">

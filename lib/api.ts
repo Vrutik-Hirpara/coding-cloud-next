@@ -5,12 +5,18 @@ export const BASE_URL = "https://codingcloud.pythonanywhere.com";
 
 // 🔥 All API endpoints
 export const API = {
-  CATEGORY: {
+  // CATEGORY: {
+  //   LIST: `${BASE_URL}/category/`,
+  //   DETAIL: (id: number | string) => `${BASE_URL}/category/${id}/`,
+
+  //       TOTALS: `${BASE_URL}/category_totals/`,
+
+  // },
+    CATEGORY: {
     LIST: `${BASE_URL}/category/`,
     DETAIL: (id: number | string) => `${BASE_URL}/category/${id}/`,
-
-        TOTALS: `${BASE_URL}/category_totals/`,
-
+    DETAIL_BY_SLUG: (slug: string) => `${BASE_URL}/course/category/${slug}/`, // 🔥 NEW: Direct slug-based endpoint
+    TOTALS: `${BASE_URL}/category_totals/`,
   },
 
   COURSES: {
