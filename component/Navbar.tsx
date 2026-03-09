@@ -3640,7 +3640,7 @@ export default function Navbar() {
 
       {/* ── MAIN NAV ── */}
       <nav className="relative border-b border-gray-100">
-        <div className="w-full px-4 lg:px-10 h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
+        <div className="w-full px-4px-20 sm:px-8 md:px-12 lg:px-16 h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
           {/* ── LEFT: Logo + Category pill ── */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

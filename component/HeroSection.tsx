@@ -454,7 +454,7 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
   return (
     <>
       <section
-        className="pt-12 md:pt-16 lg:pt-20 pb-36 overflow-hidden relative"
+className="pt-12 md:pt-16 lg:pt-20 pb-[156px] overflow-hidden relative"
         style={{
           backgroundImage: "url('/images/hero/background.webp')",
           backgroundSize: "cover",

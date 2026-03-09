@@ -282,7 +282,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[var(--color-bg-light)] border-t border-[var(--color-border)]">
-      <div className="max-w-7xl mx-auto px-5 pt-24 pb-12">
+      <div className=" mx-auto px-5 pt-24 pb-12">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
 

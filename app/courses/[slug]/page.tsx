@@ -143,7 +143,17 @@ export default function Page() {
         </motion.div>
       </div> */}
 
-      <section className="bg-gradient-to-b from-[#f6f3ff] to-white pt-16 pb-16 pl-4 md:pl-12">
+<section
+        className="pt-16 pb-32 pl-4 md:pl-12"
+        style={{
+          backgroundImage: `linear-gradient(rgb(148 179 246) 0%, rgb(79, 130, 240) 45%, rgb(147 173 252) 100%), url(${getImageUrl(
+            course.banner_img || course.image
+          )})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="container-custom  mx-auto px-4">
           {/* Main Content */}
           <div className="max-w-xl">
@@ -171,8 +181,8 @@ export default function Page() {
             </div>
 
             {/* Heading */}
-            <h1 className="flex items-center gap-4 text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              {/* <Image
+<h1 className="flex items-center gap-4 text-3xl md:text-4xl text-[50px] font-[700] lg:text-5xl font-bold text-gray-900 mb-6 leading-relaxed">       
+         {/* <Image
                 src={getImageUrl(course.image)}
                 alt={course.name}
                 width={80}
@@ -192,18 +202,18 @@ export default function Page() {
             </p>
 
             {/* Stats Row */}
-            <div className="flex flex-wrap items-center gap-6 mb-8">              {/* Bestseller Badge */}
+            <div className="flex flex-wrap items-center gap-6 mb-4 text-md leading-[1.5] font-normal">              {/* Bestseller Badge */}
 
 
               {/* Rating */}
               <div className="flex items-center gap-1">
                 <span className="font-bold text-gray-900">{avgRating}</span>
                 <span className="text-yellow-400">★★★★★</span>
-                <span className="text-gray-500 text-sm">({totalReviews} ratings)</span>
+                <span className="text-[var(--color-heading)] text-sm">({totalReviews} ratings)</span>
               </div>
 
               {/* Students */}
-              <div className="text-gray-500 text-sm">
+              <div className="text-[var(--color-heading)] text-sm">
                 {course.students || 0} students
               </div>
 
@@ -214,7 +224,7 @@ export default function Page() {
             </div>
 
             {/* Course Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">              <span>🎓 English</span>
+            <div className="flex flex-wrap items-center gap-4 text-md text-[var(--color-heading)]">              <span>🎓 English</span>
               <span>🏆 Certified Course</span>
             </div>
           </div>

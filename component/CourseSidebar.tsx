@@ -161,15 +161,23 @@ export default function CourseSidebar({
                 onClose={() => setIsEnrollOpen(false)}
                 courses={[course]}
             />
-            <div className="bg-white border border-purple-300 rounded-xl shadow-md overflow-visible">
-                {/* PRICE */}
-                <div className="p-6">
+            {/* Gradient border wrapper matching hero background */}
+            <div
+                className="rounded p-[2px] shadow-lg"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(rgb(148 179 246) 0%, rgb(79, 130, 240) 45%, rgb(147 173 252) 100%)",
+                }}
+            >
+                <div className="bg-white rounded shadow-md overflow-visible">
+                    {/* PRICE */}
+                    <div className="p-6">
                     <div className="mb-4 bg-[var(--color-bg-light)]">
                         {course?.image2 && (
                             <img
                                 src={getImage(course.image2)}
                                 alt={course.name}
-                                className="w-full h-full object-contain"
+                                className="w-full h-full rounded object-contain"
                             />
                         )}
                     </div>
@@ -201,53 +209,49 @@ export default function CourseSidebar({
                                 transition={{ delay: i * 0.05 }}
                                 className="flex justify-between items-center py-2 text-sm"
                             >
-                                <span className="text-gray-500 text-lg">{item.label}</span>
-                                <span className="font-semibold text-gray-700 text-lg">{item.value}</span>
+                                <span className="text-[16px] leading-[26px] font-medium">{item.label}</span>
+                                <span className="font-medium text-[12px] leading-[26px]">{item.value}</span>
                             </motion.div>
                         ))}
 
                     </div>
 
+                    {/* SOCIAL */}
+                    <div className="border-t py-6 flex justify-center gap-4">
 
+                        {social.map((data) => {
+                            const Icon = data.icon;
 
-                </div>
+                            return (
+                                <motion.a
+                                    key={data.id}
+                                    href={data.link}
+                                    target="_blank"
+                                    whileHover={{ y: -6, scale: 1.08 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 shadow-sm hover:[background:var(--color-logo-gradient)] hover:text-white"
+                                >
+                                    <Icon size={15} />
+                                </motion.a>
+                            );
+                        })}
 
-                {/* SOCIAL */}
-                <div className="border-t py-6 flex justify-center gap-4">
-
-                    {social.map((data) => {
-                        const Icon = data.icon;
-
-                        return (
-                            <motion.a
-                                key={data.id}
-                                href={data.link}
-                                target="_blank"
-                                whileHover={{ y: -6, scale: 1.08 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 shadow-sm hover:[background:var(--color-logo-gradient)] hover:text-white"
-                            >
-                                <Icon size={15} />
-                            </motion.a>
-                        );
-                    })}
-
-                </div>
-
-                {/* CALL SECTION */}
-                <div className="border-t p-6 text-center">
-
-                    <p className="text-sm text-gray-500 mb-3">
-                        For details about the course
-                    </p>
-
-                    <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
-                        📞 Call Us:  +91 95373 44018
                     </div>
 
+                    {/* CALL SECTION */}
+                    <div className="border-t p-6 text-center">
+
+                        <p className="text-sm text-gray-500 mb-3">
+                            For details about the course
+                        </p>
+
+                        <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
+                            📞 Call Us:  +91 95373 44018
+                        </div>
+
+                    </div>
+                    </div>
                 </div>
-
-
             </div>
 
         </>

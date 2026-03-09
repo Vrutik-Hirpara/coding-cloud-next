@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import EnrollModal from "./EnrollModal";  // 👈 IMPORT HERE
@@ -54,6 +54,7 @@ export default function CourseTabs({ course, events }: any) {
     // 🔥 MODULE STATE
     const [modules, setModules] = useState<Module[]>([]);
     const [openId, setOpenId] = useState<number | null>(null);
+    const isClickScrolling = useRef(false);
 
 
     const [topicsData, setTopicsData] = useState<any[]>([]);
@@ -298,6 +299,8 @@ export default function CourseTabs({ course, events }: any) {
         const sections = ["overview", "content", "faqs", "review"];
 
         const handleScroll = () => {
+            if (isClickScrolling.current) return;
+
             const scrollPosition = window.scrollY + 200;
             // 180 = navbar + sticky tabs height
 
@@ -322,17 +325,21 @@ export default function CourseTabs({ course, events }: any) {
 
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-    const scrollTo = (id: string) => {
+    const scrollTo = (id: string, done?: () => void) => {
         const el = document.getElementById(id);
         if (!el) return;
 
         const y =
-            el.getBoundingClientRect().top + window.pageYOffset - 200;
+            el.getBoundingClientRect().top + window.pageYOffset - 220;
 
         window.scrollTo({
             top: y,
             behavior: "smooth",
         });
+
+        if (done) {
+            setTimeout(done, 600);
+        }
     };
     const decodeHtml = (html: string) => {
         if (typeof window === "undefined") return html;
@@ -398,16 +405,17 @@ return (
     <div className="space-y-8">
         {/* Image Section */}
         <div className="mt-12 flex justify-center">
-            <div className="relative w-full max-w-3xl h-[220px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden shadow-lg">
-
-                <Image
-                    src={getImageUrl(course.banner_img || course.image)}
-                    alt={course.name}
-                    fill
-                    className="object-contain"
-                    priority
-                />
-
+            <div className="relative w-full max-w-3xl h-[220px] md:h-[400px] lg:h-[450px] rounded overflow-hidden shadow-lg bg-white">
+                {/* Equal padding on all sides around image */}
+                <div className="absolute inset-4 md:inset-6">
+                    <Image
+                        src={getImageUrl(course.banner_img || course.image)}
+                        alt={course.name}
+                        fill
+                        className="object-cover object-center rounded-lg"
+                        priority
+                    />
+                </div>
             </div>
         </div>
         {/* 🔥 STICKY TABS */}
@@ -421,27 +429,21 @@ return (
                     { id: "faqs", label: "FAQs" },
                     { id: "review", label: "Review" },
                 ].map((t) => (
-                    // <button
-                    //     key={t.id}
-                    //     onClick={() => scrollTo(t.id)}
-                    //     className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-                    //   ${active === t.id
-                    //             ? "bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-500 text-[var(--color-white)] shadow"
-                    //             : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
-                    //         }`}
-                    // >
-                    //     {t.label}
-                    // </button>
-
                     <button
                         key={t.id}
-                        onClick={() => scrollTo(t.id)}
+                        onClick={() => {
+                            isClickScrolling.current = true;
+                            setActive(t.id); // immediately highlight clicked tab
+                            scrollTo(t.id, () => {
+                                isClickScrolling.current = false;
+                            });
+                        }}
                         style={
                             active === t.id
                                 ? { background: "var(--color-logo-gradient)" }
                                 : {}
                         }
-                        className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
+                        className={`py-[10px] px-[25px] rounded-[500px] rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
                           ${active === t.id
                                 ? "text-white shadow"
                                 : "bg-[var(--color-light)] text-[var(--color-muted)] hover:bg-gray-300"
@@ -458,9 +460,9 @@ return (
             id="overview"
             className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
         >
-            <h3 className="text-xl font-semibold">What you'll learn</h3>
+            <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">What you'll learn</h3>
             <div
-                className="prose max-w-none text-[var(--color-dark)]"
+                className="prose max-w-none text-[var(--color-text-muted)]"
                 dangerouslySetInnerHTML={{
                     __html: course?.text || "",
                 }}
@@ -473,7 +475,7 @@ return (
             id="content"
             className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
         >
-            <h3 className="text-xl font-semibold">Course Content</h3>
+            <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">Course Content</h3>
 
             <div className="space-y-4">
 
@@ -548,7 +550,7 @@ return (
             className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-8 scroll-mt-[200px]"
         >
             <div className="flex justify-between items-center">
-                <h3 className="text-xl font-semibold">Review</h3>
+                <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">Review</h3>
 
                 {/* <button
                         onClick={() => setShowForm(true)}
