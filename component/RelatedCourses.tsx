@@ -137,12 +137,100 @@
 //   );
 // }
 
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { API, BASE_URL } from "@/lib/api";
+
+// type Course = {
+//   id: number;
+//   name: string;
+//   image: string;
+//   text: string;
+//   duration: string | null;
+//   lecture: string | null;
+//   students: string | null;
+//   level: string | null;
+//   language: string | null;
+//   slug: string;
+//   category_details: {
+//     name: string;
+//   };
+// };
+
+// export default function RelatedCourses() {
+//   const [courses, setCourses] = useState<Course[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [ratings, setRatings] = useState<Record<number, any>>({});
+//   // 🔥 helper for full image url
+//   const getImageUrl = (path?: string) => {
+//     if (!path) return "/images/fallback.png";
+
+//     // already full url hoy to direct return
+//     if (path.startsWith("http")) return path;
+
+//     // remove starting slash to avoid double //
+//     const clean = path.startsWith("/") ? path.slice(1) : path;
+
+//     return `${BASE_URL}/${clean}`;
+//   };
+
+//   useEffect(() => {
+//     const fetchCourses = async () => {
+//       try {
+//         const res = await fetch(API.COURSES.LIST);
+//         const data = await res.json();
+
+//         const list = data.data || [];
+
+//         // only first 2 courses
+//         const selected = list.slice(0, 2);
+//         setCourses(selected);
+//         fetchRatings(selected);
+//       } catch (err) {
+//         console.error("Course fetch error:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchCourses();
+
+//     const fetchRatings = async (courseList: Course[]) => {
+//       const ratingData: Record<number, any> = {};
+
+//       await Promise.all(
+//         courseList.map(async (course) => {
+//           try {
+//             const res = await fetch(
+//               `${BASE_URL}/course_average_rating/?course_id=${course.id}`
+//             );
+
+//             const json = await res.json();
+
+//             const data = json.course_average_rating?.[0];
+
+//             if (data) {
+//               ratingData[course.id] = data;
+//             }
+//           } catch (err) {
+//             console.error("Rating error", err);
+//           }
+//         })
+//       );
+
+//       setRatings(ratingData);
+//     };
+//   }, []);
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { API, BASE_URL } from "@/lib/api";
+import { useParams } from "next/navigation"; // ✅ ADD THIS
 
 type Course = {
   id: number;
@@ -155,25 +243,23 @@ type Course = {
   level: string | null;
   language: string | null;
   slug: string;
+  category: number; // ✅ ADD THIS (category id)
   category_details: {
     name: string;
   };
 };
 
 export default function RelatedCourses() {
+  const { slug } = useParams(); // ✅ ADD THIS - get current course slug
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [ratings, setRatings] = useState<Record<number, any>>({});
-  // 🔥 helper for full image url
+  const [currentCourse, setCurrentCourse] = useState<Course | null>(null); // ✅ ADD THIS
+
   const getImageUrl = (path?: string) => {
     if (!path) return "/images/fallback.png";
-
-    // already full url hoy to direct return
     if (path.startsWith("http")) return path;
-
-    // remove starting slash to avoid double //
     const clean = path.startsWith("/") ? path.slice(1) : path;
-
     return `${BASE_URL}/${clean}`;
   };
 
@@ -182,13 +268,28 @@ export default function RelatedCourses() {
       try {
         const res = await fetch(API.COURSES.LIST);
         const data = await res.json();
-
         const list = data.data || [];
 
-        // only first 2 courses
-        const selected = list.slice(0, 2);
-        setCourses(selected);
-        fetchRatings(selected);
+        // ✅ FIND CURRENT COURSE BY SLUG
+        const current = list.find((c: Course) => c.slug === slug);
+        setCurrentCourse(current || null);
+
+        if (current) {
+          // ✅ FILTER COURSES BY SAME CATEGORY, EXCLUDE CURRENT COURSE
+          const sameCategory = list.filter(
+            (c: Course) => c.category === current.category && c.id !== current.id
+          );
+          
+          // ✅ TAKE FIRST 2 COURSES
+          const selected = sameCategory.slice(0, 2);
+          setCourses(selected);
+          fetchRatings(selected);
+        } else {
+          // FALLBACK: show first 2 courses if no current course found
+          const selected = list.slice(0, 2);
+          setCourses(selected);
+          fetchRatings(selected);
+        }
       } catch (err) {
         console.error("Course fetch error:", err);
       } finally {
@@ -196,34 +297,33 @@ export default function RelatedCourses() {
       }
     };
 
-    fetchCourses();
+    if (slug) { // ✅ ONLY FETCH IF SLUG EXISTS
+      fetchCourses();
+    }
+  }, [slug]); // ✅ ADD DEPENDENCY
 
-    const fetchRatings = async (courseList: Course[]) => {
-      const ratingData: Record<number, any> = {};
+  const fetchRatings = async (courseList: Course[]) => {
+    const ratingData: Record<number, any> = {};
 
-      await Promise.all(
-        courseList.map(async (course) => {
-          try {
-            const res = await fetch(
-              `${BASE_URL}/course_average_rating/?course_id=${course.id}`
-            );
-
-            const json = await res.json();
-
-            const data = json.course_average_rating?.[0];
-
-            if (data) {
-              ratingData[course.id] = data;
-            }
-          } catch (err) {
-            console.error("Rating error", err);
+    await Promise.all(
+      courseList.map(async (course) => {
+        try {
+          const res = await fetch(
+            `${BASE_URL}/course_average_rating/?course_id=${course.id}`
+          );
+          const json = await res.json();
+          const data = json.course_average_rating?.[0];
+          if (data) {
+            ratingData[course.id] = data;
           }
-        })
-      );
+        } catch (err) {
+          console.error("Rating error", err);
+        }
+      })
+    );
 
-      setRatings(ratingData);
-    };
-  }, []);
+    setRatings(ratingData);
+  };
 
   return (
     <section className="py-16 bg-[var(--color-bg-light)]">
@@ -290,10 +390,13 @@ export default function RelatedCourses() {
                       <span>👨‍🎓 {course.students || 0} Students</span>
                     </div>
 
-                    <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
+                    {/* <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
                       {course?.text?.replace(/<[^>]*>/g, "")}
-                    </p>
-
+                    </p> */}
+                    <div
+                      className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+                      dangerouslySetInnerHTML={{ __html: course?.text || "" }}
+                    />
                     <div className="text-xs text-[var(--color-muted-light)] mb-4">
                       Category: {course.category_details?.name}
                     </div>

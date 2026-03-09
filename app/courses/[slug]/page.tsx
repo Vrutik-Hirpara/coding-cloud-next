@@ -62,9 +62,9 @@ export default function Page() {
         console.error("Course fetch error", err);
       }
     };
-
     getCourse();
   }, [slug]);
+
   useEffect(() => {
     const fetchRating = async () => {
       try {

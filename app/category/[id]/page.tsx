@@ -66,7 +66,7 @@ export default function CategoryCoursesPage() {
   return (
     <div className="container-custom py-16">
       <h1 className="text-3xl font-bold mb-10 text-center">
-        Courses in Category
+        Courses in {courses[0]?.name}
       </h1>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -101,7 +101,7 @@ export default function CategoryCoursesPage() {
                   {course?.text?.replace(/<[^>]*>/g, "")}
                 </p>
                  */}
-                 <div
+                <div
                   className="text-sm text-[var(--color-muted)] line-clamp-2"
                   dangerouslySetInnerHTML={{
                     __html: course?.text || "",

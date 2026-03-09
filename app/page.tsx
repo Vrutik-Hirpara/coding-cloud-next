@@ -348,7 +348,7 @@
 
 //         <TestimonialSection />
 //       </section>
-      
+
 // <RegisterPage/>
 //       {/* EVENTS */}
 //       <FeaturedCoursesSection />
@@ -363,9 +363,9 @@
 
 
 //mansi
- 
+
 "use client";
- 
+
 import CardSlider from "@/component/CardSlider";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -399,44 +399,44 @@ import { BASE_URL } from "@/lib/api";
 // MAIN HOME PAGE
 // ============================
 export default function HomePage() {
-const [courses, setCourses] = useState([]);
- 
-useEffect(() => {
-  const fetchCourses = async () => {
-    try {
-      const [courseRes, ratingRes] = await Promise.all([
-        fetch(API.COURSES.LIST),
-        fetch(`${BASE_URL}/course_average_rating/`)
-      ]);
- 
-      const courseData = await courseRes.json();
-      const ratingData = await ratingRes.json();
- 
-      // convert rating array to map
-      const ratingMap: Record<number, { rating: number; reviews: number }> = {};
- 
-      ratingData.course_average_rating.forEach((item: any) => {
-        ratingMap[item.course_id] = {
-          rating: item.average_rating,
-          reviews: item.total_reviews,
-        };
-      });
- 
-      const mergedCourses = courseData.data.map((course: any) => ({
-        ...course,
-        rating: ratingMap[course.id]?.rating || 0,
-        reviews: ratingMap[course.id]?.reviews || 0,
-      }));
- 
-      setCourses(mergedCourses);
- 
-    } catch (error) {
-      console.error("Course API error:", error);
-    }
-  };
- 
-  fetchCourses();
-}, []);
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const [courseRes, ratingRes] = await Promise.all([
+          fetch(API.COURSES.LIST),
+          fetch(`${BASE_URL}/course_average_rating/`)
+        ]);
+
+        const courseData = await courseRes.json();
+        const ratingData = await ratingRes.json();
+
+        // convert rating array to map
+        const ratingMap: Record<number, { rating: number; reviews: number }> = {};
+
+        ratingData.course_average_rating.forEach((item: any) => {
+          ratingMap[item.course_id] = {
+            rating: item.average_rating,
+            reviews: item.total_reviews,
+          };
+        });
+
+        const mergedCourses = courseData.data.map((course: any) => ({
+          ...course,
+          rating: ratingMap[course.id]?.rating || 0,
+          reviews: ratingMap[course.id]?.reviews || 0,
+        }));
+
+        setCourses(mergedCourses);
+
+      } catch (error) {
+        console.error("Course API error:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
   // ================= STATS DATA =================
   const stats = [
     {
@@ -460,7 +460,7 @@ useEffect(() => {
       label: "Registered Enrolls",
     },
   ];
- 
+
   // ================= EVENTS DATA =================
   const eventsData = [
     {
@@ -512,24 +512,24 @@ useEffect(() => {
       instructorImage: user3.src,
     },
   ];
- 
+
   // ================= RENDER =================
   // return (
   //   <div className="bg-[var(--color-white)] min-h-screen">
- return (
-  <div className="bg-[var(--color-white)] min-h-screen overflow-x-hidden">
+  return (
+    <div className="bg-[var(--color-white)] min-h-screen overflow-x-hidden">
       {/* HERO */}
       <HeroSection courses={courses} />
- 
+
       {/* CATEGORIES */}
       <Categories />
- 
+
       {/* ABOUT */}
       <KnowAboutUs />
- 
+
       {/* STATS */}
       <WhyChooseUs stats={stats} />
- 
+
       {/* TESTIMONIAL */}
       <section className="py-24 bg-[var(--color-bg-light)] overflow-hidden relative border-t-4 border-[var(--color-accent-purple)]">
         <div className="container-custom text-center mb-16">
@@ -541,7 +541,7 @@ useEffect(() => {
             textColor="var(--color-accent-purple)"
             bgColor="var(--color-primary-light)"
           />
- 
+
           <Heading
             title={
               <>
@@ -551,19 +551,18 @@ useEffect(() => {
             }
           />
         </div>
- 
+
         <TestimonialSection />
       </section>
-     
-<RegisterPage/>
+
+      <RegisterPage />
       {/* EVENTS */}
       <FeaturedCoursesSection />
-      <KidsCoursesSection/>
+      <KidsCoursesSection />
       {/* BLOG */}
       <BlogPost />
-      <Accreditation/>
+      <Accreditation />
     </div>
   );
 }
- 
- 
+
