@@ -195,7 +195,7 @@ export default function CoursesPage() {
                     <img
                       src={imageUrl}
                       alt={course.name}
-                      className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                      className="w-full h-full object-contain hover:scale-110 transition duration-500"
                       onError={(e) => {
                         // Fallback if image fails to load
                         const target = e.target as HTMLImageElement;

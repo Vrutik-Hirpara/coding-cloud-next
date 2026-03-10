@@ -107,7 +107,7 @@ export default function BlogDetailPage() {
               fill
               priority
               sizes="(max-width: 768px) 100vw, 720px"
-              className="object-cover transition-transform duration-500 hover:scale-105"
+              className="object-contain  transition-transform duration-500 hover:scale-105"
             />
           )}
 

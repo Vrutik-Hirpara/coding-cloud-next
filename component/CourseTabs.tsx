@@ -412,7 +412,7 @@ return (
                         src={getImageUrl(course.banner_img || course.image)}
                         alt={course.name}
                         fill
-                        className="object-cover object-center rounded-lg"
+                        className="object-contain object-center rounded-lg"
                         priority
                     />
                 </div>

@@ -150,14 +150,14 @@ export default function PrivacyPolicy() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="relative h-[200px] sm:h-[260px] md:h-[420px] rounded-2xl overflow-hidden shadow-xl"
+          className="relative h-[200px] sm:h-[260px] md:h-[420px] rounded-2xl overflow-hidden"
         >
  
           <Image
             src="/images/about/learn.jpeg"
             alt="Privacy Policy"
             fill
-            className="object-cover"
+            className="object-contain"
           />
  
         </motion.div>

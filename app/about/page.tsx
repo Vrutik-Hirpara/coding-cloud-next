@@ -95,7 +95,9 @@ export default function AboutPage() {
           <div className="mt-8 flex justify-center gap-4">
             <Button
               href="/courses"
-              variant="gradient">
+              variant="gradient"
+              className="flex justify-center"
+              >
               Explore Courses
             </Button>
 
@@ -128,6 +130,35 @@ export default function AboutPage() {
         </div>
 
         <div className="container-custom relative z-10">
+            {/* ===== HEADER CENTER ===== */}
+  <div className="text-center mb-16">
+
+    <motion.span
+      initial={{ scale: 0 }}
+      whileInView={{ scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="inline-block px-6 py-2 mb-6 text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600 rounded-full border-2 border-purple-200 shadow-lg"
+    >
+      ⚡ HOW WE WORK ⚡
+    </motion.span>
+
+    <h2 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight">
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-800">
+        Discover yourself
+      </span>
+      <br />
+      <span className="text-[var(--color-text)] relative inline-block">
+        with coding cloud
+        <motion.div
+          className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 w-full bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600 rounded-full"
+          initial={{ width: 0 }}
+          whileInView={{ width: "100%" }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        />
+      </span>
+    </h2>
+
+  </div>
           <div className="grid md:grid-cols-2 gap-12 items-center">
 
             {/* LEFT CONTENT */}
@@ -138,31 +169,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               {/* TAG with modern design */}
-              <motion.span
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-block px-6 py-2 mb-6 text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600 rounded-full border-2 border-purple-200 shadow-lg"
-              >
-                ⚡ HOW WE WORK ⚡
-              </motion.span>
-
-              {/* HEADING with gradient */}
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-800">
-                  Discover yourself
-                </span>
-                <br />
-                <span className="text-[var(--color-text)] relative">
-                  with coding cloud
-                  <motion.div
-                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600 rounded-full"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "100%" }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                  />
-                </span>
-              </h2>
+           
 
               {/* POINTS with creative numbering */}
               <div className="space-y-6">
@@ -287,7 +294,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative "
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
                 {/* Animated border */}

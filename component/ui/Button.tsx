@@ -358,8 +358,11 @@ const variants = {
 
   navbar: "btn-navbar",
 };
-  const base =
-    "relative inline-flex items-center justify-center gap-2 rounded-lg font-semibold overflow-hidden group";
+  // const base =
+  //   "relative inline-flex items-center justify-center gap-2 rounded-lg font-semibold overflow-hidden group";
+ const base =
+"relative flex items-center justify-center gap-2 rounded-lg font-semibold overflow-hidden group w-full";
+ 
   const inner = (
     <motion.div
       whileHover={{
@@ -420,7 +423,23 @@ const variants = {
     </motion.div>
   );
 
-  if (href) return <Link href={href}>{inner}</Link>;
+  // if (href) return <Link href={href}>{inner}</Link>;
 
-  return <button onClick={onClick}>{inner}</button>;
+  // return <button onClick={onClick}>{inner}</button>;
+if (href)
+  return (
+    <Link href={href} className={clsx("inline-flex justify-center", className)}>
+      {inner}
+    </Link>
+  );
+
+return (
+  <button
+    onClick={onClick}
+    type={type}
+    className={clsx("inline-flex justify-center", className)}
+  >
+    {inner}
+  </button>
+);
 }

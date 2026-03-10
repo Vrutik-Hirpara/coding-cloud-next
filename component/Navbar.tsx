@@ -3583,7 +3583,7 @@ export default function Navbar() {
       }`}
     >
       {/* ── TOP BAR ── */}
-      <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-3 sm:px-6">
+      <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-4 sm:px-8 md:px-12 lg:px-16">
         <div className="flex gap-3 sm:gap-6 min-w-max">
           <a
             href="https://www.instagram.com/codingcloud_institute/"
@@ -3640,7 +3640,7 @@ export default function Navbar() {
 
       {/* ── MAIN NAV ── */}
       <nav className="relative border-b border-gray-100">
-        <div className="w-full px-4px-20 sm:px-8 md:px-12 lg:px-16 h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
+        <div className="w-full px-4 sm:px-8 md:px-12 lg:px-16  h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
           {/* ── LEFT: Logo + Category pill ── */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -3656,7 +3656,6 @@ export default function Navbar() {
               </Link>
             </motion.div>
 
-            {/* Category pill */}
           </div>
 
           {/* ── CENTER: Nav links ── */}

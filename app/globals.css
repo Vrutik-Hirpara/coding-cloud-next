@@ -1,8 +1,7 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .course-tabs-sticky {
   position: sticky;
   top: 140px;
@@ -11,7 +10,8 @@
 /* tablet screens */
 @media (max-width: 768px) {
   .course-tabs-sticky {
-    top: 120px; /* navbar height approx */
+    top: 120px;
+    /* navbar height approx */
   }
 }
 
@@ -56,8 +56,8 @@ main {
   --color-border: #ccc;
   --color-text-strong: #1f2937;
   /* --color-accent-purple: #6A4DF4; */
-    --color-accent-purple: #2663eb;
-    --color-text-muted: #6b7385;
+  --color-accent-purple: #2663eb;
+  --color-text-muted: #6b7385;
 
   --color-accent-purple-10: rgba(106, 77, 244, 0.1);
   --color-accent-yellow: #FFB800;
@@ -65,36 +65,34 @@ main {
   --nav-height: 64px;
   --nav-font: 14px;
   --nav-gap: 24px;
---color-bg-softest: #f9fafb;
---color-accent-pink: #ec4899;
---color-text-medium: #374151;
-/* --color-accent-indigo: #4f46e5; */
+  --color-bg-softest: #f9fafb;
+  --color-accent-pink: #ec4899;
+  --color-text-medium: #374151;
+  /* --color-accent-indigo: #4f46e5; */
   --color-heading: #192335;
+--navbar-hover:#2f57ef;
+  --color-accent-indigo: #2663eb;
+  --color-black: #000000;
+  --color-border-light: #d1d5db;
+  --color-accent-yellow-light: #facc15;
+  --color-gradient-pink-soft: #FFE4F1;
+  --color-gradient-blue-soft: #E0F7FF;
+  --color-gradient-purple-soft: #F3E8FF;
+  /* Logo inspired gradient */
+  --color-logo-dark: #1E3A8A;
+  --color-logo-main: #2563EB;
+  --color-logo-light: #0EA5E9;
 
---color-accent-indigo: #2663eb;
---color-black: #000000;
---color-border-light: #d1d5db;
---color-accent-yellow-light: #facc15;
---color-gradient-pink-soft: #FFE4F1;
---color-gradient-blue-soft: #E0F7FF;
---color-gradient-purple-soft: #F3E8FF;
-/* Logo inspired gradient */
---color-logo-dark: #1E3A8A;
---color-logo-main: #2563EB;
---color-logo-light: #0EA5E9;
- 
---color-logo-gradient: linear-gradient(
-  90deg,
-  var(--color-logo-dark),
-  var(--color-logo-main),
-  var(--color-logo-light)
-);
- 
+  --color-logo-gradient: linear-gradient(90deg,
+      var(--color-logo-dark),
+      var(--color-logo-main),
+      var(--color-logo-light));
+
 }
 
 .gradient-text {
-  color: var(--color-logo-main)!important;
- 
+  color: var(--color-logo-main) !important;
+
 }
 
 /* ===============================
@@ -116,6 +114,7 @@ body {
 *::after {
   box-sizing: border-box;
 }
+
 /* Hide scrollbar */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
@@ -125,6 +124,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 html {
   scroll-behavior: smooth;
 
@@ -135,7 +135,7 @@ html {
 ================================= */
 @layer components {
   .container-custom {
-    @apply  mx-auto px-3 sm:px-4 lg:px-10;
+    @apply mx-auto px-3 sm:px-4 lg:px-10;
   }
 }
 
@@ -241,13 +241,11 @@ html {
 
   background-size: 300% 100%;
   background-position: 0% 0%;
-  background-image: linear-gradient(
-    to right,
-    #2f57ef,
-    #b966e7,
-    #b966e7,
-    #2f57ef
-  );
+  background-image: linear-gradient(to right,
+      #2f57ef,
+      #b966e7,
+      #b966e7,
+      #2f57ef);
 
   box-shadow: 0 15px 35px rgba(79, 70, 229, 0.45);
   transition: background-position 0.5s ease;
@@ -281,14 +279,17 @@ html {
     transform: translateX(0);
     opacity: 1;
   }
+
   50% {
     transform: translateX(-120%);
     opacity: 0;
   }
+
   51% {
     transform: translateX(120%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -300,14 +301,17 @@ html {
     transform: translateX(0);
     opacity: 1;
   }
+
   50% {
     transform: translateX(120%);
     opacity: 0;
   }
+
   51% {
     transform: translateX(-120%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -316,11 +320,30 @@ html {
 
 /* Marquee button text animation */
 @keyframes marqueeText {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .animate-marquee-text {
   display: inline-block;
   animation: marqueeText 4s linear infinite;
 }
+
+
+/* @font-face {
+  font-family: "Euclid Circular";
+  src: url("/fonts/EuclidCircularA-Light.woff2") format("woff2"),
+       url("/fonts/EuclidCircularA-Light.woff") format("woff");
+}
+
+@layer base {
+  h2 {
+    @apply text-[44px] font-black text-[var(--color-heading)];
+    line-height: 1.23;
+  }
+} */

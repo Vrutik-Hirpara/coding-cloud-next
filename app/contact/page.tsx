@@ -722,7 +722,7 @@ export default function ContactPage() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
-className="object-contain w-full h-full transition-transform duration-500 hover:scale-105"              />
+                className="object-contain w-full h-full transition-transform duration-500 hover:scale-105" />
               <div className="absolute inset-0 bg-black/10 pointer-events-none" />
             </motion.div>
 
@@ -819,12 +819,22 @@ className="object-contain w-full h-full transition-transform duration-500 hover:
                   {errors.message && <p className="text-[var(--color-danger)] text-xs mt-1">{errors.message}</p>}
                 </div>
 
-                <div className="flex justify-center sm:justify-start w-full mt-4">
+                {/* <div className="flex justify-center sm:justify-start w-full mt-4">
                   <Button
                     type="submit"
                     variant="gradient"
                     size="lg"
                     className="rounded-lg font-semibold w-full sm:w-auto max-w-full"
+                  >
+                    {loading ? "Sending..." : "GET IT NOW →"}
+                  </Button>
+                </div> */}
+                <div className="w-full mt-4">
+                  <Button
+                    type="submit"
+                    variant="gradient"
+                    size="lg"
+                    className="w-full"
                   >
                     {loading ? "Sending..." : "GET IT NOW →"}
                   </Button>

@@ -95,7 +95,7 @@ export default function RootLayout({
 
         <ScrollToTop />
 
-        <Navbar />
+        <Navbar/>
 
         <main className="w-full">
           {children}

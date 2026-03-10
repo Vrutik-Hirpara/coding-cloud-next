@@ -159,9 +159,10 @@ export default function BlogPost() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch(
-          `${BASE_URL}/blogs/`
-        );
+        // const res = await fetch(
+        //   `${BASE_URL}/blogs/`
+        // );
+        const res = await fetch(`${BASE_URL}/blogs/?status=published`);
         const data = await res.json();
         setBlogs(data.data || []);
       } catch (error) {
@@ -182,37 +183,37 @@ export default function BlogPost() {
       <div className="container-custom">
 
         {/* HEADER */}
-       <div className="flex flex-col md:flex-row md:items-center md:justify-center mb-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-center mb-4">
 
-  {/* LEFT SIDE (Heading + Pill) */}
-  <div className="flex flex-col items-center">
+          {/* LEFT SIDE (Heading + Pill) */}
+          <div className="flex flex-col items-center">
 
-    <Pill
-      text="Blog Post"
-      textColor="var(--color-accent-purple)"
-      bgColor="var(--color-primary-light)"
-    />
+            <Pill
+              text="Blog Post"
+              textColor="var(--color-accent-purple)"
+              bgColor="var(--color-primary-light)"
+            />
 
-    <Heading
-      title={<>Latest Blog & Article</>}
-      align="left"
-    />
+            <Heading
+              title={<>Latest Blog & Article</>}
+              align="left"
+            />
 
-  </div>
+          </div>
 
 
 
-</div>
-  {/* RIGHT SIDE BUTTON */}
-<div className="mt-4 md:mt-0 flex md:justify-end mb-4">
-  <Button
-    href="/blogs"
-    variant="gradient"
-    className="px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
-  >
-    See All Blogs →
-  </Button>
-</div>
+        </div>
+        {/* RIGHT SIDE BUTTON */}
+        <div className="mt-4 md:mt-0 flex md:justify-end mb-4">
+          <Button
+            href="/blogs"
+            variant="gradient"
+            className="px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
+          >
+            See All Blogs →
+          </Button>
+        </div>
         {/* GRID */}
         <div className="grid lg:grid-cols-2 gap-8">
 

@@ -142,7 +142,7 @@ const getFullImageUrl = (img?: string) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
       >
         {blogs.map((blog, index) => {
           const img = getFullImageUrl(blog.featured_image);
@@ -164,7 +164,7 @@ const getFullImageUrl = (img?: string) => {
                     <img
                       src={img}
                       alt={blog.title}
-                      className="w-full h-full object-fill hover:scale-110 transition duration-500"
+                      className="w-full h-full object-contain hover:scale-110 transition duration-500"
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full text-[var(--color-muted-light)]">
