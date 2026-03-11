@@ -3743,9 +3743,9 @@ export default function Navbar() {
                                 className="w-full text-left flex items-center gap-3 p-3 rounded-xl bg-[var(--color-white)] hover:bg-[var(--color-bg-softest)] transition-all border border-transparent hover:border-[var(--color-border-light)] hover:shadow-md"
                               >
                                 <div className="w-9 h-9 flex items-center justify-center bg-[var(--color-bg-softest)] rounded-lg overflow-hidden flex-shrink-0">
-                                  {course.image ? (
+                                  {course.icon ? (
                                     <Image
-                                      src={`${BASE_URL}${course.image}`}
+                                      src={`${BASE_URL}${course.icon}`}
                                       alt={course.name}
                                       width={36}
                                       height={36}
@@ -3817,7 +3817,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-44 bg-white shadow-xl rounded-xl border border-gray-100 z-50"
+                    className="absolute  mt-2 w-44 bg-white shadow-xl rounded-xl border border-gray-100 z-50"
                   >
                     <Link
                       href="/blogs"
@@ -3827,7 +3827,7 @@ export default function Navbar() {
                     </Link>
 
                     <Link
-                      href="/course-faqs"
+                      href="/coursefaqs"
                       className="block px-4 py-3 text-sm font-semibold text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)] rounded-xl"
                     >
                       FAQ
