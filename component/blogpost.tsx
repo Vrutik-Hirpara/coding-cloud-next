@@ -231,7 +231,6 @@ export default function BlogPost() {
                 fill
                 sizes="(max-width: 768px) 100vw, 600px"
                 priority
-                unoptimized
                 className="object-contain transition-transform duration-500 hover:scale-105"
               />
 
@@ -245,8 +244,9 @@ export default function BlogPost() {
               </h3>
 
               <p className="text-[var(--color-muted)]">
-                {mainBlog.short_description}
-              </p>
+  {mainBlog.short_description.split(" ").slice(0, 20).join(" ")}
+  {mainBlog.short_description.split(" ").length > 20 && "..."}
+</p>
 
               <Link
                 href={`/blogs/${mainBlog.slug}`}
@@ -273,7 +273,7 @@ export default function BlogPost() {
                     alt={blog.title}
                     fill
                     sizes="(max-width: 640px) 128px, 160px"
-                    unoptimized
+                    loading="lazy"
                     className="object-contain transition-transform duration-300 hover:scale-105"
                   />
                 </div>

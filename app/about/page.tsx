@@ -15,45 +15,9 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[var(--color-white)]">
 
       {/* ================= HERO SECTION ================= */}
-      {/* <section className="relative w-full h-[60vh] md:h-[82vh] flex items-center justify-center overflow-hidden">
+    
+      <section className="relative h-[67vh] flex items-center justify-center text-center overflow-hidden">
 
-
-                <Image
-                    src={aboutBg}
-                    alt="About Coding Cloud"
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-cover"
-                />
-
-                <div className="absolute inset-0 bg-[var(--color-overlay-dark)]"></div>
-
-                <div className="relative z-10 text-center px-4">
-
-                    <motion.div
-                        initial={{ opacity: 0, y: -30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="inline-block px-8 md:px-12 py-3 md:py-4 mb-6 rounded-xl bg-[var(--color-white)] backdrop-blur-md text-[var(--color-accent-purple)] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-widest shadow-lg"
-                    >
-                        CODING <span className="text-[var(--color-accent-purple)]">CLOUD</span>
-                    </motion.div>
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-3xl sm:text-4xl md:text-6xl font-bold text-[var(--color-white)] leading-tight"
-                    >
-                        Your Door To The Future.
-                    </motion.h1>
-
-                </div>
-            </section> */}
-      <section className="relative h-[50vh] flex items-center justify-center text-center overflow-hidden">
-
-        {/* Background Image */}
         <div className="absolute inset-0">
           <Image
             src={aboutBg}
@@ -65,33 +29,21 @@ export default function AboutPage() {
           />
         </div>
 
-        {/* Dark Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
 
-        {/* Content */}
         <div className="relative z-10 max-w-4xl px-6">
 
-          {/* Badge */}
-          {/* <div className="inline-block   px-8 py-3 rounded-xl">
-                        <span className="tracking-[0px] font-extrabold text-blue-600 text-3xl">
-                            About Us
-                        </span>
-                    </div> */}
-
-          {/* Heading */}
+        
           <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">
-            {/* Your Door To The */}
             <span className="block text-blue-400 animate-pulse">
               About Us
             </span>
           </h1>
 
-          {/* Subtitle */}
           <p className="text-gray-200 mt-6 text-lg max-w-xl mx-auto">
             Start your journey in IT with expert training and guaranteed career growth.
           </p>
 
-          {/* Button */}
           <div className="mt-8 flex justify-center gap-4">
             <Button
               href="/courses"

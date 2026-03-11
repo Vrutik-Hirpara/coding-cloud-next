@@ -19,6 +19,7 @@ interface Course {
   slug: string;
   name: string;
   image: string;
+  short_description: string;
   banner_img: string;
   text: string;
   duration: string;
@@ -197,8 +198,7 @@ export default function Page() {
 
             {/* Description */}
             <p className="text-[var(--color-black)] text-lg max-w-3xl  mb-8">
-              Master Python by building 100 projects in 100 days. Learn data science,
-              automation, build websites, games and apps!
+              {course.short_description}
             </p>
 
             {/* Stats Row */}
@@ -206,12 +206,29 @@ export default function Page() {
 
 
               {/* Rating */}
-              <div className="flex items-center gap-1">
+              {/* <div className="flex items-center gap-1">
                 <span className="font-bold text-gray-900">{avgRating}</span>
                 <span className="text-yellow-400">★★★★★</span>
                 <span className="text-[var(--color-heading)] text-sm">({totalReviews} ratings)</span>
-              </div>
+              </div> */}
+<div className="flex items-center gap-1">
+  <span className="font-bold text-gray-900">{avgRating}</span>
 
+  <span className="flex">
+    {[1,2,3,4,5].map((star) => (
+      <span
+        key={star}
+        className={star <= avgRating ? "text-yellow-400" : "text-gray-300"}
+      >
+        ★
+      </span>
+    ))}
+  </span>
+
+  <span className="text-[var(--color-heading)] text-sm">
+    ({totalReviews} ratings)
+  </span>
+</div>
               {/* Students */}
               <div className="text-[var(--color-heading)] text-sm">
                 {course.students || 0} students
@@ -224,7 +241,8 @@ export default function Page() {
             </div>
 
             {/* Course Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-md text-[var(--color-heading)]">              <span>🎓 English</span>
+            <div className="flex flex-wrap items-center gap-4 text-md text-[var(--color-heading)]">              
+              <span>🎓 {course.language}</span>
               <span>🏆 Certified Course</span>
             </div>
           </div>

@@ -2486,7 +2486,7 @@
 //             >
 //               Enroll
 //             </Button>
-            
+
 //             <button
 //               onClick={toggleMenu}
 //               className="p-2 text-[var(--color-text-medium)] hover:text-[var(--color-accent-purple)] transition-colors"
@@ -3141,7 +3141,7 @@
 //             >
 //               Enroll Now
 //             </Button>
-            
+
 //             <button
 //               onClick={toggleMenu}
 //               className="p-2 text-[var(--color-text-medium)] hover:text-[var(--color-accent-purple)] transition-colors"
@@ -3503,6 +3503,7 @@ const getCourseIcon = (name: string) => {
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [isResourceOpen, setIsResourceOpen] = useState(false);
   const [isEnrollOpen, setIsEnrollOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [courses, setCourses] = useState<any[]>([]);
@@ -3578,12 +3579,11 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 w-full z-[999] bg-[var(--color-white)] transition-shadow duration-300 ${
-        scrolled ? "shadow-lg" : "shadow-sm"
-      }`}
+      className={`fixed top-0 left-0 right-0 w-full z-[999] bg-[var(--color-white)] transition-shadow duration-300 ${scrolled ? "shadow-lg" : "shadow-sm"
+        }`}
     >
       {/* ── TOP BAR ── */}
-      <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-4 sm:px-8 md:px-12 lg:px-16">
+      <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-4 sm:px-8 md:px-12 lg:px-6">
         <div className="flex gap-3 sm:gap-6 min-w-max">
           <a
             href="https://www.instagram.com/codingcloud_institute/"
@@ -3640,7 +3640,7 @@ export default function Navbar() {
 
       {/* ── MAIN NAV ── */}
       <nav className="relative border-b border-gray-100">
-        <div className="w-full px-4 sm:px-8 md:px-12 lg:px-16  h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
+        <div className="w-full px-4 sm:px-8 md:px-12 lg:px-6  h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
           {/* ── LEFT: Logo + Category pill ── */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -3664,11 +3664,10 @@ export default function Navbar() {
               <Link
                 href="/"
                 onClick={() => setIsDropdownOpen(false)}
-                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${
-                  isActive("/") && pathname === "/"
+                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/") && pathname === "/"
                     ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
                     : "hover:text-[var(--color-accent-purple)]"
-                }`}
+                  }`}
               >
                 Home
               </Link>
@@ -3682,11 +3681,10 @@ export default function Navbar() {
             >
               <motion.span
                 whileHover={{ y: -2 }}
-                className={`flex items-center gap-1 text-xs sm:text-sm md:text-base whitespace-nowrap cursor-pointer ${
-                  isActive("/courses")
+                className={`flex items-center gap-1 text-xs sm:text-sm md:text-base whitespace-nowrap cursor-pointer ${isActive("/courses")
                     ? "text-[var(--color-accent-purple)] font-bold"
                     : "hover:text-[var(--color-accent-purple)]"
-                }`}
+                  }`}
               >
                 Courses
                 <FaChevronUp
@@ -3775,11 +3773,10 @@ export default function Navbar() {
               <Link
                 href="/about"
                 onClick={() => setIsDropdownOpen(false)}
-                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${
-                  isActive("/about")
+                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/about")
                     ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
                     : "hover:text-[var(--color-accent-purple)]"
-                }`}
+                  }`}
               >
                 About
               </Link>
@@ -3789,15 +3786,56 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setIsDropdownOpen(false)}
-                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${
-                  isActive("/contact")
+                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/contact")
                     ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
                     : "hover:text-[var(--color-accent-purple)]"
-                }`}
+                  }`}
               >
                 Contact
               </Link>
             </motion.li>
+            <li
+              className="relative py-3 sm:py-4 md:py-6"
+              onMouseEnter={() => setIsResourceOpen(true)}
+              onMouseLeave={() => setIsResourceOpen(false)}
+            >
+              <motion.span
+                whileHover={{ y: -2 }}
+                className="flex items-center gap-1 text-xs sm:text-sm md:text-base whitespace-nowrap cursor-pointer hover:text-[var(--color-accent-purple)]"
+              >
+                Resources
+                <FaChevronUp
+                  className={`transition-transform duration-300 text-[10px] sm:text-xs ${isResourceOpen ? "rotate-180" : ""
+                    }`}
+                />
+              </motion.span>
+
+              <AnimatePresence>
+                {isResourceOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-44 bg-white shadow-xl rounded-xl border border-gray-100 z-50"
+                  >
+                    <Link
+                      href="/blogs"
+                      className="block px-4 py-3 text-sm font-semibold text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)] rounded-xl"
+                    >
+                      Blogs
+                    </Link>
+
+                    <Link
+                      href="/course-faqs"
+                      className="block px-4 py-3 text-sm font-semibold text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)] rounded-xl"
+                    >
+                      FAQ
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
           </ul>
 
           {/* ── RIGHT: Search + Cart + Admin + Enroll ── */}
@@ -3861,11 +3899,10 @@ export default function Navbar() {
                 <Link
                   href="/"
                   onClick={() => setIsMenuOpen(false)}
-                  className={`py-3 px-4 rounded-lg transition-colors ${
-                    isActive("/") && pathname === "/"
+                  className={`py-3 px-4 rounded-lg transition-colors ${isActive("/") && pathname === "/"
                       ? "bg-[var(--color-accent-purple)] text-white font-bold"
                       : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
-                  }`}
+                    }`}
                 >
                   Home
                 </Link>
@@ -3873,16 +3910,15 @@ export default function Navbar() {
                 <div className="py-1">
                   <button
                     onClick={() => setIsMobileCoursesOpen(!isMobileCoursesOpen)}
-                    className={`w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors ${
-                      isActive("/courses")
+                    className={`w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors ${isActive("/courses")
                         ? "bg-[var(--color-accent-purple)] text-white font-bold"
                         : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
-                    }`}
+                      }`}
                   >
                     <span>Courses</span>
                     <FaChevronUp
-                          className={`transition-transform duration-300 ${isMobileCoursesOpen ? "rotate-180" : ""}`}
-                        />
+                      className={`transition-transform duration-300 ${isMobileCoursesOpen ? "rotate-180" : ""}`}
+                    />
                   </button>
 
                   <AnimatePresence>
@@ -3915,7 +3951,7 @@ export default function Navbar() {
                                     className="w-full text-left flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-[var(--color-bg-softest)] transition-colors border border-transparent hover:border-[var(--color-border-light)]"
                                   >
                                     <div className="w-12 h-12 flex items-center justify-center bg-[var(--color-bg-softest)] rounded-lg overflow-hidden flex-shrink-0">
-                                        {course.image ? (
+                                      {course.image ? (
                                         <Image
                                           src={`${BASE_URL}${course.image}`}
                                           alt={course.name}
@@ -3944,11 +3980,10 @@ export default function Navbar() {
                 <Link
                   href="/about"
                   onClick={() => setIsMenuOpen(false)}
-                  className={`py-3 px-4 rounded-lg transition-colors ${
-                    isActive("/about")
+                  className={`py-3 px-4 rounded-lg transition-colors ${isActive("/about")
                       ? "bg-[var(--color-accent-purple)] text-white font-bold"
                       : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
-                  }`}
+                    }`}
                 >
                   About
                 </Link>
@@ -3956,11 +3991,10 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setIsMenuOpen(false)}
-                  className={`py-3 px-4 rounded-lg transition-colors ${
-                    isActive("/contact")
+                  className={`py-3 px-4 rounded-lg transition-colors ${isActive("/contact")
                       ? "bg-[var(--color-accent-purple)] text-white font-bold"
                       : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
-                  }`}
+                    }`}
                 >
                   Contact
                 </Link>

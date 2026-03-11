@@ -521,7 +521,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
           {/* RIGHT CONTENT */}
           <div className="w-full sm:w-[60%] flex-1 flex flex-col h-full">
             <div className="text-orange-400 text-sm mb-2">
-              ⭐⭐⭐⭐⭐ ({event.reviews || 0} Reviews)
+              ★★★★★ ({event.reviews || 0} Reviews)
             </div>
 
             <h3 className="text-xl sm:text-2xl font-bold mb-2 line-clamp-2">

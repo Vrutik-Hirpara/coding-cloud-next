@@ -201,11 +201,10 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
       >
         <div className="
           w-full 
-          px-4 sm:px-4 lg:px-6 
-xl:px-0 2xl:px-8 3xl:px-12
+          px-4 sm:px-4 lg:px-12
+xl:px-8 2xl:px-8 3xl:px-12
           mx-auto 
-          max-w-7xl xl:max-w-screen-xl 
-          2xl:max-w-screen-2xl 3xl:max-w-screen-3xl
+          
           grid grid-cols-1 xl:grid-cols-12 gap-6 items-center
         ">
           {/* ================= LEFT CONTENT ================= */}
@@ -350,7 +349,7 @@ xl:right-[20px]
             <div
               className="
 relative md:static xl:absolute
-xl:right-[-5px]
+xl:right-[10px]
 2xl:right-[-5px]
 3xl:right-[-20px]
 

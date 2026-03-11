@@ -292,7 +292,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 flex flex-col items-start"
+            className="lg:col-span-3 flex flex-col items-start"
           >
             {/* LOGO */}
             {/* <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
@@ -337,7 +337,7 @@ const Footer = () => {
           </motion.div>
 
           {/* LINKS */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-6">
+          <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-6">
 
             {/* COURSES */}
             <motion.div
@@ -410,12 +410,19 @@ const Footer = () => {
                 <p className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                   Phone: +91 95373 44018
                 </p>
-                <p className="hover:text-[var(--color-accent-purple)] cursor-pointer break-all">
+                <p className="text-sm hover:text-[var(--color-accent-purple)] cursor-pointer break-all">
                   E-mail: pune@codingcloudinstitute.com
                 </p>
                 <p>
+                <a
+                  href="https://www.google.com/maps?q=Office+No.+201,+2nd+Floor,+Polaris+Building,+Nr.+Noble+Hospital+Hadapsar,+Pune+411028"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                >
                   Office No. 201, 2nd Floor, Polaris Building, Nr. Noble
                   Hospital Hadapsar, Pune, 411028
+                </a>
                 </p>
               </div>
 

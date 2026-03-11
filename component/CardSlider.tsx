@@ -416,7 +416,7 @@ export default function CardSlider({ courses = [] }: { courses?: any[] }) {
   return (
     <div className="w-full h-[520px] flex items-center justify-center relative">
       <div
-        className="relative w-[340px] h-[460px] cursor-grab active:cursor-grabbing"
+        className="relative w-[300px] h-[460px] cursor-grab active:cursor-grabbing"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -456,12 +456,20 @@ export default function CardSlider({ courses = [] }: { courses?: any[] }) {
               className="absolute top-0 left-0 w-full h-full bg-[var(--color-white)] rounded-2xl shadow-2xl overflow-hidden border"
             >
               {/* HEADER */}
-              <div className="h-[190px] relative overflow-hidden">
+              {/* <div className="h-[190px] relative overflow-hidden">
                 <Image
                   src={card.image}
                   alt={card.title}
                   fill
                   className="object-contain"
+                /> */}
+              {/* 10:35 11-03-2026 */}
+              <div className="h-[190px] relative overflow-hidden">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-fill"
                 />
 
 
@@ -500,7 +508,7 @@ export default function CardSlider({ courses = [] }: { courses?: any[] }) {
                 </p>
 
                 <div className="text-[var(--color-accent-yellow-light)] mb-3 text-sm">
-                  ⭐ {card.rating} / 5
+                  ★ {card.rating} / 5
                 </div>
 
                 <div className="flex justify-between items-center border-t pt-4 mt-3">
