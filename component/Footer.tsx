@@ -253,7 +253,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await fetch(API.COURSES.LIST, {
+        const res = await fetch(`${API.COURSES.LIST}?featured=true`, {
           cache: "no-store",
         });
 

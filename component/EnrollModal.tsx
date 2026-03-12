@@ -189,6 +189,7 @@ import { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { BASE_URL } from "@/lib/api";
 import { createPortal } from "react-dom";
+import Button from "./ui/Button";
 
 interface EnrollModalProps {
   isOpen: boolean;
@@ -341,7 +342,7 @@ return createPortal(
 
         {/* HEADER */}
         <div className="mb-6">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold mb-1 text-[var(--color-text-strong)]">
             🎓 Enroll Now
           </h2>
           <p className="text-sm text-[var(--color-muted)] mt-1">
@@ -416,7 +417,7 @@ return createPortal(
           <input type="hidden" name="course_name" />
 
           {/* SUBMIT BUTTON */}
-          <button
+          {/* <button
             type="submit"
             disabled={loading}
             className="mt-2 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3.5 rounded-lg font-semibold shadow-md hover:scale-[1.02] hover:shadow-lg transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
@@ -431,7 +432,25 @@ return createPortal(
                 <span>🎓 Enroll Now</span>
               </>
             )}
-          </button>
+          </button> */}
+          <div className="mt-2">
+  <Button
+    type="submit"
+    variant="gradient"
+    size="lg"
+    className="w-full flex items-center justify-center gap-2"
+  >
+    {loading ? (
+      <>
+        <span>Processing...</span>
+      </>
+    ) : (
+      <>
+        <span>🎓 Enroll Now</span>
+      </>
+    )}
+  </Button>
+</div>
         </form>
       </div>
     </div>,

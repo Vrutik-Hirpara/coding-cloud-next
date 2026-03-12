@@ -3450,6 +3450,7 @@ import { IoCallOutline } from "react-icons/io5";
 import { BrainCircuit } from "lucide-react";
 import { BsGraphUp } from "react-icons/bs";
 import { MdOutlineScience } from "react-icons/md";
+import Button from "./ui/Button";
 
 const getCourseIcon = (name: string) => {
   const n = name.toLowerCase();
@@ -4159,13 +4160,23 @@ export default function Navbar() {
                 ))}
               </select>
               <input type="hidden" name="course_name" />
-              <button
+              {/* <button
                 type="submit"
                 className="mt-2 w-full py-2.5 rounded-lg font-semibold text-white shadow-md hover:scale-[1.02] hover:shadow-lg transition-all duration-200"
                 style={{ background: "var(--color-logo-gradient)" }}
               >
                 🎓 Enroll Now
-              </button>
+              </button> */}
+              <div className="w-full mt-2">
+  <Button
+    type="submit"
+    variant="gradient"
+    size="lg"
+    className="w-full"
+  >
+    {loading ? "Processing..." : "🎓 Enroll Now"}
+  </Button>
+</div>
             </form>
           </div>
         </div>
