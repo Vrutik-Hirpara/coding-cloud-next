@@ -282,9 +282,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-[var(--color-bg-light)] border-t border-[var(--color-border)]">
-      <div className=" mx-auto px-5 pt-24 pb-12 sm:px-8 md:px-12 lg:px-16">
+      <div className=" mx-auto px-5 pt-16 pb-12 sm:px-8 md:px-12 lg:px-16">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
           {/* BRAND */}
           <motion.div
@@ -292,7 +292,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-3 flex flex-col items-start"
+            className="lg:col-span-5 flex flex-col items-start"
           >
             {/* LOGO */}
             {/* <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
@@ -320,8 +320,8 @@ const Footer = () => {
             </Link>
 
             {/* DESCRIPTION */}
-            <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm">
-              We’re always in search for talented and motivated people.
+            <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 ">
+              We’re always in search for talented and motivated people.motivated people.motivated people.motivated people.
             </p>
 
             {/* BUTTON */}
@@ -334,10 +334,52 @@ const Footer = () => {
             >
               Contact With Us
             </Button>
+            {/* SOCIAL */}
+            <div className="flex gap-4 mt-7">
+              {linkIcon.map((data) => {
+                const Icon = data.icon;
+                return (
+                  // <motion.a
+                  //   key={data.id}
+                  //   href={data.link}
+                  //   target="_blank"
+                  //   initial={{ y: 0, scale: 1 }}
+                  //   whileHover={{ y: -6, scale: 1.08 }}
+                  //   whileTap={{ scale: 0.95 }}
+                  //   transition={{
+                  //     type: "spring",
+                  //     stiffness: 300,
+                  //     damping: 18,
+                  //   }}
+                  //   className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] hover:shadow-lg"
+                  // >
+                  //   <Icon size={15} />
+                  // </motion.a>
+                  <motion.a
+                    key={data.id}
+                    href={data.link}
+                    target="_blank"
+                    initial={{ y: 0, scale: 1 }}
+                    whileHover={{ y: -6, scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 18,
+                    }}
+                    className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] 
+  flex items-center justify-center text-[var(--color-text)] shadow-sm hover:shadow-lg
+hover:[background:var(--color-logo-gradient)]  hover:text-white"
+                  >
+                    <data.icon />
+                  </motion.a>
+                );
+              })}
+            </div>
           </motion.div>
 
           {/* LINKS */}
-          <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-6">
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-2 gap-6">
 
             {/* COURSES */}
             <motion.div
@@ -369,14 +411,14 @@ const Footer = () => {
 
 
             {/* COMPANY */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
               <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
-                Our Company
+                Our Address
               </h3>
 
               <ul className="space-y-4 text-[var(--color-text)]">
@@ -392,10 +434,10 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </motion.div> */}
 
             {/* CONTACT */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -403,7 +445,7 @@ const Footer = () => {
               className="col-span-2 sm:col-span-1"
             >
               <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
-                Get Contact
+                Get Address
               </h3>
 
               <div className="space-y-4 text-sm text-[var(--color-text)] mb-8">
@@ -414,63 +456,102 @@ const Footer = () => {
                   E-mail: pune@codingcloudinstitute.com
                 </p>
                 <p>
-                <a
-                  href="https://www.google.com/maps?q=Office+No.+201,+2nd+Floor,+Polaris+Building,+Nr.+Noble+Hospital+Hadapsar,+Pune+411028"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
-                >
-                  Office No. 201, 2nd Floor, Polaris Building, Nr. Noble
-                  Hospital Hadapsar, Pune, 411028
-                </a>
+                  <a
+                    href="https://www.google.com/maps?q=Office+No.+201,+2nd+Floor,+Polaris+Building,+Nr.+Noble+Hospital+Hadapsar,+Pune+411028"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                  >
+                    Office No. 201, 2nd Floor, Polaris Building, Nr. Noble
+                    Hospital Hadapsar, Pune, 411028
+                  </a>
                 </p>
               </div>
 
-              {/* SOCIAL */}
-              <div className="flex gap-4">
-                {linkIcon.map((data) => {
-                  const Icon = data.icon;
-                  return (
-                    // <motion.a
-                    //   key={data.id}
-                    //   href={data.link}
-                    //   target="_blank"
-                    //   initial={{ y: 0, scale: 1 }}
-                    //   whileHover={{ y: -6, scale: 1.08 }}
-                    //   whileTap={{ scale: 0.95 }}
-                    //   transition={{
-                    //     type: "spring",
-                    //     stiffness: 300,
-                    //     damping: 18,
-                    //   }}
-                    //   className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text)] shadow-sm hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] hover:shadow-lg"
-                    // >
-                    //   <Icon size={15} />
-                    // </motion.a>
-                    <motion.a
-                      key={data.id}
-                      href={data.link}
-                      target="_blank"
-                      initial={{ y: 0, scale: 1 }}
-                      whileHover={{ y: -6, scale: 1.08 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 18,
-                      }}
-                      className="w-11 h-11 rounded-full bg-[var(--color-white)] border border-[var(--color-border)] 
-  flex items-center justify-center text-[var(--color-text)] shadow-sm hover:shadow-lg
-hover:[background:var(--color-logo-gradient)]  hover:text-white"
+
+            </motion.div> */}
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="col-span-2 sm:col-span-1"
+            >
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
+                Our Offices
+              </h3>
+
+              <div className="space-y-4 text-sm text-[var(--color-text)] mb-8">
+
+                {/* Mobile */}
+                <div>
+                  <p className="hover:text-[var(--color-accent-purple)] cursor-pointer">
+                    <span className="font-semibold">Mobile:</span> +91 95373 44018
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold">Emails:</p>
+
+                  <div className="space-y-1 ml-4">
+                     <a
+                      href="mailto:komal@codingcloudinstitute.com"
+                      className="block hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
                     >
-                      <data.icon />
-                    </motion.a>
-                  );
-                })}
+                      komal@codingcloudinstitute.com
+                    </a>
+                    <a
+                      href="mailto:pune@codingcloudinstitute.com"
+                      className="block hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                    >
+                      pune@codingcloudinstitute.com
+                    </a>
+
+                   
+
+                    <a
+                      href="mailto:info@codingcloudinstitute.com"
+                      className="block hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                    >
+                      info@codingcloudinstitute.com
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="font-semibold">Addresses:</p>
+
+                  <div className="space-y-3 ml-4">
+                    
+
+                    {/* Ahmedabad Address */}
+                    <p>
+                      <a
+                        href="https://www.google.com/maps?q=401,+4th+Floor,+Sapphire+Complex,+Chimanlal+Girdharlal+Rd,+near+Yes+Bank,+Ellisbridge,+Ahmedabad,+Gujarat+380009"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                      >
+                        Office No. 401, 4th Floor, Sapphire Complex, Chimanlal Girdharlal Rd, near Yes Bank, Ellisbridge, Ahmedabad, Gujarat 380009
+                      </a>
+                    </p>
+                    {/* Pune Address */}
+                    <p>
+                      <a
+                        href="https://maps.app.goo.gl/CEnMtxg8EzRNjNQBA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                      >
+                        Office No. 201, 2nd Floor, Polaris Building, Nr. Noble Hospital Hadapsar, Pune, 411028
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </motion.div>
-
-
 
           </div>
         </div>

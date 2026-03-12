@@ -955,6 +955,9 @@ type CourseApi = {
 type EventItem = {
   id: number;
   image: string;
+  
+    rating: number;   // 👈 ADD THIS
+
   title: string;
   subtitle: string;
   author: string;
@@ -1089,7 +1092,7 @@ const KidsCoursesSection: React.FC = () => {
           {events.length > 2 && (
             <button
               onClick={() => scroll("left")}
-              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover/slider:opacity-100 transition hover:scale-110"
+              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
             >
               <FaArrowLeft />
             </button>
@@ -1099,7 +1102,7 @@ const KidsCoursesSection: React.FC = () => {
           {events.length > 2 && (
             <button
               onClick={() => scroll("right")}
-              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover/slider:opacity-100 transition hover:scale-110"
+              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
             >
               <FaArrowRight />
             </button>

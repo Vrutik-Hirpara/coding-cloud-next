@@ -413,12 +413,14 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type EventItem = {
   id: number;
   slug: string;
   image: string;
+  rating: number;   // 👈 ADD THIS
+
   title: string;
   subtitle: string;
   author: string;
@@ -439,9 +441,33 @@ interface Props {
 }
 
 const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
+  const [avgRating, setAvgRating] = useState(0);
+  const [totalReviews, setTotalReviews] = useState(0);
+
+  useEffect(() => {
+    const fetchRating = async () => {
+      try {
+        const res = await fetch(
+          `https://codingcloud.pythonanywhere.com/course_average_rating/?course_id=${event.id}`
+        );
+
+        const json = await res.json();
+        const data = json.course_average_rating?.[0];
+
+        if (data) {
+          setAvgRating(data.average_rating);
+          setTotalReviews(data.total_reviews);
+        }
+      } catch (err) {
+        console.error("Rating fetch error", err);
+      }
+    };
+
+    if (event?.id) fetchRating();
+  }, [event?.id]);
   return (
     <div className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] p-2 lg:min-w-[350px] w-full max-w-[90vw] sm:max-w-none h-full">
-      
+
       {/* ---------- DESIGN 1 ---------- */}
       {variant === "default" && (
         <div className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col h-full w-full">
@@ -460,7 +486,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
           </div>
 
           {/* CONTENT */}
-          <div className="px-6 pt-6 pb-8 flex flex-col flex-grow">
+          <div className="px-6 pt-6  flex flex-col flex-grow">
 
             {/* TITLE */}
             <h3 className="text-xl font-bold mb-3 line-clamp-2">
@@ -482,11 +508,35 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
               <span>{event.lessons || 0} Lessons</span>
               <span>{event.students || 0} Students</span>
             </div>
+             <div className="flex items-center gap-1">
+              <span className="font-bold text-gray-900">{avgRating.toFixed(1)}</span>
+
+              <div className="relative inline-block text-gray-300">
+                <span className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star}>★</span>
+                  ))}
+                </span>
+
+                <span
+                  className="flex absolute top-0 left-0 overflow-hidden text-yellow-400"
+                  style={{ width: `${(avgRating / 5) * 100}%` }}
+                >
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star}>★</span>
+                  ))}
+                </span>
+              </div>
+
+              <span className="text-[var(--color-heading)] text-sm">
+                ({totalReviews} ratings)
+              </span>
+            </div>
 
             {/* BUTTON */}
             <Link
               href={`/courses/${event.slug}`}
-              className="text-[var(--color-accent-purple)] font-semibold hover:underline mt-auto"
+              className="text-[var(--color-accent-purple)] font-semibold hover:underline mt-2"
             >
               Learn More →
             </Link>
@@ -520,8 +570,59 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
           {/* RIGHT CONTENT */}
           <div className="w-full sm:w-[60%] flex-1 flex flex-col h-full">
-            <div className="text-orange-400 text-sm mb-2">
-              ★★★★★ ({event.reviews || 0} Reviews)
+            {/* <div className="flex items-center gap-2 text-sm mb-2">
+
+              <span className="font-semibold text-gray-900">
+                {event.rating || 0}
+              </span>
+
+              <div className="relative inline-block text-gray-300">
+                
+                <span className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star}>★</span>
+                  ))}
+                </span>
+
+                
+                <span
+                  className="flex absolute top-0 left-0 overflow-hidden text-yellow-400"
+                  style={{ width: `${((event.rating || 0) / 5) * 100}%` }}
+                >
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star}>★</span>
+                  ))}
+                </span>
+              </div>
+
+              <span className="text-gray-500">
+                ({event.reviews || 0} Reviews)
+              </span>
+
+            </div> */}
+            <div className="flex items-center gap-1">
+              <span className="font-bold text-gray-900">{avgRating.toFixed(1)}</span>
+
+              <div className="relative inline-block text-gray-300">
+                <span className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star}>★</span>
+                  ))}
+                </span>
+
+                <span
+                  className="flex absolute top-0 left-0 overflow-hidden text-yellow-400"
+                  style={{ width: `${(avgRating / 5) * 100}%` }}
+                >
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star}>★</span>
+                  ))}
+                </span>
+              </div>
+
+              <span className="text-[var(--color-heading)] text-sm">
+                ({totalReviews} ratings)
+              </span>
             </div>
 
             <h3 className="text-xl sm:text-2xl font-bold mb-2 line-clamp-2">
@@ -545,7 +646,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
             <div className="flex justify-between items-center mt-auto">
               <span className="font-bold text-lg">
-                {/* {event.price} */}
+
               </span>
 
               <Link

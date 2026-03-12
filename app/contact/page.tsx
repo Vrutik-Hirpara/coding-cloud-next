@@ -529,7 +529,7 @@ export default function ContactPage() {
     },
     {
       title: "Our Email Address",
-      values: ["info@codingcloudinstitute.com", "pune@codingcloudinstitute.com"],
+      values: ["komal@codingcloudinstitute.com", "pune@codingcloudinstitute.com","info@codingcloudinstitute.com"],
       icon: <FaEnvelope />,
     },
     {
@@ -672,7 +672,7 @@ export default function ContactPage() {
       {/* ================= CONTACT CARDS ================= */}
       <section className="pb-16 md:pb-24 w-full">
         <div className="container-custom px-4 sm:px-6 mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-4">
             {contactData.map((item, i) => (
               <motion.div
                 key={i}
@@ -846,7 +846,7 @@ export default function ContactPage() {
       </section>
 
       {/* ================= GOOGLE MAP SECTION ================= */}
-      <section className="pb-20 md:pb-24 w-full">
+      {/* <section className="pb-20 md:pb-24 w-full">
         <div className="container-custom px-4 sm:px-6 mx-auto">
           <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
             <iframe
@@ -861,7 +861,44 @@ export default function ContactPage() {
             ></iframe>
           </div>
         </div>
-      </section>
+      </section> */}
+      <section className="pb-20 md:pb-24 w-full">
+  <div className="container-custom px-4 sm:px-6 mx-auto">
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      {/* Pune Map */}
+      <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.5146829681908!2d73.9254148!3d18.505629700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ebbf356e2f3f%3A0x4ef27a8683922201!2sCoding%20Cloud%20Institute%20%7C%20Data%20Science%20%2C%20Data%20Analyst%20%2CMern%20Stack%20%2CJava%20%2C%20Python%2CAWS%20%2C%20React%20js%20%2CTraining%20Institute%20in%20Pune!5e0!3m2!1sen!2sin!4v1773307199781!5m2!1sen!2sin" 
+          width="100%"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
+        ></iframe>
+      </div>
+
+      {/* Ahmedabad Map */}
+      <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
+        <iframe
+          src="https://www.google.com/maps?q=401%2C%204th%20Floor%2C%20Sapphire%20Complex%2C%20Chimanlal%20Girdharlal%20Rd%2C%20near%20Yes%20Bank%2C%20Ellisbridge%2C%20Ahmedabad%2C%20Gujarat%20380009&output=embed"
+          width="100%"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
+        ></iframe>
+      </div>
+
+    </div>
+
+  </div>
+</section>
     </div>
   );
 }

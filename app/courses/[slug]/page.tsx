@@ -144,7 +144,7 @@ export default function Page() {
         </motion.div>
       </div> */}
 
-<section
+      <section
         className="pt-16 pb-32 pl-4 md:pl-12"
         style={{
           backgroundImage: `linear-gradient(rgb(148 179 246) 0%, rgb(79, 130, 240) 45%, rgb(147 173 252) 100%), url(${getImageUrl(
@@ -182,8 +182,8 @@ export default function Page() {
             </div>
 
             {/* Heading */}
-<h1 className="flex items-center gap-4 text-3xl md:text-4xl text-[50px] font-[700] lg:text-5xl font-bold text-gray-900 mb-6 leading-relaxed">       
-         {/* <Image
+            <h1 className="flex items-center gap-4 text-3xl md:text-4xl text-[50px] font-[700] lg:text-5xl font-bold text-gray-900 mb-6 leading-relaxed">
+              {/* <Image
                 src={getImageUrl(course.image)}
                 alt={course.name}
                 width={80}
@@ -211,24 +211,32 @@ export default function Page() {
                 <span className="text-yellow-400">★★★★★</span>
                 <span className="text-[var(--color-heading)] text-sm">({totalReviews} ratings)</span>
               </div> */}
-<div className="flex items-center gap-1">
-  <span className="font-bold text-gray-900">{avgRating}</span>
+              <div className="flex items-center gap-1">
+                <span className="font-bold text-gray-900">{avgRating}</span>
 
-  <span className="flex">
-    {[1,2,3,4,5].map((star) => (
-      <span
-        key={star}
-        className={star <= avgRating ? "text-yellow-400" : "text-gray-300"}
-      >
-        ★
-      </span>
-    ))}
-  </span>
+                <div className="relative inline-block text-gray-300">
+                  {/* Gray stars */}
+                  <span className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star}>★</span>
+                    ))}
+                  </span>
 
-  <span className="text-[var(--color-heading)] text-sm">
-    ({totalReviews} ratings)
-  </span>
-</div>
+                  {/* Yellow overlay */}
+                  <span
+                    className="flex absolute top-0 left-0 overflow-hidden text-yellow-400"
+                    style={{ width: `${(avgRating / 5) * 100}%` }}
+                  >
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star}>★</span>
+                    ))}
+                  </span>
+                </div>
+
+                <span className="text-[var(--color-heading)] text-sm">
+                  ({totalReviews} ratings)
+                </span>
+              </div>
               {/* Students */}
               <div className="text-[var(--color-heading)] text-sm">
                 {course.students || 0} students
@@ -241,7 +249,7 @@ export default function Page() {
             </div>
 
             {/* Course Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-md text-[var(--color-heading)]">              
+            <div className="flex flex-wrap items-center gap-4 text-md text-[var(--color-heading)]">
               <span>🎓 {course.language}</span>
               <span>🏆 Certified Course</span>
             </div>
