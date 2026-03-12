@@ -486,7 +486,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
           </div>
 
           {/* CONTENT */}
-          <div className="px-6 pt-6  flex flex-col flex-grow">
+          <div className="px-6 pt-6 pb-4 flex flex-col flex-grow">
 
             {/* TITLE */}
             <h3 className="text-xl font-bold mb-3 line-clamp-2">
@@ -508,8 +508,8 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
               <span>{event.lessons || 0} Lessons</span>
               <span>{event.students || 0} Students</span>
             </div>
-             <div className="flex items-center gap-1">
-              <span className="font-bold text-gray-900">{avgRating.toFixed(1)}</span>
+             <div className="flex text-gray-500 items-center gap-1">
+              <span className="font-bold text-gray-500">{avgRating.toFixed(1)}</span>
 
               <div className="relative inline-block text-gray-300">
                 <span className="flex">
@@ -528,7 +528,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
                 </span>
               </div>
 
-              <span className="text-[var(--color-heading)] text-sm">
+              <span className="text-[var(--color-heading)] text-sm text-gray-500">
                 ({totalReviews} ratings)
               </span>
             </div>
@@ -558,11 +558,11 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
             />
 
             <div className="flex gap-3 mt-3">
-              <span className="bg-gray-100 text-xs px-3 py-2 rounded-md shadow flex items-center gap-1">
+              <span className="bg-gray-100 text-xs px-1 py-2 rounded-md shadow flex items-center gap-1">
                 🎥 {event.lessons || 0} lesson
               </span>
 
-              <span className="bg-gray-100 text-xs px-3 py-2 rounded-md shadow flex items-center gap-1">
+              <span className="bg-gray-100 text-xs px-1 py-2 rounded-md shadow flex items-center gap-1">
                 👨‍🎓 {event.students || 0} Students
               </span>
             </div>
@@ -601,7 +601,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
             </div> */}
             <div className="flex items-center gap-1">
-              <span className="font-bold text-gray-900">{avgRating.toFixed(1)}</span>
+              <span className="font-bold text-gray-500">{avgRating.toFixed(1)}</span>
 
               <div className="relative inline-block text-gray-300">
                 <span className="flex">
@@ -620,7 +620,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
                 </span>
               </div>
 
-              <span className="text-[var(--color-heading)] text-sm">
+              <span className="text-[var(--color-heading)] text-sm text-gray-500">
                 ({totalReviews} ratings)
               </span>
             </div>
