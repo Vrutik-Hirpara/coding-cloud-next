@@ -284,7 +284,7 @@ const Footer = () => {
     <footer className="bg-[var(--color-bg-light)] border-t border-[var(--color-border)]">
       <div className=" mx-auto px-5 pt-16 pb-12 sm:px-8 md:px-12 lg:px-16">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
 
           {/* BRAND */}
           <motion.div
@@ -292,7 +292,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 flex flex-col items-start"
+            className="lg:col-span-3 flex flex-col items-start mb-4"
           >
             {/* LOGO */}
             {/* <div className="relative w-[150px] sm:w-[170px] h-[45px] sm:h-[50px] mb-6">
@@ -379,7 +379,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
           </motion.div>
 
           {/* LINKS */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-2 gap-6">
+          <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-6">
 
             {/* COURSES */}
             <motion.div
@@ -392,12 +392,12 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                 Top Course
               </h3>
 
-              <ul className="space-y-4 text-[var(--color-text)]">
+              <ul className="space-y-4 text-md text-[var(--color-text)]">
                 {courses.map((course) => (
                   <li key={course.id}>
                     <Link
                       href={`/courses/${course.slug}`}
-                      className="relative group hover:text-[var(--color-accent-purple)]"
+                      className="relative text-md group hover:text-[var(--color-accent-purple)]"
                     >
                       {course.name}
                       <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full " />
@@ -411,67 +411,101 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
 
 
             {/* COMPANY */}
-            {/* <motion.div
+            {/* AHMEDABAD OFFICE */}
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
               <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
-                Our Address
+                Ahmedabad Office
               </h3>
 
-              <ul className="space-y-4 text-[var(--color-text)]">
-                {our.map((item) => (
-                  <li key={item.id}>
-                    <Link
-                      href={item.link}
-                      className="relative group transition-colors duration-300 hover:text-[var(--color-accent-purple)]"
-                    >
-                      {item.name}
-                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div> */}
+              <ul className="space-y-4 text-[var(--color-text)] text-md">
+                <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
+                  Phone: +91 95373 44018
+                </li>
 
-            {/* CONTACT */}
-            {/* <motion.div
+                <li className="space-y-1">
+
+
+                  <a
+                    href="mailto:komal@codingcloudinstitute.com"
+                    className="block hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                  >
+                    komal@codingcloudinstitute.com
+                  </a>
+                  <a
+                    href="mailto:info@codingcloudinstitute.com"
+                    className="block hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                  >
+                    info@codingcloudinstitute.com
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://maps.app.goo.gl/HtXAGaK1jPQzcqhe6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-word"
+                  >
+                    401, 4th Floor, Sapphire Complex, Chimanlal Girdharlal Rd, near Yes Bank,
+                    Ellisbridge, Ahmedabad, Gujarat 380009
+                  </a>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* PUNE OFFICE */}
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
               viewport={{ once: true }}
-              className="col-span-2 sm:col-span-1"
             >
               <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
-                Get Address
+                Pune Office
               </h3>
 
-              <div className="space-y-4 text-sm text-[var(--color-text)] mb-8">
-                <p className="hover:text-[var(--color-accent-purple)] cursor-pointer">
+              <ul className="space-y-4 text-md text-[var(--color-text)] mb-8">
+
+                <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                   Phone: +91 95373 44018
-                </p>
-                <p className="text-sm hover:text-[var(--color-accent-purple)] cursor-pointer break-all">
-                  E-mail: pune@codingcloudinstitute.com
-                </p>
-                <p>
+                </li>
+                <li className="space-y-1">
+
+
                   <a
-                    href="https://www.google.com/maps?q=Office+No.+201,+2nd+Floor,+Polaris+Building,+Nr.+Noble+Hospital+Hadapsar,+Pune+411028"
+                    href="mailto:komal@codingcloudinstitute.com"
+                    className="block hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                  >
+                    pune@codingcloudinstitute.com
+                  </a>
+                  <a
+                    href="mailto:info@codingcloudinstitute.com"
+                    className="block hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                  >
+                    info@codingcloudinstitute.com
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://maps.app.goo.gl/CEnMtxg8EzRNjNQBA"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm hover:text-[var(--color-accent-purple)] cursor-pointer break-all"
+                    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-word"
                   >
-                    Office No. 201, 2nd Floor, Polaris Building, Nr. Noble
-                    Hospital Hadapsar, Pune, 411028
+                    Office No. 201, 2nd Floor, Polaris Building, Nr. Noble Hospital Hadapsar,
+                    Pune, 411028
                   </a>
-                </p>
-              </div>
+                </li>
 
+              </ul>
+            </motion.div>
 
-            </motion.div> */}
-
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -484,7 +518,6 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
 
               <div className="space-y-4 text-sm text-[var(--color-text)] mb-8">
 
-                {/* Mobile */}
                 <div>
                   <p className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                     <span className="font-semibold">Mobile:</span> +91 95373 44018
@@ -525,7 +558,6 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                   <div className="space-y-3 ml-4">
                     
 
-                    {/* Ahmedabad Address */}
                     <p>
                       <a
                         href="https://www.google.com/maps?q=401,+4th+Floor,+Sapphire+Complex,+Chimanlal+Girdharlal+Rd,+near+Yes+Bank,+Ellisbridge,+Ahmedabad,+Gujarat+380009"
@@ -536,7 +568,6 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                         Office No. 401, 4th Floor, Sapphire Complex, Chimanlal Girdharlal Rd, near Yes Bank, Ellisbridge, Ahmedabad, Gujarat 380009
                       </a>
                     </p>
-                    {/* Pune Address */}
                     <p>
                       <a
                         href="https://maps.app.goo.gl/CEnMtxg8EzRNjNQBA"
@@ -551,7 +582,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                 </div>
 
               </div>
-            </motion.div>
+            </motion.div> */}
 
           </div>
         </div>
@@ -563,7 +594,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true }}
-          className="border-t border-[var(--color-border)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--color-text)]"
+          className="border-t border-[var(--color-border)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-md text-[var(--color-text)]"
         >
           <p>
             Copyright © 2025 <span className="font-semibold">Coding Cloud</span>. All Rights Reserved
