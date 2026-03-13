@@ -96,7 +96,7 @@ export default function BlogDetailPage() {
         className="w-full h-[67vh]"
         style={{
           backgroundImage:
-            'linear-gradient(rgb(148, 179, 246) 0%, rgb(79, 130, 240) 45%, rgb(147, 173, 252) 100%), url("https://codingcloud.pythonanywhere.com/media/course_banners/about-02.png")',
+            `inear-gradient(rgb(148, 179, 246) 0%, rgb(79, 130, 240) 45%, rgb(147, 173, 252) 100%), url("${BASE_URL}/media/course_banners/about-02.png")`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",

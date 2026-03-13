@@ -71,7 +71,7 @@ export default function Page() {
     const fetchRating = async () => {
       try {
         const res = await fetch(
-          `https://codingcloud.pythonanywhere.com/course_average_rating/?course_id=${course?.id}`
+          `${BASE_URL}/course_average_rating/?course_id=${course?.id}`
         );
 
         const json = await res.json();

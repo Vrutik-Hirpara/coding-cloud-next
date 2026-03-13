@@ -81,7 +81,7 @@ export default function CourseTabs({ course, events }: any) {
             }
 
             const res = await fetch(
-                "https://codingcloud.pythonanywhere.com/testimonials/",
+                `${BASE_URL}/testimonials/`,
                 {
                     method: "POST",
                     body: form, // ❗ no headers

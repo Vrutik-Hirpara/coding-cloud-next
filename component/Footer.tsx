@@ -471,7 +471,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
               <ul className="space-y-4 text-md text-[var(--color-text)] mb-8">
 
                 <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
-                  Phone: +91 95373 44018
+                  Phone: +91 93289 44018
                 </li>
                 <li className="space-y-1">
 

@@ -412,6 +412,7 @@
 
 "use client";
 
+import { BASE_URL } from "@/lib/api";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -448,7 +449,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
     const fetchRating = async () => {
       try {
         const res = await fetch(
-          `https://codingcloud.pythonanywhere.com/course_average_rating/?course_id=${event.id}`
+          `${BASE_URL}/course_average_rating/?course_id=${event.id}`
         );
 
         const json = await res.json();

@@ -457,6 +457,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Phone, MessageSquare, ArrowRight, CheckCircle } from "lucide-react";
 import Button from "@/component/ui/Button";
+import { BASE_URL } from "@/lib/api";
 
 export default function RegisterPage() {
 
@@ -502,7 +503,7 @@ export default function RegisterPage() {
     setErrors({});
 
     try {
-      const res = await fetch("https://codingcloud.pythonanywhere.com/register_msg/", {
+      const res = await fetch(`${BASE_URL}/register_msg/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

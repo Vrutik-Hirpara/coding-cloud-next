@@ -271,6 +271,7 @@ import { useRouter } from "next/navigation"; // Import router
 import EventCard from "./EventCard";
 import Pill from "./ui/Pill";
 import Heading from "./ui/Heading";
+import { BASE_URL } from "@/lib/api";
 
 type CourseApi = {
   id: number;
@@ -344,7 +345,7 @@ const FeaturedCoursesSection = () => {
     const fetchCourses = async () => {
       try {
         const res = await fetch(
-          "https://codingcloud.pythonanywhere.com/course/"
+          `${BASE_URL}/course/`
         );
         const json = await res.json();
 
@@ -356,7 +357,7 @@ const FeaturedCoursesSection = () => {
           (course: CourseApi) => ({
             id: course.id,
             image:
-              "https://codingcloud.pythonanywhere.com" + course.image,
+              `${BASE_URL}` + course.image,
             title: course.name,
             subtitle: course.category_details?.name || "Course",
             author: "Coding Cloud",
