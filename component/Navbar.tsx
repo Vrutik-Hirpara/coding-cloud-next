@@ -3584,7 +3584,7 @@ export default function Navbar() {
         }`}
     >
       {/* ── TOP BAR ── */}
-      <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-4 sm:px-8 md:px-12 lg:px-6">
+      <div className="flex h-10 sm:h-12 bg-[#1a1a2e] text-[var(--color-muted-light)] text-xs sm:text-sm justify-between items-center px-4 sm:px-8 md:px-4 lg:px-6">
         <div className="flex gap-3 sm:gap-6 min-w-max">
           <a
             href="https://www.instagram.com/codingcloud_institute/"
