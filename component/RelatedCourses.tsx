@@ -346,79 +346,199 @@ export default function RelatedCourses() {
             Loading courses...
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          // <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            {courses.map((course) => {
-              const imageUrl = getImageUrl(course.image);
+          //   {courses.map((course) => {
+          //     const imageUrl = getImageUrl(course.image);
 
-              return (
-                <div
-                  key={course.id}
-                  className="bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
-                >
-                  {/* IMAGE */}
-                  <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
-                    <Image
-                      src={imageUrl}
-                      alt={course.name}
-                      fill
-                      unoptimized
-                      className="absolute object-contain group-hover:scale-101 transition duration-500"
-                    />
+          //     return (
+          //       <div
+          //         key={course.id}
+          //         className="bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
+          //       >
+          //         {/* IMAGE */}
+          //         <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
+          //           <Image
+          //             src={imageUrl}
+          //             alt={course.name}
+          //             fill
+          //             unoptimized
+          //             className="absolute object-contain group-hover:scale-101 transition duration-500"
+          //           />
 
-                    <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
-                      {course.duration || "Course"}
-                    </span>
-                  </div>
+          //           <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
+          //             {course.duration || "Course"}
+          //           </span>
+          //         </div>
 
-                  {/* CONTENT */}
-                  <div className="p-6">
-                    <div className="text-orange-400 text-sm mb-2">
-                      ★ {ratings[course.id]?.average_rating || 0}
+          //         {/* CONTENT */}
+          //         <div className="p-6">
+          //           <div className="text-orange-400 text-sm mb-2">
+          //             ★ {ratings[course.id]?.average_rating || 0}
 
-                      <span className="text-[var(--color-muted)] ml-2">
-                        ({ratings[course.id]?.total_reviews || 0} Reviews)
-                      </span>
-                    </div>
+          //             <span className="text-[var(--color-muted)] ml-2">
+          //               ({ratings[course.id]?.total_reviews || 0} Reviews)
+          //             </span>
+          //           </div>
 
-                    <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
-                      {course.name}
-                    </h3>
+          //           <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
+          //             {course.name}
+          //           </h3>
 
-                    <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
-                      <span>📘 {course.lecture || 0} Lessons</span>
-                      <span>👨‍🎓 {course.students || 0} Students</span>
-                    </div>
+          //           <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
+          //             <span>📘 {course.lecture || 0} Lessons</span>
+          //             <span>👨‍🎓 {course.students || 0} Students</span>
+          //           </div>
 
-                    {/* <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
-                      {course?.text?.replace(/<[^>]*>/g, "")}
-                    </p> */}
-                    <div
-                      className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
-                      dangerouslySetInnerHTML={{ __html: course?.text || "" }}
-                    />
-                    <div className="text-xs text-[var(--color-muted-light)] mb-4">
-                      Category: {course.category_details?.name}
-                    </div>
+          //           {/* <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
+          //             {course?.text?.replace(/<[^>]*>/g, "")}
+          //           </p> */}
+          //           <div
+          //             className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+          //             dangerouslySetInnerHTML={{ __html: course?.text || "" }}
+          //           />
+          //           <div className="text-xs text-[var(--color-muted-light)] mb-4">
+          //             Category: {course.category_details?.name}
+          //           </div>
 
-                    <div className="flex items-center justify-between">
-                      <Link
-                        href={`/courses/${course.slug}`}
-                        className="text-[var(--color-accent-purple)] font-semibold hover:underline"
-                      >
-                        Learn More →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          //           <div className="flex items-center justify-between">
+          //             <Link
+          //               href={`/courses/${course.slug}`}
+          //               className="text-[var(--color-accent-purple)] font-semibold hover:underline"
+          //             >
+          //               Learn More →
+          //             </Link>
+          //           </div>
+          //         </div>
+          //       </div>
+          //     );
+          //   })}
 
-            {/* placeholder for grid balance */}
-            {courses.length === 2 && (
-              <div className="hidden lg:block"></div>
-            )}
+          //   {/* placeholder for grid balance */}
+          //   {courses.length === 2 && (
+          //     <div className="hidden lg:block"></div>
+          //   )}
+          // </div>
+          <div className="relative group/slider flex items-center justify-center px-4 md:px-8">
+
+  {/* LEFT ARROW */}
+  {courses.length > 3 && (
+    <button
+      onClick={() => {
+        const container = document.getElementById("courseScroll");
+        if (!container) return;
+        container.scrollBy({ left: -336 * 3, behavior: "smooth" });
+      }}
+      className="
+        absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 z-30
+        w-12 h-12 rounded-full flex items-center justify-center
+        text-[var(--color-accent-purple)] md:bg-[var(--color-accent-purple)]
+        md:text-white md:shadow-lg hover:scale-110 transition
+      "
+    >
+      ‹
+    </button>
+  )}
+
+  {/* RIGHT ARROW */}
+  {courses.length > 3 && (
+    <button
+      onClick={() => {
+        const container = document.getElementById("courseScroll");
+        if (!container) return;
+        container.scrollBy({ left: 336 * 3, behavior: "smooth" });
+      }}
+      className="
+        absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 z-30
+        w-12 h-12 rounded-full flex items-center justify-center
+        text-[var(--color-accent-purple)] md:bg-[var(--color-accent-purple)]
+        md:text-white md:shadow-lg hover:scale-110 transition
+      "
+    >
+      ›
+    </button>
+  )}
+
+  {/* CONTENT */}
+  <div
+    id="courseScroll"
+    className={`
+      ${courses.length <= 3
+        ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-full"
+        : "grid grid-flow-col auto-cols-[320px] gap-8 overflow-x-auto hide-scrollbar scroll-smooth w-fit"}
+    `}
+  >
+    {courses.map((course) => {
+      const imageUrl = getImageUrl(course.image);
+
+      return (
+        <div
+          key={course.id}
+          className="
+            bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg
+            transition-all duration-300 overflow-hidden group
+            min-w-[320px]
+          "
+        >
+          {/* IMAGE */}
+          <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
+            <Image
+              src={imageUrl}
+              alt={course.name}
+              fill
+              unoptimized
+              className="absolute object-contain group-hover:scale-101 transition duration-500"
+            />
+
+            <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
+              {course.duration || "Course"}
+            </span>
           </div>
+
+          {/* CONTENT */}
+          <div className="p-6">
+            <div className="text-orange-400 text-sm mb-2">
+              ★ {ratings[course.id]?.average_rating || 0}
+              <span className="text-[var(--color-muted)] ml-2">
+                ({ratings[course.id]?.total_reviews || 0} Reviews)
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
+              {course.name}
+            </h3>
+
+            <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
+              <span>📘 {course.lecture || 0} Lessons</span>
+              <span>👨‍🎓 {course.students || 0} Students</span>
+            </div>
+
+            <div
+              className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+              dangerouslySetInnerHTML={{ __html: course?.text || "" }}
+            />
+
+            <div className="text-xs text-[var(--color-muted-light)] mb-4">
+              Category: {course.category_details?.name}
+            </div>
+
+            <div className="flex items-center justify-between">
+              <Link
+                href={`/courses/${course.slug}`}
+                className="text-[var(--color-accent-purple)] font-semibold hover:underline"
+              >
+                Learn More →
+              </Link>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+
+    {/* balance */}
+    {courses.length === 2 && <div className="hidden lg:block"></div>}
+  </div>
+</div>
         )}
       </div>
     </section>

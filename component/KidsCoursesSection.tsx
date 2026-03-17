@@ -1090,15 +1090,28 @@ const KidsCoursesSection: React.FC = () => {
           
           {/* LEFT BUTTON - only show if more than 2 cards */}
           {events.length > 2 && (
+            // <button
+            //   onClick={() => scroll("left")}
+            //   className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
+            // >
+            //   <FaArrowLeft />
+            // </button>
             <button
-              onClick={() => scroll("left")}
-              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
-            >
-              <FaArrowLeft />
-            </button>
+  onClick={() => scroll("left")}
+  className={`
+    absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
+    w-12 h-12 rounded-full flex items-center justify-center
+    transition hover:scale-110
+    text-[var(--color-accent-purple)] drop-shadow-lg
+    md:bg-[var(--color-accent-purple)]
+    md:text-white
+    md:shadow-lg
+  `}
+>
+  <FaArrowLeft />
+</button>
           )}
 
-          {/* RIGHT BUTTON - only show if more than 2 cards */}
           {events.length > 2 && (
             <button
               onClick={() => scroll("right")}
@@ -1113,7 +1126,7 @@ const KidsCoursesSection: React.FC = () => {
             ref={scrollRef}
             className={`
               ${events.length > 2 
-                ? 'flex overflow-x-auto gap-6 md:gap-8 lg:gap-6 pb-4 hide-scrollbar scroll-smooth' 
+                ? 'flex overflow-x-auto gap-6  pt-2 md:gap-8 lg:gap-6 pb-4 hide-scrollbar scroll-smooth' 
                 : 'grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10'
               }
             `}

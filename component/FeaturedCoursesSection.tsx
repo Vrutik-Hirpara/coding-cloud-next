@@ -291,7 +291,7 @@ type EventItem = {
   id: number;
   image: string;
   title: string;
-      rating: number;   // 👈 ADD THIS
+  rating: number;   // 👈 ADD THIS
 
   subtitle: string;
   author: string;
@@ -424,26 +424,62 @@ const FeaturedCoursesSection = () => {
         </div>
 
         {/* SLIDER */}
-        <div className="relative group/slider flex items-center justify-center">
+        <div className="relative group/slider flex items-center justify-center px-4 md:px-8">
 
           {/* LEFT BTN */}
-          <button
+          {/* <button
             onClick={() => scroll("left")}
             className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
+          >
+            <FaArrowLeft />
+          </button> */}
+          <button
+            onClick={() => scroll("left")}
+            className="
+    absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
+    w-12 h-12 rounded-full flex items-center justify-center
+    transition hover:scale-110
+
+    /* Small screen */
+    text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
+
+    /* Medium+ screen */
+    md:bg-[var(--color-accent-purple)] 
+    md:text-[var(--color-white)] 
+    md:shadow-lg
+  "
           >
             <FaArrowLeft />
           </button>
 
           {/* RIGHT BTN */}
-          <button
+          {/* <button
             onClick={() => scroll("right")}
             className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
+          >
+            <FaArrowRight />
+          </button> */}
+          <button
+            onClick={() => scroll("right")}
+            className="
+    absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30
+    w-12 h-12 rounded-full flex items-center justify-center
+    transition hover:scale-110
+
+    /* Small screen */
+    text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
+
+    /* Medium+ screen */
+    md:bg-[var(--color-accent-purple)] 
+    md:text-[var(--color-white)] 
+    md:shadow-lg
+  "
           >
             <FaArrowRight />
           </button>
 
           {/* SCROLL CONTAINER */}
-          <div
+          {/* <div
             ref={scrollRef}
             className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"          >
             {events.map((ev) => (
@@ -463,6 +499,106 @@ const FeaturedCoursesSection = () => {
   rounded-3xl border border-white/20
   transition-all duration-300 hover:-translate-y-2 cursor-pointer"
               >
+                <div className="flex flex-col w-full h-full">
+                  <EventCard event={ev} />
+                </div>
+              </div>
+            ))}
+          </div> */}
+          {/* <div
+  ref={scrollRef}
+  className="flex overflow-x-auto gap-4 px-4 md:px-8 pb-10 hide-scrollbar scroll-smooth"
+>
+  {events.map((ev) => (
+    <div
+      key={ev.id}
+      onClick={() => handleCardClick(ev.id, ev.slug)}
+      className="w-[280px] sm:w-[300px] md:w-[320px] flex-shrink-0 p-2
+      rounded-3xl border border-white/20
+      transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+    >
+      <EventCard event={ev} />
+    </div>
+  ))}
+</div> */}
+          {/* <div
+            ref={scrollRef}
+            className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"
+          >
+            {events.map((ev) => (
+              <div
+                key={ev.id}
+                onClick={() => handleCardClick(ev.id, ev.slug)}
+                className="
+        w-[320px]        // Fixed width 320px
+        flex-shrink-0 
+        p-2 
+        rounded-3xl 
+        transition-all 
+        duration-300 
+        hover:-translate-y-2 
+        cursor-pointer
+      "
+                style={{ width: '320px', minWidth: '320px', maxWidth: '320px' }} // Inline style for force
+              >
+                <div className="flex flex-col w-full h-full">
+                  <EventCard event={ev} />
+                </div>
+              </div>
+            ))}
+          </div> */}
+          {/* <div
+            ref={scrollRef}
+            className="
+    flex flex-nowrap
+    overflow-x-auto
+    gap-4 pb-10 px-4 md:px-8 w-full
+    hide-scrollbar scroll-smooth
+  "
+          >
+            {events.map((ev) => (
+              <div
+                key={ev.id}
+                onClick={() => handleCardClick(ev.id, ev.slug)}
+                className="
+        flex-shrink-0
+        w-[320px] sm:w-[320px] md:w-[320px]
+        p-2 rounded-3xl
+        transition-all duration-300 hover:-translate-y-2 cursor-pointer
+      "
+              >
+                <div className="flex flex-col w-full h-full">
+                  <EventCard event={ev} />
+                </div>
+              </div>
+            ))}
+          </div> */}
+<div
+  ref={scrollRef}
+  className="
+    grid grid-flow-col
+    auto-cols-[335px]
+    overflow-x-auto
+    gap-4
+    pb-10 pt-2
+    hide-scrollbar scroll-smooth
+
+    max-w-[335px]                 
+    md:max-w-[calc(335px*3+32px)]   
+    lg:max-w-[calc(335px*3+32px)]   
+    xl:max-w-[calc(335px*4+48px)]   
+  "
+>
+  {events.map((ev) => (
+    <div
+      key={ev.id}
+      onClick={() => handleCardClick(ev.id, ev.slug)}
+      className="
+        w-[335px]
+        p-2 rounded-3xl
+        transition-all duration-300 hover:-translate-y-2 cursor-pointer
+      "
+    >
                 <div className="flex flex-col w-full h-full">
                   <EventCard event={ev} />
                 </div>
