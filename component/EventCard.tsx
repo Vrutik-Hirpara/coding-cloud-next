@@ -413,6 +413,7 @@
 "use client";
 
 import { BASE_URL } from "@/lib/api";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -678,12 +679,25 @@ return (
       <div className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col h-full w-full">
 
         {/* IMAGE */}
-        <div className="relative overflow-hidden">
-          <img
+        <div className="relative overflow-hidden h-[215px] w-full">
+          {/* <img
             src={event.image}
             alt={event.title}
             className="w-full h-[220px] object-contain"
-          />
+          /> */}
+           <Image
+                              src={event.image}
+                              alt={event.title}
+                              fill
+                              className="object-contain aspect-square"
+                              // sizes="320px"
+                              
+                              onError={(e) => {
+                                // Fallback if image fails to load
+                                const target = e.target as HTMLImageElement;
+                                target.src = '/images/placeholder-course.jpg';
+                              }}
+                            />
 
           <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full text-xs font-semibold">
             {event.dateRange}

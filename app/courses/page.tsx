@@ -105,7 +105,7 @@ export default function CoursesPage() {
   // Loading Skeleton
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-center text-[var(--color-text-strong)]">
           All Courses
         </h1>
@@ -126,7 +126,7 @@ export default function CoursesPage() {
   // Error State
   if (error) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-[var(--color-text-strong)]">
           All Courses
         </h1>
@@ -146,7 +146,7 @@ export default function CoursesPage() {
   // Empty State
   if (!courses || courses.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-[var(--color-text-strong)]">
           All Courses
         </h1>
@@ -159,7 +159,7 @@ export default function CoursesPage() {
 
   // Success State with Courses
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -195,7 +195,7 @@ export default function CoursesPage() {
                     <img
                       src={imageUrl}
                       alt={course.name}
-                      className="w-full h-full object-contain hover:scale-110 transition duration-500"
+                      className="w-full h-full object-contain  transition duration-500"
                       onError={(e) => {
                         // Fallback if image fails to load
                         const target = e.target as HTMLImageElement;

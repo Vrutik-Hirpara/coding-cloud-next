@@ -839,6 +839,8 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
       return;
     }
 
+    console.log("Mapping courses to cards:", courses); // Debug log
+
     const mapped: Card[] = courses
       .filter((course): course is Course => course !== null && typeof course === 'object' && 'id' in course)
       .map((course: Course) => ({
@@ -856,7 +858,7 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
             : `${BASE_URL}${course.image}`
           : '/images/placeholder-course.jpg', // FALLBACK IMAGE
       }));
-
+console.log("Mapped cards:", mapped); // Debug log  
     setCards(mapped);
   }, [courses]);
 
@@ -978,6 +980,7 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
         onMouseLeave={handleMouseLeave}
       >
         {cards.slice(0, 3).map((card, index) => {
+          console.log("Rendering card:", card); // Debug log
           // Safety check for card
           if (!card) return null;
 
