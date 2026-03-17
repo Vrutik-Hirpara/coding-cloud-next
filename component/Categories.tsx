@@ -657,14 +657,23 @@ export default function Categories() {
                   className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
                 >
 
-                  <div className="relative h-20 w-20 mb-5">
+                  {/* <div className="relative h-20 w-20 mb-5">
                     <Image
                       src={imageUrl}
                       alt={cat.name}
                       fill
                       className="object-contain group-hover:scale-110 transition-transform duration-300"
                     />
-                  </div>
+                  </div> */}
+                  <div className="relative h-20 w-20 mb-5 overflow-hidden">
+  <Image
+    src={imageUrl || "/images/placeholder-course.jpg"}
+    alt={cat.name}
+    fill
+    className="object-contain object-center group-hover:scale-110 transition-transform duration-300"
+    unoptimized
+  />
+</div>
 
                   <h3 className="text-lg font-semibold text-center">
                     {cat.name}

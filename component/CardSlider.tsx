@@ -858,7 +858,7 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
             : `${BASE_URL}${course.image}`
           : '/images/placeholder-course.jpg', // FALLBACK IMAGE
       }));
-console.log("Mapped cards:", mapped); // Debug log  
+
     setCards(mapped);
   }, [courses]);
 
@@ -1026,7 +1026,7 @@ console.log("Mapped cards:", mapped); // Debug log
               className={cardClasses}
             >
               {/* IMAGE SECTION - Smaller height */}
-              <div className="h-[170px] relative overflow-hidden bg-gray-100">
+              {/* <div className="h-[170px] relative overflow-hidden bg-gray-100">
                 {card.image ? (
                   <Image
                     src={card.image}
@@ -1036,7 +1036,6 @@ console.log("Mapped cards:", mapped); // Debug log
                     sizes="320px"
                     priority={index === 0}
                     onError={(e) => {
-                      // Fallback if image fails to load
                       const target = e.target as HTMLImageElement;
                       target.src = '/images/placeholder-course.jpg';
                     }}
@@ -1047,13 +1046,41 @@ console.log("Mapped cards:", mapped); // Debug log
                   </div>
                 )}
 
-                {/* TAG - Smaller */}
                 <div className="absolute top-3 right-3 z-10">
                   <span className="px-3 py-1.5 bg-indigo-600 text-white text-xs font-bold rounded-md border border-white shadow-md">
                     {card.tag}
                   </span>
                 </div>
-              </div>
+              </div> */}
+              <div className="h-[170px] relative overflow-hidden bg-gray-100 rounded-xl">
+  
+  {/* IMAGE */}
+  {card.image ? (
+    <Image
+      src={card.image || "/images/placeholder-course.jpg"}
+      alt={card.title}
+      fill
+      className="object-contain object-center"
+      sizes="320px"
+      priority={index === 0}
+      unoptimized
+    />
+  ) : (
+    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600">
+      <span className="text-white text-2xl font-bold">
+        {card.title.charAt(0)}
+      </span>
+    </div>
+  )}
+
+  {/* TAG */}
+  <div className="absolute top-3 right-3 z-10">
+    <span className="px-3 py-1.5 bg-indigo-600 text-white text-xs font-bold rounded-md border border-white shadow-md">
+      {card.tag}
+    </span>
+  </div>
+
+</div>
 
               {/* CONTENT - Tighter spacing */}
               <div className="p-4">

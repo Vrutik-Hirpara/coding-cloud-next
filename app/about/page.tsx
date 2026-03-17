@@ -261,6 +261,7 @@ export default function AboutPage() {
                     height={400}
                     className="w-full h-auto object-cover"
                     style={{ width: "100%", height: "auto" }}
+                    unoptimized
                   />
 
                   {/* Overlay gradient */}

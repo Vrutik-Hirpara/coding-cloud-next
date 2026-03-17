@@ -330,7 +330,7 @@ const Footer = () => {
               icon={FaArrowRight}
               variant="gradient"
               size="md"
-              className="rounded-lg hover:scale-105 hover:shadow-lg transition-all duration-300"
+              className="rounded-lg  hover:shadow-lg transition-all duration-300"
             >
               Contact With Us
             </Button>

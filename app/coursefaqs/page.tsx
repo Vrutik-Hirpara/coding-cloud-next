@@ -316,6 +316,7 @@ export default function CourseFaqs() {
                                 alt={course.name}
                                 fill
                                 className="object-cover"
+                                unoptimized
                               />
                             </div>
                           ) : (

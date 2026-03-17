@@ -436,18 +436,17 @@ const FeaturedCoursesSection = () => {
           <button
             onClick={() => scroll("left")}
             className="
-    absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
-    w-12 h-12 rounded-full flex items-center justify-center
-    transition hover:scale-110
+  hidden md:flex
+  absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
+  w-12 h-12 rounded-full items-center justify-center
+  transition hover:scale-110
 
-    /* Small screen */
-    text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
+  text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
 
-    /* Medium+ screen */
-    md:bg-[var(--color-accent-purple)] 
-    md:text-[var(--color-white)] 
-    md:shadow-lg
-  "
+  md:bg-[var(--color-accent-purple)] 
+  md:text-[var(--color-white)] 
+  md:shadow-lg
+"
           >
             <FaArrowLeft />
           </button>
@@ -461,19 +460,18 @@ const FeaturedCoursesSection = () => {
           </button> */}
           <button
             onClick={() => scroll("right")}
-            className="
-    absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30
-    w-12 h-12 rounded-full flex items-center justify-center
-    transition hover:scale-110
+    className="
+  hidden md:flex
+  absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30
+  w-12 h-12 rounded-full items-center justify-center
+  transition hover:scale-110
 
-    /* Small screen */
-    text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
+  text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
 
-    /* Medium+ screen */
-    md:bg-[var(--color-accent-purple)] 
-    md:text-[var(--color-white)] 
-    md:shadow-lg
-  "
+  md:bg-[var(--color-accent-purple)] 
+  md:text-[var(--color-white)] 
+  md:shadow-lg
+"
           >
             <FaArrowRight />
           </button>

@@ -90,15 +90,27 @@ export default function Faq({ courseId }: { courseId: number }) {
               {/* 🔥 BODY */}
               <AnimatePresence>
                 {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35 }}
-                    className="px-5 pb-4 text-sm text-[var(--color-muted)] leading-relaxed"
-                  >
-                    {faq.answer}
-                  </motion.div>
+                  // <motion.div
+                  //   initial={{ height: 0, opacity: 0 }}
+                  //   animate={{ height: "auto", opacity: 1 }}
+                  //   exit={{ height: 0, opacity: 0 }}
+                  //   transition={{ duration: 0.35 }}
+                  //   className="px-5 pb-4 text-sm text-[var(--color-muted)] leading-relaxed"
+                  // >
+                  //   {faq.answer}
+                  // </motion.div>
+                    <motion.div
+    initial={{ height: 0, opacity: 0 }}
+    animate={{ height: "auto", opacity: 1 }}
+    exit={{ height: 0, opacity: 0 }}
+    transition={{ duration: 0.35 }}
+    className="px-5 pb-4 text-sm text-[var(--color-muted)] leading-relaxed overflow-hidden"
+  >
+    <div
+      className="prose max-w-none text-[var(--color-muted)]"
+      dangerouslySetInnerHTML={{ __html: faq.answer }}
+    />
+  </motion.div>
                 )}
               </AnimatePresence>
             </div>

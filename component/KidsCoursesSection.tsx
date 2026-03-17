@@ -955,8 +955,8 @@ type CourseApi = {
 type EventItem = {
   id: number;
   image: string;
-  
-    rating: number;   // 👈 ADD THIS
+
+  rating: number;   // 👈 ADD THIS
 
   title: string;
   subtitle: string;
@@ -1087,7 +1087,7 @@ const KidsCoursesSection: React.FC = () => {
 
         {/* COURSE CONTAINER - with scroll for more than 2 cards */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative group/slider">
-          
+
           {/* LEFT BUTTON - only show if more than 2 cards */}
           {events.length > 2 && (
             // <button
@@ -1097,26 +1097,26 @@ const KidsCoursesSection: React.FC = () => {
             //   <FaArrowLeft />
             // </button>
             <button
-  onClick={() => scroll("left")}
-  className={`
-    absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
-    w-12 h-12 rounded-full flex items-center justify-center
-    transition hover:scale-110
-    text-[var(--color-accent-purple)] drop-shadow-lg
-    md:bg-[var(--color-accent-purple)]
-    md:text-white
-    md:shadow-lg
-  `}
->
-  <FaArrowLeft />
-</button>
+              onClick={() => scroll("left")}
+            className={`
+  hidden md:flex
+  absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
+  w-12 h-12 rounded-full items-center justify-center
+  transition hover:scale-110
+  text-[var(--color-accent-purple)] drop-shadow-lg
+  md:bg-[var(--color-accent-purple)]
+  md:text-white
+  md:shadow-lg
+`}
+            >
+              <FaArrowLeft />
+            </button>
           )}
 
           {events.length > 2 && (
             <button
               onClick={() => scroll("right")}
-              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
-            >
+className="hidden md:flex absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full items-center justify-center shadow-lg opacity-100 transition hover:scale-110"            >
               <FaArrowRight />
             </button>
           )}
@@ -1125,8 +1125,8 @@ const KidsCoursesSection: React.FC = () => {
           <div
             ref={scrollRef}
             className={`
-              ${events.length > 2 
-                ? 'flex overflow-x-auto gap-6  pt-2 md:gap-8 lg:gap-6 pb-4 hide-scrollbar scroll-smooth' 
+              ${events.length > 2
+                ? 'flex overflow-x-auto gap-6  pt-2 md:gap-8 lg:gap-6 pb-4 hide-scrollbar scroll-smooth'
                 : 'grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10'
               }
             `}
@@ -1137,8 +1137,8 @@ const KidsCoursesSection: React.FC = () => {
                 onClick={() => handleCardClick(ev.id, ev.slug)}
                 className={`
                   cursor-pointer transition-all duration-300 hover:-translate-y-2
-                  ${events.length > 2 
-                    ? 'w-full md:w-[calc(50%-1rem)] flex-shrink-0' 
+                  ${events.length > 2
+                    ? 'w-full md:w-[calc(50%-1rem)] flex-shrink-0'
                     : ''
                   }
                   ${events.length === 2 && index === 1 ? 'md:mt-0 lg:mt-0' : ''}

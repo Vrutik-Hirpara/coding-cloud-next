@@ -884,7 +884,7 @@ export default function ContactPage() {
       {/* Ahmedabad Map */}
       <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
         <iframe
-          src="https://www.google.com/maps?q=401%2C%204th%20Floor%2C%20Sapphire%20Complex%2C%20Chimanlal%20Girdharlal%20Rd%2C%20near%20Yes%20Bank%2C%20Ellisbridge%2C%20Ahmedabad%2C%20Gujarat%20380009&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.886669550655!2d72.55469997455533!3d23.027933016129584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e837ae22fe273%3A0xe6c960874031d0f2!2sCODING%20CLOUD%20INSTITUTE%20%7C%20React%20js%20%2C%20Mern%20Stack%20%2C%20Data%20Science%20%2C%20Java%20%2CData%20Analyst%2CPython%20Training%20Classes%20in%20Ahmedabad!5e0!3m2!1sen!2sus!4v1773741546816!5m2!1sen!2sus"
           width="100%"
           height="300"
           style={{ border: 0 }}
