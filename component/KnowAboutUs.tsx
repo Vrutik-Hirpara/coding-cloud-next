@@ -258,21 +258,19 @@ export default function KnowAboutUs() {
             <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
                 {/* ================= LEFT IMAGES ================= */}
-                <div className="relative overflow-visible h-[420px] sm:h-[500px] md:h-[580px] lg:h-[620px] z-20">
+                {/* <div className="relative overflow-visible h-[420px] sm:h-[500px] md:h-[580px] lg:h-[620px] z-20">
 
-                    {/* MAIN IMAGE (LEFT BIG) */}
-                    <div className="absolute left-0 top-0 lg:absolute lg:top-0 z-10">
+                    <div className="absolute left-0 top-0 absolute lg:ml-20 lg:top-0 z-10">
                         <Image
                             src={about1}
                             alt="About main"
                             width={350}
                             height={500}
-                            className="rounded w-[220px] sm:w-[260px] md:w-[300px] lg:w-[300px]"
+                            className="rounded w-[220px] "
                             priority
                         />
                     </div>
 
-                    {/* TOP IMAGE (moves UP) */}
                     <div
                         ref={imgTopRef}
                         className="
@@ -289,19 +287,18 @@ export default function KnowAboutUs() {
                             alt="About top"
                             width={250}
                             height={200}
-                            className="rounded w-[150px] sm:w-[180px] md:w-[200px] lg:w-[200px] "
+                            className="rounded w-[150px]"
                         />
                     </div>
 
-                    {/* BOTTOM IMAGE (moves DOWN) */}
                     <div
                         ref={imgBottomRef}
                         className="
       absolute
       right-0 bottom-[-30px]
-      sm:right-[10px] sm:bottom-[-20px]
+      sm:right-[10px] sm:bottom-[-10px]
       md:right-[20px] md:bottom-[-20px]
-      lg:absolute lg:-right-[65px] lg:-bottom-[30px]
+      lg:bottom-[160px] lg:right-[65px] 
       z-30
     "
                     >
@@ -310,15 +307,145 @@ export default function KnowAboutUs() {
                             alt="About bottom"
                             width={400}
                             height={350}
-                            className="rounded w-[240px] sm:w-[280px] md:w-[320px] lg:w-[400px]"
+                            className="rounded w-[240px]"
                         />
+                    </div>
+
+                </div> */}
+                {/* <div className="relative overflow-visible min-h-[420px] sm:min-h-[500px] md:min-h-[580px] lg:min-h-[620px] z-20 w-full max-w-5xl mx-auto">
+
+    <div className="relative flex justify-between items-start w-full gap-4 mb-8">
+        <div className="w-auto">
+            <Image
+                src={about1}
+                alt="About main"
+                width={350}
+                height={500}
+                className="rounded w-[180px] sm:w-[200px] md:w-[250px] lg:w-[300px]"
+                priority
+            />
+        </div>
+
+        <div ref={imgTopRef} className="absolute w-auto  hidden lg:block">
+            <Image
+                src={about2}
+                alt="About top"
+                width={250}
+                height={200}
+                className="rounded w-[120px] lg:ml-[300px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
+            />
+        </div>
+    </div>
+
+    <div className="absolute" style={{ top: '200px', right: '50px' }}>
+        <div ref={imgBottomRef} className="w-auto">
+            <Image
+                src={about3}
+                alt="About bottom"
+                width={400}
+                height={350}
+                className="rounded w-[400px]"
+            />
+        </div>
+    </div>
+
+</div> */}
+
+                {/* <div className="relative overflow-visible min-h-[420px] sm:min-h-[500px] md:min-h-[580px] lg:min-h-[620px] z-20 w-full max-w-5xl mx-auto">
+
+    <div className="relative flex justify-between items-start w-full gap-4 mb-8">
+        <div className="w-auto">
+            <Image
+                src={about1}
+                alt="About main"
+                width={350}
+                height={500}
+                className="rounded w-[180px] sm:w-[200px] md:w-[250px] lg:w-[300px]"
+                priority
+            />
+        </div>
+
+        <div ref={imgTopRef} className="absolute w-auto hidden md:block">
+            <Image
+                src={about2}
+                alt="About top"
+                width={250}
+                height={200}
+                className="rounded w-[120px] lg:ml-[300px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
+            />
+        </div>
+    </div>
+
+ <div ref={imgBottomRef} className="fixed w-auto" style={{ left: '230px', bottom: '12%' }}>
+    <Image
+        src={about3}
+        alt="About bottom"
+        width={400}
+        height={350}
+        className="rounded"
+        style={{ width: '400px', height: 'auto' }}
+    />
+</div>
+
+</div> */}
+                <div className="relative overflow-visible min-h-[420px] sm:min-h-[500px] md:min-h-[580px] lg:min-h-[620px] z-20 w-full max-w-5xl mx-auto">
+
+                    {/* TOP ROW */}
+                    <div className="relative flex justify-between items-start w-full gap-4 mb-8">
+                        {/* First Image */}
+                        <div className="w-auto">
+                            <Image
+                                src={about1}
+                                alt="About main"
+                                width={400}  // Original width
+                                height={500} // Original height
+                                className="rounded w-[220px] sm:w-[260px] md:w-[320px] lg:w-[380px]"
+                            // Height auto rakho to width according adjust thase
+                            />
+                        </div>
+
+                        {/* Second Image */}
+                        <div ref={imgTopRef} className="absolute w-auto hidden md:block mt-12">
+                            <Image
+                                src={about2}
+                                alt="About top"
+                                width={250}
+                                height={200}
+                                className="rounded w-[120px] lg:ml-[280px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
+                            />
+                        </div>
+                    </div>
+
+                    {/* THIRD IMAGE - Fixed within this div only */}
+                    {/* <div className="relative" style={{ height: '200px' }}> 
+        <div ref={imgBottomRef} className="absolute" style={{ left: '230px', bottom: '5px' }}>
+            <Image
+                src={about3}
+                alt="About bottom"
+                width={400}
+                height={350}
+                className="rounded"
+                style={{ width: '400px', height: 'auto' }}
+            />
+        </div>
+    </div> */}
+                    <div className="relative" style={{ height: '250px' }}>
+                        <div ref={imgBottomRef} className="absolute" style={{ left: '200px', bottom: '100px' }}>
+                            <Image
+                                src={about3}
+                                alt="About bottom"
+                                width={500}
+                                height={450}
+                                className="rounded"
+                                style={{ width: '400px', height: 'auto' }}
+                            />
+                        </div>
                     </div>
 
                 </div>
 
-
                 {/* ================= RIGHT CONTENT ================= */}
-                <div className="flex flex-col justify-center mt-10 lg:mt-40">
+                <div className="flex flex-col justify-center mt-10 lg:mt-30">
                     {/* <span className="bg-amber-100 text-amber-800 px-4 py-1 rounded-full w-fit mb-4 font-semibold">
                         KNOW ABOUT US
                     </span> */}

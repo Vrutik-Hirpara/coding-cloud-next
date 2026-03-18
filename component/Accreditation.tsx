@@ -206,7 +206,7 @@ export default function Accreditation() {
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
 
-            <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+            <div className=" relative mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}
                 <motion.div

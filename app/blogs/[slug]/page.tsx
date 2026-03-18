@@ -108,7 +108,7 @@ export default function BlogDetailPage() {
           <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-4xl w-full bg-white rounded-xl shadow-2xl overflow-hidden"
+          className="max-w-4xl 2xl:max-w-7xl w-full bg-white rounded-xl shadow-2xl overflow-hidden"
         >
           {/* Header content (white area) */}
           <div className="px-6 py-8 md:px-12 md:py-10 text-center">

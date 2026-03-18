@@ -424,8 +424,8 @@ const FeaturedCoursesSection = () => {
         </div>
 
         {/* SLIDER */}
-        <div className="relative group/slider flex items-center justify-center px-4 md:px-8">
-
+        {/* <div className="relative group/slider flex items-center justify-center px-4 md:px-8"> */}
+        <div className="relative w-full max-w-7xl mx-auto">
           {/* LEFT BTN */}
           {/* <button
             onClick={() => scroll("left")}
@@ -460,7 +460,7 @@ const FeaturedCoursesSection = () => {
           </button> */}
           <button
             onClick={() => scroll("right")}
-    className="
+            className="
   hidden md:flex
   absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30
   w-12 h-12 rounded-full items-center justify-center
@@ -571,9 +571,9 @@ const FeaturedCoursesSection = () => {
               </div>
             ))}
           </div> */}
-<div
-  ref={scrollRef}
-  className="
+          <div
+            ref={scrollRef}
+            className="
     grid grid-flow-col
     auto-cols-[335px]
     overflow-x-auto
@@ -581,22 +581,19 @@ const FeaturedCoursesSection = () => {
     pb-10 pt-2
     hide-scrollbar scroll-smooth
 
-    max-w-[335px]                 
-    md:max-w-[calc(335px*3+32px)]   
-    lg:max-w-[calc(335px*3+32px)]   
-    xl:max-w-[calc(335px*4+48px)]   
+  
   "
->
-  {events.map((ev) => (
-    <div
-      key={ev.id}
-      onClick={() => handleCardClick(ev.id, ev.slug)}
-      className="
+          >
+            {events.map((ev) => (
+              <div
+                key={ev.id}
+                onClick={() => handleCardClick(ev.id, ev.slug)}
+                className="
         w-[335px]
         p-2 rounded-3xl
         transition-all duration-300 hover:-translate-y-2 cursor-pointer
       "
-    >
+              >
                 <div className="flex flex-col w-full h-full">
                   <EventCard event={ev} />
                 </div>

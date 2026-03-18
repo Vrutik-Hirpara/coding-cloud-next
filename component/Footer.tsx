@@ -320,7 +320,7 @@ const Footer = () => {
             </Link>
 
             {/* DESCRIPTION */}
-            <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 ">
+            <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 mr-2">
               We’re always in search for talented and motivated people.motivated people.motivated people.motivated people.
             </p>
 
@@ -443,17 +443,28 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                     info@codingcloudinstitute.com
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     href="https://maps.app.goo.gl/HtXAGaK1jPQzcqhe6"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-word"
+                    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-word 2xl:max-w-sm"
                   >
                     401, 4th Floor, Sapphire Complex, Chimanlal Girdharlal Rd, near Yes Bank,
                     Ellisbridge, Ahmedabad, Gujarat 380009
                   </a>
-                </li>
+                </li> */}
+                <li>
+  <a
+    href="https://maps.app.goo.gl/HtXAGaK1jPQzcqhe6"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words block 2xl:max-w-sm"
+  >
+    401, 4th Floor, Sapphire Complex, Chimanlal Girdharlal Rd, near Yes Bank,
+    Ellisbridge, Ahmedabad, Gujarat 380009
+  </a>
+</li>
               </ul>
             </motion.div>
 
@@ -490,7 +501,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                   </a>
                 </li>
 
-                <li>
+                {/* <li>
                   <a
                     href="https://maps.app.goo.gl/CEnMtxg8EzRNjNQBA"
                     target="_blank"
@@ -500,7 +511,17 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                     Office No. 201, 2nd Floor, Polaris Building, Nr. Noble Hospital Hadapsar,
                     Pune, 411028
                   </a>
-                </li>
+                </li> */}
+                              <li>
+  <a
+    href="https://maps.app.goo.gl/CEnMtxg8EzRNjNQBA"
+    target="_blank"
+    rel="noopener noreferrer"
+className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words block 2xl:max-w-xs"  >
+    Office No. 201, 2nd Floor, Polaris Building, Nr. Noble Hospital Hadapsar,
+                    Pune, 411028
+  </a>
+</li>
 
               </ul>
             </motion.div>

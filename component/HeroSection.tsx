@@ -200,12 +200,7 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
         }}
       >
         <div className="
-          w-full 
-          px-4 sm:px-4 lg:px-12
-xl:px-8 2xl:px-8 3xl:px-12
-          mx-auto 
-          
-          grid grid-cols-1 xl:grid-cols-12 gap-6 items-center
+          w-full container-custom mx-auto grid grid-cols-1 xl:grid-cols-12 gap-6 items-center
         ">
           {/* ================= LEFT CONTENT ================= */}
           <motion.div

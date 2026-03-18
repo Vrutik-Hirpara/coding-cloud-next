@@ -347,7 +347,7 @@ const Stars = ({ count, rating }: { count?: number; rating?: number }) => {
         <div className="space-y-8">
             {/* Image Section */}
             <div className="mt-12 flex justify-center">
-                <div className="relative w-full max-w-3xl h-[220px] md:h-[400px] lg:h-[450px] rounded overflow-hidden shadow-lg bg-white">
+                <div className="relative w-full max-w-3xl xl:max-w-7xl h-[220px] md:h-[400px] lg:h-[450px] rounded overflow-hidden shadow-lg bg-white">
                     {/* Equal padding on all sides around image */}
                     <div className="absolute inset-4 md:inset-6">
                         {/* <Image

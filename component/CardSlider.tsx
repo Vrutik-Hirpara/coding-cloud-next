@@ -980,7 +980,7 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
         onMouseLeave={handleMouseLeave}
       >
         {cards.slice(0, 3).map((card, index) => {
-          console.log("Rendering card:", card); // Debug log
+          // console.log("Rendering card:", card); 
           // Safety check for card
           if (!card) return null;
 

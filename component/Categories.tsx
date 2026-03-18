@@ -1,443 +1,4 @@
-// "use client";
 
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import Image from "next/image";
-// import { API, BASE_URL } from "@/lib/api";
-
-// type Category = {
-//   id: number;
-//   name: string;
-//   image: string | null;
-// };
-
-// export default function Categories() {
-//   const [categories, setCategories] = useState<Category[]>([]);
-//   const [loading, setLoading] = useState(true);
-
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     const fetchCategories = async () => {
-//       try {
-//         const res = await fetch(API.CATEGORY.LIST);
-//         const data = await res.json();
-// setCategories(data.data || []);      } catch (err) {
-//         console.error("Category fetch error:", err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchCategories();
-//   }, []);
-
-//   return (
-//     <section className=" bg-[var(--color-white)]">
-//       <div className="py-16 container-custom flex flex-col items-center">
-
-//         <div className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full">
-//           CATEGORIES
-//         </div>
-
-//         <h2 className="text-2xl md:text-4xl font-bold text-center mt-5 mb-12">
-//           Explore Top Categories
-//         </h2>
-
-//         {loading ? (
-//           <div className="animate-pulse text-blue-600 font-bold">
-//             Loading...
-//           </div>
-//         ) : (
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 w-full">
-
-//             {categories.map((cat) => {
-//               const imageUrl = cat.image
-//                 ? `${BASE_URL}${cat.image}`
-//                 : "/images/fallback.png";
-
-//               return (
-//                 <div
-//                   key={cat.id}
-//                   onClick={() => router.push(`/category/${cat.id}`)}
-//                   className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
-//                 >
-//                   <div className="relative h-20 w-20 mb-5">
-//                     <Image
-//                       src={imageUrl}
-//                       alt={cat.name}
-//                       fill
-//                       className="object-contain group-hover:scale-110 transition-transform duration-300"
-//                     />
-//                   </div>
-
-//                   <h3 className="text-lg font-semibold text-center">
-//                     {cat.name}
-//                   </h3>
-//                 </div>
-//               );
-//             })}
-
-//           </div>
-//         )}
-//       </div>
-//     </section>
-//   );
-// }
-
-
-// "use client";
-
-// import { useEffect, useState, useRef } from "react";
-// import Image from "next/image";
-// import { useRouter } from "next/navigation";
-// import { API, BASE_URL } from "@/lib/api";
-
-// type Category = {
-//   id: number;
-//   name: string;
-//   text?: string;
-//   image: string | null;
-// };
-
-// export default function Categories() {
-//   const router = useRouter();
-//   const scrollRef = useRef<HTMLDivElement | null>(null);
-
-//   const [categories, setCategories] = useState<Category[]>([]);
-//   const [categoryTotals, setCategoryTotals] = useState<Record<number, number>>({});
-//   const [loading, setLoading] = useState(true);
-
-//   // 🔥 FETCH DATA
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const [catRes, totalRes] = await Promise.all([
-//           fetch(API.CATEGORY.LIST),
-//           fetch(API.CATEGORY.TOTALS),
-//         ]);
-
-//         const catData = await catRes.json();
-//         const totalData = await totalRes.json();
-
-// setCategories(catData.data || []);
-//         const totalsMap: Record<number, number> = {};
-//         totalData.data.forEach((item: any) => {
-//           totalsMap[item.id] = item.total_courses;
-//         });
-
-//         setCategoryTotals(totalsMap);
-//       } catch (err) {
-//         console.error("Category error:", err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   // 🔥 SCROLL
-//   const scrollLeft = () => {
-//     scrollRef.current?.scrollBy({ left: -260, behavior: "smooth" });
-//   };
-
-//   const scrollRight = () => {
-//     scrollRef.current?.scrollBy({ left: 260, behavior: "smooth" });
-//   };
-
-//   return (
-//     <section className="bg-[var(--color-white)] py-16 overflow-hidden">
-//       <div className="container-custom">
-
-//         {/* HEADER */}
-//         <div className="text-center mb-12">
-//           <span className="px-4 py-1 rounded-full text-sm font-semibold bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-//             CATEGORIES
-//           </span>
-//           <h2 className="text-3xl font-bold mt-4 text-[var(--color-text-main)]">
-//             Explore Top Categories
-//           </h2>
-//         </div>
-
-//         {loading ? (
-//           <div className="text-center font-semibold text-[var(--color-primary)]">
-//             Loading...
-//           </div>
-//         ) : (
-//           <div className="relative">
-
-//             {/* ARROWS */}
-//             {categories.length > 4 && (
-//               <>
-//                 <button
-//                   onClick={scrollLeft}
-//                   className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-[var(--color-white)] transition"
-//                 >
-//                   ‹
-//                 </button>
-
-//                 <button
-//                   onClick={scrollRight}
-//                   className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-[var(--color-white)] transition"
-//                 >
-//                   ›
-//                 </button>
-//               </>
-//             )}
-
-//             {/* SLIDER */}
-//             <div
-//               ref={scrollRef}
-//               className="flex gap-2 overflow-x-auto scroll-smooth px-10 pb-4
-//               [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-//             >
-//               {categories.map((cat) => {
-//                 const imageUrl = cat.image
-//                   ? `${BASE_URL}${cat.image}`
-//                   : "/images/fallback.png";
-
-//                 return (
-//                   <div
-//                     key={cat.id}
-//                     className="flex-shrink-0 w-[220px] text-center cursor-pointer group 
-//                     transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03]"
-//                     onClick={() => router.push(`/category/${cat.id}`)}
-//                   >
-//                     {/* IMAGE BOX */}
-//                     <div className="relative w-[160px] h-[160px] mx-auto mb-3">
-
-//                       {/* SAFE INNER WRAPPER (prevents cut) */}
-//                       <div className="absolute inset-2">
-//                         <Image
-//                           src={imageUrl}
-//                           alt={cat.name}
-//                           fill
-//                           className="object-contain transition-all duration-500 ease-out
-//                           group-hover:scale-105 group-hover:opacity-30"
-//                         />
-//                       </div>
-
-//                       {/* HOVER BADGE */}
-//                       <div className="
-//                         absolute inset-0 flex items-center justify-center
-//                         opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out
-//                       ">
-//                         <div className="
-//                           bg-gradient-to-r from-[var(--color-primary)] to-purple-600
-//                           text-[var(--color-white)] text-sm font-semibold px-4 py-2 rounded-xl shadow-xl
-//                           transform scale-75 group-hover:scale-100 transition-all duration-300
-//                         ">
-//                           {categoryTotals[cat.id] ?? 0}
-//                           <div className="text-[11px] font-normal">Courses</div>
-//                         </div>
-//                       </div>
-
-//                     </div>
-
-//                     {/* TITLE */}
-//                     <h4 className="
-//   font-semibold text-lg
-//   text-[var(--color-text-main)]
-//   transition-colors duration-300
-//   group-hover:text-[var(--color-primary)]
-// ">
-//                       {cat.name}
-//                     </h4>
-
-//                     {/* SUBTEXT */}
-//                     <p className="text-sm text-[var(--color-text-light)] mt-1">
-//                       {cat.text || "Explore now"}
-//                     </p>
-//                   </div>
-//                 );
-//               })}
-//             </div>
-
-//           </div>
-//         )}
-//       </div>
-//     </section>
-//   );
-// }
-
-// "use client";
-
-// import { useEffect, useState, useRef } from "react";
-// import Image from "next/image";
-// import { useRouter } from "next/navigation";
-// import { API, BASE_URL } from "@/lib/api";
-
-// type Category = {
-//   id: number;
-//   name: string;
-//   text?: string;
-//   image: string | null;
-// };
-
-// export default function Categories() {
-//   const router = useRouter();
-//   const scrollRef = useRef<HTMLDivElement | null>(null);
-
-//   const [categories, setCategories] = useState<Category[]>([]);
-//   const [categoryTotals, setCategoryTotals] = useState<Record<number, number>>({});
-//   const [loading, setLoading] = useState(true);
-
-//   // 🔥 FETCH DATA
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const [catRes, totalRes] = await Promise.all([
-//           fetch(API.CATEGORY.LIST),
-//           fetch(API.CATEGORY.TOTALS),
-//         ]);
-
-//         const catData = await catRes.json();
-//         const totalData = await totalRes.json();
-
-//         setCategories(catData.data);
-
-//         const totalsMap: Record<number, number> = {};
-//         totalData.data.forEach((item: any) => {
-//           totalsMap[item.id] = item.total_courses;
-//         });
-
-//         setCategoryTotals(totalsMap);
-//       } catch (err) {
-//         console.error("Category error:", err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   // 🔥 SCROLL
-//   const scrollLeft = () => {
-//     scrollRef.current?.scrollBy({ left: -260, behavior: "smooth" });
-//   };
-
-//   const scrollRight = () => {
-//     scrollRef.current?.scrollBy({ left: 260, behavior: "smooth" });
-//   };
-
-//   return (
-//     <section className="bg-[var(--color-white)] py-12 md:py-16 overflow-hidden">
-//       <div className="container-custom px-4 sm:px-6 lg:px-8">
-
-//         {/* HEADER */}
-//         <div className="text-center mb-8 md:mb-12">
-//           <span className="px-4 py-1 rounded-full text-sm font-semibold  text-[var(--color-accent-purple)]">
-//             CATEGORIES
-//           </span>
-//           <h2 className="text-2xl md:text-3xl font-bold mt-4 text-[var(--color-text-main)]">
-//             Explore Top Categories
-//           </h2>
-//         </div>
-
-//         {loading ? (
-//           <div className="text-center font-semibold text-[var(--color-accent-purple)]">
-//             Loading...
-//           </div>
-//         ) : (
-//           <div className="relative">
-
-//             {/* ARROWS - Hide on mobile */}
-//             {categories.length > 4 && (
-//               <>
-//                 <button
-//                   onClick={scrollLeft}
-//                   className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md items-center justify-center hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] transition"
-//                 >
-//                   ‹
-//                 </button>
-
-//                 <button
-//                   onClick={scrollRight}
-//                   className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[var(--color-white)] shadow-md items-center justify-center hover:bg-[var(--color-accent-purple)] hover:text-[var(--color-white)] transition"
-//                 >
-//                   ›
-//                 </button>
-//               </>
-//             )}
-
-//             {/* SLIDER */}
-//             <div
-//               ref={scrollRef}
-//               className="flex gap-4 md:gap-8
-//                overflow-x-auto scroll-smooth px-4 md:px-10 py-4
-//               [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-//             >
-//               {categories.map((cat) => {
-//                 const imageUrl = cat.image
-//                   ? `${BASE_URL}${cat.image}`
-//                   : "/images/fallback.png";
-
-//                 return (
-//                   <div
-//                     key={cat.id}
-//                     className="flex-shrink-0 w-[140px] sm:w-[180px] md:w-[200px] lg:w-[200px] text-center cursor-pointer group
-//                     transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03]"
-//                     onClick={() => router.push(`/category/${cat.id}`)}
-//                   >
-//                     {/* IMAGE BOX - FIXED: removed inset-2 that was cutting the image */}
-//                     <div className="relative w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[150px] md:h-[150px] lg:w-[160px] lg:h-[160px] mx-auto mb-3 flex items-center justify-center">
-
-//                       {/* IMAGE - properly contained without cutting */}
-//                       <div className="relative w-full h-full">
-//                         <Image
-//                           src={imageUrl}
-//                           alt={cat.name}
-//                           fill
-//                           className="object-contain transition-all duration-500 ease-out
-//                           group-hover:scale-105 group-hover:opacity-30"
-//                           sizes="(max-width: 640px) 120px, (max-width: 768px) 140px, (max-width: 1024px) 150px, 160px"
-//                         />
-//                       </div>
-
-//                       {/* HOVER BADGE */}
-//                       <div className="
-//                         absolute inset-0 flex items-center justify-center
-//                         opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out
-//                       ">
-//                         <div className="
-//                           bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600
-//                           text-[var(--color-white)] text-sm font-semibold px-4 py-2 rounded-xl shadow-xl
-//                           transform scale-75 group-hover:scale-100 transition-all duration-300
-//                         ">
-//                           {categoryTotals[cat.id] ?? 0}
-//                           <div className="text-[11px] font-normal">Courses</div>
-//                         </div>
-//                       </div>
-
-//                     </div>
-
-//                     {/* TITLE */}
-//                     <h4 className="
-//                       font-semibold text-sm sm:text-base md:text-lg
-//                       text-[var(--color-text-main)]
-//                       transition-colors duration-300
-//                       group-hover:text-[var(--color-accent-purple)]
-//                     ">
-//                       {cat.name}
-//                     </h4>
-
-//                     {/* SUBTEXT */}
-//                     <p className="text-xs sm:text-sm text-[var(--color-text-light)] mt-1">
-//                       {cat.text || `${categoryTotals[cat.id] ?? 0} courses`}
-//                     </p>
-//                   </div>
-//                 );
-//               })}
-//             </div>
-
-//           </div>
-//         )}
-//       </div>
-//     </section>
-//   );
-// }
 
 // "use client";
 
@@ -463,6 +24,8 @@
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
+//         console.log("🔍 Fetching categories from:", API.CATEGORY.LIST);
+
 //         const [catRes, totalRes] = await Promise.all([
 //           fetch(API.CATEGORY.LIST),
 //           fetch(API.CATEGORY.TOTALS),
@@ -471,7 +34,17 @@
 //         const catData = await catRes.json();
 //         const totalData = await totalRes.json();
 
-//         setCategories(catData.data || catData || []);
+//         console.log("📦 Categories API Response:", catData);
+//         console.log("📦 Totals API Response:", totalData);
+
+//         // 🔥 Check karo ke data kya chhe
+//         const categoriesList = catData.data || catData || [];
+//         setCategories(categoriesList);
+
+//         // 🔥 Check first category ni slug
+//         if (categoriesList.length > 0) {
+//           console.log("🏷️ First category slug:", categoriesList[0].slug);
+//         }
 
 //         const totalsMap: Record<number, number> = {};
 
@@ -482,7 +55,7 @@
 //         setCategoryTotals(totalsMap);
 
 //       } catch (err) {
-//         console.error("Category fetch error:", err);
+//         console.error("❌ Category fetch error:", err);
 //       } finally {
 //         setLoading(false);
 //       }
@@ -492,7 +65,7 @@
 //   }, []);
 
 //   return (
-//     <section className="bg-[var(--color-white)]">
+//     <section className=" bg-[var(--color-white)]">
 //       <div className="py-16 container-custom flex flex-col items-center">
 
 //         <div className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full">
@@ -508,50 +81,66 @@
 //             Loading...
 //           </div>
 //         ) : (
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 w-full">
+//           <div className="w-full max-w-7xl mx-auto">
+//             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+//               {categories.map((cat) => {
+//                 const imageUrl = cat.image
+//                   ? `${BASE_URL}${cat.image}`
+//                   : "/images/fallback.png";
 
-//             {categories.map((cat) => {
-//               const imageUrl = cat.image
-//                 ? `${BASE_URL}${cat.image}`
-//                 : "/images/fallback.png";
+//                 // 🔥 Debug: Click thay to slug check
+//                 const handleClick = () => {
+//                   console.log("🖱️ Clicked category:", cat.name, "with slug:", cat.slug);
+//                   router.push(`/category/${cat.slug}`);
+//                 };
 
-//               return (
-//                 <div
-//                   key={cat.id}
-//                   // onClick={() => router.push(`/category/${cat.id}`)}
-//                   onClick={() => router.push(`/category/${cat.slug}`)}
-//                   className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
-//                 >
+//                 return (
+//                   <div
+//                     key={cat.id}
+//                     onClick={handleClick}  // 🔥 Updated with debug
+//                     className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
+//                   >
 
-//                   <div className="relative h-20 w-20 mb-5">
+//                     {/* <div className="relative h-20 w-20 mb-5">
 //                     <Image
 //                       src={imageUrl}
 //                       alt={cat.name}
 //                       fill
 //                       className="object-contain group-hover:scale-110 transition-transform duration-300"
 //                     />
-//                   </div>
+//                   </div> */}
+//                     <div className="relative h-20 w-20 mb-5 overflow-hidden">
+//                       <Image
+//                         src={imageUrl || "/images/placeholder-course.jpg"}
+//                         alt={cat.name}
+//                         fill
+//                         className="object-contain object-center group-hover:scale-110 transition-transform duration-300"
+//                         unoptimized
+//                       />
+//                     </div>
 
-//                   <h3 className="text-lg font-semibold text-center">
-//                     {cat.name}
-//                   </h3>
+//                     <h3 className="text-lg font-semibold text-center">
+//                       {cat.name}
+//                     </h3>
 
-//                   {/* 🔥 TOTAL COURSES */}
-//                   <p className="text-sm text-gray-500 mt-1 inline-block relative
+//                     {/* 🔥 TOTAL COURSES */}
+//                     <p className="text-sm text-gray-500 mt-1 inline-block relative
 // after:content-[''] after:absolute after:left-0 after:-bottom-1
 // after:h-[2px] after:w-0 after:bg-[var(--color-accent-purple)]
 // after:transition-all after:duration-300
 // group-hover:after:w-full">
-//                     {categoryTotals[cat.id] ?? 0} Courses
-//                   </p>
+//                       {categoryTotals[cat.id] ?? 0} Courses
+//                     </p>
 
-//                 </div>
-//               );
-//             })}
+//                   </div>
+//                 );
+//               })}
 
-//           </div>
+//             </div>
+//             </div>
 //         )}
-//       </div>
+//           </div>
+          
 //     </section>
 //   );
 // }
@@ -563,6 +152,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { API, BASE_URL } from "@/lib/api";
+import { motion } from "framer-motion";
 
 type Category = {
   id: number;
@@ -582,7 +172,7 @@ export default function Categories() {
     const fetchData = async () => {
       try {
         console.log("🔍 Fetching categories from:", API.CATEGORY.LIST);
-        
+
         const [catRes, totalRes] = await Promise.all([
           fetch(API.CATEGORY.LIST),
           fetch(API.CATEGORY.TOTALS),
@@ -597,7 +187,7 @@ export default function Categories() {
         // 🔥 Check karo ke data kya chhe
         const categoriesList = catData.data || catData || [];
         setCategories(categoriesList);
-        
+
         // 🔥 Check first category ni slug
         if (categoriesList.length > 0) {
           console.log("🏷️ First category slug:", categoriesList[0].slug);
@@ -621,79 +211,139 @@ export default function Categories() {
     fetchData();
   }, []);
 
+  // Loading Skeleton
+  if (loading) {
+    return (
+      <section className="bg-[var(--color-white)]">
+        <div className="py-16 container-custom flex flex-col items-center">
+          <div className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full animate-pulse">
+            CATEGORIES
+          </div>
+          <div className="h-8 w-64 bg-gray-200 rounded mt-5 mb-12 animate-pulse"></div>
+          <div className="w-full max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                <div key={n} className="h-60 2xl:h-72 bg-gray-100 rounded-2xl animate-pulse"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-[var(--color-white)]">
       <div className="py-16 container-custom flex flex-col items-center">
-
-        <div className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full"
+        >
           CATEGORIES
-        </div>
+        </motion.div>
 
-        <h2 className="text-2xl md:text-4xl font-bold text-center mt-5 mb-12">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-2xl md:text-4xl font-bold text-center mt-5 mb-12"
+        >
           Explore Top Categories
-        </h2>
+        </motion.h2>
 
-        {loading ? (
-          <div className="animate-pulse text-blue-600 font-bold">
-            Loading...
-          </div>
-        ) : (
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 gap-10 w-full">
-            {categories.map((cat) => {
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="w-full max-w-7xl mx-auto"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+            {categories.map((cat, index) => {
               const imageUrl = cat.image
                 ? `${BASE_URL}${cat.image}`
                 : "/images/fallback.png";
 
-              // 🔥 Debug: Click thay to slug check
               const handleClick = () => {
                 console.log("🖱️ Clicked category:", cat.name, "with slug:", cat.slug);
                 router.push(`/category/${cat.slug}`);
               };
 
               return (
-                <div
+                <motion.div
                   key={cat.id}
-                  onClick={handleClick}  // 🔥 Updated with debug
-                  className="h-60 shadow-xl bg-[var(--color-white)] rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-500 group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  onClick={handleClick}
+                  className="
+                    h-60 2xl:h-72                 // Height increase on 2XL
+                    shadow-xl 
+                    bg-[var(--color-white)] 
+                    rounded-2xl 
+                    flex 
+                    flex-col 
+                    items-center 
+                    justify-center 
+                    cursor-pointer 
+                    hover:-translate-y-2 
+                    transition-all 
+                    duration-300 
+                    border 
+                    border-transparent 
+                    hover:border-blue-500 
+                    group
+                    p-4 2xl:p-6                    // Padding increase on 2XL
+                  "
                 >
-
-                  {/* <div className="relative h-20 w-20 mb-5">
+                  {/* Icon/Image Container */}
+                  <div className="relative h-20 w-20 2xl:h-24 2xl:w-24 mb-5 2xl:mb-6 overflow-hidden">
                     <Image
-                      src={imageUrl}
+                      src={imageUrl || "/images/placeholder-course.jpg"}
                       alt={cat.name}
                       fill
-                      className="object-contain group-hover:scale-110 transition-transform duration-300"
+                      className="object-contain object-center group-hover:scale-110 transition-transform duration-300"
+                      unoptimized
                     />
-                  </div> */}
-                  <div className="relative h-20 w-20 mb-5 overflow-hidden">
-  <Image
-    src={imageUrl || "/images/placeholder-course.jpg"}
-    alt={cat.name}
-    fill
-    className="object-contain object-center group-hover:scale-110 transition-transform duration-300"
-    unoptimized
-  />
-</div>
+                  </div>
 
-                  <h3 className="text-lg font-semibold text-center">
+                  {/* Category Name */}
+                  <h3 className="
+                    text-lg 2xl:text-xl              // Text size increase on 2XL
+                    font-semibold 
+                    text-center
+                    mb-1
+                  ">
                     {cat.name}
                   </h3>
 
-                  {/* 🔥 TOTAL COURSES */}
-                  <p className="text-sm text-gray-500 mt-1 inline-block relative
-after:content-[''] after:absolute after:left-0 after:-bottom-1
-after:h-[2px] after:w-0 after:bg-[var(--color-accent-purple)]
-after:transition-all after:duration-300
-group-hover:after:w-full">
+                  {/* Course Count with Animated Underline */}
+                  <p className="
+                    text-sm 2xl:text-base             // Text size increase on 2XL
+                    text-gray-500 
+                    mt-1 
+                    inline-block 
+                    relative
+                    after:content-[''] 
+                    after:absolute 
+                    after:left-0 
+                    after:-bottom-1
+                    after:h-[2px] 
+                    after:w-0 
+                    after:bg-[var(--color-accent-purple)]
+                    after:transition-all 
+                    after:duration-300
+                    group-hover:after:w-full
+                  ">
                     {categoryTotals[cat.id] ?? 0} Courses
                   </p>
-
-                </div>
+                </motion.div>
               );
             })}
-
           </div>
-        )}
+        </motion.div>
       </div>
     </section>
   );

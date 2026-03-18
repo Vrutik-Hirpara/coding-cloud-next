@@ -145,7 +145,7 @@ export default function Page() {
       </div> */}
 
       <section
-        className="pt-16 pb-32 pl-4 md:pl-12"
+        className="pt-16 pb-32 container-custom"
         style={{
           backgroundImage: `linear-gradient(rgb(148 179 246) 0%, rgb(79, 130, 240) 45%, rgb(147 173 252) 100%), url(${getImageUrl(
             course.banner_img || course.image
@@ -166,7 +166,7 @@ export default function Page() {
               </Link>
 
               <span>›</span>
-              <Link href="/course" className="hover:text-[var(--color-accent-purple)]  transition">
+              <Link href="/courses" className="hover:text-[var(--color-accent-purple)]  transition">
                 Course
               </Link>
               <span>›</span>
@@ -259,10 +259,10 @@ export default function Page() {
         </div>
       </section>
       {/* 🔥 MAIN CONTENT */}
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div className=" mx-auto px-4 sm:px-8 md:px-4 lg:px-12 xl:px-16 2xl:px-24">
 
         {/* <div className="flex flex-col lg:grid lg:grid-cols-[1fr_280px] gap-6 lg:gap-8"> */}
-        <div className="flex flex-col lg:grid lg:grid-cols-[0.9fr_340px] gap-6 lg:gap-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-[1fr_340px] gap-6 lg:gap-8">
 
           {/* LEFT SIDE */}
           <div className="w-full">

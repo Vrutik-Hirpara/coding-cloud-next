@@ -1098,7 +1098,7 @@ const KidsCoursesSection: React.FC = () => {
             // </button>
             <button
               onClick={() => scroll("left")}
-            className={`
+              className={`
   hidden md:flex
   absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
   w-12 h-12 rounded-full items-center justify-center
@@ -1116,7 +1116,7 @@ const KidsCoursesSection: React.FC = () => {
           {events.length > 2 && (
             <button
               onClick={() => scroll("right")}
-className="hidden md:flex absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full items-center justify-center shadow-lg opacity-100 transition hover:scale-110"            >
+              className="hidden md:flex absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full items-center justify-center shadow-lg opacity-100 transition hover:scale-110"            >
               <FaArrowRight />
             </button>
           )}

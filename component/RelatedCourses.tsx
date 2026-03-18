@@ -224,13 +224,335 @@
 //       setRatings(ratingData);
 //     };
 //   }, []);
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { API, BASE_URL } from "@/lib/api";
+// import { useParams } from "next/navigation"; // ✅ ADD THIS
+
+// type Course = {
+//   id: number;
+//   name: string;
+//   image: string;
+//   text: string;
+//   duration: string | null;
+//   lecture: string | null;
+//   students: string | null;
+//   level: string | null;
+//   language: string | null;
+//   slug: string;
+//   category: number; // ✅ ADD THIS (category id)
+//   category_details: {
+//     name: string;
+//   };
+// };
+
+// export default function RelatedCourses() {
+//   const { slug } = useParams(); // ✅ ADD THIS - get current course slug
+//   const [courses, setCourses] = useState<Course[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [ratings, setRatings] = useState<Record<number, any>>({});
+//   const [currentCourse, setCurrentCourse] = useState<Course | null>(null); // ✅ ADD THIS
+
+//   const getImageUrl = (path?: string) => {
+//     if (!path) return "/images/fallback.png";
+//     if (path.startsWith("http")) return path;
+//     const clean = path.startsWith("/") ? path.slice(1) : path;
+//     return `${BASE_URL}/${clean}`;
+//   };
+
+//   useEffect(() => {
+//     const fetchCourses = async () => {
+//       try {
+//         const res = await fetch(API.COURSES.LIST);
+//         const data = await res.json();
+//         const list = data.data || [];
+
+//         // ✅ FIND CURRENT COURSE BY SLUG
+//         const current = list.find((c: Course) => c.slug === slug);
+//         setCurrentCourse(current || null);
+
+//         if (current) {
+//           // ✅ FILTER COURSES BY SAME CATEGORY, EXCLUDE CURRENT COURSE
+//           const sameCategory = list.filter(
+//             (c: Course) => c.category === current.category && c.id !== current.id
+//           );
+          
+//           // ✅ TAKE FIRST 2 COURSES
+//           const selected = sameCategory.slice(0, 2);
+//           setCourses(selected);
+//           fetchRatings(selected);
+//         } else {
+//           // FALLBACK: show first 2 courses if no current course found
+//           const selected = list.slice(0, 2);
+//           setCourses(selected);
+//           fetchRatings(selected);
+//         }
+//       } catch (err) {
+//         console.error("Course fetch error:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     if (slug) { // ✅ ONLY FETCH IF SLUG EXISTS
+//       fetchCourses();
+//     }
+//   }, [slug]); // ✅ ADD DEPENDENCY
+
+//   const fetchRatings = async (courseList: Course[]) => {
+//     const ratingData: Record<number, any> = {};
+
+//     await Promise.all(
+//       courseList.map(async (course) => {
+//         try {
+//           const res = await fetch(
+//             `${BASE_URL}/course_average_rating/?course_id=${course.id}`
+//           );
+//           const json = await res.json();
+//           const data = json.course_average_rating?.[0];
+//           if (data) {
+//             ratingData[course.id] = data;
+//           }
+//         } catch (err) {
+//           console.error("Rating error", err);
+//         }
+//       })
+//     );
+
+//     setRatings(ratingData);
+//   };
+
+//   return (
+//     <section className="py-16 bg-[var(--color-bg-light)]">
+//       <div className="container-custom">
+
+//         {/* HEADER */}
+//         <div className="mb-12">
+//           <span className="inline-block px-4 py-1 mb-3 text-sm font-semibold text-[var(--color-accent-purple)] bg-[var(--color-primary-light)] rounded-full">
+//             MORE SIMILAR COURSES
+//           </span>
+
+//           <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-dark)]">
+//             Related Courses
+//           </h2>
+//         </div>
+
+//         {/* LOADING */}
+//         {loading ? (
+//           <div className="text-center font-semibold text-[var(--color-accent-purple)]">
+//             Loading courses...
+//           </div>
+//         ) : (
+//           // <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+//           //   {courses.map((course) => {
+//           //     const imageUrl = getImageUrl(course.image);
+
+//           //     return (
+//           //       <div
+//           //         key={course.id}
+//           //         className="bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
+//           //       >
+//           //         {/* IMAGE */}
+//           //         <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
+//           //           <Image
+//           //             src={imageUrl}
+//           //             alt={course.name}
+//           //             fill
+//           //             unoptimized
+//           //             className="absolute object-contain group-hover:scale-101 transition duration-500"
+//           //           />
+
+//           //           <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
+//           //             {course.duration || "Course"}
+//           //           </span>
+//           //         </div>
+
+//           //         {/* CONTENT */}
+//           //         <div className="p-6">
+//           //           <div className="text-orange-400 text-sm mb-2">
+//           //             ★ {ratings[course.id]?.average_rating || 0}
+
+//           //             <span className="text-[var(--color-muted)] ml-2">
+//           //               ({ratings[course.id]?.total_reviews || 0} Reviews)
+//           //             </span>
+//           //           </div>
+
+//           //           <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
+//           //             {course.name}
+//           //           </h3>
+
+//           //           <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
+//           //             <span>📘 {course.lecture || 0} Lessons</span>
+//           //             <span>👨‍🎓 {course.students || 0} Students</span>
+//           //           </div>
+
+//           //           {/* <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
+//           //             {course?.text?.replace(/<[^>]*>/g, "")}
+//           //           </p> */}
+//           //           <div
+//           //             className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+//           //             dangerouslySetInnerHTML={{ __html: course?.text || "" }}
+//           //           />
+//           //           <div className="text-xs text-[var(--color-muted-light)] mb-4">
+//           //             Category: {course.category_details?.name}
+//           //           </div>
+
+//           //           <div className="flex items-center justify-between">
+//           //             <Link
+//           //               href={`/courses/${course.slug}`}
+//           //               className="text-[var(--color-accent-purple)] font-semibold hover:underline"
+//           //             >
+//           //               Learn More →
+//           //             </Link>
+//           //           </div>
+//           //         </div>
+//           //       </div>
+//           //     );
+//           //   })}
+
+//           //   {/* placeholder for grid balance */}
+//           //   {courses.length === 2 && (
+//           //     <div className="hidden lg:block"></div>
+//           //   )}
+//           // </div>
+//           <div className="relative group/slider flex items-center justify-center px-4 md:px-8">
+
+//   {/* LEFT ARROW */}
+//   {courses.length > 3 && (
+//     <button
+//       onClick={() => {
+//         const container = document.getElementById("courseScroll");
+//         if (!container) return;
+//         container.scrollBy({ left: -336 * 3, behavior: "smooth" });
+//       }}
+//       className="
+//         absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 z-30
+//         w-12 h-12 rounded-full flex items-center justify-center
+//         text-[var(--color-accent-purple)] md:bg-[var(--color-accent-purple)]
+//         md:text-white md:shadow-lg hover:scale-110 transition
+//       "
+//     >
+//       ‹
+//     </button>
+//   )}
+
+//   {/* RIGHT ARROW */}
+//   {courses.length > 3 && (
+//     <button
+//       onClick={() => {
+//         const container = document.getElementById("courseScroll");
+//         if (!container) return;
+//         container.scrollBy({ left: 336 * 3, behavior: "smooth" });
+//       }}
+//       className="
+//         absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 z-30
+//         w-12 h-12 rounded-full flex items-center justify-center
+//         text-[var(--color-accent-purple)] md:bg-[var(--color-accent-purple)]
+//         md:text-white md:shadow-lg hover:scale-110 transition
+//       "
+//     >
+//       ›
+//     </button>
+//   )}
+
+//   {/* CONTENT */}
+//   <div
+//     id="courseScroll"
+//     className={`
+//       ${courses.length <= 3
+//         ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-full"
+//         : "grid grid-flow-col auto-cols-[320px] gap-8 overflow-x-auto hide-scrollbar scroll-smooth w-fit"}
+//     `}
+//   >
+//     {courses.map((course) => {
+//       const imageUrl = getImageUrl(course.image);
+
+//       return (
+//         <div
+//           key={course.id}
+//           className="
+//             bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg
+//             transition-all duration-300 overflow-hidden group
+//             min-w-[320px]
+//           "
+//         >
+//           {/* IMAGE */}
+//           <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
+//             <Image
+//               src={imageUrl}
+//               alt={course.name}
+//               fill
+//               unoptimized
+//               className="absolute object-contain group-hover:scale-101 transition duration-500"
+//             />
+
+//             <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
+//               {course.duration || "Course"}
+//             </span>
+//           </div>
+
+//           {/* CONTENT */}
+//           <div className="p-6">
+//             <div className="text-orange-400 text-sm mb-2">
+//               ★ {ratings[course.id]?.average_rating || 0}
+//               <span className="text-[var(--color-muted)] ml-2">
+//                 ({ratings[course.id]?.total_reviews || 0} Reviews)
+//               </span>
+//             </div>
+
+//             <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
+//               {course.name}
+//             </h3>
+
+//             <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
+//               <span>📘 {course.lecture || 0} Lessons</span>
+//               <span>👨‍🎓 {course.students || 0} Students</span>
+//             </div>
+
+//             <div
+//               className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+//               dangerouslySetInnerHTML={{ __html: course?.text || "" }}
+//             />
+
+//             <div className="text-xs text-[var(--color-muted-light)] mb-4">
+//               Category: {course.category_details?.name}
+//             </div>
+
+//             <div className="flex items-center justify-between">
+//               <Link
+//                 href={`/courses/${course.slug}`}
+//                 className="text-[var(--color-accent-purple)] font-semibold hover:underline"
+//               >
+//                 Learn More →
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       );
+//     })}
+
+//     {/* balance */}
+//     {courses.length === 2 && <div className="hidden lg:block"></div>}
+//   </div>
+// </div>
+//         )}
+//       </div>
+//     </section>
+//   );
+// }
+
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { API, BASE_URL } from "@/lib/api";
-import { useParams } from "next/navigation"; // ✅ ADD THIS
+import { useParams } from "next/navigation";
 
 type Course = {
   id: number;
@@ -243,18 +565,18 @@ type Course = {
   level: string | null;
   language: string | null;
   slug: string;
-  category: number; // ✅ ADD THIS (category id)
+  category: number;
   category_details: {
     name: string;
   };
 };
 
 export default function RelatedCourses() {
-  const { slug } = useParams(); // ✅ ADD THIS - get current course slug
+  const { slug } = useParams();
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [ratings, setRatings] = useState<Record<number, any>>({});
-  const [currentCourse, setCurrentCourse] = useState<Course | null>(null); // ✅ ADD THIS
+  const [currentCourse, setCurrentCourse] = useState<Course | null>(null);
 
   const getImageUrl = (path?: string) => {
     if (!path) return "/images/fallback.png";
@@ -270,22 +592,18 @@ export default function RelatedCourses() {
         const data = await res.json();
         const list = data.data || [];
 
-        // ✅ FIND CURRENT COURSE BY SLUG
         const current = list.find((c: Course) => c.slug === slug);
         setCurrentCourse(current || null);
 
         if (current) {
-          // ✅ FILTER COURSES BY SAME CATEGORY, EXCLUDE CURRENT COURSE
           const sameCategory = list.filter(
             (c: Course) => c.category === current.category && c.id !== current.id
           );
           
-          // ✅ TAKE FIRST 2 COURSES
           const selected = sameCategory.slice(0, 2);
           setCourses(selected);
           fetchRatings(selected);
         } else {
-          // FALLBACK: show first 2 courses if no current course found
           const selected = list.slice(0, 2);
           setCourses(selected);
           fetchRatings(selected);
@@ -297,10 +615,10 @@ export default function RelatedCourses() {
       }
     };
 
-    if (slug) { // ✅ ONLY FETCH IF SLUG EXISTS
+    if (slug) {
       fetchCourses();
     }
-  }, [slug]); // ✅ ADD DEPENDENCY
+  }, [slug]);
 
   const fetchRatings = async (courseList: Course[]) => {
     const ratingData: Record<number, any> = {};
@@ -346,199 +664,121 @@ export default function RelatedCourses() {
             Loading courses...
           </div>
         ) : (
-          // <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="relative w-full">
+            {/* Scroll Buttons - Only if more than 3 courses */}
+            {courses.length > 3 && (
+              <div className="flex justify-end gap-3 mb-6">
+                <button 
+                  onClick={() => {
+                    const container = document.getElementById("relatedCourseScroll");
+                    if (container) {
+                      container.scrollBy({ left: -335, behavior: "smooth" });
+                    }
+                  }}
+                  className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
+                >
+                  ←
+                </button>
+                <button 
+                  onClick={() => {
+                    const container = document.getElementById("relatedCourseScroll");
+                    if (container) {
+                      container.scrollBy({ left: 335, behavior: "smooth" });
+                    }
+                  }}
+                  className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
+                >
+                  →
+                </button>
+              </div>
+            )}
 
-          //   {courses.map((course) => {
-          //     const imageUrl = getImageUrl(course.image);
-
-          //     return (
-          //       <div
-          //         key={course.id}
-          //         className="bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
-          //       >
-          //         {/* IMAGE */}
-          //         <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
-          //           <Image
-          //             src={imageUrl}
-          //             alt={course.name}
-          //             fill
-          //             unoptimized
-          //             className="absolute object-contain group-hover:scale-101 transition duration-500"
-          //           />
-
-          //           <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
-          //             {course.duration || "Course"}
-          //           </span>
-          //         </div>
-
-          //         {/* CONTENT */}
-          //         <div className="p-6">
-          //           <div className="text-orange-400 text-sm mb-2">
-          //             ★ {ratings[course.id]?.average_rating || 0}
-
-          //             <span className="text-[var(--color-muted)] ml-2">
-          //               ({ratings[course.id]?.total_reviews || 0} Reviews)
-          //             </span>
-          //           </div>
-
-          //           <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
-          //             {course.name}
-          //           </h3>
-
-          //           <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
-          //             <span>📘 {course.lecture || 0} Lessons</span>
-          //             <span>👨‍🎓 {course.students || 0} Students</span>
-          //           </div>
-
-          //           {/* <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
-          //             {course?.text?.replace(/<[^>]*>/g, "")}
-          //           </p> */}
-          //           <div
-          //             className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
-          //             dangerouslySetInnerHTML={{ __html: course?.text || "" }}
-          //           />
-          //           <div className="text-xs text-[var(--color-muted-light)] mb-4">
-          //             Category: {course.category_details?.name}
-          //           </div>
-
-          //           <div className="flex items-center justify-between">
-          //             <Link
-          //               href={`/courses/${course.slug}`}
-          //               className="text-[var(--color-accent-purple)] font-semibold hover:underline"
-          //             >
-          //               Learn More →
-          //             </Link>
-          //           </div>
-          //         </div>
-          //       </div>
-          //     );
-          //   })}
-
-          //   {/* placeholder for grid balance */}
-          //   {courses.length === 2 && (
-          //     <div className="hidden lg:block"></div>
-          //   )}
-          // </div>
-          <div className="relative group/slider flex items-center justify-center px-4 md:px-8">
-
-  {/* LEFT ARROW */}
-  {courses.length > 3 && (
-    <button
-      onClick={() => {
-        const container = document.getElementById("courseScroll");
-        if (!container) return;
-        container.scrollBy({ left: -336 * 3, behavior: "smooth" });
-      }}
-      className="
-        absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 z-30
-        w-12 h-12 rounded-full flex items-center justify-center
-        text-[var(--color-accent-purple)] md:bg-[var(--color-accent-purple)]
-        md:text-white md:shadow-lg hover:scale-110 transition
-      "
-    >
-      ‹
-    </button>
-  )}
-
-  {/* RIGHT ARROW */}
-  {courses.length > 3 && (
-    <button
-      onClick={() => {
-        const container = document.getElementById("courseScroll");
-        if (!container) return;
-        container.scrollBy({ left: 336 * 3, behavior: "smooth" });
-      }}
-      className="
-        absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 z-30
-        w-12 h-12 rounded-full flex items-center justify-center
-        text-[var(--color-accent-purple)] md:bg-[var(--color-accent-purple)]
-        md:text-white md:shadow-lg hover:scale-110 transition
-      "
-    >
-      ›
-    </button>
-  )}
-
-  {/* CONTENT */}
-  <div
-    id="courseScroll"
-    className={`
-      ${courses.length <= 3
-        ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-full"
-        : "grid grid-flow-col auto-cols-[320px] gap-8 overflow-x-auto hide-scrollbar scroll-smooth w-fit"}
-    `}
-  >
-    {courses.map((course) => {
-      const imageUrl = getImageUrl(course.image);
-
-      return (
-        <div
-          key={course.id}
-          className="
-            bg-[var(--color-white)] rounded-2xl shadow-sm hover:shadow-lg
-            transition-all duration-300 overflow-hidden group
-            min-w-[320px]
-          "
-        >
-          {/* IMAGE */}
-          <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
-            <Image
-              src={imageUrl}
-              alt={course.name}
-              fill
-              unoptimized
-              className="absolute object-contain group-hover:scale-101 transition duration-500"
-            />
-
-            <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
-              {course.duration || "Course"}
-            </span>
-          </div>
-
-          {/* CONTENT */}
-          <div className="p-6">
-            <div className="text-orange-400 text-sm mb-2">
-              ★ {ratings[course.id]?.average_rating || 0}
-              <span className="text-[var(--color-muted)] ml-2">
-                ({ratings[course.id]?.total_reviews || 0} Reviews)
-              </span>
-            </div>
-
-            <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
-              {course.name}
-            </h3>
-
-            <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
-              <span>📘 {course.lecture || 0} Lessons</span>
-              <span>👨‍🎓 {course.students || 0} Students</span>
-            </div>
-
+            {/* Cards Container - EXACT same styling as FeaturedCoursesSection */}
             <div
-              className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
-              dangerouslySetInnerHTML={{ __html: course?.text || "" }}
-            />
+              id="relatedCourseScroll"
+              className={`
+                ${courses.length <= 3 
+                  ? "grid grid-cols-[repeat(auto-fit,minmax(300px,335px))] gap-6 justify-start" 
+                  : "grid grid-flow-col auto-cols-[335px] overflow-x-auto gap-4 pb-10 pt-2 hide-scrollbar scroll-smooth"
+                }
+              `}
+            >
+              {courses.map((course) => {
+                const imageUrl = getImageUrl(course.image);
 
-            <div className="text-xs text-[var(--color-muted-light)] mb-4">
-              Category: {course.category_details?.name}
-            </div>
+                return (
+                  <div
+                    key={course.id}
+                    className="
+                      w-[335px]
+                      p-2 rounded-3xl
+                      transition-all duration-300 hover:-translate-y-2 cursor-pointer
+                      bg-[var(--color-white)]
+                    "
+                  >
+                    <div className="flex flex-col w-full h-full">
+                      {/* IMAGE */}
+                      <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden rounded-t-2xl">
+                        <Image
+                          src={imageUrl}
+                          alt={course.name}
+                          fill
+                          unoptimized
+                          className="object-contain group-hover:scale-101 transition duration-500"
+                        />
 
-            <div className="flex items-center justify-between">
-              <Link
-                href={`/courses/${course.slug}`}
-                className="text-[var(--color-accent-purple)] font-semibold hover:underline"
-              >
-                Learn More →
-              </Link>
+                        <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
+                          {course.duration || "Course"}
+                        </span>
+                      </div>
+
+                      {/* CONTENT */}
+                      <div className="p-4">
+                        <div className="text-orange-400 text-sm mb-2">
+                          ★ {ratings[course.id]?.average_rating || 0}
+                          <span className="text-[var(--color-muted)] ml-2">
+                            ({ratings[course.id]?.total_reviews || 0} Reviews)
+                          </span>
+                        </div>
+
+                        <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2 line-clamp-1">
+                          {course.name}
+                        </h3>
+
+                        <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
+                          <span>📘 {course.lecture || 0} Lessons</span>
+                          <span>👨‍🎓 {course.students || 0} Students</span>
+                        </div>
+
+                        <div
+                          className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+                          dangerouslySetInnerHTML={{ __html: course?.text || "" }}
+                        />
+
+                        <div className="text-xs text-[var(--color-muted-light)] mb-4">
+                          Category: {course.category_details?.name}
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          <Link
+                            href={`/courses/${course.slug}`}
+                            className="text-[var(--color-accent-purple)] font-semibold hover:underline"
+                          >
+                            Learn More →
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Placeholder for grid balance - if only 2 courses */}
+              {courses.length === 2 && (
+                <div className="hidden lg:block w-[335px]"></div>
+              )}
             </div>
           </div>
-        </div>
-      );
-    })}
-
-    {/* balance */}
-    {courses.length === 2 && <div className="hidden lg:block"></div>}
-  </div>
-</div>
         )}
       </div>
     </section>
