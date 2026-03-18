@@ -405,13 +405,22 @@ export default function KnowAboutUs() {
                         </div>
 
                         {/* Second Image */}
-                        <div ref={imgTopRef} className="absolute w-auto hidden md:block mt-12">
+                        {/* <div ref={imgTopRef} className="absolute w-auto hidden lg:block mt-12">
                             <Image
                                 src={about2}
                                 alt="About top"
                                 width={250}
                                 height={200}
-                                className="rounded w-[120px] lg:ml-[280px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
+                                className="rounded w-[120px] lg:ml-[280px] sm:w-[140px] md:w-[180px] lg:w-[220px] "
+                            />
+                        </div> */}
+                        <div ref={imgTopRef} className="absolute w-auto hidden lg:block" style={{ right: '30px', top: '120px' }}>
+                            <Image
+                                src={about2}
+                                alt="About top"
+                                width={250}
+                                height={200}
+                                className="rounded w-[120px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
                             />
                         </div>
                     </div>
@@ -430,14 +439,14 @@ export default function KnowAboutUs() {
         </div>
     </div> */}
                     <div className="relative" style={{ height: '250px' }}>
-                        <div ref={imgBottomRef} className="absolute" style={{ left: '200px', bottom: '100px' }}>
+                        <div ref={imgBottomRef} className="absolute" style={{ left: '250px', bottom: '70px' }}>
                             <Image
                                 src={about3}
                                 alt="About bottom"
                                 width={500}
                                 height={450}
                                 className="rounded"
-                                style={{ width: '400px', height: 'auto' }}
+                                style={{ width: '500px', height: 'auto' }}
                             />
                         </div>
                     </div>
