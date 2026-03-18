@@ -245,17 +245,62 @@ export default function CourseTabs({ course, events }: any) {
         return txt.value;
     };
     // ⭐ STAR COMPONENT
-    const Stars = ({ count }: { count: number }) => {
+    // const Stars = ({ count }: { count: number }) => {
+    //     return (
+    //         <div className="flex gap-[2px] text-lg">
+    //             {[1, 2, 3, 4, 5].map((i) => (
+    //                 <span key={i} className={i <= count ? "text-orange-500" : ""}>
+    //                     ★
+    //                 </span>
+    //             ))}
+    //         </div>
+    //     );
+    // };
+  // ⭐ STAR COMPONENT - Handles both integer and fractional ratings
+const Stars = ({ count, rating }: { count?: number; rating?: number }) => {
+    // If rating is provided (fractional), use the precise method
+    if (rating !== undefined) {
         return (
             <div className="flex gap-[2px] text-lg">
-                {[1, 2, 3, 4, 5].map((i) => (
-                    <span key={i} className={i <= count ? "text-orange-500" : ""}>
-                        ★
-                    </span>
-                ))}
+                {[1, 2, 3, 4, 5].map((i) => {
+                    // Calculate fill percentage for this star
+                    if (i <= Math.floor(rating)) {
+                        // Full star
+                        return <span key={i} className="text-orange-500">★</span>;
+                    } else if (i === Math.floor(rating) + 1 && rating % 1 > 0) {
+                        // Partial star
+                        const fillPercent = (rating % 1) * 100;
+                        return (
+                            <span key={i} className="relative">
+                                <span className="text-gray-300">★</span>
+                                <span 
+                                    className="absolute top-0 left-0 overflow-hidden text-orange-500"
+                                    style={{ width: `${fillPercent}%` }}
+                                >
+                                    ★
+                                </span>
+                            </span>
+                        );
+                    } else {
+                        // Empty star
+                        return <span key={i} className="text-gray-300">★</span>;
+                    }
+                })}
             </div>
         );
-    };
+    }
+    
+    // If count is provided (integer), use the simple method
+    return (
+        <div className="flex gap-[2px] text-lg">
+            {[1, 2, 3, 4, 5].map((i) => (
+                <span key={i} className={i <= (count || 0) ? "text-orange-500" : "text-gray-300"}>
+                    ★
+                </span>
+            ))}
+        </div>
+    );
+};
     const getFullImageUrl = (img?: string) => {
         if (!img) return "/images/fallback.png";
 
@@ -615,7 +660,8 @@ export default function CourseTabs({ course, events }: any) {
                         <p className="text-5xl font-bold text-[var(--color-accent-purple)]">
                             {apiAvg !== null ? apiAvg.toFixed(1) : avg}
                         </p>
-                        <Stars count={Math.round(apiAvg !== null ? apiAvg : Number(avg))} />
+                        {/* <Stars count={Math.round(apiAvg !== null ? apiAvg : Number(avg))} /> */}
+                        <Stars rating={apiAvg !== null ? apiAvg : Number(avg)} />
                         <p className="text-sm text-[var(--color-muted)] mt-1">
                             {total} {total === 1 ? 'Rating' : 'Ratings'}
                         </p>
