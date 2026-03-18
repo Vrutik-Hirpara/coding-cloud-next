@@ -82,7 +82,7 @@ export default function CourseTabs({ course, events }: any) {
             }
 
             const res = await fetch(
-                `${BASE_URL}/testimonials/`,
+                `${BASE_URL}/course_wise_rating/`,
                 {
                     method: "POST",
                     body: form, // ❗ no headers
@@ -164,7 +164,7 @@ export default function CourseTabs({ course, events }: any) {
         const fetchReviews = async () => {
             try {
                 const res = await fetch(
-                    `${BASE_URL}/testimonials/?course_id=${course.id}`
+                    `${BASE_URL}/course_wise_rating/?course_id=${course.id}`
                 );
 
                 const json = await res.json();
@@ -858,14 +858,14 @@ export default function CourseTabs({ course, events }: any) {
                     courses={courses}
                 />
             </section>
-            <Button
+            {/* <Button
                 onClick={() => setIsEnrollOpen(true)}
                 variant="gradient"
                 size="md"
                 className="px-2 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 text-[10px] sm:text-xs md:text-base rounded-full whitespace-nowrap hover:opacity-90"
             >
                 Enroll Now
-            </Button>
+            </Button> */}
 
 
 
