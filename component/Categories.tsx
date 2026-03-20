@@ -304,7 +304,7 @@ export default function Categories() {
                       src={imageUrl || "/images/placeholder-course.jpg"}
                       alt={cat.name}
                       fill
-                      className="object-contain object-center group-hover:scale-110 transition-transform duration-300"
+                      className="object-contain object-center transition-transform duration-300"
                       unoptimized
                     />
                   </div>

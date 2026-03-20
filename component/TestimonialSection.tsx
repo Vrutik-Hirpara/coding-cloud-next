@@ -924,7 +924,7 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
       />
 
       {/* ⭐ Dynamic Rating Stars */}
-      <div className="flex justify-center gap-1 mb-2">
+      {/* <div className="flex justify-center gap-1 mb-2">
         {[...Array(5)].map((_, i) => (
           <FaStar
             key={i}
@@ -934,8 +934,21 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => {
               }`}
           />
         ))}
-      </div>
-
+      </div> */}
+<div className="flex justify-center gap-1 mb-2">
+    {[...Array(5)].map((_, i) => (
+        <span 
+            key={i} 
+            className={`text-sm ${
+                i < (item.rating || 0) 
+                    ? "text-yellow-400" 
+                    : "text-gray-300"
+            }`}
+        >
+            ★
+        </span>
+    ))}
+</div>
       {/* review */}
       <p
         className={`text-sm leading-relaxed break-words whitespace-normal line-clamp-5
@@ -1034,9 +1047,27 @@ const TestimonialSection = () => {
 
   if (loading)
     return (
-      <div className="py-20 text-center text-[var(--color-muted-light)]">
-        Loading...
+      <div className="py-20 text-center">
+  <div className="flex flex-col items-center gap-6">
+    {/* Spinner with gradient border */}
+    <div className="relative">
+      <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 border-r-purple-500 border-b-pink-500 border-l-transparent rounded-full animate-spin"></div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
       </div>
+    </div>
+    
+    {/* Text with dots */}
+    <div className="flex items-center gap-1 text-gray-600 font-medium">
+      <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-lg">
+        Loading
+      </span>
+      <span className="text-blue-600 animate-bounce [animation-delay:-0.3s] text-lg">.</span>
+      <span className="text-purple-600 animate-bounce [animation-delay:-0.15s] text-lg">.</span>
+      <span className="text-pink-600 animate-bounce text-lg">.</span>
+    </div>
+  </div>
+</div>
     );
 
   if (!data.length)
@@ -1070,7 +1101,7 @@ const TestimonialSection = () => {
       {/* row 1 - Left to Right */}
       <div className={`${rowPadding} marquee-container relative w-full overflow-hidden mb-10`}>
         <div 
-          className="flex gap-2 sm:gap-3 md:gap-2 lg:gap-1 w-fit animate-[marqueeLeft_40s_linear_infinite] hover:[animation-play-state:paused] will-change-transform"
+          className="flex gap-2 sm:gap-3 md:gap-2 lg:gap-1 w-fit animate-[marqueeLeft_90s_linear_infinite] hover:[animation-play-state:paused] will-change-transform"
         >
           {marquee1.map((item, i) => (
             <div key={`row1-${i}-${item.id}`}>
@@ -1084,7 +1115,7 @@ const TestimonialSection = () => {
       {marquee2.length > 0 && (
         <div className={`${rowPadding} marquee-container relative w-full overflow-hidden`}>
           <div 
-            className="flex gap-2 sm:gap-3 md:gap-2 lg:gap-1 w-fit animate-[marqueeRight_40s_linear_infinite] hover:[animation-play-state:paused] will-change-transform"
+            className="flex gap-2 sm:gap-3 md:gap-2 lg:gap-1 w-fit animate-[marqueeRight_90s_linear_infinite] hover:[animation-play-state:paused] will-change-transform"
           >
             {marquee2.map((item, i) => (
               <div key={`row2-${i}-${item.id}`}>

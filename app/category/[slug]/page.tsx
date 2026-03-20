@@ -395,15 +395,60 @@ export default function CategoryCoursesPage() {
             {/* Content Section */}
             <div className="p-4 pt-2">
               {/* Rating */}
-              <div className="text-orange-400 text-sm mb-2">
+              {/* <div className="text-orange-400 text-sm mb-2">
                 ★ {rating.toFixed(1)}
                 <span className="text-[var(--color-muted)] ml-2">
                   ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
                 </span>
-              </div>
+              </div> */}
+{/* <div className="text-orange-400 text-sm mb-2">
+  ★ {rating % 1 === 0 ? rating : rating.toFixed(1)}
+  <span className="text-[var(--color-muted)] ml-2">
+    ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
+  </span>
+</div> */}
+<div className="flex items-center gap-2 text-sm mb-2 text-orange-400">
+  {/* ⭐ Dynamic Stars */}
+  <div className="flex items-center">
+    {[1, 2, 3, 4, 5].map((star) => {
+      const ratingValue = rating || 0;
 
+      let fillPercent = 0;
+
+      if (ratingValue >= star) {
+        fillPercent = 100;
+      } else if (ratingValue > star - 1) {
+        fillPercent = (ratingValue - (star - 1)) * 100;
+      }
+
+      return (
+        <span key={star} className="relative text-lg">
+          <span className="text-gray-300">★</span>
+          <span
+            className="absolute top-0 left-0 overflow-hidden text-yellow-500"
+            style={{ width: `${fillPercent}%` }}
+          >
+            ★
+          </span>
+        </span>
+      );
+    })}
+  </div>
+
+  {/* ⭐ Rating number */}
+  <span>
+    {rating
+      ? (rating % 1 === 0 ? rating : rating.toFixed(1))
+      : 0}
+  </span>
+
+  {/* ⭐ Reviews */}
+  <span className="text-[var(--color-muted)] ml-2">
+    ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
+  </span>
+</div>
               {/* Title */}
-              <h3 className="text-lg font-bold text-[var(--color-dark)] mb-2 line-clamp-1">
+              <h3 className="text-lg font-bold text-[var(--color-dark)] mb-2">
                 {course.name}
               </h3>
 

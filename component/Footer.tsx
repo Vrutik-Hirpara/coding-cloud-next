@@ -622,7 +622,7 @@ className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words bl
           </p>
 
           <div className="flex items-center gap-6">
-            <Link href="terms-of-service" className="hover:text-[var(--color-accent-purple)]">
+            <Link href="/terms-of-service" className="hover:text-[var(--color-accent-purple)]">
               Terms of service
             </Link>
             <Link href="/privacy-policy" className="hover:text-[var(--color-accent-purple)]">

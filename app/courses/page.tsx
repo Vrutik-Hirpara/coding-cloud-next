@@ -253,6 +253,7 @@ interface Course {
   duration?: string;
   lecture?: string;
   students?: string;
+  short_description?: string;
   category_details?: {
     name: string;
   };
@@ -516,15 +517,54 @@ export default function CoursesPage() {
                   {/* Content Section - Like EventCard */}
                   <div className="p-4 pt-2">
                     {/* Rating - Like EventCard */}
-                    <div className="text-orange-400 text-sm mb-2">
+                    {/* <div className="text-orange-400 text-sm mb-2">
                       ★ {rating.toFixed(1)}
                       <span className="text-[var(--color-muted)] ml-2">
                         ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
                       </span>
-                    </div>
+                    </div> */}
+<div className="flex items-center gap-2 text-sm mb-2">
+  {/* ⭐ Dynamic Stars (exact fill) */}
+  <div className="flex items-center">
+    {[1, 2, 3, 4, 5].map((star) => {
+      const ratingValue = rating || 0;
 
+      let fillPercent = 0;
+
+      if (ratingValue >= star) {
+        fillPercent = 100;
+      } else if (ratingValue > star - 1) {
+        fillPercent = (ratingValue - (star - 1)) * 100;
+      }
+
+      return (
+        <span key={star} className="relative text-lg">
+          <span className="text-gray-300">★</span>
+          <span
+            className="absolute top-0 left-0 overflow-hidden text-yellow-500"
+            style={{ width: `${fillPercent}%` }}
+          >
+            ★
+          </span>
+        </span>
+      );
+    })}
+  </div>
+
+  {/* ⭐ Rating number */}
+  <span className="text-orange-400">
+    {rating
+      ? (rating % 1 === 0 ? rating : rating.toFixed(1))
+      : 0}
+  </span>
+
+  {/* ⭐ Reviews */}
+  <span className="text-[var(--color-muted)] ml-2">
+    ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
+  </span>
+</div>
                     {/* Title - Like EventCard */}
-                    <h3 className="text-lg font-bold text-[var(--color-dark)] mb-2 line-clamp-1">
+                    <h3 className="text-lg font-bold text-[var(--color-dark)] mb-2">
                       {course.name}
                     </h3>
 
@@ -535,10 +575,15 @@ export default function CoursesPage() {
                     </div>
 
                     {/* Description - Like EventCard text */}
-                    <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
-                      {course.description?.replace(/<[^>]*>/g, "") || "No description available"}
-                    </p>
-
+                    {/* <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
+                      {course.short_description?.replace(/<[^>]*>/g, "") || "No description available"}
+                    </p> */}
+<p
+  className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+  dangerouslySetInnerHTML={{
+    __html: course.short_description || "No description available",
+  }}
+/>
                     {/* Category - Like EventCard */}
                     {course.category_details?.name && (
                       <div className="text-xs text-[var(--color-muted-light)] mb-4">

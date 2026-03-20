@@ -727,7 +727,7 @@ export default function RelatedCourses() {
                           className="object-contain group-hover:scale-101 transition duration-500"
                         />
 
-                        <span className="absolute top-3 left-3 bg-[var(--color-white)]/90 text-xs px-3 py-1 rounded-full font-semibold">
+                        <span className="absolute top-2 left-1 bg-white px-3 py-1 rounded-full text-xs font-semibold">
                           {course.duration || "Course"}
                         </span>
                       </div>
@@ -741,7 +741,7 @@ export default function RelatedCourses() {
                           </span>
                         </div>
 
-                        <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2 line-clamp-1">
+                        <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2 ">
                           {course.name}
                         </h3>
 

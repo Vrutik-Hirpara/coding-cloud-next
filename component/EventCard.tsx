@@ -703,7 +703,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
     unoptimized
   />
 
-            <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full text-xs font-semibold">
+            <div className="absolute top-2 left-1 bg-white px-3 py-1 rounded-full text-xs font-semibold">
               {event.dateRange}
             </div>
           </div>
@@ -733,8 +733,11 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
             </div>
 
             <div className="flex text-gray-500 items-center gap-1">
-              <span className="font-bold text-gray-500">{avgRating.toFixed(1)}</span>
-
+<span className="font-bold text-gray-500">
+  {avgRating
+    ? (avgRating % 1 === 0 ? avgRating : avgRating.toFixed(1))
+    : 0}
+</span>
               <div className="relative inline-block text-gray-300">
                 <span className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -796,8 +799,11 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
           <div className="w-full sm:w-[60%] flex-1 flex flex-col h-full">
 
             <div className="flex items-center gap-1">
-              <span className="font-bold text-gray-500">{avgRating.toFixed(1)}</span>
-
+<span className="font-bold text-gray-500">
+  {avgRating
+    ? (avgRating % 1 === 0 ? avgRating : avgRating.toFixed(1))
+    : 0}
+</span>
               <div className="relative inline-block text-gray-300">
                 <span className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (

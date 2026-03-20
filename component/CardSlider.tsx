@@ -1146,9 +1146,13 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
                   </div>
 
                   {/* Rating Number */}
-                  <span className="text-gray-600 text-xs ml-1">
-                    {card.rating ? card.rating.toFixed(1) : '0'}/5
-                  </span>
+                 <span className="text-gray-600 text-xs ml-1">
+  {card.rating
+    ? Number.isInteger(card.rating)
+      ? card.rating
+      : card.rating.toFixed(1)
+    : '0'}/5
+</span>
                 </div>
                 {/* Button - Smaller */}
                 <div className="border-t pt-3">
