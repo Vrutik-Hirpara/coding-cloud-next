@@ -458,7 +458,8 @@ import { motion } from "framer-motion";
 import { User, Phone, MessageSquare, ArrowRight, CheckCircle } from "lucide-react";
 import Button from "@/component/ui/Button";
 import { BASE_URL } from "@/lib/api";
-
+import { showApiErrors } from "@/utility/apiError";
+import Swal from "sweetalert2"; // (for success alert)
 export default function RegisterPage() {
 
   const [form, setForm] = useState({
@@ -479,60 +480,79 @@ export default function RegisterPage() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    const newErrors: any = {};
+  const newErrors: any = {};
 
-    if (!form.first_name.trim()) newErrors.first_name = "First name is required";
-    if (!form.last_name.trim()) newErrors.last_name = "Last name is required";
+  if (!form.first_name.trim()) newErrors.first_name = "First name is required";
+  if (!form.last_name.trim()) newErrors.last_name = "Last name is required";
 
-    if (!form.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    } else if (form.phone.length !== 10) {
-      newErrors.phone = "Phone number must be 10 digits";
-    }
+  if (!form.phone.trim()) {
+    newErrors.phone = "Phone number is required";
+  } else if (form.phone.length !== 10) {
+    newErrors.phone = "Phone number must be 10 digits";
+  }
 
-    if (!form.message.trim()) newErrors.message = "Message is required";
+  if (!form.message.trim()) newErrors.message = "Message is required";
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  setErrors({});
+
+  try {
+    const res = await fetch(`${BASE_URL}/register_msg/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        first_name: form.first_name,
+        last_name: form.last_name,
+        mobile: form.phone,
+        message: form.message,
+      }),
+    });
+
+    const data = await res.json(); // ✅ IMPORTANT
+
+    if (!res.ok) {
+      setErrors(data);
+      showApiErrors(data); // 🔥 HERE
       return;
     }
 
-    setErrors({});
+    // ✅ SUCCESS
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: "Registration successful!",
+    });
 
-    try {
-      const res = await fetch(`${BASE_URL}/register_msg/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          first_name: form.first_name,
-          last_name: form.last_name,
-          mobile: form.phone,
-          message: form.message,
-        }),
-      });
+    setSuccess(true);
 
-      if (res.ok) {
-        setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
 
-        setTimeout(() => {
-          setSuccess(false);
-        }, 3000);
+    setForm({
+      first_name: "",
+      last_name: "",
+      phone: "",
+      message: "",
+    });
 
-        setForm({
-          first_name: "",
-          last_name: "",
-          phone: "",
-          message: "",
-        });
-      }
+  } catch (error) {
+    console.error(error);
 
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    Swal.fire({
+      icon: "error",
+      title: "Something went wrong",
+      text: "Please try again later",
+    });
+  }
+};
 
   return (
     <section

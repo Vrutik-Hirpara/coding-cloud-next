@@ -3512,7 +3512,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileCoursesOpen, setIsMobileCoursesOpen] = useState(false);
-
+const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
     return pathname.startsWith(path);
@@ -4000,6 +4000,49 @@ export default function Navbar() {
                 >
                   Contact
                 </Link>
+{/* ── RESOURCES (Mobile Dropdown) ── */}
+<div className="py-1">
+  <button
+    onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
+    className="w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+  >
+    <span>Resources</span>
+    <FaChevronUp
+      className={`transition-transform duration-300 ${
+        isMobileResourcesOpen ? "rotate-180" : ""
+      }`}
+    />
+  </button>
+
+  <AnimatePresence>
+    {isMobileResourcesOpen && (
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.2 }}
+        className="overflow-hidden"
+      >
+        <Link
+          href="/blogs"
+          onClick={() => setIsMenuOpen(false)}
+          className="block py-2 px-6 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)]"
+        >
+          Blogs
+        </Link>
+
+        <Link
+          href="/coursefaqs"
+          onClick={() => setIsMenuOpen(false)}
+          className="block py-2 px-6 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)]"
+        >
+          FAQ
+        </Link>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
+                
 
                 <div className="flex justify-center gap-4 mt-4 pt-4 border-t border-gray-200">
                   {linkIcon.map((item) => {

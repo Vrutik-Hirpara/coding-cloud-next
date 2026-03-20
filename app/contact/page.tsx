@@ -519,7 +519,8 @@ import contactImg from '@/public/images/contact/contact.jpg'
 import { useState } from "react";
 import { BASE_URL } from "@/lib/api";
 import Button from "@/component/ui/Button";
-
+import { showApiErrors } from "@/utility/apiError";
+import Swal from "sweetalert2"; // (for success alert)
 export default function ContactPage() {
   const contactData = [
     {
@@ -602,58 +603,127 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: any) => {
+  //   e.preventDefault();
 
-    setGlobalError("");
-    setSuccess(false);
+  //   setGlobalError("");
+  //   setSuccess(false);
 
-    if (!validateForm()) {
-      setGlobalError("⚠️ Please fix the errors below");
-      setTimeout(() => setGlobalError(""), 4000);
+  //   if (!validateForm()) {
+  //     setGlobalError("⚠️ Please fix the errors below");
+  //     setTimeout(() => setGlobalError(""), 4000);
+  //     return;
+  //   }
+
+  //   try {
+  //     setLoading(true);
+
+  //     const res = await fetch(`${BASE_URL}/contacts/`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         full_name: form.name,
+  //         email: form.email,
+  //         mobile_no: form.mobile,
+  //         subject: form.subject,
+  //         message: form.message,
+  //       }),
+  //     });
+
+  //     if (res.ok) {
+  //       setSuccess(true);
+  //       setForm({
+  //         name: "",
+  //         email: "",
+  //         mobile: "",
+  //         subject: "",
+  //         message: "",
+  //       });
+  //       setErrors({});
+  //       setTimeout(() => setSuccess(false), 4000);
+  //     } else {
+  //       setGlobalError("❌ Something went wrong");
+  //       setTimeout(() => setGlobalError(""), 4000);
+  //     }
+  //   } catch (err) {
+  //     setGlobalError("❌ Server error");
+  //     setTimeout(() => setGlobalError(""), 4000);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+const handleSubmit = async (e: any) => {
+  e.preventDefault();
+
+  setGlobalError("");
+  setSuccess(false);
+
+  if (!validateForm()) {
+    setGlobalError("⚠️ Please fix the errors below");
+    setTimeout(() => setGlobalError(""), 4000);
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const res = await fetch(`${BASE_URL}/contacts/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        full_name: form.name,
+        email: form.email,
+        mobile_no: form.mobile,
+        subject: form.subject,
+        message: form.message,
+      }),
+    });
+
+    const data = await res.json(); // ✅ IMPORTANT
+
+    if (!res.ok) {
+      setErrors(data.errors);
+      showApiErrors(data.errors); // 🔥 HERE
       return;
     }
 
-    try {
-      setLoading(true);
+    // ✅ SUCCESS
+    Swal.fire({
+      icon: "success",
+      title: "Message Sent",
+      text: "We will contact you soon!",
+    });
 
-      const res = await fetch(`${BASE_URL}/contacts/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          full_name: form.name,
-          email: form.email,
-          mobile_no: form.mobile,
-          subject: form.subject,
-          message: form.message,
-        }),
-      });
+    setSuccess(true);
 
-      if (res.ok) {
-        setSuccess(true);
-        setForm({
-          name: "",
-          email: "",
-          mobile: "",
-          subject: "",
-          message: "",
-        });
-        setErrors({});
-        setTimeout(() => setSuccess(false), 4000);
-      } else {
-        setGlobalError("❌ Something went wrong");
-        setTimeout(() => setGlobalError(""), 4000);
-      }
-    } catch (err) {
-      setGlobalError("❌ Server error");
-      setTimeout(() => setGlobalError(""), 4000);
-    } finally {
-      setLoading(false);
-    }
-  };
+    setForm({
+      name: "",
+      email: "",
+      mobile: "",
+      subject: "",
+      message: "",
+    });
 
+    setErrors({});
+
+    setTimeout(() => setSuccess(false), 4000);
+
+  } catch (err) {
+    console.error(err);
+
+    Swal.fire({
+      icon: "error",
+      title: "Server Error",
+      text: "Please try again later",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="min-h-screen bg-soft-gradient w-full max-w-full overflow-x-hidden">
       {/* ================= HEADER ================= */}
