@@ -177,8 +177,8 @@ export default function Page() {
       >
         <div className="container-custom  mx-auto px-4">
           {/* Main Content */}
-          <div className="max-w-xl">
-            {/* Breadcrumb */}
+<div className="max-w-xl  lg:max-w-3xl xl:max-w-7xl">
+              {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
               {/* Home */}
               <Link href="/" className="hover:text-[var(--color-accent-purple)]  transition">
