@@ -517,7 +517,7 @@ import { FaHeadphonesAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import contactImg from '@/public/images/contact/contact.jpg'
 import { useState } from "react";
-import { BASE_URL } from "@/lib/api";
+import { BASE_URL,API } from "@/lib/api";
 import Button from "@/component/ui/Button";
 import { showApiErrors } from "@/utility/apiError";
 import Swal from "sweetalert2"; // (for success alert)
@@ -686,8 +686,8 @@ const handleSubmit = async (e: any) => {
     const data = await res.json(); // ✅ IMPORTANT
 
     if (!res.ok) {
-      setErrors(data.errors);
-      showApiErrors(data.errors); // 🔥 HERE
+      setErrors(data);
+      showApiErrors(data); // 🔥 HERE
       return;
     }
 

@@ -3418,6 +3418,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { API, BASE_URL } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
+import EnrollModal from "@/component/EnrollModal";  // Add this import
 import {
   FaInstagram,
   FaFacebookSquare,
@@ -3512,7 +3513,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileCoursesOpen, setIsMobileCoursesOpen] = useState(false);
-const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
+  const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
     return pathname.startsWith(path);
@@ -3642,7 +3643,7 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
       {/* ── MAIN NAV ── */}
       <nav className="relative border-b border-gray-100">
         {/* <div className="w-full px-4 sm:px-8 md:px-4 lg:px-6  h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4"> */}
-     <div className="w-full px-4 sm:px-8 md:px-4 lg:px-12 xl:px-8 2xl:px-24 h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
+        <div className="w-full px-4 sm:px-8 md:px-4 lg:px-12 xl:px-8 2xl:px-24 h-14 sm:h-16 md:h-20 flex items-center justify-between gap-4">
           {/* ── LEFT: Logo + Category pill ── */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -3667,8 +3668,8 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
                 href="/"
                 onClick={() => setIsDropdownOpen(false)}
                 className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/") && pathname === "/"
-                    ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
-                    : "hover:text-[var(--color-accent-purple)]"
+                  ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
+                  : "hover:text-[var(--color-accent-purple)]"
                   }`}
               >
                 Home
@@ -3684,8 +3685,8 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
               <motion.span
                 whileHover={{ y: -2 }}
                 className={`flex items-center gap-1 text-xs sm:text-sm md:text-base whitespace-nowrap cursor-pointer ${isActive("/courses")
-                    ? "text-[var(--color-accent-purple)] font-bold"
-                    : "hover:text-[var(--color-accent-purple)]"
+                  ? "text-[var(--color-accent-purple)] font-bold"
+                  : "hover:text-[var(--color-accent-purple)]"
                   }`}
               >
                 Courses
@@ -3776,8 +3777,8 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
                 href="/about"
                 onClick={() => setIsDropdownOpen(false)}
                 className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/about")
-                    ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
-                    : "hover:text-[var(--color-accent-purple)]"
+                  ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
+                  : "hover:text-[var(--color-accent-purple)]"
                   }`}
               >
                 About
@@ -3789,8 +3790,8 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
                 href="/contact"
                 onClick={() => setIsDropdownOpen(false)}
                 className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/contact")
-                    ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
-                    : "hover:text-[var(--color-accent-purple)]"
+                  ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
+                  : "hover:text-[var(--color-accent-purple)]"
                   }`}
               >
                 Contact
@@ -3902,8 +3903,8 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
                   href="/"
                   onClick={() => setIsMenuOpen(false)}
                   className={`py-3 px-4 rounded-lg transition-colors ${isActive("/") && pathname === "/"
-                      ? "bg-[var(--color-accent-purple)] text-white font-bold"
-                      : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+                    ? "bg-[var(--color-accent-purple)] text-white font-bold"
+                    : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
                     }`}
                 >
                   Home
@@ -3913,8 +3914,8 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
                   <button
                     onClick={() => setIsMobileCoursesOpen(!isMobileCoursesOpen)}
                     className={`w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors ${isActive("/courses")
-                        ? "bg-[var(--color-accent-purple)] text-white font-bold"
-                        : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+                      ? "bg-[var(--color-accent-purple)] text-white font-bold"
+                      : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
                       }`}
                   >
                     <span>Courses</span>
@@ -3983,8 +3984,8 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
                   href="/about"
                   onClick={() => setIsMenuOpen(false)}
                   className={`py-3 px-4 rounded-lg transition-colors ${isActive("/about")
-                      ? "bg-[var(--color-accent-purple)] text-white font-bold"
-                      : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+                    ? "bg-[var(--color-accent-purple)] text-white font-bold"
+                    : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
                     }`}
                 >
                   About
@@ -3994,55 +3995,54 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
                   href="/contact"
                   onClick={() => setIsMenuOpen(false)}
                   className={`py-3 px-4 rounded-lg transition-colors ${isActive("/contact")
-                      ? "bg-[var(--color-accent-purple)] text-white font-bold"
-                      : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+                    ? "bg-[var(--color-accent-purple)] text-white font-bold"
+                    : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
                     }`}
                 >
                   Contact
                 </Link>
-{/* ── RESOURCES (Mobile Dropdown) ── */}
-<div className="py-1">
-  <button
-    onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
-    className="w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
-  >
-    <span>Resources</span>
-    <FaChevronUp
-      className={`transition-transform duration-300 ${
-        isMobileResourcesOpen ? "rotate-180" : ""
-      }`}
-    />
-  </button>
+                {/* ── RESOURCES (Mobile Dropdown) ── */}
+                <div className="py-1">
+                  <button
+                    onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
+                    className="w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+                  >
+                    <span>Resources</span>
+                    <FaChevronUp
+                      className={`transition-transform duration-300 ${isMobileResourcesOpen ? "rotate-180" : ""
+                        }`}
+                    />
+                  </button>
 
-  <AnimatePresence>
-    {isMobileResourcesOpen && (
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: "auto" }}
-        exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.2 }}
-        className="overflow-hidden"
-      >
-        <Link
-          href="/blogs"
-          onClick={() => setIsMenuOpen(false)}
-          className="block py-2 px-6 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)]"
-        >
-          Blogs
-        </Link>
+                  <AnimatePresence>
+                    {isMobileResourcesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <Link
+                          href="/blogs"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block py-2 px-6 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)]"
+                        >
+                          Blogs
+                        </Link>
 
-        <Link
-          href="/coursefaqs"
-          onClick={() => setIsMenuOpen(false)}
-          className="block py-2 px-6 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)]"
-        >
-          FAQ
-        </Link>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</div>
-                
+                        <Link
+                          href="/coursefaqs"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block py-2 px-6 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)]"
+                        >
+                          FAQ
+                        </Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
 
                 <div className="flex justify-center gap-4 mt-4 pt-4 border-t border-gray-200">
                   {linkIcon.map((item) => {
@@ -4069,174 +4069,12 @@ const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
         </AnimatePresence>
       </nav>
 
-      {/* ── ENROLL MODAL — unchanged ── */}
-     {isEnrollOpen && (
-  <div className="fixed inset-0 z-[999] bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
-    <div className="bg-[var(--color-white)] rounded-xl w-full max-w-lg max-h-[90vh] overflow-y-auto p-4 sm:p-6 relative shadow-xl my-4">
-      <button
-        onClick={() => setIsEnrollOpen(false)}
-        className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-black text-xl z-10"
-      >
-        <FaTimes />
-      </button>
-      
-      <div className="pr-8"> {/* Prevent text from going under close button */}
-        <h2 className="text-xl sm:text-2xl font-bold mb-1 text-[var(--color-text-strong)] break-words">
-          🎓 Enroll Now
-        </h2>
-        <p className="text-xs sm:text-sm text-[var(--color-muted)] mb-3 break-words">
-          Fill the form below to enroll in your desired course. Our team
-          will contact you shortly 🚀
-        </p>
-        <p className="text-xs text-[var(--color-muted-light)] mb-4">
-          * All fields are required
-        </p>
-      </div>
-
-      <form
-        onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          const formData = new FormData(e.currentTarget);
-          const first_name = (
-            formData.get("first_name") as string
-          ).trim();
-          const last_name = (formData.get("last_name") as string).trim();
-          const email = (formData.get("email") as string).trim();
-          const mobile = (formData.get("mobile") as string).trim();
-          const city = (formData.get("city") as string).trim();
-          const course_id = Number(formData.get("course_id"));
-          const course_name = (
-            formData.get("course_name") as string
-          ).trim();
-          
-          if (
-            !first_name ||
-            !last_name ||
-            !email ||
-            !mobile ||
-            !city ||
-            !course_id
-          ) {
-            alert("⚠️ Please fill all fields");
-            return;
-          }
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            alert("⚠️ Invalid Email Address");
-            return;
-          }
-          if (!/^[0-9]{10}$/.test(mobile)) {
-            alert("⚠️ Enter valid 10 digit mobile number");
-            return;
-          }
-          
-          setLoading(true); // Make sure you have this state
-          
-          try {
-            const res = await fetch(`${BASE_URL}/enroll/`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                first_name,
-                last_name,
-                email,
-                mobile,
-                city,
-                course_id,
-                course_name,
-              }),
-            });
-            if (res.ok) {
-              alert("🎉 Enrollment Successful!");
-              setIsEnrollOpen(false);
-              router.push("/");
-            } else {
-              alert("❌ Failed to enroll");
-            }
-          } catch (err) {
-            console.error(err);
-            alert("Server error ❌");
-          } finally {
-            setLoading(false);
-          }
-        }}
-        className="space-y-3"
-      >
-        {/* Name fields - stack on mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input
-            name="first_name"
-            placeholder="First Name"
-            required
-            className="w-full border p-2 sm:p-3 rounded focus:ring-2 focus:ring-purple-400 outline-none text-sm"
-          />
-          <input
-            name="last_name"
-            placeholder="Last Name"
-            required
-            className="w-full border p-2 sm:p-3 rounded focus:ring-2 focus:ring-purple-400 outline-none text-sm"
-          />
-        </div>
-
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          required
-          className="w-full border p-2 sm:p-3 rounded focus:ring-2 focus:ring-purple-400 outline-none text-sm"
-        />
-
-        <input
-          name="mobile"
-          placeholder="Mobile Number"
-          required
-          className="w-full border p-2 sm:p-3 rounded focus:ring-2 focus:ring-purple-400 outline-none text-sm"
-        />
-
-        <input
-          name="city"
-          placeholder="City"
-          required
-          className="w-full border p-2 sm:p-3 rounded focus:ring-2 focus:ring-purple-400 outline-none text-sm"
-        />
-
-        <select
-          name="course_id"
-          required
-          className="w-full border p-2 sm:p-3 rounded focus:ring-2 focus:ring-purple-400 outline-none text-sm"
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            const selected = courses.find(
-              (c: any) => c.id == e.target.value,
-            );
-            const input = document.querySelector(
-              'input[name="course_name"]',
-            ) as HTMLInputElement;
-            if (input) input.value = selected?.name || "";
-          }}
-        >
-          <option value="">Select Course</option>
-          {courses.map((c: any) => (
-            <option key={c.id} value={c.id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-
-        <input type="hidden" name="course_name" />
-
-        <div className="w-full pt-2">
-          <Button
-            type="submit"
-            variant="gradient"
-            size="lg"
-            className="w-full whitespace-normal break-words"
-          >
-            {loading ? "Processing..." : "🎓 Enroll Now"}
-          </Button>
-        </div>
-      </form>
-    </div>
-  </div>
-)}
+      {/* ── ENROLL MODAL ── */}
+      <EnrollModal
+        isOpen={isEnrollOpen}
+        onClose={() => setIsEnrollOpen(false)}
+        courses={courses}
+      />
     </motion.header>
   );
 }

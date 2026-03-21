@@ -17,8 +17,5 @@ export const showApiErrors = (errors: any) => {
     icon: "error",
     title: "Validation Error",
     text: message.trim(),
-    customClass: {
-    popup: "z-[10000]" // 🔥 higher than modal
-  }
   });
 };

@@ -1,7 +1,8 @@
 
 
 "use client";
-
+import Swal from "sweetalert2";
+import { showApiErrors } from "@/utility/apiError";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -58,7 +59,7 @@ export default function CourseTabs({ course, events }: any) {
     const [modules, setModules] = useState<Module[]>([]);
     const [openId, setOpenId] = useState<number | null>(null);
     const isClickScrolling = useRef(false);
-
+    const targetSection = useRef<string | null>(null);
 
     const [topicsData, setTopicsData] = useState<any[]>([]);
     const [showForm, setShowForm] = useState(false);
@@ -70,36 +71,98 @@ export default function CourseTabs({ course, events }: any) {
     });
 
     // console.log("CourseTabs Rendered with course:", course);
+    // const handleSubmit = async () => {
+    //     try {
+    //         const form = new FormData();
+
+    //         form.append("name", formData.name);
+    //         form.append("review", formData.review);
+    //         form.append("rating", formData.rating.toString());
+    //         form.append("course", course.id.toString()); // if required
+
+    //         if (formData.image) {
+    //             form.append("image", formData.image);
+    //         }
+
+    //         const res = await fetch(
+    //             `${BASE_URL}/course_wise_rating/`,
+    //             {
+    //                 method: "POST",
+    //                 body: form, // ❗ no headers
+    //             }
+    //         );
+
+    //         if (!res.ok) {
+    //             const errData = await res.json();
+    //             console.log("Backend Error:", errData);
+    //             throw new Error("Failed to submit review");
+    //         }
+
+    //         const data = await res.json();
+
+    //         // update UI instantly
+    //         setReviews((prev) => [data.data, ...prev]);
+
+    //         setShowForm(false);
+    //         setFormData({
+    //             name: "",
+    //             review: "",
+    //             rating: 5,
+    //             image: null,
+    //         });
+
+    //     } catch (err) {
+    //         console.error(err);
+    //         alert("Something went wrong!");
+    //     }
+    // };
+
     const handleSubmit = async () => {
+        // ✅ Validation
+        if (!formData.name.trim()) {
+            Swal.fire("Warning", "Please enter your name", "warning");
+            return;
+        }
+
+        if (!formData.review.trim()) {
+            Swal.fire("Warning", "Please write your review", "warning");
+            return;
+        }
+
+        if (!formData.rating) {
+            Swal.fire("Warning", "Please select rating", "warning");
+            return;
+        }
+
         try {
             const form = new FormData();
 
             form.append("name", formData.name);
             form.append("review", formData.review);
             form.append("rating", formData.rating.toString());
-            form.append("course", course.id.toString()); // if required
+            form.append("course", course.id.toString());
 
             if (formData.image) {
                 form.append("image", formData.image);
             }
 
-            const res = await fetch(
-                `${BASE_URL}/course_wise_rating/`,
-                {
-                    method: "POST",
-                    body: form, // ❗ no headers
-                }
-            );
+            const res = await fetch(`${BASE_URL}/course_wise_rating/`, {
+                method: "POST",
+                body: form,
+            });
 
-            if (!res.ok) {
-                const errData = await res.json();
-                console.log("Backend Error:", errData);
-                throw new Error("Failed to submit review");
+            const data = await res.json(); // ✅ only once
+
+            // ❌ Backend error
+            if (!res.ok || data.status === "error") {
+                showApiErrors(data.errors || data); // 🔥 SweetAlert error
+                return;
             }
 
-            const data = await res.json();
+            // ✅ Success
+            Swal.fire("Success", "Review submitted successfully!", "success");
 
-            // update UI instantly
+            // UI update
             setReviews((prev) => [data.data, ...prev]);
 
             setShowForm(false);
@@ -112,10 +175,10 @@ export default function CourseTabs({ course, events }: any) {
 
         } catch (err) {
             console.error(err);
-            alert("Something went wrong!");
+
+            Swal.fire("Error", "Something went wrong!", "error");
         }
     };
-
     useEffect(() => {
         console.log("COURSE TABS EVENTS 👉", events);
     }, [events]);
@@ -198,22 +261,29 @@ export default function CourseTabs({ course, events }: any) {
         const sections = ["overview", "content", "faqs", "review"];
 
         const handleScroll = () => {
-            if (isClickScrolling.current) return;
-
-            const scrollPosition = window.scrollY + 200;
-            // 180 = navbar + sticky tabs height
-
             let current = "overview";
 
             for (let sec of sections) {
                 const el = document.getElementById(sec);
                 if (!el) continue;
 
-                const sectionTop = el.offsetTop;
+                const rect = el.getBoundingClientRect();
 
-                if (scrollPosition >= sectionTop) {
+                if (rect.top <= 220) {
                     current = sec;
                 }
+            }
+
+            // 👇 Lock tab while smooth scrolling
+            if (isClickScrolling.current && targetSection.current) {
+                if (current === targetSection.current) {
+                    isClickScrolling.current = false;
+                    targetSection.current = null;
+                    setActive(current);
+                } else {
+                    setActive(targetSection.current);
+                }
+                return;
             }
 
             setActive(current);
@@ -224,21 +294,17 @@ export default function CourseTabs({ course, events }: any) {
 
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-    const scrollTo = (id: string, done?: () => void) => {
+    const scrollTo = (id: string) => {
         const el = document.getElementById(id);
         if (!el) return;
 
         const y =
-            el.getBoundingClientRect().top + window.pageYOffset - 220;
+            el.getBoundingClientRect().top + window.pageYOffset - 200;
 
         window.scrollTo({
             top: y,
             behavior: "smooth",
         });
-
-        if (done) {
-            setTimeout(done, 600);
-        }
     };
     const decodeHtml = (html: string) => {
         if (typeof window === "undefined") return html;
@@ -388,10 +454,9 @@ export default function CourseTabs({ course, events }: any) {
                             key={t.id}
                             onClick={() => {
                                 isClickScrolling.current = true;
-                                setActive(t.id); // immediately highlight clicked tab
-                                scrollTo(t.id, () => {
-                                    isClickScrolling.current = false;
-                                });
+                                targetSection.current = t.id;
+                                setActive(t.id);
+                                scrollTo(t.id);
                             }}
                             style={
                                 active === t.id
@@ -771,9 +836,9 @@ export default function CourseTabs({ course, events }: any) {
                                     </p>
                                 )}
                             </div>
- <label className="block text-sm font-medium text-gray-700">
-                                    Select Image
-                                </label>
+                            <label className="block text-sm font-medium text-gray-700">
+                                Select Image
+                            </label>
                             {/* IMAGE INPUT */}
                             <input
                                 type="file"

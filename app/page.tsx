@@ -393,8 +393,8 @@ import Heading from "@/component/ui/Heading";
 import FeaturedCoursesSection from "@/component/FeaturedCoursesSection";
 import RegisterPage from "./register/page";
 import Accreditation from "@/component/Accreditation";
-import { API } from "@/app/api/endpoints/route";
-import { BASE_URL } from "@/lib/api";
+// import { API } from "@/app/api/endpoints/route";
+import { BASE_URL,API } from "@/lib/api";
 // ============================
 // MAIN HOME PAGE
 // ============================

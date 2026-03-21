@@ -107,7 +107,7 @@
 //           text: "🎉 Enrollment Successful!",
 //           type: "success"
 //         });
-        
+
 //         // Close modal after 3 seconds
 //         setTimeout(() => {
 //           onClose();
@@ -143,7 +143,7 @@
 //     }
 //   };
 
-  
+
 // return createPortal(
 //   <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">   
 //      <div className="bg-[var(--color-white)]  rounded-2xl w-full max-w-lg p-6 relative shadow-2xl animate-fadeIn">
@@ -169,7 +169,7 @@
 
 //         {/* FORM */}
 //         <form onSubmit={handleSubmit} className="grid gap-4">
-          
+
 //           {message.text && (
 //             <div className={`p-3 rounded-lg border ${getMessageStyles()} transition-all duration-300 animate-fadeIn`}>
 //               {message.text}
@@ -231,7 +231,7 @@
 
 //           <input type="hidden" name="course_name" />
 
-      
+
 //           <div className="mt-2">
 //   <Button
 //     type="submit"
@@ -266,7 +266,8 @@ import { FaTimes } from "react-icons/fa";
 import { BASE_URL } from "@/lib/api";
 import { createPortal } from "react-dom";
 import Button from "./ui/Button";
-
+import { showApiErrors } from "@/utility/apiError";
+import Swal from "sweetalert2";
 interface EnrollModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -281,17 +282,17 @@ type MessageType = {
 export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<MessageType>({ text: "", type: "" });
-useEffect(() => {
-  if (isOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [isOpen]);
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
   // Auto-hide message after 3 seconds
   useEffect(() => {
     if (message.text) {
@@ -355,38 +356,50 @@ useEffect(() => {
       course_name,
     };
 
-    try {
-      const res = await fetch(`${BASE_URL}/enroll/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+setLoading(true);
 
-      if (res.ok) {
-        setMessage({
-          text: "🎉 Enrollment Successful!",
-          type: "success"
-        });
-        
-        // Close modal after 3 seconds
-        setTimeout(() => {
-          onClose();
-        }, 3000);
-      } else {
-        setMessage({
-          text: "❌ Failed to enroll",
-          type: "error"
-        });
-      }
-    } catch (err) {
-      console.error(err);
-      setMessage({
-        text: "Server error ❌ Please try again",
-        type: "error"
-      });
-    } finally {
-      setLoading(false);
-    }
+try {
+  const res = await fetch(`${BASE_URL}/enroll/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok || data.status === "error") {
+    showApiErrors(data || data);
+    return;
+  }
+
+  // ✅ SUCCESS
+  Swal.fire({
+    icon: "success",
+    title: "Enrollment Successful",
+    text: "We will contact you soon!",
+  });
+
+  setMessage({
+    text: "🎉 Enrollment Successful!",
+    type: "success"
+  });
+
+  setTimeout(() => {
+    onClose();
+  }, 3000);
+
+} catch (err) {
+  console.error(err);
+
+  Swal.fire({
+    icon: "error",
+    title: "Server Error",
+    text: "Please try again later",
+  });
+
+} finally {
+  setLoading(false); // 🔥 ALWAYS RUNS
+}
   };
 
   // Message styles based on type
@@ -403,208 +416,208 @@ useEffect(() => {
     }
   };
 
-  
-// return createPortal(
-//   <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">   
-//      <div className="bg-[var(--color-white)]  rounded-2xl w-full max-w-lg p-6 relative shadow-2xl animate-fadeIn">
 
-//         {/* CLOSE BUTTON */}
-//         <button
-//           onClick={onClose}
-//           className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-black text-xl hover:rotate-90 transition-transform duration-300"
-//         >
-//           <FaTimes />
-//         </button>
+  // return createPortal(
+  //   <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">   
+  //      <div className="bg-[var(--color-white)]  rounded-2xl w-full max-w-lg p-6 relative shadow-2xl animate-fadeIn">
 
-//         {/* HEADER */}
-//         <div className="mb-6">
-//           <h2 className="text-2xl font-bold mb-1 text-[var(--color-text-strong)]">
-//             🎓 Enroll Now
-//           </h2>
-//           <p className="text-sm text-[var(--color-muted)] mt-1">
-//             Fill the form below to enroll in your desired course. Our team will contact you shortly 🚀
-//           </p>
-//           <p className="text-xs text-[var(--color-muted-light)] mt-2">* All fields are required</p>
-//         </div>
+  //         {/* CLOSE BUTTON */}
+  //         <button
+  //           onClick={onClose}
+  //           className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-black text-xl hover:rotate-90 transition-transform duration-300"
+  //         >
+  //           <FaTimes />
+  //         </button>
 
-//         {/* FORM */}
-//         <form onSubmit={handleSubmit} className="grid gap-4">
-          
-//           {message.text && (
-//             <div className={`p-3 rounded-lg border ${getMessageStyles()} transition-all duration-300 animate-fadeIn`}>
-//               {message.text}
-//             </div>
-//           )}
+  //         {/* HEADER */}
+  //         <div className="mb-6">
+  //           <h2 className="text-2xl font-bold mb-1 text-[var(--color-text-strong)]">
+  //             🎓 Enroll Now
+  //           </h2>
+  //           <p className="text-sm text-[var(--color-muted)] mt-1">
+  //             Fill the form below to enroll in your desired course. Our team will contact you shortly 🚀
+  //           </p>
+  //           <p className="text-xs text-[var(--color-muted-light)] mt-2">* All fields are required</p>
+  //         </div>
 
-//           <div className="grid grid-cols-2 gap-3">
-//             <input
-//               name="first_name"
-//               placeholder="First Name"
-//               required
-//               className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
-//             />
-//             <input
-//               name="last_name"
-//               placeholder="Last Name"
-//               required
-//               className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
-//             />
-//           </div>
+  //         {/* FORM */}
+  //         <form onSubmit={handleSubmit} className="grid gap-4">
 
-//           <input
-//             name="email"
-//             type="email"
-//             placeholder="Email"
-//             required
-//             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
-//           />
+  //           {message.text && (
+  //             <div className={`p-3 rounded-lg border ${getMessageStyles()} transition-all duration-300 animate-fadeIn`}>
+  //               {message.text}
+  //             </div>
+  //           )}
 
-//           <input
-//             name="mobile"
-//             placeholder="Mobile Number"
-//             required
-//             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
-//           />
+  //           <div className="grid grid-cols-2 gap-3">
+  //             <input
+  //               name="first_name"
+  //               placeholder="First Name"
+  //               required
+  //               className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
+  //             />
+  //             <input
+  //               name="last_name"
+  //               placeholder="Last Name"
+  //               required
+  //               className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
+  //             />
+  //           </div>
 
-//           <input
-//             name="city"
-//             placeholder="City"
-//             required
-//             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
-//           />
+  //           <input
+  //             name="email"
+  //             type="email"
+  //             placeholder="Email"
+  //             required
+  //             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
+  //           />
 
-//           <select
-//             name="course_id"
-//             required
-//             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
-//             onChange={(e) => {
-//               const selected = courses.find((c: any) => c.id == e.target.value);
-//               const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
-//               if (input) input.value = selected?.name || "";
-//             }}
-//           >
-//             <option value="">Select Course</option>
-//             {courses.map((c: any) => (
-//               <option key={c.id} value={c.id}>{c.name}</option>
-//             ))}
-//           </select>
+  //           <input
+  //             name="mobile"
+  //             placeholder="Mobile Number"
+  //             required
+  //             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
+  //           />
 
-//           <input type="hidden" name="course_name" />
+  //           <input
+  //             name="city"
+  //             placeholder="City"
+  //             required
+  //             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
+  //           />
 
-      
-//           <div className="mt-2">
-//   <Button
-//     type="submit"
-//     variant="gradient"
-//     size="lg"
-//     className="w-full flex items-center justify-center gap-2"
-//   >
-//     {loading ? (
-//       <>
-//         <span>Processing...</span>
-//       </>
-//     ) : (
-//       <>
-//         <span>🎓 Enroll Now</span>
-//       </>
-//     )}
-//   </Button>
-// </div>
-//         </form>
-//       </div>
-//     </div>,
-//   document.body
-//   );
-return createPortal(
-  <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">   
-    <div className="bg-[var(--color-white)] rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl animate-fadeIn my-4">
-      {/* my-4 adds vertical margin, max-h-[90vh] and overflow-y-auto ensures content scrolls if needed */}
+  //           <select
+  //             name="course_id"
+  //             required
+  //             className="border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all"
+  //             onChange={(e) => {
+  //               const selected = courses.find((c: any) => c.id == e.target.value);
+  //               const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
+  //               if (input) input.value = selected?.name || "";
+  //             }}
+  //           >
+  //             <option value="">Select Course</option>
+  //             {courses.map((c: any) => (
+  //               <option key={c.id} value={c.id}>{c.name}</option>
+  //             ))}
+  //           </select>
 
-      {/* CLOSE BUTTON */}
-      <button
-        onClick={onClose}
-        className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-black text-xl hover:rotate-90 transition-transform duration-300 z-10"
-      >
-        <FaTimes />
-      </button>
+  //           <input type="hidden" name="course_name" />
 
-      {/* HEADER - Fixed padding to ensure content stays within bounds */}
-      <div className="mb-6 pr-8"> {/* pr-8 prevents text from going under close button */}
-        <h2 className="text-xl sm:text-2xl font-bold mb-1 text-[var(--color-text-strong)] break-words">
-          🎓 Enroll Now
-        </h2>
-        <p className="text-xs sm:text-sm text-[var(--color-muted)] mt-1 break-words">
-          Fill the form below to enroll in your desired course. Our team will contact you shortly 🚀
-        </p>
-        <p className="text-xs text-[var(--color-muted-light)] mt-2">* All fields are required</p>
-      </div>
 
-      {/* FORM */}
-      <form onSubmit={handleSubmit} className="space-y-4"> {/* Changed from grid gap-4 to space-y-4 for better control */}
-        
-        {message.text && (
-          <div className={`p-3 rounded-lg border text-sm break-words ${getMessageStyles()} transition-all duration-300 animate-fadeIn`}>
-            {message.text}
-          </div>
-        )}
+  //           <div className="mt-2">
+  //   <Button
+  //     type="submit"
+  //     variant="gradient"
+  //     size="lg"
+  //     className="w-full flex items-center justify-center gap-2"
+  //   >
+  //     {loading ? (
+  //       <>
+  //         <span>Processing...</span>
+  //       </>
+  //     ) : (
+  //       <>
+  //         <span>🎓 Enroll Now</span>
+  //       </>
+  //     )}
+  //   </Button>
+  // </div>
+  //         </form>
+  //       </div>
+  //     </div>,
+  //   document.body
+  //   );
+  return createPortal(
+    <div className="fixed inset-0 z-[999] bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm overflow-y-auto">
+      <div className="bg-[var(--color-white)] rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl animate-fadeIn my-4">
+        {/* my-4 adds vertical margin, max-h-[90vh] and overflow-y-auto ensures content scrolls if needed */}
 
-        {/* On very small screens, stack the name fields */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input
-            name="first_name"
-            placeholder="First Name"
-            required
-            className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
-          />
-          <input
-            name="last_name"
-            placeholder="Last Name"
-            required
-            className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
-          />
+        {/* CLOSE BUTTON */}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-black text-xl hover:rotate-90 transition-transform duration-300 z-10"
+        >
+          <FaTimes />
+        </button>
+
+        {/* HEADER - Fixed padding to ensure content stays within bounds */}
+        <div className="mb-6 pr-8"> {/* pr-8 prevents text from going under close button */}
+          <h2 className="text-xl sm:text-2xl font-bold mb-1 text-[var(--color-text-strong)] break-words">
+            🎓 Enroll Now
+          </h2>
+          <p className="text-xs sm:text-sm text-[var(--color-muted)] mt-1 break-words">
+            Fill the form below to enroll in your desired course. Our team will contact you shortly 🚀
+          </p>
+          <p className="text-xs text-[var(--color-muted-light)] mt-2">* All fields are required</p>
         </div>
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          required
-          className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
-        />
+        {/* FORM */}
+        <form onSubmit={handleSubmit} className="space-y-4"> {/* Changed from grid gap-4 to space-y-4 for better control */}
 
-        <input
-          name="mobile"
-          placeholder="Mobile Number"
-          required
-          className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
-        />
+          {message.text && (
+            <div className={`p-3 rounded-lg border text-sm break-words ${getMessageStyles()} transition-all duration-300 animate-fadeIn`}>
+              {message.text}
+            </div>
+          )}
 
-        <input
-          name="city"
-          placeholder="City"
-          required
-          className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
-        />
+          {/* On very small screens, stack the name fields */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input
+              name="first_name"
+              placeholder="First Name"
+              required
+              className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+            />
+            <input
+              name="last_name"
+              placeholder="Last Name"
+              required
+              className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+            />
+          </div>
 
-        <select
-          name="course_id"
-          required
-          className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
-          onChange={(e) => {
-            const selected = courses.find((c: any) => c.id == e.target.value);
-            const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
-            if (input) input.value = selected?.name || "";
-          }}
-        >
-          <option value="">Select Course</option>
-          {courses.map((c: any) => (
-            <option key={c.id} value={c.id}>{c.name}</option>
-          ))}
-        </select>
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+            className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+          />
 
-        <input type="hidden" name="course_name" />
+          <input
+            name="mobile"
+            placeholder="Mobile Number"
+            required
+            className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+          />
 
-        {/* <div className="pt-2">
+          <input
+            name="city"
+            placeholder="City"
+            required
+            className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+          />
+
+          <select
+            name="course_id"
+            required
+            className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+            onChange={(e) => {
+              const selected = courses.find((c: any) => c.id == e.target.value);
+              const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
+              if (input) input.value = selected?.name || "";
+            }}
+          >
+            <option value="">Select Course</option>
+            {courses.map((c: any) => (
+              <option key={c.id} value={c.id}>{c.name}</option>
+            ))}
+          </select>
+
+          <input type="hidden" name="course_name" />
+
+          {/* <div className="pt-2">
           <Button
             type="submit"
             variant="gradient"
@@ -623,26 +636,25 @@ return createPortal(
             )}
           </Button>
         </div> */}
-        <div className="pt-2">
-  <Button
-    type="submit"
-    variant="gradient"
-    size="lg"
-    className={`w-full flex items-center justify-center gap-2 ${
-      loading ? 'opacity-50 pointer-events-none' : ''
-    }`}
-  >
-    {loading ? (
-      <span>Processing...</span>
-    ) : (
-      <span>🎓 Enroll Now</span>
-    )}
-  </Button>
-</div>
-      </form>
-    </div>
-  </div>,
-  document.body
-);
+          <div className="pt-2">
+            <Button
+              type="submit"
+              variant="gradient"
+              size="lg"
+              className={`w-full flex items-center justify-center gap-2 ${loading ? 'opacity-50 pointer-events-none' : ''
+                }`}
+            >
+              {loading ? (
+                <span>Processing...</span>
+              ) : (
+                <span>🎓 Enroll Now</span>
+              )}
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>,
+    document.body
+  );
 
 }

@@ -282,7 +282,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[var(--color-bg-light)] border-t border-[var(--color-border)]">
-      <div className=" mx-auto px-5 pt-16 pb-12 sm:px-8 md:px-12 lg:px-16">
+      <div className=" mx-auto px-5 pt-12 pb-12 sm:px-8 md:px-12 lg:px-16">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
 
@@ -327,12 +327,12 @@ const Footer = () => {
             {/* BUTTON */}
             <Button
               href="/contact"
-              icon={FaArrowRight}
+              // icon={FaArrowRight}
               variant="gradient"
               size="md"
               className="rounded-lg   transition-all duration-300"
             >
-              Contact With Us
+              Contact With Us →
             </Button>
             {/* SOCIAL */}
             <div className="flex gap-4 mt-7">
@@ -400,7 +400,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                       className="relative text-md group hover:text-[var(--color-accent-purple)]"
                     >
                       {course.name}
-                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-300 group-hover:w-full " />
+                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--color-accent-purple)] transition-all duration-500 group-hover:w-full " />
                     </Link>
                   </li>
                 ))}

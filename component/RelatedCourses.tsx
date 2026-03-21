@@ -280,7 +280,7 @@
 //           const sameCategory = list.filter(
 //             (c: Course) => c.category === current.category && c.id !== current.id
 //           );
-          
+
 //           // ✅ TAKE FIRST 2 COURSES
 //           const selected = sameCategory.slice(0, 2);
 //           setCourses(selected);
@@ -599,7 +599,7 @@ export default function RelatedCourses() {
           const sameCategory = list.filter(
             (c: Course) => c.category === current.category && c.id !== current.id
           );
-          
+
           const selected = sameCategory.slice(0, 2);
           setCourses(selected);
           fetchRatings(selected);
@@ -668,7 +668,7 @@ export default function RelatedCourses() {
             {/* Scroll Buttons - Only if more than 3 courses */}
             {courses.length > 3 && (
               <div className="flex justify-end gap-3 mb-6">
-                <button 
+                <button
                   onClick={() => {
                     const container = document.getElementById("relatedCourseScroll");
                     if (container) {
@@ -679,7 +679,7 @@ export default function RelatedCourses() {
                 >
                   ←
                 </button>
-                <button 
+                <button
                   onClick={() => {
                     const container = document.getElementById("relatedCourseScroll");
                     if (container) {
@@ -697,8 +697,8 @@ export default function RelatedCourses() {
             <div
               id="relatedCourseScroll"
               className={`
-                ${courses.length <= 3 
-                  ? "grid grid-cols-[repeat(auto-fit,minmax(300px,335px))] gap-6 justify-start" 
+                ${courses.length <= 3
+                  ? "grid grid-cols-[repeat(auto-fit,minmax(300px,335px))] gap-6 justify-start"
                   : "grid grid-flow-col auto-cols-[335px] overflow-x-auto gap-4 pb-10 pt-2 hide-scrollbar scroll-smooth"
                 }
               `}
@@ -734,10 +734,44 @@ export default function RelatedCourses() {
 
                       {/* CONTENT */}
                       <div className="p-4">
-                        <div className="text-orange-400 text-sm mb-2">
-                          ★ {ratings[course.id]?.average_rating || 0}
-                          <span className="text-[var(--color-muted)] ml-2">
-                            ({ratings[course.id]?.total_reviews || 0} Reviews)
+                        <div className="flex items-center gap-2 text-sm mb-2">
+                          {/* ⭐ Dynamic Stars */}
+                          <div className="flex items-center gap-[2px]">
+                            {[1, 2, 3, 4, 5].map((star) => {
+                              const ratingValue = ratings[course.id]?.average_rating || 0;
+
+                              let fillPercent = 0;
+
+                              if (ratingValue >= star) {
+                                fillPercent = 100;
+                              } else if (ratingValue > star - 1) {
+                                fillPercent = (ratingValue - (star - 1)) * 100;
+                              }
+
+                              return (
+                                <span key={star} className="relative text-sm sm:text-base">
+                                  <span className="text-gray-300">★</span>
+                                  <span
+                                    className="absolute top-0 left-0 overflow-hidden text-orange-400"
+                                    style={{ width: `${fillPercent}%` }}
+                                  >
+                                    ★
+                                  </span>
+                                </span>
+                              );
+                            })}
+                          </div>
+
+                          {/* ⭐ Rating number - exact value without rounding */}
+                          <span className="text-orange-400 font-medium">
+                            {ratings[course.id]?.average_rating
+                              ? ratings[course.id].average_rating.toFixed(2).replace(/\.?0+$/, '')
+                              : 0}
+                          </span>
+
+                          {/* ⭐ Reviews count */}
+                          <span className="text-[var(--color-muted)]">
+                            ({ratings[course.id]?.total_reviews || 0} {ratings[course.id]?.total_reviews === 1 ? 'Review' : 'Reviews'})
                           </span>
                         </div>
 

@@ -852,7 +852,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
               <Link
                 href={`/courses/${event.slug}`}
-                className="text-[var(--color-accent-purple)] font-semibold"
+                className="text-[var(--color-accent-purple)] font-semibold hover:underline"
               >
                 Learn More →
               </Link>
