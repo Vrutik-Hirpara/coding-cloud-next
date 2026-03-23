@@ -141,7 +141,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Button from "./ui/Button";
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 import Heading from "./ui/Heading";
 import Pill from "./ui/Pill";
 
@@ -156,23 +156,34 @@ interface Blog {
 export default function BlogPost() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        // const res = await fetch(
-        //   `${BASE_URL}/blogs/`
-        // );
-        const res = await fetch(`${BASE_URL}/blogs/?status=published`);
-        const data = await res.json();
-        setBlogs(data.data || []);
-      } catch (error) {
-        console.error("Blog fetch error:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchBlogs = async () => {
+  //     try {
+  //       // const res = await fetch(
+  //       //   `${BASE_URL}/blogs/`
+  //       // );
+  //       const res = await fetch(`${BASE_URL}/blogs/?status=published`);
+  //       const data = await res.json();
+  //       setBlogs(data.data || []);
+  //     } catch (error) {
+  //       console.error("Blog fetch error:", error);
+  //     }
+  //   };
 
-    fetchBlogs();
-  }, []);
+  //   fetchBlogs();
+  // }, []);
+useEffect(() => {
+  const fetchBlogs = async () => {
+    try {
+      const blogs = await apiService.getPublishedBlogs();
+      setBlogs(blogs);
+    } catch (error) {
+      console.error("Blog fetch error:", error);
+    }
+  };
 
+  fetchBlogs();
+}, []);
   if (blogs.length === 0) return null;
 
   const mainBlog = blogs[0];

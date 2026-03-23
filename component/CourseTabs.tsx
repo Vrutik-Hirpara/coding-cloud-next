@@ -13,7 +13,7 @@ import user2 from "@/public/images/avatars/avatar-01.png";
 import user3 from "@/public/images/avatars/avatar-03.png";
 import EventCard from "./EventCard";
 import Faq from "@/app/faq/page";
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 import Button from "./ui/Button";
 import { Stars } from "lucide-react";
 
@@ -146,15 +146,16 @@ export default function CourseTabs({ course, events }: any) {
                 form.append("image", formData.image);
             }
 
-            const res = await fetch(`${BASE_URL}/course_wise_rating/`, {
-                method: "POST",
-                body: form,
-            });
+            // const res = await fetch(`${BASE_URL}/course_wise_rating/`, {
+            //     method: "POST",
+            //     body: form,
+            // });
 
-            const data = await res.json(); // ✅ only once
+            // const data = await res.json(); // ✅ only once
+            const data = await apiService.submitCourseRating(form);
 
             // ❌ Backend error
-            if (!res.ok || data.status === "error") {
+            if (data.status === "error") {
                 showApiErrors(data.errors || data); // 🔥 SweetAlert error
                 return;
             }
@@ -186,8 +187,10 @@ export default function CourseTabs({ course, events }: any) {
     useEffect(() => {
         const fetchModules = async () => {
             try {
-                const res = await fetch(`${BASE_URL}/modules/?course_id=${course.id}`);
-                const json = await res.json();
+                // const res = await fetch(`${BASE_URL}/modules/?course_id=${course.id}`);
+                // const json = await res.json();
+                const json = await apiService.getModulesByCourse(course.id);
+
                 const filtered = (json.data || [])
 
                 console.log("Fetched Modules:", filtered);
@@ -228,11 +231,12 @@ export default function CourseTabs({ course, events }: any) {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const res = await fetch(
-                    `${BASE_URL}/course_wise_rating/?course_id=${course.id}`
-                );
+                // const res = await fetch(
+                //     `${BASE_URL}/course_wise_rating/?course_id=${course.id}`
+                // );
 
-                const json = await res.json();
+                // const json = await res.json();
+                const json = await apiService.getCourseReviews(course.id);
 
                 // Check if API returns the new structure
                 if (json.reviews) {

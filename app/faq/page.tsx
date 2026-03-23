@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 
 // 🔥 TYPE
 type FaqType = {
@@ -23,11 +23,11 @@ export default function Faq({ courseId }: { courseId: number }) {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const res = await fetch(
-          `${BASE_URL}/faqs/`
-        );
-        const json = await res.json();
-
+        // const res = await fetch(
+        //   `${BASE_URL}/faqs/`
+        // );
+        // const json = await res.json();
+        const json = await apiService.getFaqs();
         // 👉 FILTER BY COURSE ID
         const filtered = (json.data || []).filter(
           (f: FaqType) => f.course === courseId

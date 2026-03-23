@@ -241,7 +241,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { API, BASE_URL } from "@/lib/api";
+import { API, apiService, BASE_URL } from "@/lib/api";
 import { motion } from "framer-motion";
 
 interface Course {
@@ -340,11 +340,13 @@ export default function CoursesPage() {
     await Promise.all(
       courseList.map(async (course) => {
         try {
-          const res = await fetch(
-            `${BASE_URL}/course_average_rating/?course_id=${course.id}`
-          );
-          const json = await res.json();
-          const data = json.course_average_rating?.[0];
+          // const res = await fetch(
+          //   `${BASE_URL}/course_average_rating/?course_id=${course.id}`
+          // );
+          // const json = await res.json();
+          // const data = json.course_average_rating?.[0];
+          const json = await apiService.getCourseAverageRating(course.id);
+const data = json.course_average_rating?.[0];
           if (data) {
             ratingData[course.id] = data;
           }

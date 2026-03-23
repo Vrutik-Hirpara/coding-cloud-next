@@ -457,7 +457,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Phone, MessageSquare, ArrowRight, CheckCircle } from "lucide-react";
 import Button from "@/component/ui/Button";
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 import { showApiErrors } from "@/utility/apiError";
 import Swal from "sweetalert2"; // (for success alert)
 export default function RegisterPage() {
@@ -504,17 +504,22 @@ const handleSubmit = async (e: React.FormEvent) => {
   setErrors({});
 
   try {
-    const res = await fetch(`${BASE_URL}/register_msg/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        first_name: form.first_name,
-        last_name: form.last_name,
-        mobile: form.phone,
-        message: form.message,
-      }),
-    });
-
+    // const res = await fetch(`${BASE_URL}/register_msg/`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     first_name: form.first_name,
+    //     last_name: form.last_name,
+    //     mobile: form.phone,
+    //     message: form.message,
+    //   }),
+    // });
+ const res = await apiService.submitRegisterMessage({
+    first_name: form.first_name,
+    last_name: form.last_name,
+    mobile: form.phone,
+    message: form.message,
+  });
     const data = await res.json(); // ✅ IMPORTANT
 
     if (!res.ok) {

@@ -394,50 +394,59 @@ import FeaturedCoursesSection from "@/component/FeaturedCoursesSection";
 import RegisterPage from "./register/page";
 import Accreditation from "@/component/Accreditation";
 // import { API } from "@/app/api/endpoints/route";
-import { BASE_URL,API } from "@/lib/api";
+import { BASE_URL,API, apiService } from "@/lib/api";
 // ============================
 // MAIN HOME PAGE
 // ============================
 export default function HomePage() {
   const [courses, setCourses] = useState([]);
 
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const [courseRes, ratingRes] = await Promise.all([
-          fetch(API.COURSES.LIST),
-          fetch(`${BASE_URL}/course_average_rating/`)
-        ]);
+  // useEffect(() => {
+  //   const fetchCourses = async () => {
+  //     try {
+  //       const [courseRes, ratingRes] = await Promise.all([
+  //         fetch(API.COURSES.LIST),
+  //         fetch(`${BASE_URL}/course_average_rating/`)
+  //       ]);
 
-        const courseData = await courseRes.json();
-        const ratingData = await ratingRes.json();
+  //       const courseData = await courseRes.json();
+  //       const ratingData = await ratingRes.json();
 
-        // convert rating array to map
-        const ratingMap: Record<number, { rating: number; reviews: number }> = {};
+  //       // convert rating array to map
+  //       const ratingMap: Record<number, { rating: number; reviews: number }> = {};
 
-        ratingData.course_average_rating.forEach((item: any) => {
-          ratingMap[item.course_id] = {
-            rating: item.average_rating,
-            reviews: item.total_reviews,
-          };
-        });
+  //       ratingData.course_average_rating.forEach((item: any) => {
+  //         ratingMap[item.course_id] = {
+  //           rating: item.average_rating,
+  //           reviews: item.total_reviews,
+  //         };
+  //       });
 
-        const mergedCourses = courseData.data.map((course: any) => ({
-          ...course,
-          rating: ratingMap[course.id]?.rating || 0,
-          reviews: ratingMap[course.id]?.reviews || 0,
-        }));
+  //       const mergedCourses = courseData.data.map((course: any) => ({
+  //         ...course,
+  //         rating: ratingMap[course.id]?.rating || 0,
+  //         reviews: ratingMap[course.id]?.reviews || 0,
+  //       }));
 
-        setCourses(mergedCourses);
+  //       setCourses(mergedCourses);
 
-      } catch (error) {
-        console.error("Course API error:", error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error("Course API error:", error);
+  //     }
+  //   };
 
-    fetchCourses();
-  }, []);
+  //   fetchCourses();
+  // }, []);
   // ================= STATS DATA =================
+ useEffect(() => {
+  const fetchCourses = async () => {
+    const data = await apiService.getCoursesWithRatings();
+    setCourses(data);
+  };
+
+  fetchCourses();
+}, []);
+ 
   const stats = [
     {
       icon: <FaUserGraduate className="text-[var(--color-accent-pink)] text-3xl" />,

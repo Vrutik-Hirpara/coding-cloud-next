@@ -936,7 +936,7 @@ import { useRouter } from "next/navigation";
 import EventCard from "./EventCard";
 import Pill from "./ui/Pill";
 import Heading from "./ui/Heading";
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 
 type CourseApi = {
   id: number;
@@ -1009,11 +1009,11 @@ const KidsCoursesSection: React.FC = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await fetch(
-          `${BASE_URL}/course/`
-        );
-        const json = await res.json();
-
+        // const res = await fetch(
+        //   `${BASE_URL}/course/`
+        // );
+        // const json = await res.json();
+const json = await apiService.getCourses();
         const kidsCourses = json.data.filter(
           (c: CourseApi) => c.kids_course === true
         );

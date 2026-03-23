@@ -312,6 +312,8 @@ type ButtonProps = {
   variant?: "gradient" | "purple" |"outlineWhite"| "outline" | "navbar";
   size?: "sm" | "md" | "lg";
   type?: "submit"
+    disabled?: boolean; // ✅ Add this
+
   style?: React.CSSProperties;
 
 };

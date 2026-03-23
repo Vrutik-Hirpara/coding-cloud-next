@@ -517,7 +517,7 @@ import { FaHeadphonesAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import contactImg from '@/public/images/contact/contact.jpg'
 import { useState } from "react";
-import { BASE_URL,API } from "@/lib/api";
+import { BASE_URL,API,apiService  } from "@/lib/api";
 import Button from "@/component/ui/Button";
 import { showApiErrors } from "@/utility/apiError";
 import Swal from "sweetalert2"; // (for success alert)
@@ -666,61 +666,107 @@ const handleSubmit = async (e: any) => {
     return;
   }
 
+  // try {
+  //   setLoading(true);
+
+  //   const res = await fetch(`${BASE_URL}/contacts/`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       full_name: form.name,
+  //       email: form.email,
+  //       mobile_no: form.mobile,
+  //       subject: form.subject,
+  //       message: form.message,
+  //     }),
+  //   });
+
+  //   const data = await res.json(); // ✅ IMPORTANT
+
+  //   if (!res.ok) {
+  //     setErrors(data);
+  //     showApiErrors(data); // 🔥 HERE
+  //     return;
+  //   }
+
+  //   // ✅ SUCCESS
+  //   Swal.fire({
+  //     icon: "success",
+  //     title: "Message Sent",
+  //     text: "We will contact you soon!",
+  //   });
+
+  //   setSuccess(true);
+
+  //   setForm({
+  //     name: "",
+  //     email: "",
+  //     mobile: "",
+  //     subject: "",
+  //     message: "",
+  //   });
+
+  //   setErrors({});
+
+  //   setTimeout(() => setSuccess(false), 4000);
+
+  // } catch (err) {
+  //   console.error(err);
+
+  //   Swal.fire({
+  //     icon: "error",
+  //     title: "Server Error",
+  //     text: "Please try again later",
+  //   });
+  // } 
   try {
-    setLoading(true);
+  setLoading(true);
 
-    const res = await fetch(`${BASE_URL}/contacts/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        full_name: form.name,
-        email: form.email,
-        mobile_no: form.mobile,
-        subject: form.subject,
-        message: form.message,
-      }),
-    });
+  await apiService.submitContact({
+    full_name: form.name,
+    email: form.email,
+    mobile_no: form.mobile,
+    subject: form.subject,
+    message: form.message,
+  });
 
-    const data = await res.json(); // ✅ IMPORTANT
+  // ✅ SUCCESS
+  Swal.fire({
+    icon: "success",
+    title: "Message Sent",
+    text: "We will contact you soon!",
+  });
 
-    if (!res.ok) {
-      setErrors(data);
-      showApiErrors(data); // 🔥 HERE
-      return;
-    }
+  setSuccess(true);
 
-    // ✅ SUCCESS
-    Swal.fire({
-      icon: "success",
-      title: "Message Sent",
-      text: "We will contact you soon!",
-    });
+  setForm({
+    name: "",
+    email: "",
+    mobile: "",
+    subject: "",
+    message: "",
+  });
 
-    setSuccess(true);
+  setErrors({});
 
-    setForm({
-      name: "",
-      email: "",
-      mobile: "",
-      subject: "",
-      message: "",
-    });
+  setTimeout(() => setSuccess(false), 4000);
 
-    setErrors({});
-
-    setTimeout(() => setSuccess(false), 4000);
-
-  } catch (err) {
-    console.error(err);
-
+} catch (err: any) {
+  // Handle errors from apiService
+  if (err.data) {
+    setErrors(err.data);
+    showApiErrors(err.data);
+  } else {
     Swal.fire({
       icon: "error",
-      title: "Server Error",
-      text: "Please try again later",
+      title: "Error",
+      text: err.data?.message || "Something went wrong. Please try again.",
     });
-  } finally {
+  }
+}
+  finally {
     setLoading(false);
   }
 };
@@ -905,6 +951,7 @@ const handleSubmit = async (e: any) => {
                     variant="gradient"
                     size="lg"
                     className="w-full"
+                    disabled={loading}
                   >
                     {loading ? "Sending..." : "GET IT NOW →"}
                   </Button>

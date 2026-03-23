@@ -166,7 +166,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../component/ui/Button";
 import aboutBg from "../../public/images/about/about-bg.jpeg";
-import { BASE_URL } from "../../lib/api";
+import { apiService, BASE_URL } from "../../lib/api";
 
 // Interfaces
 interface Course {
@@ -197,8 +197,9 @@ export default function CourseFaqs() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/course/`);
-        const data = await res.json();
+        // const res = await fetch(`${BASE_URL}/course/`);
+        // const data = await res.json();
+      const data = await apiService.getCourses();
 
         if (data?.data) {
           setCourses(data.data);
@@ -224,9 +225,9 @@ export default function CourseFaqs() {
     const fetchFaqs = async () => {
       setFaqsLoading(true);
       try {
-        const res = await fetch(`${BASE_URL}/faqs/`);
-        const data = await res.json();
-
+        // const res = await fetch(`${BASE_URL}/faqs/`);
+        // const data = await res.json();
+const data = await apiService.getFaqs();
         if (data?.data) {
           // Filter FAQs for selected course
           const courseFaqs = data.data.filter(

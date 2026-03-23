@@ -327,6 +327,12 @@ export const API = {
     LIST: `${BASE_URL}/course/`,
     DETAIL: (id: number | string) => `${BASE_URL}/course/${id}/`,
   },
+COURSE_RATINGS: {
+  AVERAGE: (courseId: number | string) => `${BASE_URL}/course_average_rating/?course_id=${courseId}`,
+  SUBMIT: `${BASE_URL}/course_wise_rating/`,
+    LIST: (courseId: number | string) =>
+    `${BASE_URL}/course_wise_rating/?course_id=${courseId}`,
+},
 
   FAQS: {
     LIST: `${BASE_URL}/faqs/`,
@@ -371,6 +377,9 @@ export const API = {
   CONTACT: {
     CREATE: `${BASE_URL}/contacts/`,
   },
+  ENROLL: {
+  CREATE: `${BASE_URL}/enroll/`,
+},
 };
 
 // 🔥 Fetch functions with types
@@ -412,7 +421,10 @@ export const apiService = {
     const res = await fetch(API.COURSES.LIST);
     return res.json();
   },
-  
+  getCourseReviews: async (courseId: number | string) => {
+  const res = await fetch(API.COURSE_RATINGS.LIST(courseId));
+  return res.json();
+},
   getCourseById: async (id: number | string) => {
     const res = await fetch(API.COURSES.DETAIL(id));
     return res.json();
@@ -428,11 +440,21 @@ export const apiService = {
     const res = await fetch(API.FAQS.LIST);
     return res.json();
   },
-  
+  getCourseBySlug: async (slug: string) => {
+  const res = await fetch(`${API.COURSES.LIST}?slug=${slug}`);
+  return res.json();
+},
   getFaqById: async (id: number | string) => {
     const res = await fetch(API.FAQS.DETAIL(id));
     return res.json();
   },
+submitRegisterMessage: async (formData: any) => {
+  return fetch(`${BASE_URL}/register_msg/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
+},
 
   // Modules
   getModules: async () => {
@@ -533,7 +555,118 @@ export const apiService = {
     const res = await fetch(API.BLOGS.DETAIL(slug), { cache: "no-store" });
     return res.json();
   },
+  // Add to apiService object
+getCourseAverageRating: async (courseId: number | string) => {
+  const res = await fetch(API.COURSE_RATINGS.AVERAGE(courseId));
+  return res.json();
+},
+// getCoursesWithRatings: async () => {
+//   try {
+//     const [courseRes, ratingRes] = await Promise.all([
+//       fetch(API.COURSES.LIST),
+//       fetch(`${BASE_URL}/course_average_rating/`)
+//     ]);
 
+//     const courseData = await courseRes.json();
+//     const ratingData = await ratingRes.json();
+
+//     // rating map
+//     const ratingMap: Record<number, { rating: number; reviews: number }> = {};
+
+//     ratingData.course_average_rating.forEach((item: any) => {
+//       ratingMap[item.course_id] = {
+//         rating: item.average_rating,
+//         reviews: item.total_reviews,
+//       };
+//     });
+
+//     const mergedCourses = courseData.data.map((course: any) => ({
+//       ...course,
+//       rating: ratingMap[course.id]?.rating || 0,
+//       reviews: ratingMap[course.id]?.reviews || 0,
+//     }));
+
+//     return mergedCourses;
+
+//   } catch (error) {
+//     console.error("Course API error:", error);
+//     return [];
+//   }
+// },
+getCoursesWithRatings: async () => {
+  try {
+    const [courseData, ratingData] = await Promise.all([
+      apiService.getCourses(),
+      fetch(`${BASE_URL}/course_average_rating/`).then(res => res.json())
+    ]);
+
+    const courses = courseData.data || courseData;
+
+    // rating map
+    const ratingMap: Record<number, { rating: number; reviews: number }> = {};
+
+    ratingData.course_average_rating.forEach((item: any) => {
+      ratingMap[item.course_id] = {
+        rating: item.average_rating,
+        reviews: item.total_reviews,
+      };
+    });
+
+    const mergedCourses = courses.map((course: any) => ({
+      ...course,
+      rating: ratingMap[course.id]?.rating || 0,
+      reviews: ratingMap[course.id]?.reviews || 0,
+    }));
+
+    return mergedCourses;
+
+  } catch (error) {
+    console.error("Course API error:", error);
+    return [];
+  }
+},
+getPublishedBlogs: async () => {
+  const res = await fetch(`${API.BLOGS.LIST}?status=published`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  return data.data || [];
+},
+getMultipleCourseRatings: async (courseIds: (number | string)[]) => {
+  const promises = courseIds.map(async (courseId) => {
+    try {
+      const data = await apiService.getCourseAverageRating(courseId);
+      const rating = data.course_average_rating?.[0];
+      return { courseId, rating };
+    } catch (err) {
+      console.error("Rating error", err);
+      return { courseId, rating: null };
+    }
+  });
+  
+  const results = await Promise.all(promises);
+  const ratingMap: Record<number, any> = {};
+  results.forEach(({ courseId, rating }) => {
+    if (rating) {
+      ratingMap[Number(courseId)] = rating;
+    }
+  });
+  return ratingMap;
+},
+submitCourseRating: async (formData: FormData) => {
+  const res = await fetch(API.COURSE_RATINGS.SUBMIT, {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw data;
+  }
+
+  return data;
+},
   // Contact
   submitContact: async (data: {
     full_name: string;
@@ -558,6 +691,21 @@ export const apiService = {
     
     return responseData;
   },
+  submitEnrollment: async (payload: any) => {
+  const res = await fetch(API.ENROLL.CREATE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw data;
+  }
+
+  return data;
+},
 };
 
 // 🔥 Category specific service (optional - for better organization)
@@ -587,3 +735,6 @@ export const categoryService = {
     return data.data || data;
   },
 };
+
+
+

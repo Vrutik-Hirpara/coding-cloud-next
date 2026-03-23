@@ -412,7 +412,7 @@
 
 "use client";
 
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -449,13 +449,14 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
   useEffect(() => {
     const fetchRating = async () => {
       try {
-        const res = await fetch(
-          `${BASE_URL}/course_average_rating/?course_id=${event.id}`
-        );
+        // const res = await fetch(
+        //   `${BASE_URL}/course_average_rating/?course_id=${event.id}`
+        // );
 
-        const json = await res.json();
+        // const json = await res.json();
+        // const data = json.course_average_rating?.[0];
+        const json = await apiService.getCourseAverageRating(event.id);
         const data = json.course_average_rating?.[0];
-
         if (data) {
           setAvgRating(data.average_rating);
           setTotalReviews(data.total_reviews);
@@ -680,7 +681,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
           {/* IMAGE */}
           <div className="relative overflow-hidden h-[215px] w-full">
-           
+
             {/* <Image
               src={event.image}
               alt={event.title}
@@ -694,14 +695,14 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
                 target.src = '/images/placeholder-course.jpg';
               }}
             /> */}
-  <Image
-    src={event.image || "/images/placeholder-course.jpg"}
-    alt={event.title}
-    fill
-    className="object-contain object-center"
-    sizes="320px"
-    unoptimized
-  />
+            <Image
+              src={event.image || "/images/placeholder-course.jpg"}
+              alt={event.title}
+              fill
+              className="object-contain object-center"
+              sizes="320px"
+              unoptimized
+            />
 
             <div className="absolute top-2 left-1 bg-white px-3 py-1 rounded-full text-xs font-semibold">
               {event.dateRange}
@@ -733,11 +734,11 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
             </div>
 
             <div className="flex text-gray-500 items-center gap-1">
-<span className="font-bold text-gray-500">
-  {avgRating
-    ? (avgRating % 1 === 0 ? avgRating : avgRating.toFixed(1))
-    : 0}
-</span>
+              <span className="font-bold text-gray-500">
+                {avgRating
+                  ? (avgRating % 1 === 0 ? avgRating : avgRating.toFixed(1))
+                  : 0}
+              </span>
               <div className="relative inline-block text-gray-300">
                 <span className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -799,11 +800,11 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
           <div className="w-full sm:w-[60%] flex-1 flex flex-col h-full">
 
             <div className="flex items-center gap-1">
-<span className="font-bold text-gray-500">
-  {avgRating
-    ? (avgRating % 1 === 0 ? avgRating : avgRating.toFixed(1))
-    : 0}
-</span>
+              <span className="font-bold text-gray-500">
+                {avgRating
+                  ? (avgRating % 1 === 0 ? avgRating : avgRating.toFixed(1))
+                  : 0}
+              </span>
               <div className="relative inline-block text-gray-300">
                 <span className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (

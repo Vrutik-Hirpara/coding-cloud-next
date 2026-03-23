@@ -263,7 +263,7 @@
 
 import { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 import { createPortal } from "react-dom";
 import Button from "./ui/Button";
 import { showApiErrors } from "@/utility/apiError";
@@ -358,21 +358,57 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
 
 setLoading(true);
 
+// try {
+//   const res = await fetch(`${BASE_URL}/enroll/`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(payload),
+//   });
+
+//   const data = await res.json();
+
+//   if (!res.ok || data.status === "error") {
+//     showApiErrors(data || data);
+//     return;
+//   }
+
+//   // ✅ SUCCESS
+//   Swal.fire({
+//     icon: "success",
+//     title: "Enrollment Successful",
+//     text: "We will contact you soon!",
+//   });
+
+//   setMessage({
+//     text: "🎉 Enrollment Successful!",
+//     type: "success"
+//   });
+
+//   setTimeout(() => {
+//     onClose();
+//   }, 3000);
+
+// } catch (err) {
+//   console.error(err);
+
+//   Swal.fire({
+//     icon: "error",
+//     title: "Server Error",
+//     text: "Please try again later",
+//   });
+
+// } finally {
+//   setLoading(false); // 🔥 ALWAYS RUNS
+// }
 try {
-  const res = await fetch(`${BASE_URL}/enroll/`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  const data = await apiService.submitEnrollment(payload);
 
-  const data = await res.json();
-
-  if (!res.ok || data.status === "error") {
+  if (data.status === "error") {
     showApiErrors(data || data);
     return;
   }
 
-  // ✅ SUCCESS
+  // SUCCESS
   Swal.fire({
     icon: "success",
     title: "Enrollment Successful",
@@ -388,17 +424,22 @@ try {
     onClose();
   }, 3000);
 
-} catch (err) {
+} catch (err: any) {
   console.error(err);
 
-  Swal.fire({
-    icon: "error",
-    title: "Server Error",
-    text: "Please try again later",
-  });
+  // 🔥 THIS IS IMPORTANT
+  if (err) {
+    showApiErrors(err);
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Server Error",
+      text: "Please try again later",
+    });
+  }
 
 } finally {
-  setLoading(false); // 🔥 ALWAYS RUNS
+  setLoading(false);
 }
   };
 

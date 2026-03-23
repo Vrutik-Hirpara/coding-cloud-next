@@ -168,7 +168,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { API, BASE_URL } from "@/lib/api";
+import { API, BASE_URL , apiService} from "@/lib/api";
 import { motion } from "framer-motion";
 
 interface Course {
@@ -214,29 +214,33 @@ export default function CategoryCoursesPage() {
   };
 
   // Fetch ratings for courses
-  const fetchRatings = async (courseList: Course[]) => {
-    const ratingData: Record<number, any> = {};
+  // const fetchRatings = async (courseList: Course[]) => {
+  //   const ratingData: Record<number, any> = {};
 
-    await Promise.all(
-      courseList.map(async (course) => {
-        try {
-          const res = await fetch(
-            `${BASE_URL}/course_average_rating/?course_id=${course.id}`
-          );
-          const json = await res.json();
-          const data = json.course_average_rating?.[0];
-          if (data) {
-            ratingData[course.id] = data;
-          }
-        } catch (err) {
-          console.error("Rating error", err);
-        }
-      })
-    );
+  //   await Promise.all(
+  //     courseList.map(async (course) => {
+  //       try {
+  //         const res = await fetch(
+  //           `${BASE_URL}/course_average_rating/?course_id=${course.id}`
+  //         );
+  //         const json = await res.json();
+  //         const data = json.course_average_rating?.[0];
+  //         if (data) {
+  //           ratingData[course.id] = data;
+  //         }
+  //       } catch (err) {
+  //         console.error("Rating error", err);
+  //       }
+  //     })
+  //   );
 
-    setRatings(ratingData);
-  };
-
+  //   setRatings(ratingData);
+  // };
+const fetchRatings = async (courseList: Course[]) => {
+  const courseIds = courseList.map(course => course.id);
+  const ratingData = await apiService.getMultipleCourseRatings(courseIds);
+  setRatings(ratingData);
+};
   useEffect(() => {
     const fetchCourses = async () => {
       try {

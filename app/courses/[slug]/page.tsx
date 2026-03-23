@@ -12,7 +12,7 @@ import event1 from "@/public/images/courses/course-online-01.jpg";
 import event2 from "@/public/images/courses/course-online-02.jpg";
 import user1 from "@/public/images/avatars/avatar-02.png";
 import user2 from "@/public/images/avatars/avatar-01.png";
-import { BASE_URL } from "@/lib/api";
+import { apiService, BASE_URL } from "@/lib/api";
 import Link from "next/link";
 interface Course {
   id: number;
@@ -44,51 +44,93 @@ export default function Page() {
   const [avgRating, setAvgRating] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
   // 🔥 FETCH COURSE BY SLUG
+  // useEffect(() => {
+  //   const getCourse = async () => {
+  //     try {
+  //       const res = await fetch(
+  //         `${BASE_URL}/course/?slug=${slug}`
+  //       );
+
+  //       const json = await res.json();
+
+  //       const list = Array.isArray(json.data) ? json.data : [];
+
+  //       // API already filter by slug but still safety
+  //       const selected =
+  //         list.find((c: Course) => c.slug === slug) || list[0];
+
+  //       setCourse(selected || null);
+  //     } catch (err) {
+  //       console.error("Course fetch error", err);
+  //     }
+  //   };
+  //   getCourse();
+  // }, [slug]);
+useEffect(() => {
+  const getCourse = async () => {
+    if (!slug) return;
+
+    // 🔥 Convert slug to string safely
+    const slugStr = Array.isArray(slug) ? slug[0] : slug;
+
+    try {
+      const json = await apiService.getCourseBySlug(slugStr);
+
+      const list = Array.isArray(json.data) ? json.data : [];
+
+      const selected =
+        list.find((c: Course) => c.slug === slugStr) || list[0];
+
+      setCourse(selected || null);
+    } catch (err) {
+      console.error("Course fetch error", err);
+    }
+  };
+
+  getCourse();
+}, [slug]);
+  // useEffect(() => {
+  //   const fetchRating = async () => {
+  //     try {
+  //       const res = await fetch(
+  //         `${BASE_URL}/course_average_rating/?course_id=${course?.id}`
+  //       );
+
+  //       const json = await res.json();
+
+  //       const data = json.course_average_rating?.[0];
+
+  //       if (data) {
+  //         setAvgRating(data.average_rating);
+  //         setTotalReviews(data.total_reviews);
+  //       }
+  //     } catch (err) {
+  //       console.error("Rating fetch error", err);
+  //     }
+  //   };
+
+  //   if (course?.id) fetchRating();
+  // }, [course?.id]);
   useEffect(() => {
-    const getCourse = async () => {
-      try {
-        const res = await fetch(
-          `${BASE_URL}/course/?slug=${slug}`
-        );
+  const fetchRating = async () => {
+    if (!course?.id) return;
+    
+    try {
+      const json = await apiService.getCourseAverageRating(course.id);
 
-        const json = await res.json();
+      const data = json.course_average_rating?.[0];
 
-        const list = Array.isArray(json.data) ? json.data : [];
-
-        // API already filter by slug but still safety
-        const selected =
-          list.find((c: Course) => c.slug === slug) || list[0];
-
-        setCourse(selected || null);
-      } catch (err) {
-        console.error("Course fetch error", err);
+      if (data) {
+        setAvgRating(data.average_rating);
+        setTotalReviews(data.total_reviews);
       }
-    };
-    getCourse();
-  }, [slug]);
+    } catch (err) {
+      console.error("Rating fetch error", err);
+    }
+  };
 
-  useEffect(() => {
-    const fetchRating = async () => {
-      try {
-        const res = await fetch(
-          `${BASE_URL}/course_average_rating/?course_id=${course?.id}`
-        );
-
-        const json = await res.json();
-
-        const data = json.course_average_rating?.[0];
-
-        if (data) {
-          setAvgRating(data.average_rating);
-          setTotalReviews(data.total_reviews);
-        }
-      } catch (err) {
-        console.error("Rating fetch error", err);
-      }
-    };
-
-    if (course?.id) fetchRating();
-  }, [course?.id]);
+  fetchRating();
+}, [course?.id]);
   if (!course) {
     return <div className="py-20 text-center">
   <div className="flex flex-col items-center gap-6">
