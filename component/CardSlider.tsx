@@ -965,8 +965,25 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
     return (
       <div className="w-full min-h-[550px] flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-500 mt-2">Loading courses...</p>
+          <div className="flex flex-col items-center gap-6">
+    {/* Spinner with gradient border */}
+    <div className="relative">
+      <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 border-r-purple-500 border-b-pink-500 border-l-transparent rounded-full animate-spin"></div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
+      </div>
+    </div>
+    
+    {/* Text with dots */}
+    <div className="flex items-center gap-1 text-gray-600 font-medium">
+      <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-lg">
+        Loading
+      </span>
+      <span className="text-blue-600 animate-bounce [animation-delay:-0.3s] text-lg">.</span>
+      <span className="text-purple-600 animate-bounce [animation-delay:-0.15s] text-lg">.</span>
+      <span className="text-pink-600 animate-bounce text-lg">.</span>
+    </div>
+  </div>
         </div>
       </div>
     );

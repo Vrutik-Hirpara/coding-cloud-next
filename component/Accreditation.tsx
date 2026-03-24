@@ -235,7 +235,7 @@ export default function Accreditation() {
                 </motion.div>
 
                 {/* Certificate Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                     {accreditations.map((item, index) => {
                         const Icon = item.icon;
 

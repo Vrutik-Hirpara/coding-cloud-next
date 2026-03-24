@@ -348,7 +348,7 @@ const FeaturedCoursesSection = () => {
         //   `${BASE_URL}/course/`
         // );
         // const json = await res.json();
-const json = await apiService.getCourses();
+        const json = await apiService.getCourses();
         const featuredCourses = json.data.filter(
           (c: CourseApi) => c.featured === true
         );
@@ -403,18 +403,212 @@ const json = await apiService.getCourses();
     );
   }
 
+  //   return (
+  //     <section className="py-12 bg-[var(--color-bg-light)]">
+  //       <div className="container-custom relative">
+
+  //         {/* HEADER */}
+  //         <div className="text-center mb-16 px-5" >
+  //           {/* <Pill
+  //             text="SIMULATED TO TAKE PART IN?"
+  //             textColor="#ffffff"
+  //             bgColor="rgba(255,255,255,0.2)"
+  //             blur="blur(6px)"
+  //           /> */}
+  //           <Pill
+  //             text="SIMULATED TO TAKE PART IN?"
+  //             textColor="var(--color-accent-purple)"
+  //             bgColor="var(--color-primary-light)"
+  //           />
+  //           <Heading title={<>Feature Course</>} />
+  //         </div>
+
+  //         {/* SLIDER */}
+  //         {/* <div className="relative group/slider flex items-center justify-center px-4 md:px-8"> */}
+  //         <div className="relative w-full  mx-auto">
+  //           {/* LEFT BTN */}
+  //           {/* <button
+  //             onClick={() => scroll("left")}
+  //             className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
+  //           >
+  //             <FaArrowLeft />
+  //           </button> */}
+  //           <button
+  //             onClick={() => scroll("left")}
+  //             className="
+  //   hidden md:flex
+  //   absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
+  //   w-12 h-12 rounded-full items-center justify-center
+  //   transition hover:scale-110
+
+  //   text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
+
+  //   md:bg-[var(--color-accent-purple)] 
+  //   md:text-[var(--color-white)] 
+  //   md:shadow-lg
+  // "
+  //           >
+  //             <FaArrowLeft />
+  //           </button>
+
+  //           {/* RIGHT BTN */}
+  //           {/* <button
+  //             onClick={() => scroll("right")}
+  //             className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
+  //           >
+  //             <FaArrowRight />
+  //           </button> */}
+  //           <button
+  //             onClick={() => scroll("right")}
+  //             className="
+  //   hidden md:flex
+  //   absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30
+  //   w-12 h-12 rounded-full items-center justify-center
+  //   transition hover:scale-110
+
+  //   text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
+
+  //   md:bg-[var(--color-accent-purple)] 
+  //   md:text-[var(--color-white)] 
+  //   md:shadow-lg
+  // "
+  //           >
+  //             <FaArrowRight />
+  //           </button>
+
+  //           {/* SCROLL CONTAINER */}
+  //           {/* <div
+  //             ref={scrollRef}
+  //             className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"          >
+  //             {events.map((ev) => (
+  //               //             <div
+  //               //               key={ev.id}
+  //               //               onClick={() => handleCardClick(ev.id, ev.slug)}
+  //               //               className="w-full md:w-1/3 flex-shrink-0 p-2
+  //               // rounded-3xl border border-white/20
+  //               // transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+  //               //             >
+  //               //               <EventCard event={ev} />
+  //               //             </div>
+  //               <div
+  //                 key={ev.id}
+  //                 onClick={() => handleCardClick(ev.id, ev.slug)}
+  //                 className="w-full md:w-1/3 flex-shrink-0 p-2 flex
+  //   rounded-3xl border border-white/20
+  //   transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+  //               >
+  //                 <div className="flex flex-col w-full h-full">
+  //                   <EventCard event={ev} />
+  //                 </div>
+  //               </div>
+  //             ))}
+  //           </div> */}
+  //           {/* <div
+  //   ref={scrollRef}
+  //   className="flex overflow-x-auto gap-4 px-4 md:px-8 pb-10 hide-scrollbar scroll-smooth"
+  // >
+  //   {events.map((ev) => (
+  //     <div
+  //       key={ev.id}
+  //       onClick={() => handleCardClick(ev.id, ev.slug)}
+  //       className="w-[280px] sm:w-[300px] md:w-[320px] flex-shrink-0 p-2
+  //       rounded-3xl border border-white/20
+  //       transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+  //     >
+  //       <EventCard event={ev} />
+  //     </div>
+  //   ))}
+  // </div> */}
+  //           {/* <div
+  //             ref={scrollRef}
+  //             className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"
+  //           >
+  //             {events.map((ev) => (
+  //               <div
+  //                 key={ev.id}
+  //                 onClick={() => handleCardClick(ev.id, ev.slug)}
+  //                 className="
+  //         w-[320px]        // Fixed width 320px
+  //         flex-shrink-0 
+  //         p-2 
+  //         rounded-3xl 
+  //         transition-all 
+  //         duration-300 
+  //         hover:-translate-y-2 
+  //         cursor-pointer
+  //       "
+  //                 style={{ width: '320px', minWidth: '320px', maxWidth: '320px' }} // Inline style for force
+  //               >
+  //                 <div className="flex flex-col w-full h-full">
+  //                   <EventCard event={ev} />
+  //                 </div>
+  //               </div>
+  //             ))}
+  //           </div> */}
+  //           {/* <div
+  //             ref={scrollRef}
+  //             className="
+  //     flex flex-nowrap
+  //     overflow-x-auto
+  //     gap-4 pb-10 px-4 md:px-8 w-full
+  //     hide-scrollbar scroll-smooth
+  //   "
+  //           >
+  //             {events.map((ev) => (
+  //               <div
+  //                 key={ev.id}
+  //                 onClick={() => handleCardClick(ev.id, ev.slug)}
+  //                 className="
+  //         flex-shrink-0
+  //         w-[320px] sm:w-[320px] md:w-[320px]
+  //         p-2 rounded-3xl
+  //         transition-all duration-300 hover:-translate-y-2 cursor-pointer
+  //       "
+  //               >
+  //                 <div className="flex flex-col w-full h-full">
+  //                   <EventCard event={ev} />
+  //                 </div>
+  //               </div>
+  //             ))}
+  //           </div> */}
+  //           <div
+  //             ref={scrollRef}
+  //             className="
+
+  //     grid grid-flow-col
+  //     auto-cols-[335px]
+  //     overflow-x-auto
+  //     gap-4
+  //     pb-10 pt-2
+  //     hide-scrollbar scroll-smooth
+  //   "
+  //           >
+  //             {events.map((ev) => (
+  //               <div
+  //                 key={ev.id}
+  //                 onClick={() => handleCardClick(ev.id, ev.slug)}
+  //                 className="
+  //         w-[335px]
+  //         p-2 rounded-3xl
+  //         transition-all duration-300 hover:-translate-y-2 cursor-pointer
+  //       "
+  //               >
+  //                 <div className="flex flex-col w-full h-full">
+  //                   <EventCard event={ev} />
+  //                 </div>
+  //               </div>
+  //             ))}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </section>
+  //   );
   return (
     <section className="py-12 bg-[var(--color-bg-light)]">
       <div className="container-custom relative">
 
         {/* HEADER */}
-        <div className="text-center mb-16 px-5" >
-          {/* <Pill
-            text="SIMULATED TO TAKE PART IN?"
-            textColor="#ffffff"
-            bgColor="rgba(255,255,255,0.2)"
-            blur="blur(6px)"
-          /> */}
+        <div className="text-center mb-16 px-5">
           <Pill
             text="SIMULATED TO TAKE PART IN?"
             textColor="var(--color-accent-purple)"
@@ -423,176 +617,48 @@ const json = await apiService.getCourses();
           <Heading title={<>Feature Course</>} />
         </div>
 
-        {/* SLIDER */}
-        {/* <div className="relative group/slider flex items-center justify-center px-4 md:px-8"> */}
-        <div className="relative w-full max-w-7xl mx-auto">
-          {/* LEFT BTN */}
-          {/* <button
-            onClick={() => scroll("left")}
-            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
-          >
-            <FaArrowLeft />
-          </button> */}
+        {/* SLIDER WITH BUTTONS ON SIDES */}
+        <div className="relative flex items-center gap-4 px-4 md:px-0">
+          {/* LEFT BUTTON */}
           <button
             onClick={() => scroll("left")}
             className="
   hidden md:flex
-  absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-30
+  flex-shrink-0
   w-12 h-12 rounded-full items-center justify-center
   transition hover:scale-110
-
-  text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
-
-  md:bg-[var(--color-accent-purple)] 
-  md:text-[var(--color-white)] 
-  md:shadow-lg
+  bg-[var(--color-accent-purple)] shadow-lg border border-gray-200
+  text-white hover:opacity-80
+  z-10
 "
           >
+
+
             <FaArrowLeft />
-          </button>
-
-          {/* RIGHT BTN */}
-          {/* <button
-            onClick={() => scroll("right")}
-            className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
-          >
-            <FaArrowRight />
-          </button> */}
-          <button
-            onClick={() => scroll("right")}
-            className="
-  hidden md:flex
-  absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30
-  w-12 h-12 rounded-full items-center justify-center
-  transition hover:scale-110
-
-  text-[var(--color-accent-purple)] drop-shadow-lg hover:opacity-80
-
-  md:bg-[var(--color-accent-purple)] 
-  md:text-[var(--color-white)] 
-  md:shadow-lg
-"
-          >
-            <FaArrowRight />
           </button>
 
           {/* SCROLL CONTAINER */}
-          {/* <div
-            ref={scrollRef}
-            className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"          >
-            {events.map((ev) => (
-              //             <div
-              //               key={ev.id}
-              //               onClick={() => handleCardClick(ev.id, ev.slug)}
-              //               className="w-full md:w-1/3 flex-shrink-0 p-2
-              // rounded-3xl border border-white/20
-              // transition-all duration-300 hover:-translate-y-2 cursor-pointer"
-              //             >
-              //               <EventCard event={ev} />
-              //             </div>
-              <div
-                key={ev.id}
-                onClick={() => handleCardClick(ev.id, ev.slug)}
-                className="w-full md:w-1/3 flex-shrink-0 p-2 flex
-  rounded-3xl border border-white/20
-  transition-all duration-300 hover:-translate-y-2 cursor-pointer"
-              >
-                <div className="flex flex-col w-full h-full">
-                  <EventCard event={ev} />
-                </div>
-              </div>
-            ))}
-          </div> */}
-          {/* <div
-  ref={scrollRef}
-  className="flex overflow-x-auto gap-4 px-4 md:px-8 pb-10 hide-scrollbar scroll-smooth"
->
-  {events.map((ev) => (
-    <div
-      key={ev.id}
-      onClick={() => handleCardClick(ev.id, ev.slug)}
-      className="w-[280px] sm:w-[300px] md:w-[320px] flex-shrink-0 p-2
-      rounded-3xl border border-white/20
-      transition-all duration-300 hover:-translate-y-2 cursor-pointer"
-    >
-      <EventCard event={ev} />
-    </div>
-  ))}
-</div> */}
-          {/* <div
-            ref={scrollRef}
-            className="flex p-2 overflow-x-auto gap-3 pb-10 px-4 md:px-8 w-full hide-scrollbar scroll-smooth"
-          >
-            {events.map((ev) => (
-              <div
-                key={ev.id}
-                onClick={() => handleCardClick(ev.id, ev.slug)}
-                className="
-        w-[320px]        // Fixed width 320px
-        flex-shrink-0 
-        p-2 
-        rounded-3xl 
-        transition-all 
-        duration-300 
-        hover:-translate-y-2 
-        cursor-pointer
-      "
-                style={{ width: '320px', minWidth: '320px', maxWidth: '320px' }} // Inline style for force
-              >
-                <div className="flex flex-col w-full h-full">
-                  <EventCard event={ev} />
-                </div>
-              </div>
-            ))}
-          </div> */}
-          {/* <div
-            ref={scrollRef}
-            className="
-    flex flex-nowrap
-    overflow-x-auto
-    gap-4 pb-10 px-4 md:px-8 w-full
-    hide-scrollbar scroll-smooth
-  "
-          >
-            {events.map((ev) => (
-              <div
-                key={ev.id}
-                onClick={() => handleCardClick(ev.id, ev.slug)}
-                className="
-        flex-shrink-0
-        w-[320px] sm:w-[320px] md:w-[320px]
-        p-2 rounded-3xl
-        transition-all duration-300 hover:-translate-y-2 cursor-pointer
-      "
-              >
-                <div className="flex flex-col w-full h-full">
-                  <EventCard event={ev} />
-                </div>
-              </div>
-            ))}
-          </div> */}
           <div
             ref={scrollRef}
             className="
-    grid grid-flow-col
-    auto-cols-[335px]
-    overflow-x-auto
-    gap-4
-    pb-10 pt-2
-    hide-scrollbar scroll-smooth
-
-  
-  "
+            flex-1
+            grid grid-flow-col
+            auto-cols-[335px]
+            overflow-x-auto
+            gap-4
+            pb-10 pt-2
+            hide-scrollbar scroll-smooth
+          "
           >
             {events.map((ev) => (
               <div
                 key={ev.id}
                 onClick={() => handleCardClick(ev.id, ev.slug)}
                 className="
-        w-[335px]
-        p-2 rounded-3xl
-        transition-all duration-300 hover:-translate-y-2 cursor-pointer
-      "
+                w-[335px]
+                p-2 rounded-3xl
+                transition-all duration-300 hover:-translate-y-2 cursor-pointer
+              "
               >
                 <div className="flex flex-col w-full h-full">
                   <EventCard event={ev} />
@@ -600,6 +666,22 @@ const json = await apiService.getCourses();
               </div>
             ))}
           </div>
+
+          {/* RIGHT BUTTON */}
+          <button
+            onClick={() => scroll("right")}
+            className="
+  hidden md:flex
+  flex-shrink-0
+  w-12 h-12 rounded-full items-center justify-center
+  transition hover:scale-110
+  bg-[var(--color-accent-purple)] shadow-lg border border-gray-200
+  text-white hover:opacity-80
+  z-10
+"
+          >
+            <FaArrowRight />
+          </button>
         </div>
       </div>
     </section>
