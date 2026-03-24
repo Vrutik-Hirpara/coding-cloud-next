@@ -631,8 +631,8 @@ export default function RelatedCourses() {
           // );
           // const json = await res.json();
           // const data = json.course_average_rating?.[0];
-           const json = await apiService.getCourseAverageRating(course.id);
-    const data = json.course_average_rating?.[0];
+          const json = await apiService.getCourseAverageRating(course.id);
+          const data = json.course_average_rating?.[0];
           if (data) {
             ratingData[course.id] = data;
           }
@@ -646,11 +646,178 @@ export default function RelatedCourses() {
   };
 
   return (
-    <section className="py-16 bg-[var(--color-bg-light)]">
+    <section className=" bg-[var(--color-bg-light)]">
       <div className="container-custom">
+        {/* Related Courses Section - Only show if courses exist */}
+        {courses.length > 0 && (
+          <div className="py-16">
+            {/* HEADER */}
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-dark)]">
+                Related Courses
+              </h2>
+            </div>
 
+            {/* LOADING */}
+            {loading ? (
+              <div className="text-center font-semibold text-[var(--color-accent-purple)]">
+                Loading courses...
+              </div>
+            ) : (
+              <div className="relative w-full">
+                {/* Scroll Buttons - Only if more than 3 courses */}
+                {courses.length > 3 && (
+                  <div className="flex justify-end gap-3 mb-6">
+                    <button
+                      onClick={() => {
+                        const container = document.getElementById("relatedCourseScroll");
+                        if (container) {
+                          container.scrollBy({ left: -335, behavior: "smooth" });
+                        }
+                      }}
+                      className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
+                    >
+                      ←
+                    </button>
+                    <button
+                      onClick={() => {
+                        const container = document.getElementById("relatedCourseScroll");
+                        if (container) {
+                          container.scrollBy({ left: 335, behavior: "smooth" });
+                        }
+                      }}
+                      className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
+                    >
+                      →
+                    </button>
+                  </div>
+                )}
+
+                {/* Cards Container */}
+                <div
+                  id="relatedCourseScroll"
+                  className={`
+            ${courses.length <= 3
+                      ? "grid grid-cols-[repeat(auto-fit,minmax(300px,335px))] gap-6 justify-start"
+                      : "grid grid-flow-col auto-cols-[335px] overflow-x-auto gap-4 pb-10 pt-2 hide-scrollbar scroll-smooth"
+                    }
+          `}
+                >
+                  {courses.map((course) => {
+                    const imageUrl = getImageUrl(course.image);
+
+                    return (
+                      <div
+                        key={course.id}
+                        className="
+                  w-[335px]
+                  p-2 rounded-3xl
+                  transition-all duration-300 hover:-translate-y-2 cursor-pointer
+                  bg-[var(--color-white)]
+                "
+                      >
+                        <div className="flex flex-col w-full h-full">
+                          {/* IMAGE */}
+                          <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden rounded-t-2xl">
+                            <Image
+                              src={imageUrl}
+                              alt={course.name}
+                              fill
+                              unoptimized
+                              className="object-contain group-hover:scale-101 transition duration-500"
+                            />
+
+                            <span className="absolute top-2 left-1 bg-white px-3 py-1 rounded-full text-xs font-semibold">
+                              {course.duration || "Course"}
+                            </span>
+                          </div>
+
+                          {/* CONTENT */}
+                          <div className="p-4">
+                            <div className="flex items-center gap-2 text-sm mb-2">
+                              {/* ⭐ Dynamic Stars */}
+                              <div className="flex items-center gap-[2px]">
+                                {[1, 2, 3, 4, 5].map((star) => {
+                                  const ratingValue = ratings[course.id]?.average_rating || 0;
+
+                                  let fillPercent = 0;
+
+                                  if (ratingValue >= star) {
+                                    fillPercent = 100;
+                                  } else if (ratingValue > star - 1) {
+                                    fillPercent = (ratingValue - (star - 1)) * 100;
+                                  }
+
+                                  return (
+                                    <span key={star} className="relative text-sm sm:text-base">
+                                      <span className="text-gray-300">★</span>
+                                      <span
+                                        className="absolute top-0 left-0 overflow-hidden text-orange-400"
+                                        style={{ width: `${fillPercent}%` }}
+                                      >
+                                        ★
+                                      </span>
+                                    </span>
+                                  );
+                                })}
+                              </div>
+
+                              {/* ⭐ Rating number */}
+                              <span className="text-orange-400 font-medium">
+                                {ratings[course.id]?.average_rating
+                                  ? ratings[course.id].average_rating.toFixed(2).replace(/\.?0+$/, '')
+                                  : 0}
+                              </span>
+
+                              {/* ⭐ Reviews count */}
+                              <span className="text-[var(--color-muted)]">
+                                ({ratings[course.id]?.total_reviews || 0} {ratings[course.id]?.total_reviews === 1 ? 'Review' : 'Reviews'})
+                              </span>
+                            </div>
+
+                            <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">
+                              {course.name}
+                            </h3>
+
+                            <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
+                              <span>📘 {course.lecture || 0} Lessons</span>
+                              <span>👨‍🎓 {course.students || 0} Students</span>
+                            </div>
+
+                            <div
+                              className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+                              dangerouslySetInnerHTML={{ __html: course?.text || "" }}
+                            />
+
+                            <div className="text-xs text-[var(--color-muted-light)] mb-4">
+                              Category: {course.category_details?.name}
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href={`/courses/${course.slug}`}
+                                className="text-[var(--color-accent-purple)] font-semibold hover:underline"
+                              >
+                                Learn More →
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  {/* Placeholder for grid balance - if only 2 courses */}
+                  {courses.length === 2 && (
+                    <div className="hidden lg:block w-[335px]"></div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
         {/* HEADER */}
-        <div className="mb-12">
+        {/* <div className="mb-12">
           <span className="inline-block px-4 py-1 mb-3 text-sm font-semibold text-[var(--color-accent-purple)] bg-[var(--color-primary-light)] rounded-full">
             MORE SIMILAR COURSES
           </span>
@@ -658,16 +825,15 @@ export default function RelatedCourses() {
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-dark)]">
             Related Courses
           </h2>
-        </div>
+        </div> */}
 
         {/* LOADING */}
-        {loading ? (
+        {/* {loading ? (
           <div className="text-center font-semibold text-[var(--color-accent-purple)]">
             Loading courses...
           </div>
         ) : (
           <div className="relative w-full">
-            {/* Scroll Buttons - Only if more than 3 courses */}
             {courses.length > 3 && (
               <div className="flex justify-end gap-3 mb-6">
                 <button
@@ -695,7 +861,6 @@ export default function RelatedCourses() {
               </div>
             )}
 
-            {/* Cards Container - EXACT same styling as FeaturedCoursesSection */}
             <div
               id="relatedCourseScroll"
               className={`
@@ -719,7 +884,6 @@ export default function RelatedCourses() {
                     "
                   >
                     <div className="flex flex-col w-full h-full">
-                      {/* IMAGE */}
                       <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden rounded-t-2xl">
                         <Image
                           src={imageUrl}
@@ -734,10 +898,8 @@ export default function RelatedCourses() {
                         </span>
                       </div>
 
-                      {/* CONTENT */}
                       <div className="p-4">
                         <div className="flex items-center gap-2 text-sm mb-2">
-                          {/* ⭐ Dynamic Stars */}
                           <div className="flex items-center gap-[2px]">
                             {[1, 2, 3, 4, 5].map((star) => {
                               const ratingValue = ratings[course.id]?.average_rating || 0;
@@ -764,15 +926,13 @@ export default function RelatedCourses() {
                             })}
                           </div>
 
-                          {/* ⭐ Rating number - exact value without rounding */}
                           <span className="text-orange-400 font-medium">
                             {ratings[course.id]?.average_rating
                               ? ratings[course.id].average_rating.toFixed(2).replace(/\.?0+$/, '')
                               : 0}
                           </span>
 
-                          {/* ⭐ Reviews count */}
-                          <span className="text-[var(--color-muted)]">
+\                          <span className="text-[var(--color-muted)]">
                             ({ratings[course.id]?.total_reviews || 0} {ratings[course.id]?.total_reviews === 1 ? 'Review' : 'Reviews'})
                           </span>
                         </div>
@@ -809,13 +969,12 @@ export default function RelatedCourses() {
                 );
               })}
 
-              {/* Placeholder for grid balance - if only 2 courses */}
               {courses.length === 2 && (
                 <div className="hidden lg:block w-[335px]"></div>
               )}
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );

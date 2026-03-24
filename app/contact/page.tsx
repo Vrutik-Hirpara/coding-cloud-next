@@ -525,7 +525,7 @@ export default function ContactPage() {
   const contactData = [
     {
       title: "Contact Phone Number",
-      values: ["+91 95373 44018", "+91 95373 44018"],
+      values: ["+91 95373 44018", "+91 93289 44018"],
       icon: <FaHeadphonesAlt />,
     },
     {

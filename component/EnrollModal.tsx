@@ -293,6 +293,12 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
+  useEffect(() => {
+    if (courses.length === 1) {
+      const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
+      if (input) input.value = courses[0].name;
+    }
+  }, [courses]);
   // Auto-hide message after 3 seconds
   useEffect(() => {
     if (message.text) {
@@ -356,91 +362,91 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
       course_name,
     };
 
-setLoading(true);
+    setLoading(true);
 
-// try {
-//   const res = await fetch(`${BASE_URL}/enroll/`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(payload),
-//   });
+    // try {
+    //   const res = await fetch(`${BASE_URL}/enroll/`, {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(payload),
+    //   });
 
-//   const data = await res.json();
+    //   const data = await res.json();
 
-//   if (!res.ok || data.status === "error") {
-//     showApiErrors(data || data);
-//     return;
-//   }
+    //   if (!res.ok || data.status === "error") {
+    //     showApiErrors(data || data);
+    //     return;
+    //   }
 
-//   // ✅ SUCCESS
-//   Swal.fire({
-//     icon: "success",
-//     title: "Enrollment Successful",
-//     text: "We will contact you soon!",
-//   });
+    //   // ✅ SUCCESS
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Enrollment Successful",
+    //     text: "We will contact you soon!",
+    //   });
 
-//   setMessage({
-//     text: "🎉 Enrollment Successful!",
-//     type: "success"
-//   });
+    //   setMessage({
+    //     text: "🎉 Enrollment Successful!",
+    //     type: "success"
+    //   });
 
-//   setTimeout(() => {
-//     onClose();
-//   }, 3000);
+    //   setTimeout(() => {
+    //     onClose();
+    //   }, 3000);
 
-// } catch (err) {
-//   console.error(err);
+    // } catch (err) {
+    //   console.error(err);
 
-//   Swal.fire({
-//     icon: "error",
-//     title: "Server Error",
-//     text: "Please try again later",
-//   });
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Server Error",
+    //     text: "Please try again later",
+    //   });
 
-// } finally {
-//   setLoading(false); // 🔥 ALWAYS RUNS
-// }
-try {
-  const data = await apiService.submitEnrollment(payload);
+    // } finally {
+    //   setLoading(false); // 🔥 ALWAYS RUNS
+    // }
+    try {
+      const data = await apiService.submitEnrollment(payload);
 
-  if (data.status === "error") {
-    showApiErrors(data || data);
-    return;
-  }
+      if (data.status === "error") {
+        showApiErrors(data || data);
+        return;
+      }
 
-  // SUCCESS
-  Swal.fire({
-    icon: "success",
-    title: "Enrollment Successful",
-    text: "We will contact you soon!",
-  });
+      // SUCCESS
+      Swal.fire({
+        icon: "success",
+        title: "Enrollment Successful",
+        text: "We will contact you soon!",
+      });
 
-  setMessage({
-    text: "🎉 Enrollment Successful!",
-    type: "success"
-  });
+      setMessage({
+        text: "🎉 Enrollment Successful!",
+        type: "success"
+      });
 
-  setTimeout(() => {
-    onClose();
-  }, 3000);
+      setTimeout(() => {
+        onClose();
+      }, 3000);
 
-} catch (err: any) {
-  console.error(err);
+    } catch (err: any) {
+      console.error(err);
 
-  // 🔥 THIS IS IMPORTANT
-  if (err) {
-    showApiErrors(err);
-  } else {
-    Swal.fire({
-      icon: "error",
-      title: "Server Error",
-      text: "Please try again later",
-    });
-  }
+      // 🔥 THIS IS IMPORTANT
+      if (err) {
+        showApiErrors(err);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Server Error",
+          text: "Please try again later",
+        });
+      }
 
-} finally {
-  setLoading(false);
-}
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Message styles based on type
@@ -640,7 +646,7 @@ try {
             className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
           />
 
-          <select
+          {/* <select
             name="course_id"
             required
             className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
@@ -654,8 +660,38 @@ try {
             {courses.map((c: any) => (
               <option key={c.id} value={c.id}>{c.name}</option>
             ))}
-          </select>
+          </select> */}
+          {courses.length > 1 ? (
+            <select
+              name="course_id"
+              required
+              className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+              onChange={(e) => {
+                const selected = courses.find((c: any) => c.id == e.target.value);
+                const input = document.querySelector('input[name="course_name"]') as HTMLInputElement;
+                if (input) input.value = selected?.name || "";
+              }}
+            >
+              <option value="">Select Course</option>
+              {courses.map((c: any) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          ) : (
+            <>
+              {/* Hidden course id */}
+              <input type="hidden" name="course_id" value={courses[0]?.id || ""} />
 
+              {/* Show course name */}
+              <input
+                type="text"
+                name="course_name"
+                value={courses[0]?.name || ""}
+                readOnly
+                className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
+              />
+            </>
+          )}
           <input type="hidden" name="course_name" />
 
           {/* <div className="pt-2">

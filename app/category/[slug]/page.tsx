@@ -336,7 +336,7 @@ const fetchRatings = async (courseList: Course[]) => {
         transition={{ duration: 0.5 }}
         className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-center text-[var(--color-text-strong)]"
       >
-        {categoryName} Courses ({courses.length})
+        {categoryName} Courses 
       </motion.h1>
 
       <motion.div

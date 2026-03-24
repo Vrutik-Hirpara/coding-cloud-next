@@ -320,7 +320,7 @@ const Footer = () => {
             </Link>
 
             {/* DESCRIPTION */}
-            <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 mr-2">
+            <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 mr-4 2xl:mr-8">
               We’re always in search for talented and motivated people.motivated people.motivated people.motivated people.
             </p>
 

@@ -254,145 +254,14 @@ export default function KnowAboutUs() {
     //   }, []);
 
     return (
-        <section className="container-custom  about-section bg-[var(--color-white)] pb-10">
+        <section className="container-custom  about-section bg-[var(--color-white)] pb-10 lg:pb-16">
             <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
                 {/* ================= LEFT IMAGES ================= */}
-                {/* <div className="relative overflow-visible h-[420px] sm:h-[500px] md:h-[580px] lg:h-[620px] z-20">
-
-                    <div className="absolute left-0 top-0 absolute lg:ml-20 lg:top-0 z-10">
-                        <Image
-                            src={about1}
-                            alt="About main"
-                            width={350}
-                            height={500}
-                            className="rounded w-[220px] "
-                            priority
-                        />
-                    </div>
-
-                    <div
-                        ref={imgTopRef}
-                        className="
-      absolute
-      right-0 top-[-10px]
-      sm:right-[10px] sm:top-[0px] 
-      md:right-[20px] md:top-[10px] 
-      lg:absolute lg:right-20 lg:top-12
-      z-20
-    "
-                    >
-                        <Image
-                            src={about2}
-                            alt="About top"
-                            width={250}
-                            height={200}
-                            className="rounded w-[150px]"
-                        />
-                    </div>
-
-                    <div
-                        ref={imgBottomRef}
-                        className="
-      absolute
-      right-0 bottom-[-30px]
-      sm:right-[10px] sm:bottom-[-10px]
-      md:right-[20px] md:bottom-[-20px]
-      lg:bottom-[160px] lg:right-[65px] 
-      z-30
-    "
-                    >
-                        <Image
-                            src={about3}
-                            alt="About bottom"
-                            width={400}
-                            height={350}
-                            className="rounded w-[240px]"
-                        />
-                    </div>
-
-                </div> */}
-                {/* <div className="relative overflow-visible min-h-[420px] sm:min-h-[500px] md:min-h-[580px] lg:min-h-[620px] z-20 w-full max-w-5xl mx-auto">
-
-    <div className="relative flex justify-between items-start w-full gap-4 mb-8">
-        <div className="w-auto">
-            <Image
-                src={about1}
-                alt="About main"
-                width={350}
-                height={500}
-                className="rounded w-[180px] sm:w-[200px] md:w-[250px] lg:w-[300px]"
-                priority
-            />
-        </div>
-
-        <div ref={imgTopRef} className="absolute w-auto  hidden lg:block">
-            <Image
-                src={about2}
-                alt="About top"
-                width={250}
-                height={200}
-                className="rounded w-[120px] lg:ml-[300px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
-            />
-        </div>
-    </div>
-
-    <div className="absolute" style={{ top: '200px', right: '50px' }}>
-        <div ref={imgBottomRef} className="w-auto">
-            <Image
-                src={about3}
-                alt="About bottom"
-                width={400}
-                height={350}
-                className="rounded w-[400px]"
-            />
-        </div>
-    </div>
-
-</div> */}
 
                 {/* <div className="relative overflow-visible min-h-[420px] sm:min-h-[500px] md:min-h-[580px] lg:min-h-[620px] z-20 w-full max-w-5xl mx-auto">
 
-    <div className="relative flex justify-between items-start w-full gap-4 mb-8">
-        <div className="w-auto">
-            <Image
-                src={about1}
-                alt="About main"
-                width={350}
-                height={500}
-                className="rounded w-[180px] sm:w-[200px] md:w-[250px] lg:w-[300px]"
-                priority
-            />
-        </div>
-
-        <div ref={imgTopRef} className="absolute w-auto hidden md:block">
-            <Image
-                src={about2}
-                alt="About top"
-                width={250}
-                height={200}
-                className="rounded w-[120px] lg:ml-[300px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
-            />
-        </div>
-    </div>
-
- <div ref={imgBottomRef} className="fixed w-auto" style={{ left: '230px', bottom: '12%' }}>
-    <Image
-        src={about3}
-        alt="About bottom"
-        width={400}
-        height={350}
-        className="rounded"
-        style={{ width: '400px', height: 'auto' }}
-    />
-</div>
-
-</div> */}
-                <div className="relative overflow-visible min-h-[420px] sm:min-h-[500px] md:min-h-[580px] lg:min-h-[620px] z-20 w-full max-w-5xl mx-auto">
-
-                    {/* TOP ROW */}
                     <div className="relative flex justify-between items-start w-full gap-4 mb-8">
-                        {/* First Image */}
                         <div className="w-auto">
                             <Image
                                 src={about1}
@@ -404,17 +273,8 @@ export default function KnowAboutUs() {
                             />
                         </div>
 
-                        {/* Second Image */}
-                        {/* <div ref={imgTopRef} className="absolute w-auto hidden lg:block mt-12">
-                            <Image
-                                src={about2}
-                                alt="About top"
-                                width={250}
-                                height={200}
-                                className="rounded w-[120px] lg:ml-[280px] sm:w-[140px] md:w-[180px] lg:w-[220px] "
-                            />
-                        </div> */}
-                        <div ref={imgTopRef} className="absolute w-auto hidden lg:block" style={{ right: '30px', top: '120px' }}>
+                      
+                        <div ref={imgTopRef} className="absolute w-auto hidden lgblock" style={{ right: '80px', top: '30px' }}>
                             <Image
                                 src={about2}
                                 alt="About top"
@@ -423,38 +283,176 @@ export default function KnowAboutUs() {
                                 className="rounded w-[120px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
                             />
                         </div>
-                    </div>
-
-                    {/* THIRD IMAGE - Fixed within this div only */}
-                    {/* <div className="relative" style={{ height: '200px' }}> 
-        <div ref={imgBottomRef} className="absolute" style={{ left: '230px', bottom: '5px' }}>
-            <Image
-                src={about3}
-                alt="About bottom"
-                width={400}
-                height={350}
-                className="rounded"
-                style={{ width: '400px', height: 'auto' }}
-            />
-        </div>
-    </div> */}
-                    <div className="relative" style={{ height: '250px' }}>
-                        <div ref={imgBottomRef} className="absolute" style={{ left: '250px', bottom: '70px' }}>
+                       
+                        <div
+                            ref={imgBottomRef}
+                            className="absolute top-[280px] left-[240px] flex-shrink-0"
+                        >
                             <Image
                                 src={about3}
-                                alt="About bottom"
-                                width={500}
+                                alt=""
+                                width={450}
                                 height={450}
                                 className="rounded"
-                                style={{ width: '500px', height: 'auto' }}
+                                style={{ width: "450px", height: "450px", minWidth: "450px" }}
                             />
                         </div>
                     </div>
 
-                </div>
+                   
 
+                </div> */}
+{/* <div className="relative overflow-visible min-h-[420px] sm:min-h-[500px] md:min-h-[580px] lg:min-h-[620px] z-20 w-full max-w-5xl mx-auto">
+
+  <div className="relative flex justify-between items-start w-full gap-4 mb-8">
+    <div className="w-auto">
+      <Image
+        src={about1}
+        alt="About main"
+        width={400}
+        height={500}
+        className="rounded w-[400px] sm:w-[400px] md:w-[320px] lg:w-[380px]"
+      />
+      
+      <div 
+        ref={imgBottomRef}
+          className="block xl:hidden -mt-[120px] ml-[40px] relative z-10"
+
+      >
+        <Image
+          src={about3}
+          alt=""
+          width={450}
+          height={450}
+          className="rounded"
+          style={{ width: "450px", height: "450px", minWidth: "450px" }}
+        />
+      </div>
+    </div>
+
+    <div ref={imgTopRef} className="absolute w-auto hidden xl:block" style={{ right: '80px', top: '30px' }}>
+      <Image
+        src={about2}
+        alt="About top"
+        width={250}
+        height={200}
+        className="rounded w-[120px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
+      />
+    </div>
+
+    <div
+      ref={imgBottomRef}
+      className="hidden xl:block xl:absolute xl:top-[280px] xl:left-[240px] xl:flex-shrink-0 "
+    >
+      <Image
+        src={about3}
+        alt=""
+        width={450}
+        height={450}
+        className="rounded"
+        style={{ width: "450px", height: "450px", minWidth: "450px" }}
+      />
+    </div>
+  </div>
+</div> */}
+{/* <div className="relative flex justify-between items-start w-full gap-4 mb-8"> */}
+  <div className="relative flex justify-between items-start w-full gap-4 mb-8 min-h-[700px] sm:max-h-[620px] xl:min-h-[720px]">
+  {/* First Image Container */}
+  <div className="relative w-auto">
+    <Image
+      src={about1}
+      alt="About main"
+      width={400}
+      height={500}
+      className="rounded w-[400px] sm:w-[400px] md:w-[320px] lg:w-[380px]"
+    />
+
+    {/* Third Image - shows below 1240px (inside first image container) */}
+    <div
+      ref={imgBottomRef}
+      className="block xl:hidden -mt-[120px] ml-[40px] relative z-10"
+    >
+      <Image
+        src={about3}
+        alt=""
+        width={450}
+        height={450}
+        className="rounded"
+        style={{ width: "450px", height: "450px", minWidth: "450px" }}
+      />
+    </div>
+  </div>
+
+  {/* Second Image - positioned relative to the main container */}
+  {/* <div
+    ref={imgTopRef}
+    className="absolute w-auto block z-50  hidden xl:block"
+    style={{ left: '400px', top: '30px' }}
+  >
+    <Image
+      src={about2}
+      alt="About top"
+      width={250}
+      height={200}
+      className="rounded w-[120px] sm:w-[140px] md:w-[180px] lg:w-[220px]"
+    />
+  </div> */}
+{/* <div
+  ref={imgTopRef}
+  className="absolute block z-50 hidden xl:block flex-shrink-0 w-[250px] h-[200px] min-w-[250px] min-h-[200px]"
+  style={{ left: '360px', top: '30px' }}
+>
+  <Image
+    src={about2}
+    alt="About top"
+    width={250}
+    height={200}
+    className="rounded w-full h-full object-contain"
+  />
+</div> */}
+<div
+  ref={imgTopRef}
+  className="absolute hidden xl:block z-50 flex-shrink-0"
+  style={{ left: '360px', top: '30px' }}
+>
+  <div className="inline-block overflow-hidden  ">
+    <Image
+      src={about2}
+      alt="About top"
+      width={250}
+      height={200}
+      className="object-contain rounded"
+    />
+  </div>
+</div>
+  {/* Third Image - absolute positioning above 1240px */}
+  {/* <div
+  ref={imgBottomRef}
+  className="hidden xl:block xl:absolute xl:top-[280px] xl:left-[240px] xl:flex-shrink-0"
+>
+  <Image
+    src={about3}
+    alt=""
+    width={450}
+    height={450}
+    className="rounded w-[450px] h-[450px] min-w-[450px]"
+  />
+</div> */}
+  <div
+  ref={imgBottomRef}
+  className="hidden xl:block xl:absolute xl:top-[280px] xl:left-[240px] xl:flex-shrink-0"
+>
+  <Image
+    src={about3}
+    alt=""
+    width={450}
+    height={450}
+    className="rounded w-[450px] h-[450px] min-w-[450px] xl:w-[400px] xl:h-[400px] xl:min-w-[400px] 2xl:w-[450px] 2xl:h-[450px] 2xl:min-w-[450px]"
+  />
+</div>
+</div>
                 {/* ================= RIGHT CONTENT ================= */}
-                <div className="flex flex-col justify-center mt-10 lg:mt-30">
+                <div className="flex flex-col my-auto justify-center mt-10 lg:mt-30">
                     {/* <span className="bg-amber-100 text-amber-800 px-4 py-1 rounded-full w-fit mb-4 font-semibold">
                         KNOW ABOUT US
                     </span> */}
@@ -498,7 +496,7 @@ export default function KnowAboutUs() {
                     <Button
                         href="/courses"
                         variant="gradient"
-                        className="mt-8 px-6 py-3 w-fit rounded-full font-semibold hover:scale-105 transition"
+                        className="mt-4 px-6 py-3 w-fit rounded-full font-semibold hover:scale-105 transition"
 
                     >
                         All Course →

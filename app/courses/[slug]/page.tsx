@@ -321,7 +321,7 @@ useEffect(() => {
         </div>
       </section>
       {/* 🔥 MAIN CONTENT */}
-      <div className=" mx-auto px-4 sm:px-8 md:px-4 lg:px-12 xl:px-16 2xl:px-24">
+      <div className=" mx-auto px-4 py-4 sm:px-8 md:px-4 lg:px-12 xl:px-16 2xl:px-24">
 
         {/* <div className="flex flex-col lg:grid lg:grid-cols-[1fr_280px] gap-6 lg:gap-8"> */}
         <div className="flex flex-col lg:grid lg:grid-cols-[1fr_340px] gap-6 lg:gap-8">
