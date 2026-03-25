@@ -215,7 +215,7 @@ export default function Categories() {
   if (loading) {
     return (
       <section className="bg-[var(--color-white)]">
-        <div className="py-16 container-custom flex flex-col items-center">
+        <div className="pb-16 container-custom flex flex-col items-center">
           <div className="px-6 py-2 bg-blue-100 text-blue-700 font-semibold rounded-full animate-pulse">
             CATEGORIES
           </div>
@@ -234,7 +234,7 @@ export default function Categories() {
 
   return (
     <section className="bg-[var(--color-white)]">
-      <div className="py-16 container-custom flex flex-col items-center">
+      <div className="pb-16 container-custom flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

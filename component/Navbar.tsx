@@ -3624,7 +3624,8 @@ export default function Navbar() {
             </a>
           </motion.div>
         </div>
-        <div className="hidden sm:block flex gap-2 sm:gap-4 min-w-max">
+        {/* <div className="flex gap-2 sm:gap-4 min-w-max"> */}
+        <div className="hidden sm:flex gap-2 sm:gap-4 min-w-max">
           {linkIcon.map((item) => {
             const Icon = item.icon;
             return (
@@ -3788,18 +3789,7 @@ export default function Navbar() {
               </Link>
             </motion.li>
 
-            <motion.li whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
-              <Link
-                href="/contact"
-                onClick={() => setIsDropdownOpen(false)}
-                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/contact")
-                  ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
-                  : "hover:text-[var(--color-accent-purple)]"
-                  }`}
-              >
-                Contact
-              </Link>
-            </motion.li>
+           
             <li
               className="relative py-3 sm:py-4 md:py-6"
               onMouseEnter={() => setIsResourceOpen(true)}
@@ -3842,6 +3832,18 @@ export default function Navbar() {
                 )}
               </AnimatePresence>
             </li>
+             <motion.li whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
+              <Link
+                href="/contact"
+                onClick={() => setIsDropdownOpen(false)}
+                className={`transition-colors text-xs sm:text-sm md:text-base whitespace-nowrap ${isActive("/contact")
+                  ? "text-[var(--color-accent-purple)] font-bold border-b-2 border-[var(--color-accent-purple)] pb-1"
+                  : "hover:text-[var(--color-accent-purple)]"
+                  }`}
+              >
+                Contact
+              </Link>
+            </motion.li>
           </ul>
 
           {/* ── RIGHT: Search + Cart + Admin + Enroll ── */}
