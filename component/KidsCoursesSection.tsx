@@ -1067,7 +1067,7 @@ const json = await apiService.getCourses();
   }
 
   return (
-    <section className="bg-[var(--color-bg-light)] pt-16">
+    <section className="bg-[var(--color-bg-light)] pt-10">
       <div className="container-custom relative">
 
         {/* HEADER */}

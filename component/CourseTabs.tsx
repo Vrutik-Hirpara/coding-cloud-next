@@ -63,6 +63,13 @@ export default function CourseTabs({ course, events }: any) {
 
     const [topicsData, setTopicsData] = useState<any[]>([]);
     const [showForm, setShowForm] = useState(false);
+
+
+    const formatRating = (rating: number | null | undefined): string => {
+        if (rating === null || rating === undefined) return "0";
+        return Number(rating).toFixed(2).replace(/\.?0+$/, '');
+    };
+
     const [formData, setFormData] = useState({
         name: "",
         review: "",
@@ -815,8 +822,11 @@ export default function CourseTabs({ course, events }: any) {
                     {/* ⭐ SUMMARY FROM API */}
                     <div className="flex flex-col md:flex-row gap-6 items-center">
                         <div className="bg-[var(--color-bg-light)] p-6 rounded-lg text-center w-[150px]">
-                            <p className="text-5xl font-bold text-[var(--color-accent-purple)]">
+                            {/* <p className="text-5xl font-bold text-[var(--color-accent-purple)]">
                                 {apiAvg !== null ? apiAvg.toFixed(1) : avg}
+                            </p> */}
+                            <p className="text-5xl font-bold text-[var(--color-accent-purple)]">
+                                {formatRating(Number(apiAvg ?? avg))}
                             </p>
                             <Stars rating={apiAvg !== null ? apiAvg : Number(avg)} />
                             <p className="text-sm text-[var(--color-muted)] mt-1">
@@ -850,10 +860,12 @@ export default function CourseTabs({ course, events }: any) {
                     </div>
 
                     {/* OPTIONAL: Show total reviews count */}
-                    <div className="text-sm text-[var(--color-muted)] border-t pt-4">
+                    {/* <div className="text-sm text-[var(--color-muted)] border-t pt-4">
                         Total {total} {total === 1 ? 'review' : 'reviews'} • Average {apiAvg !== null ? apiAvg.toFixed(1) : avg}/5
+                    </div> */}
+                    <div className="text-sm text-[var(--color-muted)] border-t pt-4">
+                        Total {total} {total === 1 ? 'review' : 'reviews'} • Average {formatRating(Number(apiAvg ?? avg))}/5
                     </div>
-
                     {/* REVIEW FORM */}
                     {showForm && (
                         <div ref={formRef} className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]">

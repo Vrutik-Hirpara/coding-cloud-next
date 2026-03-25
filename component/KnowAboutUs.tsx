@@ -457,7 +457,7 @@ const imgBottomFloatRef = useRef<HTMLDivElement | null>(null);
           {/* <span className="bg-amber-100 text-amber-800 px-4 py-1 rounded-full w-fit mb-4 font-semibold">
                         KNOW ABOUT US
                     </span> */}
-          <div className="py-3">
+          <div className="pt-3">
             <Pill text="KNOW ABOUT US" />
           </div>
 

@@ -383,16 +383,17 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
 
             {/* COURSES */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
+  className="hidden sm:block"
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.1, duration: 0.6 }}
+  viewport={{ once: true }}
+>
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-2 sm:mb-7">
                 Top Course
               </h3>
 
-              <ul className="space-y-4 text-md text-[var(--color-text)]">
+              <ul className="space-y-2 sm:space-y-4 text-md text-[var(--color-text)]">
                 {courses.map((course) => (
                   <li key={course.id}>
                     <Link
@@ -418,11 +419,11 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
               transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-2 sm:mb-7">
                 Ahmedabad Office
               </h3>
 
-              <ul className="space-y-4 text-[var(--color-text)] text-md">
+              <ul className="space-y-2 sm:space-y-4 text-[var(--color-text)] text-md">
                 {/* <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                   Phone:9537344018
                 </li> */}
@@ -431,7 +432,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                     Phone: 9537344018
                   </a>
                 </li>
-                <li className="space-y-1">
+                <li className="space-y-0 sm:space-y-1">
 
 
                   <a
@@ -479,11 +480,11 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
               transition={{ delay: 0.3, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-bold text-[var(--color-text)] mb-0 sm:mb-7">
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-2 sm:mb-7">
                 Pune Office
               </h3>
 
-              <ul className="space-y-4 text-md text-[var(--color-text)] mb-8">
+              <ul className="space-y-2 sm:space-y-4 text-md text-[var(--color-text)] mb-8">
 
                 {/* <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                   Phone:9328944018
@@ -496,7 +497,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                     Phone: 9328944018
                   </a>
                 </li>
-                <li className="space-y-1">
+                <li className="space-y-0 sm:space-y-1">
 
 
                   <a

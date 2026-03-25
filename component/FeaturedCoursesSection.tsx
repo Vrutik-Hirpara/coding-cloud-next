@@ -646,7 +646,7 @@ const FeaturedCoursesSection = () => {
             auto-cols-[335px]
             overflow-x-auto
             gap-4
-            pb-10 pt-2
+            pb-10 pt-4
             hide-scrollbar scroll-smooth
           "
           >
