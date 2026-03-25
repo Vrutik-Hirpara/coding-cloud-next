@@ -207,7 +207,7 @@ useEffect(() => {
       </div> */}
 
       <section
-        className="pt-16 pb-32 container-custom"
+        className="pt-16 sm:pb-24 pb-16 container-custom"
         style={{
           backgroundImage: `linear-gradient(rgb(148 179 246) 0%, rgb(79, 130, 240) 45%, rgb(147 173 252) 100%), url(${getImageUrl(
             course.banner_img || course.image
@@ -244,7 +244,10 @@ useEffect(() => {
             </div>
 
             {/* Heading */}
-            <h1 className="flex items-center gap-4 text-3xl md:text-4xl text-[50px] font-[700] lg:text-5xl font-bold text-gray-900 mb-6 leading-relaxed">
+            {/* <h1 className="flex items-center gap-4 text-3xl md:text-4xl text-[50px] font-[700] lg:text-5xl font-bold text-gray-900 mb-6 leading-relaxed"> */}
+             <h1 className="flex items-center gap-4 
+text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
+font-bold text-gray-900 sm:mb-6 mb-3 leading-tight">
               {/* <Image
                 src={getImageUrl(course.image)}
                 alt={course.name}
@@ -259,12 +262,12 @@ useEffect(() => {
             </h1>
 
             {/* Description */}
-            <p className="text-[var(--color-black)] text-lg max-w-3xl  mb-8">
+            <p className="text-[var(--color-black)] text-lg max-w-3xl mb-4 sm:mb-8">
               {course.short_description}
             </p>
 
             {/* Stats Row */}
-            <div className="flex flex-wrap items-center gap-6 mb-4 text-md leading-[1.5] font-normal">              {/* Bestseller Badge */}
+            <div className="flex flex-wrap items-center gap-6 mb-2 sm:mb-4 text-md leading-[1.5] font-normal">              {/* Bestseller Badge */}
 
 
               {/* Rating */}

@@ -3618,10 +3618,13 @@ export default function Navbar() {
             className="flex items-center gap-1 sm:gap-2 hover:text-[var(--color-white)] cursor-pointer transition-colors"
           >
             <IoCallOutline className="text-xs sm:text-base" />
-            <span className="text-[10px] sm:text-sm">+91 95373 44018</span>
+            {/* <span className="text-[10px] sm:text-sm">+91 95373 44018</span> */}
+            <a href="tel:+919537344018" className="text-[10px] sm:text-sm">
+              +91 95373 44018
+            </a>
           </motion.div>
         </div>
-        <div className="flex gap-2 sm:gap-4 min-w-max">
+        <div className="hidden sm:block flex gap-2 sm:gap-4 min-w-max">
           {linkIcon.map((item) => {
             const Icon = item.icon;
             return (
@@ -3868,7 +3871,7 @@ export default function Navbar() {
                 setIsDropdownOpen(false);
                 setIsEnrollOpen(true);
               }}
-              className="relative overflow-hidden px-4 py-1.5 rounded-full border-2 font-semibold text-xs cursor-pointer"
+              className="hidden sm:block relative overflow-hidden px-4 py-1.5 rounded-full border-2 font-semibold text-xs cursor-pointer"
               style={{ borderColor: "var(--color-accent-purple)" }}
             >
               <span

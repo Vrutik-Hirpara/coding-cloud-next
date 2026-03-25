@@ -282,7 +282,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[var(--color-bg-light)] border-t border-[var(--color-border)]">
-      <div className=" mx-auto px-5 pt-12 pb-12 sm:px-8 md:px-12 lg:px-16">
+      <div className=" mx-auto px-5 pt-12 pb-4 sm:px-8 md:px-12 lg:px-16">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
 
@@ -426,11 +426,11 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                 {/* <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                   Phone:9537344018
                 </li> */}
-<li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
-  <a href="tel:9537344018">
-    Phone: 9537344018
-  </a>
-</li>
+                <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
+                  <a href="tel:9537344018">
+                    Phone: 9537344018
+                  </a>
+                </li>
                 <li className="space-y-1">
 
 
@@ -459,16 +459,16 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                   </a>
                 </li> */}
                 <li>
-  <a
-    href="https://maps.app.goo.gl/HtXAGaK1jPQzcqhe6"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words block 2xl:max-w-sm"
-  >
-    401, 4th Floor, Sapphire Complex, Chimanlal Girdharlal Rd, near Yes Bank,
-    Ellisbridge, Ahmedabad, Gujarat 380009
-  </a>
-</li>
+                  <a
+                    href="https://maps.app.goo.gl/HtXAGaK1jPQzcqhe6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words block 2xl:max-w-sm"
+                  >
+                    401, 4th Floor, Sapphire Complex, Chimanlal Girdharlal Rd, near Yes Bank,
+                    Ellisbridge, Ahmedabad, Gujarat 380009
+                  </a>
+                </li>
               </ul>
             </motion.div>
 
@@ -485,8 +485,16 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
 
               <ul className="space-y-4 text-md text-[var(--color-text)] mb-8">
 
-                <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
+                {/* <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
                   Phone:9328944018
+                </li> */}
+                <li>
+                  <a
+                    href="tel:9328944018"
+                    className="hover:text-[var(--color-accent-purple)] cursor-pointer"
+                  >
+                    Phone: 9328944018
+                  </a>
                 </li>
                 <li className="space-y-1">
 
@@ -516,16 +524,16 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                     Pune, 411028
                   </a>
                 </li> */}
-                              <li>
-  <a
-    href="https://maps.app.goo.gl/CEnMtxg8EzRNjNQBA"
-    target="_blank"
-    rel="noopener noreferrer"
-className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words block 2xl:max-w-xs"  >
-    Office No. 201, 2nd Floor, Polaris Building, Nr. Noble Hospital Hadapsar,
+                <li>
+                  <a
+                    href="https://maps.app.goo.gl/CEnMtxg8EzRNjNQBA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words block 2xl:max-w-xs"  >
+                    Office No. 201, 2nd Floor, Polaris Building, Nr. Noble Hospital Hadapsar,
                     Pune, 411028
-  </a>
-</li>
+                  </a>
+                </li>
 
               </ul>
             </motion.div>
@@ -619,12 +627,8 @@ className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words bl
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true }}
-          className="border-t border-[var(--color-border)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-md text-[var(--color-text)]"
+          className="border-t border-[var(--color-border)] md:pt-8 pt-4 flex flex-col md:flex-row justify-between items-center gap-1 text-md text-[var(--color-text)]"
         >
-          <p>
-            Copyright © 2025 <span className="font-semibold">Coding Cloud</span>. All Rights Reserved
-          </p>
-
           <div className="flex items-center gap-6">
             <Link href="/terms-of-service" className="hover:text-[var(--color-accent-purple)]">
               Terms of service
@@ -633,6 +637,14 @@ className="hover:text-[var(--color-accent-purple)] cursor-pointer break-words bl
               Privacy policy
             </Link>
           </div>
+          <p>
+            Copyright © 2023 by Coding Cloud
+             {/* <span className="font-semibold">
+              Coding Cloud</span>
+             All Rights Reserved */}
+          </p>
+
+          
         </motion.div>
 
       </div>

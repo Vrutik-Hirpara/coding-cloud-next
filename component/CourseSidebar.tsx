@@ -290,9 +290,20 @@ export default function CourseSidebar({
     const [isSticky, setIsSticky] = useState(false);
     const [isInitialized, setIsInitialized] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
-    
+    const [isMobile, setIsMobile] = useState(false);
+
     console.log("CourseSidebar rendered with course:", course);
     
+    useEffect(() => {
+  const checkScreen = () => {
+    setIsMobile(window.innerWidth < 640);
+  };
+
+  checkScreen();
+  window.addEventListener("resize", checkScreen);
+
+  return () => window.removeEventListener("resize", checkScreen);
+}, []);
     // Scroll position track karva mate useEffect
     useEffect(() => {
         const handleScroll = () => {
@@ -386,7 +397,7 @@ export default function CourseSidebar({
                             )}
                         </div>
                         
-                        <div className="flex justify-center">
+                        {/* <div className="flex justify-center">
                             <Button
                                 variant="gradient"
                                 size="lg"
@@ -396,8 +407,16 @@ export default function CourseSidebar({
                             >
                                 Enroll Now
                             </Button>
-                        </div>
-
+                        </div> */}
+<div className="flex justify-center">
+ <Button
+    variant="gradient"
+    size={isMobile ? "md" : "lg"}
+    onClick={() => setIsEnrollOpen(true)}
+  >
+    Enroll Now
+  </Button>
+</div>
 
                         <div className="divide-y mt-4">
 
@@ -452,10 +471,12 @@ export default function CourseSidebar({
                                 For details about the course
                             </p>
 
-                            <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
+                            {/* <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
+                                📞 Call Us:  +91 95373 44018
+                            </div> */}
+<div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
                                 📞 Call Us:  +91 95373 44018
                             </div>
-
                         </div>
                     </div>
                 </div>

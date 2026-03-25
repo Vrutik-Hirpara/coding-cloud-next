@@ -311,7 +311,7 @@ export default function CoursesPage() {
         }
 
         setCourses(coursesArray);
-        
+
         // Fetch ratings for all courses
         if (coursesArray.length > 0) {
           fetchRatings(coursesArray);
@@ -346,7 +346,7 @@ export default function CoursesPage() {
           // const json = await res.json();
           // const data = json.course_average_rating?.[0];
           const json = await apiService.getCourseAverageRating(course.id);
-const data = json.course_average_rating?.[0];
+          const data = json.course_average_rating?.[0];
           if (data) {
             ratingData[course.id] = data;
           }
@@ -453,10 +453,10 @@ const data = json.course_average_rating?.[0];
       </motion.h1>
 
       <motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 0.5, delay: 0.2 }}
-  className="
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="
     flex 
     flex-wrap 
     justify-center 
@@ -464,7 +464,7 @@ const data = json.course_average_rating?.[0];
     mx-auto
     w-full
   "
->
+      >
         {courses.map((course, index) => {
           const imageUrl = getFullImageUrl(course.banner_img);
           const rating = ratings[course.id]?.average_rating || 0;
@@ -507,7 +507,7 @@ const data = json.course_average_rating?.[0];
                         <span className="text-sm">No banner</span>
                       </div>
                     )}
-                    
+
                     {/* Duration Badge - Like EventCard */}
                     {course.duration && (
                       <span className="absolute top-3 left-3 bg-white/90 text-xs px-3 py-1 rounded-full font-semibold shadow-sm">
@@ -525,46 +525,46 @@ const data = json.course_average_rating?.[0];
                         ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
                       </span>
                     </div> */}
-<div className="flex items-center gap-2 text-sm mb-2">
-  {/* ⭐ Dynamic Stars (exact fill) */}
-  <div className="flex items-center">
-    {[1, 2, 3, 4, 5].map((star) => {
-      const ratingValue = rating || 0;
+                    <div className="flex items-center gap-2 text-sm mb-2">
+                      {/* ⭐ Dynamic Stars (exact fill) */}
+                      <div className="flex items-center">
+                        {[1, 2, 3, 4, 5].map((star) => {
+                          const ratingValue = rating || 0;
 
-      let fillPercent = 0;
+                          let fillPercent = 0;
 
-      if (ratingValue >= star) {
-        fillPercent = 100;
-      } else if (ratingValue > star - 1) {
-        fillPercent = (ratingValue - (star - 1)) * 100;
-      }
+                          if (ratingValue >= star) {
+                            fillPercent = 100;
+                          } else if (ratingValue > star - 1) {
+                            fillPercent = (ratingValue - (star - 1)) * 100;
+                          }
 
-      return (
-        <span key={star} className="relative text-lg">
-          <span className="text-gray-300">★</span>
-          <span
-            className="absolute top-0 left-0 overflow-hidden text-yellow-500"
-            style={{ width: `${fillPercent}%` }}
-          >
-            ★
-          </span>
-        </span>
-      );
-    })}
-  </div>
+                          return (
+                            <span key={star} className="relative text-lg">
+                              <span className="text-gray-300">★</span>
+                              <span
+                                className="absolute top-0 left-0 overflow-hidden text-yellow-500"
+                                style={{ width: `${fillPercent}%` }}
+                              >
+                                ★
+                              </span>
+                            </span>
+                          );
+                        })}
+                      </div>
 
-  {/* ⭐ Rating number */}
-  <span className="text-orange-400">
-    {rating
-      ? (rating % 1 === 0 ? rating : rating.toFixed(1))
-      : 0}
-  </span>
+                      {/* ⭐ Rating number */}
+                      <span className="text-orange-400">
+                        {rating
+                          ? (rating % 1 === 0 ? rating : rating.toFixed(1))
+                          : 0}
+                      </span>
 
-  {/* ⭐ Reviews */}
-  <span className="text-[var(--color-muted)] ml-2">
-    ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
-  </span>
-</div>
+                      {/* ⭐ Reviews */}
+                      <span className="text-[var(--color-muted)] ml-2">
+                        ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
+                      </span>
+                    </div>
                     {/* Title - Like EventCard */}
                     <h3 className="text-lg font-bold text-[var(--color-dark)] mb-2">
                       {course.name}
@@ -580,12 +580,12 @@ const data = json.course_average_rating?.[0];
                     {/* <p className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2">
                       {course.short_description?.replace(/<[^>]*>/g, "") || "No description available"}
                     </p> */}
-<p
-  className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
-  dangerouslySetInnerHTML={{
-    __html: course.short_description || "No description available",
-  }}
-/>
+                    <p
+                      className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+                      dangerouslySetInnerHTML={{
+                        __html: course.short_description || "No description available",
+                      }}
+                    />
                     {/* Category - Like EventCard */}
                     {course.category_details?.name && (
                       <div className="text-xs text-[var(--color-muted-light)] mb-4">

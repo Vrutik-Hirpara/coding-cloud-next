@@ -716,7 +716,7 @@ export default function CourseTabs({ course, events }: any) {
                 <section
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-8 scroll-mt-[200px]"
                 >
-                    <div className="flex justify-between items-center">
+                    {/* <div className="flex justify-between items-center">
                         <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">Reviews</h3>
                         <Button
                             onClick={() => {
@@ -742,8 +742,76 @@ export default function CourseTabs({ course, events }: any) {
                         >
                             Add Review
                         </Button>
+                    </div> */}
+                    {/* <div className="flex justify-between items-center gap-3 sm:gap-4">
+                        <h3 className="mb-0 text-[18px] sm:text-[20px] font-bold text-[var(--color-heading)]">Reviews</h3>
+                        <Button
+                            onClick={() => {
+                                setShowForm(true);
+                                setTimeout(() => {
+                                    if (formRef.current) {
+                                        const elementPosition = formRef.current.getBoundingClientRect().top;
+                                        const offsetPosition = elementPosition + window.pageYOffset - 220;
+                                        window.scrollTo({
+                                            top: offsetPosition,
+                                            behavior: "smooth"
+                                        });
+                                    }
+                                }, 100);
+                            }}
+                            variant="gradient"
+                            size="md"
+                            className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-lg whitespace-nowrap"
+                        >
+                            Add Review
+                        </Button>
+                    </div> */}
+                    {/* <div className="flex justify-between items-center gap-2 sm:gap-4">
+                        <h3 className="mb-0 text-[18px] sm:text-[20px] font-bold text-[var(--color-heading)]">Reviews</h3>
+                        <Button
+                            onClick={() => {
+                                setShowForm(true);
+                                setTimeout(() => {
+                                    if (formRef.current) {
+                                        const elementPosition = formRef.current.getBoundingClientRect().top;
+                                        const offsetPosition = elementPosition + window.pageYOffset - 220;
+                                        window.scrollTo({
+                                            top: offsetPosition,
+                                            behavior: "smooth"
+                                        });
+                                    }
+                                }, 100);
+                            }}
+                            variant="gradient"
+                            size="md"
+                            className="px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm rounded-lg whitespace-nowrap h-auto min-h-0"
+                        >
+                            Add Review
+                        </Button>
+                    </div> */}
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
+                        <h3 className="mb-0 text-[18px] sm:text-[20px] font-bold text-[var(--color-heading)]">Reviews</h3>
+                        <Button
+                            onClick={() => {
+                                setShowForm(true);
+                                setTimeout(() => {
+                                    if (formRef.current) {
+                                        const elementPosition = formRef.current.getBoundingClientRect().top;
+                                        const offsetPosition = elementPosition + window.pageYOffset - 220;
+                                        window.scrollTo({
+                                            top: offsetPosition,
+                                            behavior: "smooth"
+                                        });
+                                    }
+                                }, 100);
+                            }}
+                            variant="gradient"
+                            size="md"
+                            className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-lg whitespace-nowrap w-full sm:w-auto"
+                        >
+                            Add Review
+                        </Button>
                     </div>
-
                     {/* ⭐ SUMMARY FROM API */}
                     <div className="flex flex-col md:flex-row gap-6 items-center">
                         <div className="bg-[var(--color-bg-light)] p-6 rounded-lg text-center w-[150px]">
@@ -900,7 +968,7 @@ export default function CourseTabs({ course, events }: any) {
                                                     <img
                                                         src={getFullImageUrl(review.image)}
                                                         alt={review.name}
-                                                        className="w-full h-full object-cover"
+                                                        className="w-full h-full object-contain"
                                                         onError={(e) => {
                                                             e.currentTarget.onerror = null;
                                                             e.currentTarget.style.display = 'none';

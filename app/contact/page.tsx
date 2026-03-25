@@ -517,7 +517,7 @@ import { FaHeadphonesAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import contactImg from '@/public/images/contact/contact.jpg'
 import { useState } from "react";
-import { BASE_URL,API,apiService  } from "@/lib/api";
+import { BASE_URL, API, apiService } from "@/lib/api";
 import Button from "@/component/ui/Button";
 import { showApiErrors } from "@/utility/apiError";
 import Swal from "sweetalert2"; // (for success alert)
@@ -530,7 +530,7 @@ export default function ContactPage() {
     },
     {
       title: "Our Email Address",
-      values: ["komal@codingcloudinstitute.com", "pune@codingcloudinstitute.com","info@codingcloudinstitute.com"],
+      values: ["komal@codingcloudinstitute.com", "pune@codingcloudinstitute.com", "info@codingcloudinstitute.com"],
       icon: <FaEnvelope />,
     },
     {
@@ -654,122 +654,122 @@ export default function ContactPage() {
   //     setLoading(false);
   //   }
   // };
-const handleSubmit = async (e: any) => {
-  e.preventDefault();
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
 
-  setGlobalError("");
-  setSuccess(false);
+    setGlobalError("");
+    setSuccess(false);
 
-  if (!validateForm()) {
-    setGlobalError("⚠️ Please fix the errors below");
-    setTimeout(() => setGlobalError(""), 4000);
-    return;
-  }
+    if (!validateForm()) {
+      setGlobalError("⚠️ Please fix the errors below");
+      setTimeout(() => setGlobalError(""), 4000);
+      return;
+    }
 
-  // try {
-  //   setLoading(true);
+    // try {
+    //   setLoading(true);
 
-  //   const res = await fetch(`${BASE_URL}/contacts/`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       full_name: form.name,
-  //       email: form.email,
-  //       mobile_no: form.mobile,
-  //       subject: form.subject,
-  //       message: form.message,
-  //     }),
-  //   });
+    //   const res = await fetch(`${BASE_URL}/contacts/`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       full_name: form.name,
+    //       email: form.email,
+    //       mobile_no: form.mobile,
+    //       subject: form.subject,
+    //       message: form.message,
+    //     }),
+    //   });
 
-  //   const data = await res.json(); // ✅ IMPORTANT
+    //   const data = await res.json(); // ✅ IMPORTANT
 
-  //   if (!res.ok) {
-  //     setErrors(data);
-  //     showApiErrors(data); // 🔥 HERE
-  //     return;
-  //   }
+    //   if (!res.ok) {
+    //     setErrors(data);
+    //     showApiErrors(data); // 🔥 HERE
+    //     return;
+    //   }
 
-  //   // ✅ SUCCESS
-  //   Swal.fire({
-  //     icon: "success",
-  //     title: "Message Sent",
-  //     text: "We will contact you soon!",
-  //   });
+    //   // ✅ SUCCESS
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Message Sent",
+    //     text: "We will contact you soon!",
+    //   });
 
-  //   setSuccess(true);
+    //   setSuccess(true);
 
-  //   setForm({
-  //     name: "",
-  //     email: "",
-  //     mobile: "",
-  //     subject: "",
-  //     message: "",
-  //   });
+    //   setForm({
+    //     name: "",
+    //     email: "",
+    //     mobile: "",
+    //     subject: "",
+    //     message: "",
+    //   });
 
-  //   setErrors({});
+    //   setErrors({});
 
-  //   setTimeout(() => setSuccess(false), 4000);
+    //   setTimeout(() => setSuccess(false), 4000);
 
-  // } catch (err) {
-  //   console.error(err);
+    // } catch (err) {
+    //   console.error(err);
 
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: "Server Error",
-  //     text: "Please try again later",
-  //   });
-  // } 
-  try {
-  setLoading(true);
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Server Error",
+    //     text: "Please try again later",
+    //   });
+    // } 
+    try {
+      setLoading(true);
 
-  await apiService.submitContact({
-    full_name: form.name,
-    email: form.email,
-    mobile_no: form.mobile,
-    subject: form.subject,
-    message: form.message,
-  });
+      await apiService.submitContact({
+        full_name: form.name,
+        email: form.email,
+        mobile_no: form.mobile,
+        subject: form.subject,
+        message: form.message,
+      });
 
-  // ✅ SUCCESS
-  Swal.fire({
-    icon: "success",
-    title: "Message Sent",
-    text: "We will contact you soon!",
-  });
+      // ✅ SUCCESS
+      Swal.fire({
+        icon: "success",
+        title: "Message Sent",
+        text: "We will contact you soon!",
+      });
 
-  setSuccess(true);
+      setSuccess(true);
 
-  setForm({
-    name: "",
-    email: "",
-    mobile: "",
-    subject: "",
-    message: "",
-  });
+      setForm({
+        name: "",
+        email: "",
+        mobile: "",
+        subject: "",
+        message: "",
+      });
 
-  setErrors({});
+      setErrors({});
 
-  setTimeout(() => setSuccess(false), 4000);
+      setTimeout(() => setSuccess(false), 4000);
 
-} catch (err: any) {
-  // Handle errors from apiService
-  if (err.data) {
-    setErrors(err.data);
-    showApiErrors(err.data);
-  } else {
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: err.data?.message || "Something went wrong. Please try again.",
-    });
-  }
-}
-  finally {
-    setLoading(false);
-  }
-};
+    } catch (err: any) {
+      // Handle errors from apiService
+      if (err.data) {
+        setErrors(err.data);
+        showApiErrors(err.data);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: err.data?.message || "Something went wrong. Please try again.",
+        });
+      }
+    }
+    finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-soft-gradient w-full max-w-full overflow-x-hidden">
       {/* ================= HEADER ================= */}
@@ -796,7 +796,7 @@ const handleSubmit = async (e: any) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-[var(--color-white)] border border-[var(--color-border)] p-6 md:p-8 lg:p-10 rounded-2xl text-center shadow-sm hover:shadow-lg transition-all duration-300 w-full max-w-full"
+                className="bg-[var(--color-white)] border border-[var(--color-border)] p-6 rounded-2xl text-center shadow-sm hover:shadow-lg transition-all duration-300 w-full max-w-full"
               >
                 {/* ICON */}
                 <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 md:mb-5 flex items-center justify-center rounded-xl text-[var(--color-white)] text-xl md:text-2xl bg-[var(--color-accent-purple)] shadow">
@@ -810,9 +810,13 @@ const handleSubmit = async (e: any) => {
 
                 {/* VALUES */}
                 {item.values.map((val, idx) => (
-                  <p key={idx} className="text-[var(--color-muted)] text-xs md:text-sm leading-relaxed break-words">
+                  <a
+                    key={idx}
+                    href={`mailto:${val}`}
+                    className="block text-[var(--color-muted)] text-xs md:text-sm leading-relaxed break-words hover:text-[var(--color-accent-purple)]"
+                  >
                     {val}
-                  </p>
+                  </a>
                 ))}
               </motion.div>
             ))}
@@ -980,42 +984,42 @@ const handleSubmit = async (e: any) => {
         </div>
       </section> */}
       <section className="pb-20 md:pb-24 w-full">
-  <div className="container-custom px-4 sm:px-6 mx-auto">
+        <div className="container-custom px-4 sm:px-6 mx-auto">
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      {/* Pune Map */}
-      <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.5146829681908!2d73.9254148!3d18.505629700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ebbf356e2f3f%3A0x4ef27a8683922201!2sCoding%20Cloud%20Institute%20%7C%20Data%20Science%20%2C%20Data%20Analyst%20%2CMern%20Stack%20%2CJava%20%2C%20Python%2CAWS%20%2C%20React%20js%20%2CTraining%20Institute%20in%20Pune!5e0!3m2!1sen!2sin!4v1773307199781!5m2!1sen!2sin" 
-          width="100%"
-          height="300"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
-        ></iframe>
-      </div>
+            {/* Pune Map */}
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.5146829681908!2d73.9254148!3d18.505629700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ebbf356e2f3f%3A0x4ef27a8683922201!2sCoding%20Cloud%20Institute%20%7C%20Data%20Science%20%2C%20Data%20Analyst%20%2CMern%20Stack%20%2CJava%20%2C%20Python%2CAWS%20%2C%20React%20js%20%2CTraining%20Institute%20in%20Pune!5e0!3m2!1sen!2sin!4v1773307199781!5m2!1sen!2sin"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
+              ></iframe>
+            </div>
 
-      {/* Ahmedabad Map */}
-      <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.886669550655!2d72.55469997455533!3d23.027933016129584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e837ae22fe273%3A0xe6c960874031d0f2!2sCODING%20CLOUD%20INSTITUTE%20%7C%20React%20js%20%2C%20Mern%20Stack%20%2C%20Data%20Science%20%2C%20Java%20%2CData%20Analyst%2CPython%20Training%20Classes%20in%20Ahmedabad!5e0!3m2!1sen!2sus!4v1773741546816!5m2!1sen!2sus"
-          width="100%"
-          height="300"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
-        ></iframe>
-      </div>
+            {/* Ahmedabad Map */}
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.886669550655!2d72.55469997455533!3d23.027933016129584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e837ae22fe273%3A0xe6c960874031d0f2!2sCODING%20CLOUD%20INSTITUTE%20%7C%20React%20js%20%2C%20Mern%20Stack%20%2C%20Data%20Science%20%2C%20Java%20%2CData%20Analyst%2CPython%20Training%20Classes%20in%20Ahmedabad!5e0!3m2!1sen!2sus!4v1773741546816!5m2!1sen!2sus"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]"
+              ></iframe>
+            </div>
 
-    </div>
+          </div>
 
-  </div>
-</section>
+        </div>
+      </section>
     </div>
   );
 }
