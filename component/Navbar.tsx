@@ -3894,7 +3894,7 @@ export default function Navbar() {
         </div>
 
         {/* ── MOBILE MENU ── */}
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
@@ -3943,7 +3943,6 @@ export default function Navbar() {
                             Loading courses...
                           </div>
                         ) : (
-                          /* ── Mobile courses scrollable ── */
                           <div className="max-h-[40vh] overflow-y-auto">
                             <div className="grid grid-cols-2 gap-2 p-2">
                               {courses.map((course: any) => (
@@ -4006,11 +4005,12 @@ export default function Navbar() {
                 >
                   Contact
                 </Link>
-                {/* ── RESOURCES (Mobile Dropdown) ── */}
-                <div className="py-1">
+
+                
+                <div className="py-0">
                   <button
                     onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
-                    className="w-full flex items-center justify-between py-3 px-4 rounded-lg transition-colors hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+                    className="w-full flex items-center justify-between py-0 px-4 rounded-lg transition-colors hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
                   >
                     <span>Resources</span>
                     <FaChevronUp
@@ -4071,7 +4071,187 @@ export default function Navbar() {
               </div>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
+        <AnimatePresence>
+  {isMenuOpen && (
+    <motion.div
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: "auto" }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.3 }}
+      className="md:hidden absolute top-full left-0 w-full bg-[var(--color-white)] shadow-lg border-t z-50 overflow-hidden"
+    >
+      <div className="px-4 py-3 flex flex-col gap-1">
+        {/* Home */}
+        <Link
+          href="/"
+          onClick={() => setIsMenuOpen(false)}
+          className={`py-2.5 px-4 rounded-lg transition-colors ${
+            isActive("/") && pathname === "/"
+              ? "bg-[var(--color-accent-purple)] text-white font-bold"
+              : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+          }`}
+        >
+          Home
+        </Link>
+
+        {/* Courses Dropdown */}
+        <div>
+          <button
+            onClick={() => setIsMobileCoursesOpen(!isMobileCoursesOpen)}
+            className={`w-full flex items-center justify-between py-2.5 px-4 rounded-lg transition-colors ${
+              isActive("/courses")
+                ? "bg-[var(--color-accent-purple)] text-white font-bold"
+                : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+            }`}
+          >
+            <span>Courses</span>
+            <FaChevronUp
+              className={`transition-transform duration-300 text-sm ${
+                isMobileCoursesOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          <AnimatePresence>
+            {isMobileCoursesOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {loading ? (
+                  <div className="text-center text-[var(--color-muted-light)] py-3 text-sm">
+                    Loading...
+                  </div>
+                ) : (
+                  <div className="max-h-[40vh] overflow-y-auto">
+                    <div className="grid grid-cols-2 gap-2 p-2">
+                      {courses.map((course: any) => (
+                        <button
+                          key={course.id}
+                          onClick={() => handleCourseClick(course.slug)}
+                          className="flex flex-col items-center gap-1.5 p-2 rounded-lg hover:bg-[var(--color-bg-softest)] transition-colors"
+                        >
+                          <div className="w-10 h-10 flex items-center justify-center bg-[var(--color-bg-softest)] rounded-lg overflow-hidden">
+                            {course.image ? (
+                              <Image
+                                src={`${BASE_URL}${course.image}`}
+                                alt={course.name}
+                                width={36}
+                                height={36}
+                                className="object-cover w-full h-full"
+                              />
+                            ) : (
+                              getCourseIcon(course.name)
+                            )}
+                          </div>
+                          <span className="text-xs font-medium text-[var(--color-text-medium)] text-center line-clamp-2">
+                            {course.name}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* About */}
+        <Link
+          href="/about"
+          onClick={() => setIsMenuOpen(false)}
+          className={`py-2.5 px-4 rounded-lg transition-colors ${
+            isActive("/about")
+              ? "bg-[var(--color-accent-purple)] text-white font-bold"
+              : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+          }`}
+        >
+          About
+        </Link>
+
+        {/* Resources Dropdown */}
+        <div>
+          <button
+            onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
+            className="w-full flex items-center justify-between py-2.5 px-4 rounded-lg transition-colors hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+          >
+            <span>Resources</span>
+            <FaChevronUp
+              className={`transition-transform duration-300 text-sm ${
+                isMobileResourcesOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          <AnimatePresence>
+            {isMobileResourcesOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+                className="pl-4"
+              >
+                <Link
+                  href="/blogs"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block py-2 px-4 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)] rounded-lg"
+                >
+                  Blogs
+                </Link>
+                <Link
+                  href="/coursefaqs"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block py-2 px-4 text-sm text-[var(--color-text-medium)] hover:bg-[var(--color-bg-softest)] rounded-lg"
+                >
+                  FAQ
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Contact */}
+        <Link
+          href="/contact"
+          onClick={() => setIsMenuOpen(false)}
+          className={`py-2.5 px-4 rounded-lg transition-colors ${
+            isActive("/contact")
+              ? "bg-[var(--color-accent-purple)] text-white font-bold"
+              : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
+          }`}
+        >
+          Contact
+        </Link>
+
+        {/* Social Icons */}
+        <div className="flex justify-center gap-5 mt-3 pt-3 border-t border-gray-200">
+          {linkIcon.map((item) => {
+            const Icon = item.icon;
+            return (
+              <motion.a
+                key={item.id}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-[var(--color-text-medium)] hover:text-[var(--color-accent-purple)] transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Icon size={18} />
+              </motion.a>
+            );
+          })}
+        </div>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
       </nav>
 
       {/* ── ENROLL MODAL ── */}

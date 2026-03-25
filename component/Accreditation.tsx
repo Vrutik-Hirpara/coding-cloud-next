@@ -216,7 +216,7 @@ export default function Accreditation() {
                     viewport={{ once: true }}
                     className="text-center max-w-3xl mx-auto mb-16"
                 >
-                    <div className="flex justify-center mb-4">
+                    <div className="flex justify-center">
                         <Pill
                             text="Accreditation"
                             textColor="var(--color-accent-purple)"

@@ -20,7 +20,7 @@ export default function Pill({
 }: PillProps) {
   return (
     <span
-      className={`inline-block px-4 py-1 mb-5 lg:mb-3 text-sm font-semibold rounded-full uppercase tracking-wider ${className}`}
+      className={`inline-block px-4 py-1 mb-5 text-sm font-semibold rounded-full uppercase tracking-wider ${className}`}
       style={{
         color: textColor,
         background: bgColor,

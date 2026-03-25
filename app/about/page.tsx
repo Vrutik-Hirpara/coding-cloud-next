@@ -495,7 +495,7 @@ export default function AboutPage() {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600 rounded-full border-2 border-purple-200 shadow-lg"
+              className="inline-block px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-5 text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent-purple)] to-purple-600 rounded-full border-2 border-purple-200 shadow-lg"
             >
               ⚡ HOW WE WORK ⚡
             </motion.span>
@@ -563,7 +563,7 @@ export default function AboutPage() {
                     {/* Number badge - responsive positioning */}
                     <div
                       className={`absolute 
-                        left-1/2 -translate-x-1/2 -top-6
+                        left-1/2 -translate-x-1/2 -top-2
                         sm:left-[-12px] sm:top-1/2 sm:-translate-y-1/2 sm:translate-x-0
                         w-10 h-10 sm:w-12 sm:h-12 
                         bg-gradient-to-r ${item.gradient} 
@@ -698,7 +698,7 @@ export default function AboutPage() {
       </section>
 
       {/* ================= TESTIMONIAL SECTION ================= */}
-      <section className="relative pt-8 sm:pt-12 lg:pt-24 pb-12 sm:pb-24 overflow-hidden bg-[var(--color-bg-soft)]">
+      <section className="relative pt-8 sm:pt-12 lg:pt-24 pb-4 sm:pb-6 overflow-hidden bg-[var(--color-bg-soft)]">
         <div className="relative px-4 sm:px-6 mx-auto">
           {/* MAIN GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 lg:gap-10 items-start">
@@ -711,7 +711,7 @@ export default function AboutPage() {
               className="lg:col-span-3 relative z-20 text-center lg:text-left"
             >
               <div className="rounded-2xl p-6 sm:p-8 lg:p-10 backdrop-blur-md">
-                <div className="inline-block px-3 sm:px-5 py-1 sm:py-2 mb-3 sm:mb-4 lg:mb-6 text-xs sm:text-sm font-semibold text-[var(--color-accent-purple)] rounded-full">
+                <div className="inline-block px-3 sm:px-5 py-1 sm:py-2 mb-3 sm:mb-4 lg:mb-5 text-xs sm:text-sm font-semibold text-[var(--color-accent-purple)] rounded-full">
                   LEARNERS FEEDBACK
                 </div>
 

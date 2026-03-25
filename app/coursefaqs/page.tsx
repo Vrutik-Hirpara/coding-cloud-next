@@ -303,7 +303,7 @@ const data = await apiService.getFaqs();
                       <motion.div
                         key={course.id}
                         whileHover={{ x: 5 }}
-                        className={`p-4 rounded-xl cursor-pointer transition-all duration-300 ${selectedCourse === course.id
+                        className={`p-2 rounded-xl cursor-pointer transition-all duration-300 ${selectedCourse === course.id
                             ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md"
                             : "bg-gray-50 hover:bg-gray-100 text-gray-700"
                           }`}
