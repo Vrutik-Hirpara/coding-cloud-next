@@ -1067,11 +1067,11 @@ const json = await apiService.getCourses();
   }
 
   return (
-    <section className="bg-[var(--color-bg-light)] py-12 md:py-16">
+    <section className="bg-[var(--color-bg-light)] pt-16">
       <div className="container-custom relative">
 
         {/* HEADER */}
-        <div className="text-center mb-12 md:mb-16 px-4 sm:px-5">
+        <div className="text-center mb-8 md:mb-8 px-4 sm:px-5">
           <Pill
             text="FUN LEARNING FOR KIDS"
             textColor="var(--color-accent-purple)"

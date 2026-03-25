@@ -487,7 +487,7 @@ export default function CourseTabs({ course, events }: any) {
                 >
                     <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">What you'll learn</h3>
                     <div
-                        className="prose max-w-none text-[var(--color-text-muted)]"
+                        className="prose max-w-none text-[var(--color-text-muted)] "
                         dangerouslySetInnerHTML={{
                             __html: course?.text || "",
                         }}

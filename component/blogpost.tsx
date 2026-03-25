@@ -190,7 +190,7 @@ useEffect(() => {
   const sideBlogs = blogs.slice(1, 4);
 
   return (
-    <section className="bg-[var(--color-bg-light)] py-16">
+    <section className="bg-[var(--color-bg-light)] pt-16">
       <div className="container-custom">
 
         {/* HEADER */}

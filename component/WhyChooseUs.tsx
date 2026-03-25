@@ -156,8 +156,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ stats = [] }) => {
 
                   {/* CARD */}
                   <div
-                    className={`bg-[var(--color-white)] w-full max-w-[280px] p-8 pt-16 pb-12 rounded-t-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl ${isLower ? "mt-28" : "mt-16"
-                      }`}
+className={`bg-[var(--color-white)] w-full max-w-[280px] p-8 pt-16 pb-12 rounded-t-xl shadow-xl relative transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl mt-2 ${isLower ? "sm:mt-28" : "sm:mt-16"}`}
                   >
                     {/* icon */}
                     <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 ring-8 ring-white text-[var(--color-accent-pink)] text-2xl transition-transform duration-300 group-hover:scale-110">

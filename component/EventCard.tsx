@@ -710,7 +710,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
           </div>
 
           {/* CONTENT */}
-          <div className="px-6 pt-6 pb-4 flex flex-col flex-grow">
+          <div className="px-3 pt-6 pb-4 flex flex-col flex-grow">
 
             {/* TITLE */}
             <h3 className="text-xl font-bold mb-3 line-clamp-2">

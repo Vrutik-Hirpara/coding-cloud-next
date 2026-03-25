@@ -45,7 +45,7 @@ const Heading: React.FC<HeadingProps> = ({
   }[align];
 
   return (
-    <div className={`mb-10 ${alignClass}`}>
+    <div className={`mb-6 ${alignClass}`}>
       {/* TITLE */}
       <h2
         className={`${sizeClass} ${weightClass} leading-tight`}

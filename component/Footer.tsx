@@ -423,10 +423,14 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
               </h3>
 
               <ul className="space-y-4 text-[var(--color-text)] text-md">
-                <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
-                  Phone: +91 95373 44018
-                </li>
-
+                {/* <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
+                  Phone:9537344018
+                </li> */}
+<li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
+  <a href="tel:9537344018">
+    Phone: 9537344018
+  </a>
+</li>
                 <li className="space-y-1">
 
 
@@ -475,14 +479,14 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
               transition={{ delay: 0.3, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-bold text-[var(--color-text)] mb-7">
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-0 sm:mb-7">
                 Pune Office
               </h3>
 
               <ul className="space-y-4 text-md text-[var(--color-text)] mb-8">
 
                 <li className="hover:text-[var(--color-accent-purple)] cursor-pointer">
-                  Phone: +91 93289 44018
+                  Phone:9328944018
                 </li>
                 <li className="space-y-1">
 

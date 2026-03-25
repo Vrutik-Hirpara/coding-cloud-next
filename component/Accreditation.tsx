@@ -202,7 +202,7 @@ const accreditations = [
 export default function Accreditation() {
 
     return (
-        <section className="relative py-20 bg-gradient-to-b from-purple-50 via-white to-indigo-50 overflow-hidden">
+        <section className="relative py-16 bg-gradient-to-b from-purple-50 via-white to-indigo-50 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
 
