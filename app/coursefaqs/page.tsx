@@ -437,7 +437,7 @@ const data = await apiService.getFaqs();
       </section>
 
       {/* Custom Scrollbar CSS */}
-      <style jsx>{`
+      {/* <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
         }
@@ -452,7 +452,7 @@ const data = await apiService.getFaqs();
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: #555;
         }
-      `}</style>
+      `}</style> */}
     </>
   );
 }

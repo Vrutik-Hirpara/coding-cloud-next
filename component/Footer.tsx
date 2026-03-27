@@ -321,8 +321,7 @@ const Footer = () => {
 
             {/* DESCRIPTION */}
             <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 mr-4 2xl:mr-8">
-              We’re always in search for talented and motivated people.motivated people.motivated people.motivated people.
-            </p>
+Start learning from our experts and enhance your skills            </p>
 
             {/* BUTTON */}
             <Button

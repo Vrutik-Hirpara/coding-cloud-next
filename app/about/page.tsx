@@ -409,6 +409,8 @@
 //     </div>
 //   );
 // }
+
+
 "use client";
 
 import Image from "next/image";
@@ -671,7 +673,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <style jsx>{`
+        {/* <style jsx>{`
           @keyframes blob {
             0% { transform: translate(0px, 0px) scale(1); }
             33% { transform: translate(30px, -50px) scale(1.1); }
@@ -694,7 +696,7 @@ export default function AboutPage() {
           .animate-spin-slow {
             animation: spin-slow 3s linear infinite;
           }
-        `}</style>
+        `}</style> */}
       </section>
 
       {/* ================= TESTIMONIAL SECTION ================= */}
