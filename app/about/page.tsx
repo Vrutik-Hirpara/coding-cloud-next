@@ -490,7 +490,7 @@ export default function AboutPage() {
           <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
 
-        <div className="container-custom relative z-10 px-4 sm:px-6 mx-auto">
+        <div className="container-custom relative z-10">
           {/* ===== HEADER CENTER ===== */}
           <div className="text-center mb-12 sm:mb-16">
             <motion.span
@@ -701,7 +701,7 @@ export default function AboutPage() {
 
       {/* ================= TESTIMONIAL SECTION ================= */}
       <section className="relative pt-8 sm:pt-12 lg:pt-24 pb-4 sm:pb-6 overflow-hidden bg-[var(--color-bg-soft)]">
-        <div className="relative px-4 sm:px-6 mx-auto">
+        <div className="relative container-custom">
           {/* MAIN GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 lg:gap-10 items-start">
             {/* ================= LEFT SIDE CARD ================= */}
