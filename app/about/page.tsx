@@ -566,7 +566,7 @@ export default function AboutPage() {
                     <div
                       className={`absolute 
                         left-1/2 -translate-x-1/2 -top-2
-                        sm:left-[-12px] sm:top-1/2 sm:-translate-y-1/2 sm:translate-x-0
+                        sm:left-[12px] sm:top-1/2 sm:-translate-y-1/2 sm:translate-x-0
                         w-10 h-10 sm:w-12 sm:h-12 
                         bg-gradient-to-r ${item.gradient} 
                         rounded-full flex items-center justify-center 
