@@ -9,7 +9,7 @@ interface Course {
   id: number;
   slug: string;
   name: string;
-  banner_img?: string;
+  image?: string;
   description?: string;
   duration?: string;
   lecture?: string;
