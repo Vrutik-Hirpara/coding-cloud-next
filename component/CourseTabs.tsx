@@ -234,55 +234,55 @@ export default function CourseTabs({ course, events }: any) {
     //     }
     // };
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+        const form = e.currentTarget;
+        const formData = new FormData(form);
 
-    const name = formData.get("name")?.toString().trim();
-    const review = formData.get("review")?.toString().trim();
-    const rating = formData.get("rating")?.toString();
-    const image = formData.get("image") as File;
+        const name = formData.get("name")?.toString().trim();
+        const review = formData.get("review")?.toString().trim();
+        const rating = formData.get("rating")?.toString();
+        const image = formData.get("image") as File;
 
-    // Validation
-    if (!name) {
-        Swal.fire("Warning", "Please enter your name", "warning");
-        return;
-    }
-
-    if (!review) {
-        Swal.fire("Warning", "Please write your review", "warning");
-        return;
-    }
-
-    if (!rating) {
-        Swal.fire("Warning", "Please select rating", "warning");
-        return;
-    }
-
-    try {
-        formData.append("course", course.id.toString());
-
-        const data = await apiService.submitCourseRating(formData);
-
-        if (data.status === "error") {
-            showApiErrors(data.errors || data);
+        // Validation
+        if (!name) {
+            Swal.fire("Warning", "Please enter your name", "warning");
             return;
         }
 
-        Swal.fire("Success", "Review submitted successfully!", "success");
+        if (!review) {
+            Swal.fire("Warning", "Please write your review", "warning");
+            return;
+        }
 
-        // Update UI
-        setReviews((prev) => [data.data, ...prev]);
+        if (!rating) {
+            Swal.fire("Warning", "Please select rating", "warning");
+            return;
+        }
 
-        form.reset();
-        setShowForm(false);
+        try {
+            formData.append("course", course.id.toString());
 
-    } catch (err) {
-        console.error(err);
-        Swal.fire("Error", "Something went wrong!", "error");
-    }
-};
+            const data = await apiService.submitCourseRating(formData);
+
+            if (data.status === "error") {
+                showApiErrors(data.errors || data);
+                return;
+            }
+
+            Swal.fire("Success", "Review submitted successfully!", "success");
+
+            // Update UI
+            setReviews((prev) => [data.data, ...prev]);
+
+            form.reset();
+            setShowForm(false);
+
+        } catch (err) {
+            console.error(err);
+            Swal.fire("Error", "Something went wrong!", "error");
+        }
+    };
     useEffect(() => {
         console.log("COURSE TABS EVENTS 👉", events);
     }, [events]);
@@ -640,6 +640,8 @@ export default function CourseTabs({ course, events }: any) {
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border scroll-mt-[200px]"
                 >
+<h3 className=" mb-6 text-[20px] font-bold text-[var(--color-heading)]">Frequently Asked Questions</h3>
+
                     <Accordion items={faqItems} scrollOffset={-350} />
                 </section>
             </div>
@@ -932,8 +934,8 @@ export default function CourseTabs({ course, events }: any) {
                     </div>
                     {/* REVIEW FORM */}
                     {showForm && (
-                        <form  onSubmit={handleSubmit} className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]">
-                        {/* <div ref={formRef} onSubmit={handleSubmit}  className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]"> */}
+                        <form onSubmit={handleSubmit} className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]">
+                            {/* <div ref={formRef} onSubmit={handleSubmit}  className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]"> */}
                             <input
                                 type="text"
                                 placeholder="Your Name"
@@ -1005,7 +1007,7 @@ export default function CourseTabs({ course, events }: any) {
 
                             <div className="flex ">
                                 <Button
-                                   type="submit"
+                                    type="submit"
                                     variant="gradient"
                                     size="sm"
                                     className="px-2 py-2 rounded text-white transition-colors"

@@ -490,10 +490,10 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
                 </li> */}
                 <li>
                   <a
-                    href="tel:9328944018"
+                    href="tel:9998937931"
                     className="hover:text-[var(--color-accent-purple)] cursor-pointer"
                   >
-                    Phone: 9328944018
+                    Phone: 9998937931
                   </a>
                 </li>
                 <li className="space-y-0 sm:space-y-1">

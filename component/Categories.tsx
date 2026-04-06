@@ -265,27 +265,11 @@ export default function Categories() {
                 ? `${BASE_URL}${cat.image}`
                 : "/images/fallback.png";
 
-              // const handleClick = () => {
-              //   console.log("🖱️ Clicked category:", cat.name, "with slug:", cat.slug);
-              //   router.push(`/course/${cat.slug}`);
-              // };
-const handleClick = async () => {
-  try {
-    console.log("Clicked category:", cat.slug);
+              const handleClick = () => {
+                console.log("🖱️ Clicked category:", cat.name, "with slug:", cat.slug);
+                router.push(`/category/${cat.slug}`);
+              };
 
-    const res = await fetch(
-      `https://codingcloudapi.codingcloud.co.in/course/${cat.slug}/`
-    );
-    const data = await res.json();
-
-    console.log("API Response:", data);
-
-    // After API success navigate to page
-    router.push(`/courses/${cat.slug}`);
-  } catch (err) {
-    console.error("Error fetching category courses:", err);
-  }
-};
               return (
                 <motion.div
                   key={cat.id}

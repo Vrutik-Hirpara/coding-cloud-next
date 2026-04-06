@@ -66,29 +66,29 @@ export default function Page() {
   //   };
   //   getCourse();
   // }, [slug]);
-useEffect(() => {
-  const getCourse = async () => {
-    if (!slug) return;
+  useEffect(() => {
+    const getCourse = async () => {
+      if (!slug) return;
 
-    // 🔥 Convert slug to string safely
-    const slugStr = Array.isArray(slug) ? slug[0] : slug;
+      // 🔥 Convert slug to string safely
+      const slugStr = Array.isArray(slug) ? slug[0] : slug;
 
-    try {
-      const json = await apiService.getCourseBySlug(slugStr);
+      try {
+        const json = await apiService.getCourseBySlug(slugStr);
 
-      const list = Array.isArray(json.data) ? json.data : [];
+        const list = Array.isArray(json.data) ? json.data : [];
 
-      const selected =
-        list.find((c: Course) => c.slug === slugStr) || list[0];
+        const selected =
+          list.find((c: Course) => c.slug === slugStr) || list[0];
 
-      setCourse(selected || null);
-    } catch (err) {
-      console.error("Course fetch error", err);
-    }
-  };
+        setCourse(selected || null);
+      } catch (err) {
+        console.error("Course fetch error", err);
+      }
+    };
 
-  getCourse();
-}, [slug]);
+    getCourse();
+  }, [slug]);
   // useEffect(() => {
   //   const fetchRating = async () => {
   //     try {
@@ -112,47 +112,47 @@ useEffect(() => {
   //   if (course?.id) fetchRating();
   // }, [course?.id]);
   useEffect(() => {
-  const fetchRating = async () => {
-    if (!course?.id) return;
-    
-    try {
-      const json = await apiService.getCourseAverageRating(course.id);
+    const fetchRating = async () => {
+      if (!course?.id) return;
 
-      const data = json.course_average_rating?.[0];
+      try {
+        const json = await apiService.getCourseAverageRating(course.id);
 
-      if (data) {
-        setAvgRating(data.average_rating);
-        setTotalReviews(data.total_reviews);
+        const data = json.course_average_rating?.[0];
+
+        if (data) {
+          setAvgRating(data.average_rating);
+          setTotalReviews(data.total_reviews);
+        }
+      } catch (err) {
+        console.error("Rating fetch error", err);
       }
-    } catch (err) {
-      console.error("Rating fetch error", err);
-    }
-  };
+    };
 
-  fetchRating();
-}, [course?.id]);
+    fetchRating();
+  }, [course?.id]);
   if (!course) {
     return <div className="py-20 text-center">
-  <div className="flex flex-col items-center gap-6">
-    {/* Spinner with gradient border */}
-    <div className="relative">
-      <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 border-r-purple-500 border-b-pink-500 border-l-transparent rounded-full animate-spin"></div>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
+      <div className="flex flex-col items-center gap-6">
+        {/* Spinner with gradient border */}
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 border-r-purple-500 border-b-pink-500 border-l-transparent rounded-full animate-spin"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+
+        {/* Text with dots */}
+        <div className="flex items-center gap-1 text-gray-600 font-medium">
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-lg">
+            Loading
+          </span>
+          <span className="text-blue-600 animate-bounce [animation-delay:-0.3s] text-lg">.</span>
+          <span className="text-purple-600 animate-bounce [animation-delay:-0.15s] text-lg">.</span>
+          <span className="text-pink-600 animate-bounce text-lg">.</span>
+        </div>
       </div>
-    </div>
-    
-    {/* Text with dots */}
-    <div className="flex items-center gap-1 text-gray-600 font-medium">
-      <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-lg">
-        Loading
-      </span>
-      <span className="text-blue-600 animate-bounce [animation-delay:-0.3s] text-lg">.</span>
-      <span className="text-purple-600 animate-bounce [animation-delay:-0.15s] text-lg">.</span>
-      <span className="text-pink-600 animate-bounce text-lg">.</span>
-    </div>
-  </div>
-</div>;
+    </div>;
   }
 
 
@@ -219,8 +219,8 @@ useEffect(() => {
       >
         <div className="container-custom  mx-auto px-4">
           {/* Main Content */}
-<div className="max-w-xl  xl:max-w-3xl 2xl:max-w-7xl">
-              {/* Breadcrumb */}
+          <div className="max-w-xl  xl:max-w-3xl 2xl:max-w-7xl">
+            {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
               {/* Home */}
               <Link href="/" className="hover:text-[var(--color-accent-purple)]  transition">
@@ -245,7 +245,7 @@ useEffect(() => {
 
             {/* Heading */}
             {/* <h1 className="flex items-center gap-4 text-3xl md:text-4xl text-[50px] font-[700] lg:text-5xl font-bold text-gray-900 mb-6 leading-relaxed"> */}
-             <h1 className="flex items-center gap-4 
+            <h1 className="flex items-center gap-4 
 text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
 font-bold text-gray-900 sm:mb-6 mb-3 leading-tight">
               {/* <Image

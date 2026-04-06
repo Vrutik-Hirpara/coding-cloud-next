@@ -527,8 +527,8 @@ const contactData = [
     title: "Contact Phone Number",
     icon: <FaHeadphonesAlt />,
     items: [
-      { label: "+91 95373 44018", link: "tel:+919537344018" },
-      { label: "+91 93289 44018", link: "tel:+919328944018" },
+      { label: "Ahmedabad: +91 9537344018", link: "tel:+919537344018" },
+      { label: "Pune: +91 9998937931", link: "tel:+919998937931" },
     ],
   },
   {
@@ -805,7 +805,7 @@ const contactData = [
       {/* ================= CONTACT CARDS ================= */}
       <section className="pb-16 md:pb-24 w-full">
         <div className="container-custom px-4 sm:px-6 mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-4">
+          <div className="grid grid-cols-1 max-w-7xl mx-auto sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-4">
             {contactData.map((item, i) => (
               <motion.div
                 key={i}
@@ -855,9 +855,9 @@ const contactData = [
       {/* ================= CONTACT FORM SECTION ================= */}
       <section className="pb-20 md:pb-24 w-full">
         <div className="container-custom px-4 sm:px-6 mx-auto">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-stretch">
+          <div className="grid md:grid-cols-2 max-w-7xl mx-auto gap-6 md:gap-8 lg:gap-10 items-stretch">
             {/* LEFT IMAGE */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: -80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
@@ -870,10 +870,26 @@ const contactData = [
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
-                className="object-contain w-full h-full transition-transform duration-500 hover:scale-105" />
+                className="object-cover w-full h-full transition-transform duration-500 hover:scale-105" />
               <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-            </motion.div>
-
+            </motion.div> */}
+ <motion.div
+        initial={{ opacity: 0, x: -80 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="relative w-full h-full min-h-[300px] sm:min-h-[380px] md:min-h-[500px] lg:min-h-[550px] rounded-2xl overflow-hidden shadow-lg bg-[var(--color-bg-light)] flex items-center justify-center"
+      >
+        <Image
+          src={contactImg}
+          alt="Contact"
+          width={500}
+          height={550}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+          className="object-contain w-full h-full"
+        />
+      </motion.div>
             {/* RIGHT FORM */}
             <motion.div
               initial={{ opacity: 0, x: 80 }}
