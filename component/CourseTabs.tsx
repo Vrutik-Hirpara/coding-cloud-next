@@ -571,7 +571,7 @@ export default function CourseTabs({ course, events }: any) {
                 </div>
             </div>
             {/* 🔥 STICKY TABS */}
-            <div className="course-tabs-sticky  z-20 bg-[var(--color-bg-light)] py-3">
+            <div className="course-tabs-sticky  z-20 bg-[var(--color-bg-light)] pt-6">
                 {/* <div className="sticky top-[140px] z-20 py-3"> */}
 
                 <div className="flex gap-3 overflow-x-auto px-1">
@@ -607,7 +607,7 @@ export default function CourseTabs({ course, events }: any) {
             </div>
 
             {/* 🔥 OVERVIEW CARD */}
-            <div id="overview" className="pt-6 px-6 pb-0">
+            <div id="overview" className="pt-6  pb-0">
                 <section
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
@@ -622,7 +622,7 @@ export default function CourseTabs({ course, events }: any) {
 
                 </section>
             </div>
-            <div id="content" className="pt-6 px-6 pb-0">
+            <div id="content" className="pt-6  pb-0">
                 <section
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
@@ -635,14 +635,14 @@ export default function CourseTabs({ course, events }: any) {
                 </section>
             </div>
             {/* 🔥 FAQ SECTION */}
-            <div id="faqs" className="pt-6 px-6 pb-0">
+            <div id="faqs" className="pt-6  pb-0">
                 <section
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border scroll-mt-[200px]"
                 >
-<h3 className=" mb-6 text-[20px] font-bold text-[var(--color-heading)]">Frequently Asked Questions</h3>
+                    <h3 className=" mb-6 text-[20px] font-bold text-[var(--color-heading)]">Frequently Asked Questions</h3>
 
-                    <Accordion items={faqItems} scrollOffset={-350} />
+                    <Accordion items={faqItems} scrollOffset={320} />
                 </section>
             </div>
             {/* 🔥 REVIEW SECTION (UPDATED) */}
@@ -785,7 +785,7 @@ export default function CourseTabs({ course, events }: any) {
            
         </section> */}
 
-            <div id="review" className="pt-6 px-6 pb-0">
+            <div id="review" className="pt-6 pb-0">
                 <section
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-8 scroll-mt-[200px]"
                 >

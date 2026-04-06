@@ -262,7 +262,7 @@ export const API = {
   },
 
   COURSES: {
-    LIST: `${BASE_URL}/course/`,
+    LIST: `${BASE_URL}/course/sequence`,
     DETAIL: (id: number | string) => `${BASE_URL}/course/${id}/`,
   },
 COURSE_RATINGS: {

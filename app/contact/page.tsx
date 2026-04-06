@@ -522,49 +522,49 @@ import Button from "@/component/ui/Button";
 import { showApiErrors } from "@/utility/apiError";
 import Swal from "sweetalert2"; // (for success alert)
 export default function ContactPage() {
-const contactData = [
-  {
-    title: "Contact Phone Number",
-    icon: <FaHeadphonesAlt />,
-    items: [
-      { label: "Ahmedabad: +91 9537344018", link: "tel:+919537344018" },
-      { label: "Pune: +91 9998937931", link: "tel:+919998937931" },
-    ],
-  },
-  {
-    title: "Our Email Address",
-    icon: <FaEnvelope />,
-    items: [
-      { label: "komal@codingcloudinstitute.com", link: "mailto:komal@codingcloudinstitute.com" },
-      { label: "pune@codingcloudinstitute.com", link: "mailto:pune@codingcloudinstitute.com" },
-      { label: "info@codingcloudinstitute.com", link: "mailto:info@codingcloudinstitute.com" },
-    ],
-  },
-  {
-    title: "Head Office",
-    icon: <FaMapMarkerAlt />,
-    items: [
-      {
-        label:
-          "Unit No, 201, 2nd Floor, Polaris, Near Noble Hospital, Hadapsar, Pune, Maharashtra 411060",
-        link:
-          "https://www.google.com/maps/search/?api=1&query=Unit%20No%20201%20Polaris%20Hadapsar%20Pune",
-      },
-    ],
-  },
-  {
-    title: "Branch",
-    icon: <FaMapMarkerAlt />,
-    items: [
-      {
-        label:
-          "Office No. 401, 4th Floor, Sapphire Complex, C.G Road, Ahmedabad, Gujarat, 380009",
-        link:
-          "https://www.google.com/maps/search/?api=1&query=Sapphire%20Complex%20CG%20Road%20Ahmedabad",
-      },
-    ],
-  },
-];
+  const contactData = [
+    {
+      title: "Contact Phone Number",
+      icon: <FaHeadphonesAlt />,
+      items: [
+        { label: "Ahmedabad: +91 9537344018", link: "tel:+919537344018" },
+        { label: "Pune: +91 9998937931", link: "tel:+919998937931" },
+      ],
+    },
+    {
+      title: "Our Email Address",
+      icon: <FaEnvelope />,
+      items: [
+        { label: "komal@codingcloudinstitute.com", link: "mailto:komal@codingcloudinstitute.com" },
+        { label: "pune@codingcloudinstitute.com", link: "mailto:pune@codingcloudinstitute.com" },
+        { label: "info@codingcloudinstitute.com", link: "mailto:info@codingcloudinstitute.com" },
+      ],
+    },
+    {
+      title: "Head Office",
+      icon: <FaMapMarkerAlt />,
+      items: [
+        {
+          label:
+            "Unit No, 201, 2nd Floor, Polaris, Near Noble Hospital, Hadapsar, Pune, Maharashtra 411060",
+          link:
+            "https://www.google.com/maps/search/?api=1&query=Unit%20No%20201%20Polaris%20Hadapsar%20Pune",
+        },
+      ],
+    },
+    {
+      title: "Branch",
+      icon: <FaMapMarkerAlt />,
+      items: [
+        {
+          label:
+            "Office No. 401, 4th Floor, Sapphire Complex, C.G Road, Ahmedabad, Gujarat, 380009",
+          link:
+            "https://www.google.com/maps/search/?api=1&query=Sapphire%20Complex%20CG%20Road%20Ahmedabad",
+        },
+      ],
+    },
+  ];
 
   const [form, setForm] = useState({
     name: "",
@@ -835,17 +835,17 @@ const contactData = [
                     {val}
                   </a>
                 ))} */}
-                 {item.items.map((entry, idx) => (
-        <a
-          key={idx}
-          href={entry.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block text-[var(--color-muted)] text-xs md:text-sm hover:text-[var(--color-accent-purple)]"
-        >
-          {entry.label}
-        </a>
-      ))}
+                {item.items.map((entry, idx) => (
+                  <a
+                    key={idx}
+                    href={entry.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-[var(--color-muted)] text-xs md:text-sm hover:text-[var(--color-accent-purple)]"
+                  >
+                    {entry.label}
+                  </a>
+                ))}
               </motion.div>
             ))}
           </div>
@@ -870,28 +870,28 @@ const contactData = [
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
-                className="object-cover w-full h-full transition-transform duration-500 hover:scale-105" />
+                className="object-contain w-full h-full transition-transform duration-500 hover:scale-105" />
               <div className="absolute inset-0 bg-black/10 pointer-events-none" />
             </motion.div> */}
- <motion.div
-        initial={{ opacity: 0, x: -80 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="relative w-full h-full min-h-[300px] sm:min-h-[380px] md:min-h-[500px] lg:min-h-[550px] rounded-2xl overflow-hidden shadow-lg bg-[var(--color-bg-light)] flex items-center justify-center"
-      >
-        <Image
-          src={contactImg}
-          alt="Contact"
-          width={500}
-          height={550}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          priority
-          className="object-contain w-full h-full"
-        />
-      </motion.div>
+          <motion.div
+  initial={{ opacity: 0, x: -80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: true }}
+  className="relative w-full rounded-2xl overflow-hidden shadow-lg"
+  style={{ aspectRatio: "10/11" }}
+>
+  <Image
+    src={contactImg}
+    alt="Contact"
+    fill
+    sizes="100vw"
+    priority
+    className="object-cover"
+  />
+</motion.div>
             {/* RIGHT FORM */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: 80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
@@ -902,9 +902,6 @@ const contactData = [
                 We are always ready to help you
               </span>
 
-              {/* <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[var(--color-text)] mb-3 md:mb-4 lg:mb-5 leading-tight break-words">
-                Get a Free Course You Can Contact With Me
-              </h2> */}
 
               {success && (
                 <p className="text-green-600 text-sm font-medium mb-2 break-words">
@@ -918,7 +915,6 @@ const contactData = [
                 </p>
               )}
 
-              {/* FORM */}
               <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4 w-full">
                 <div className="w-full">
                   <input
@@ -983,16 +979,109 @@ const contactData = [
                   {errors.message && <p className="text-[var(--color-danger)] text-xs mt-1">{errors.message}</p>}
                 </div>
 
-                {/* <div className="flex justify-center sm:justify-start w-full mt-4">
+              
+                <div className="w-full mt-4">
                   <Button
                     type="submit"
                     variant="gradient"
                     size="lg"
-                    className="rounded-lg font-semibold w-full sm:w-auto max-w-full"
+                    className="w-full"
+                    disabled={loading}
                   >
                     {loading ? "Sending..." : "GET IT NOW →"}
                   </Button>
-                </div> */}
+                </div>
+              </form>
+            </motion.div> */}
+
+            <motion.div
+              initial={{ opacity: 0, x: 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="bg-[var(--color-white)] p-5 md:p-6 lg:p-8 rounded-2xl shadow-lg flex flex-col w-full max-w-full overflow-hidden h-full"
+            >
+              <span className="inline-block w-fit px-3 md:px-4 py-1 mb-2 md:mb-3 text-md font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple-10)] rounded-full uppercase">
+                We are always ready to help you
+              </span>
+
+              {success && (
+                <p className="text-green-600 text-sm font-medium mb-2 break-words">
+                  ✅ Message sent successfully!
+                </p>
+              )}
+
+              {globalError && (
+                <p className="text-[var(--color-danger)] text-sm font-medium mb-2 break-words">
+                  {globalError}
+                </p>
+              )}
+
+              {/* FORM */}
+              <form onSubmit={handleSubmit} className="space-y-8 xl:space-y-8 mt-4 w-full flex-1 flex flex-col">
+                <div className="w-full">
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Name"
+                    className="w-full border-b border-[var(--color-border)] py-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
+                  />
+                  {errors.name && <p className="text-[var(--color-danger)] text-xs mt-1">{errors.name}</p>}
+                </div>
+
+                <div className="w-full">
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="Email"
+                    className="w-full border-b border-[var(--color-border)] py-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
+                  />
+                  {errors.email && <p className="text-[var(--color-danger)] text-xs mt-1">{errors.email}</p>}
+                </div>
+
+                <div className="w-full">
+                  <input
+                    type="tel"
+                    name="mobile"
+                    value={form.mobile}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, "");
+                      setForm({ ...form, mobile: val.slice(0, 10) });
+                    }}
+                    placeholder="Mobile Number"
+                    className="w-full border-b border-[var(--color-border)] py-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
+                  />
+                  {errors.mobile && <p className="text-[var(--color-danger)] text-xs mt-1">{errors.mobile}</p>}
+                </div>
+
+                <div className="w-full">
+                  <input
+                    type="text"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    placeholder="Your Subject"
+                    className="w-full border-b border-[var(--color-border)] py-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent"
+                  />
+                  {errors.subject && <p className="text-[var(--color-danger)] text-xs mt-1">{errors.subject}</p>}
+                </div>
+
+                <div className="w-full flex-1">
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Message"
+                    rows={3}
+                    className="w-full border-b border-[var(--color-border)] py-2 text-sm md:text-base outline-none focus:border-[var(--color-accent-purple)] bg-transparent resize-none"
+                  />
+                  {errors.message && <p className="text-[var(--color-danger)] text-xs mt-1">{errors.message}</p>}
+                </div>
+
                 <div className="w-full mt-4">
                   <Button
                     type="submit"

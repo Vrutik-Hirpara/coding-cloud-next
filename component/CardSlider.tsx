@@ -1112,7 +1112,7 @@ export default function CardSlider({ courses = [] }: CardSliderProps) {
                 </div>
 
                 {/* Title - Smaller */}
-                <h3 className="text-xl py-2 font-bold text-gray-800 mb-1 line-clamp-1">
+                <h3 className="text-xl py-2 font-bold text-gray-800 mb-1">
                   {card.title}
                 </h3>
 

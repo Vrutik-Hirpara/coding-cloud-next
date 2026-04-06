@@ -641,7 +641,7 @@ const FeaturedCoursesSection = () => {
           <div
             ref={scrollRef}
             className="
-            flex-1
+            flex-1 flex justify-center
             grid grid-flow-col
             auto-cols-[335px]
             overflow-x-auto
