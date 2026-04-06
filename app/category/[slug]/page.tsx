@@ -242,40 +242,71 @@ const fetchRatings = async (courseList: Course[]) => {
   setRatings(ratingData);
 };
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const apiUrl = API.CATEGORY.DETAIL_BY_SLUG(categorySlug);
-        console.log("🌐 Fetching from URL:", apiUrl);
+    // const fetchCourses = async () => {
+    //   try {
+    //     const apiUrl = API.CATEGORY.DETAIL_BY_SLUG(categorySlug);
+    //     console.log("🌐 Fetching from URL:", apiUrl);
         
-        const res = await fetch(apiUrl);
-        console.log("📡 Response status:", res.status);
+    //     const res = await fetch(apiUrl);
+    //     console.log("📡 Response status:", res.status);
         
-        const data = await res.json();
-        console.log("📦 Response data:", data);
+    //     const data = await res.json();
+    //     console.log("📦 Response data:", data);
 
-        if (data.success) {
-          setCourses(data.data || []);
+    //     if (data.success) {
+    //       setCourses(data.data || []);
           
-          if (data.data && data.data.length > 0) {
-            setCategoryName(data.data[0].category_details?.name || categorySlug);
-          }
+    //       if (data.data && data.data.length > 0) {
+    //         setCategoryName(data.data[0].category_details?.name || categorySlug);
+    //       }
 
-          // Fetch ratings for courses
-          if (data.data && data.data.length > 0) {
-            fetchRatings(data.data);
-          }
-        } else {
-          setCourses([]);
-        }
+    //       // Fetch ratings for courses
+    //       if (data.data && data.data.length > 0) {
+    //         fetchRatings(data.data);
+    //       }
+    //     } else {
+    //       setCourses([]);
+    //     }
 
-      } catch (err) {
-        console.error("❌ Error:", err);
-        setCourses([]);
-      } finally {
-        setLoading(false);
+    //   } catch (err) {
+    //     console.error("❌ Error:", err);
+    //     setCourses([]);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
+const fetchCourses = async () => {
+  try {
+    const apiUrl = API.CATEGORY.DETAIL_BY_SLUG(categorySlug);
+
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+
+    console.log("API DATA:", data);
+
+    if (data.success) {
+      const courseArray = Array.isArray(data.data)
+        ? data.data
+        : data.data?.courses || [];
+
+      setCourses(courseArray);
+
+      if (courseArray.length > 0) {
+        setCategoryName(
+          courseArray[0].category_details?.name || categorySlug
+        );
+        fetchRatings(courseArray);
       }
-    };
-
+    } else {
+      setCourses([]);
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    setCourses([]);
+  } finally {
+    setLoading(false);
+  }
+};
     if (categorySlug) {
       fetchCourses();
     }
