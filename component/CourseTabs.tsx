@@ -59,7 +59,7 @@ export default function CourseTabs({ course, events }: any) {
     const [isEnrollOpen, setIsEnrollOpen] = useState(false);
     const [courses, setCourses] = useState<Course[]>([]);
     const [active, setActive] = useState("overview");
-    const formRef = useRef<HTMLDivElement | null>(null);
+    const formRef = useRef<HTMLFormElement | null>(null);
     // 🔥 REVIEW STATE
     const [reviews, setReviews] = useState<Testimonial[]>([]);
     const [loading, setLoading] = useState(true);
@@ -236,34 +236,41 @@ export default function CourseTabs({ course, events }: any) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-
-        const name = formData.get("name")?.toString().trim();
-        const review = formData.get("review")?.toString().trim();
-        const rating = formData.get("rating")?.toString();
-        const image = formData.get("image") as File;
+        // Get values directly from state instead of FormData
+        const name = formData.name?.trim();
+        const review = formData.review?.trim();
+        const rating = formData.rating;
+        const image = formData.image;
 
         // Validation
         if (!name) {
-            Swal.fire("Warning", "Please enter your name", "warning");
+            alert("Please enter your name");
             return;
         }
 
         if (!review) {
-            Swal.fire("Warning", "Please write your review", "warning");
+            alert("Please write your review");
             return;
         }
 
         if (!rating) {
-            Swal.fire("Warning", "Please select rating", "warning");
+            alert("Please select rating");
             return;
         }
 
         try {
-            formData.append("course", course.id.toString());
+            // Create FormData and append values from state
+            const submitFormData = new FormData();
+            submitFormData.append("name", name);
+            submitFormData.append("review", review);
+            submitFormData.append("rating", rating.toString());
+            submitFormData.append("course", course.id.toString());
 
-            const data = await apiService.submitCourseRating(formData);
+            if (image) {
+                submitFormData.append("image", image);
+            }
+
+            const data = await apiService.submitCourseRating(submitFormData);
 
             if (data.status === "error") {
                 showApiErrors(data.errors || data);
@@ -275,7 +282,13 @@ export default function CourseTabs({ course, events }: any) {
             // Update UI
             setReviews((prev) => [data.data, ...prev]);
 
-            form.reset();
+            // Reset form
+            setFormData({
+                name: "",
+                review: "",
+                rating: 5,
+                image: null,
+            });
             setShowForm(false);
 
         } catch (err) {
@@ -862,6 +875,29 @@ export default function CourseTabs({ course, events }: any) {
                             Add Review
                         </Button>
                     </div> */}
+                    {/* <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
+                        <h3 className="mb-0 text-[18px] sm:text-[20px] font-bold text-[var(--color-heading)]">Reviews</h3>
+                        <Button
+                            onClick={() => {
+                                setShowForm(true);
+                                setTimeout(() => {
+                                    if (formRef.current) {
+                                        const elementPosition = formRef.current.getBoundingClientRect().top;
+                                        const offsetPosition = elementPosition + window.pageYOffset - 220;
+                                        window.scrollTo({
+                                            top: offsetPosition,
+                                            behavior: "smooth"
+                                        });
+                                    }
+                                }, 100);
+                            }}
+                            variant="gradient"
+                            size="md"
+                            className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-lg whitespace-nowrap w-full sm:w-auto"
+                        >
+                            Add Review
+                        </Button>
+                    </div> */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
                         <h3 className="mb-0 text-[18px] sm:text-[20px] font-bold text-[var(--color-heading)]">Reviews</h3>
                         <Button
@@ -885,6 +921,7 @@ export default function CourseTabs({ course, events }: any) {
                             Add Review
                         </Button>
                     </div>
+
                     {/* ⭐ SUMMARY FROM API */}
                     <div className="flex flex-col md:flex-row gap-6 items-center">
                         <div className="bg-[var(--color-bg-light)] p-6 rounded-lg text-center w-[150px]">
@@ -933,26 +970,25 @@ export default function CourseTabs({ course, events }: any) {
                         Total {total} {total === 1 ? 'review' : 'reviews'} • Average {formatRating(Number(apiAvg ?? avg))}/5
                     </div>
                     {/* REVIEW FORM */}
+
+                    {/* REVIEW FORM */}
                     {showForm && (
-                        <form onSubmit={handleSubmit} className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]">
-                            {/* <div ref={formRef} onSubmit={handleSubmit}  className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]"> */}
+                        <form ref={formRef} onSubmit={handleSubmit} className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]">
                             <input
                                 type="text"
+                                name="name"  // ✅ Add this
                                 placeholder="Your Name"
                                 value={formData.name}
-                                onChange={(e) =>
-                                    setFormData({ ...formData, name: e.target.value })
-                                }
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 className="w-full border rounded px-3 py-2"
                                 required
                             />
 
                             <textarea
+                                name="review"  // ✅ Add this
                                 placeholder="Write your review..."
                                 value={formData.review}
-                                onChange={(e) =>
-                                    setFormData({ ...formData, review: e.target.value })
-                                }
+                                onChange={(e) => setFormData({ ...formData, review: e.target.value })}
                                 className="w-full border rounded px-3 py-2"
                                 required
                             />
@@ -983,29 +1019,29 @@ export default function CourseTabs({ course, events }: any) {
                                         </button>
                                     ))}
                                 </div>
+                                <input type="hidden" name="rating" value={formData.rating} /> {/* ✅ Add hidden input for rating */}
                                 {formData.rating > 0 && (
                                     <p className="text-sm text-gray-500">
                                         Selected: {formData.rating} {formData.rating === 1 ? 'Star' : 'Stars'}
                                     </p>
                                 )}
                             </div>
+
                             <label className="block text-sm font-medium text-gray-700">
                                 Select Image
                             </label>
-                            {/* IMAGE INPUT */}
                             <input
                                 type="file"
+                                name="image"  // ✅ Add this
                                 accept="image/*"
-                                onChange={(e) =>
-                                    setFormData({
-                                        ...formData,
-                                        image: e.target.files ? e.target.files[0] : null,
-                                    })
-                                }
+                                onChange={(e) => setFormData({
+                                    ...formData,
+                                    image: e.target.files ? e.target.files[0] : null,
+                                })}
                                 className="w-full border rounded px-3 py-2"
                             />
 
-                            <div className="flex ">
+                            <div className="flex gap-2">
                                 <Button
                                     type="submit"
                                     variant="gradient"
