@@ -406,7 +406,7 @@ submitRegisterMessage: async (formData: any) => {
   },
 
   getModulesByCourse: async (courseId: number | string) => {
-    const res = await fetch(`${API.MODULES.LIST}?course=${courseId}`);
+    const res = await fetch(`${API.MODULES.LIST}?course_id=${courseId}`);
     return res.json();
   },
 

@@ -519,7 +519,8 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          {/* <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"> */}
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-[2000px] mx-auto min-w-0">
             {/* LEFT CONTENT */}
             <motion.div
               initial={{ opacity: 0, x: -80 }}

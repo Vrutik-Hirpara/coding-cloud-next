@@ -883,7 +883,7 @@ const contactData = [
               className="bg-[var(--color-white)] p-5 md:p-6 lg:p-8 rounded-2xl shadow-lg flex flex-col justify-start w-full max-w-full overflow-hidden h-full"
             >
               <span className="inline-block w-fit px-3 md:px-4 py-1 mb-2 md:mb-3 text-xs font-semibold text-[var(--color-accent-purple)] bg-[var(--color-accent-purple-10)] rounded-full uppercase">
-                EDUCATION FOR EVERYONE
+                We are always ready to help you
               </span>
 
               <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[var(--color-text)] mb-3 md:mb-4 lg:mb-5 leading-tight break-words">
