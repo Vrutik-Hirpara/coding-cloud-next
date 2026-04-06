@@ -167,7 +167,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../component/ui/Button";
 import aboutBg from "../../public/images/about/about-bg.jpeg";
 import { apiService, BASE_URL } from "../../lib/api";
-
+import { Accordion, AccordionItem } from "@/component/ui/Accordion";
 // Interfaces
 interface Course {
   id: number;
@@ -199,7 +199,7 @@ export default function CourseFaqs() {
       try {
         // const res = await fetch(`${BASE_URL}/course/`);
         // const data = await res.json();
-      const data = await apiService.getCourses();
+        const data = await apiService.getCourses();
 
         if (data?.data) {
           setCourses(data.data);
@@ -227,7 +227,7 @@ export default function CourseFaqs() {
       try {
         // const res = await fetch(`${BASE_URL}/faqs/`);
         // const data = await res.json();
-const data = await apiService.getFaqs();
+        const data = await apiService.getFaqs();
         if (data?.data) {
           // Filter FAQs for selected course
           const courseFaqs = data.data.filter(
@@ -250,7 +250,16 @@ const data = await apiService.getFaqs();
   const toggleFaq = (id: number) => {
     setExpandedFaq(expandedFaq === id ? null : id);
   };
-
+  const faqItems: AccordionItem[] = faqs.map((faq) => ({
+    id: faq.id,
+    title: faq.question,
+    content: (
+      <div
+        className="text-gray-700 leading-relaxed"
+        dangerouslySetInnerHTML={{ __html: faq.answer }}
+      />
+    ),
+  }));
   return (
     <>
       {/* ================= HERO SECTION ================= */}
@@ -304,8 +313,8 @@ const data = await apiService.getFaqs();
                         key={course.id}
                         whileHover={{ x: 5 }}
                         className={`p-2 rounded-xl cursor-pointer transition-all duration-300 ${selectedCourse === course.id
-                            ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md"
-                            : "bg-gray-50 hover:bg-gray-100 text-gray-700"
+                          ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md"
+                          : "bg-gray-50 hover:bg-gray-100 text-gray-700"
                           }`}
                         onClick={() => setSelectedCourse(course.id)}
                       >
@@ -322,12 +331,12 @@ const data = await apiService.getFaqs();
                             </div>
                           ) : (
                             <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${selectedCourse === course.id
-                                ? "bg-white/20"
-                                : "bg-blue-100"
+                              ? "bg-white/20"
+                              : "bg-blue-100"
                               }`}>
                               <span className={`text-lg font-bold ${selectedCourse === course.id
-                                  ? "text-white"
-                                  : "text-blue-600"
+                                ? "text-white"
+                                : "text-blue-600"
                                 }`}>
                                 {course.name.charAt(0)}
                               </span>
@@ -362,63 +371,14 @@ const data = await apiService.getFaqs();
                 )}
 
                 {/* FAQs Content */}
+                {/* FAQs Content */}
                 {faqsLoading ? (
                   <div className="text-center py-16">
                     <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
                     <p className="mt-4 text-gray-500">Loading FAQs...</p>
                   </div>
                 ) : faqs.length > 0 ? (
-                  <div className="space-y-4">
-                    {faqs.map((faq, index) => (
-                      <motion.div
-                        key={faq.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="border border-gray-200 rounded-xl overflow-hidden hover:border-blue-200 transition-colors"
-                      >
-                        {/* Question */}
-                        <button
-                          onClick={() => toggleFaq(faq.id)}
-                          className="w-full text-left p-5 bg-white hover:bg-gray-50 transition-colors flex justify-between items-center gap-4"
-                        >
-                          <span className="font-semibold text-[var(--color-accent-purple)]">
-                            {faq.question}
-                          </span>
-                          <motion.span
-                            animate={{ rotate: expandedFaq === faq.id ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                            className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${expandedFaq === faq.id
-                                ? "bg-blue-500 text-white"
-                                : "bg-gray-100 text-gray-500"
-                              }`}
-                          >
-                            ▼
-                          </motion.span>
-                        </button>
-
-                        {/* Answer (Expandable) */}
-                        <AnimatePresence>
-                          {expandedFaq === faq.id && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="p-5 bg-gray-50 border-t border-gray-200">
-                                <p
-                                  className="text-gray-700 leading-relaxed"
-                                  dangerouslySetInnerHTML={{ __html: faq.answer }}
-                                />
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    ))}
-                  </div>
+                  <Accordion items={faqItems} scrollOffset={250}/>
                 ) : (
                   <div className="text-center py-16 bg-gray-50 rounded-xl">
                     <div className="text-6xl mb-4">📚</div>
