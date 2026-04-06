@@ -16,6 +16,7 @@ import Faq from "@/app/faq/page";
 import { apiService, BASE_URL } from "@/lib/api";
 import Button from "./ui/Button";
 import { Stars } from "lucide-react";
+import { Accordion } from "./ui/Accordion";
 
 type Testimonial = {
     id: number;
@@ -32,6 +33,14 @@ type Module = {
     name: string;
     course_data: any;
     descriptions: string | null; // Assuming descriptions is an array of topics or similar
+};
+
+type FaqType = {
+    id: number;
+    course: number;
+    course_name: string;
+    question: string;
+    answer: string;
 };
 type Course = {
     id: number;
@@ -57,12 +66,51 @@ export default function CourseTabs({ course, events }: any) {
     const [apiAvg, setApiAvg] = useState<number | null>(null);
     // 🔥 MODULE STATE
     const [modules, setModules] = useState<Module[]>([]);
+    const [faqs, setFaqs] = useState<FaqType[]>([]);
+
     const [openId, setOpenId] = useState<number | null>(null);
     const isClickScrolling = useRef(false);
     const targetSection = useRef<string | null>(null);
 
     const [topicsData, setTopicsData] = useState<any[]>([]);
     const [showForm, setShowForm] = useState(false);
+
+
+    type Module = {
+        id: number;
+        name: string;
+        descriptions: string;
+    };
+
+    type AccordionItem = {
+        id: number;
+        title: string;
+        content: string;
+    };
+
+    const accordionItems = modules.map((m) => ({
+        id: m.id,
+        title: m.name,
+        content: (
+            <div
+                dangerouslySetInnerHTML={{
+                    __html: m.descriptions,
+                }}
+            />
+        ),
+    }));
+
+
+    const faqItems = faqs.map((faq) => ({
+        id: faq.id,
+        title: faq.question,
+        content: (
+            <div
+                className="prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+            />
+        ),
+    }));
 
 
     const formatRating = (rating: number | null | undefined): string => {
@@ -124,69 +172,117 @@ export default function CourseTabs({ course, events }: any) {
     //     }
     // };
 
-    const handleSubmit = async () => {
-        // ✅ Validation
-        if (!formData.name.trim()) {
-            Swal.fire("Warning", "Please enter your name", "warning");
+    // const handleSubmit = async () => {
+    //     // ✅ Validation
+    //     if (!formData.name.trim()) {
+    //         Swal.fire("Warning", "Please enter your name", "warning");
+    //         return;
+    //     }
+    //     if (!formData.review.trim()) {
+    //         Swal.fire("Warning", "Please write your review", "warning");
+    //         return;
+    //     }
+    //     if (!formData.rating) {
+    //         Swal.fire("Warning", "Please select rating", "warning");
+    //         return;
+    //     }
+
+    //     try {
+    //         const form = new FormData();
+
+    //         form.append("name", formData.name);
+    //         form.append("review", formData.review);
+    //         form.append("rating", formData.rating.toString());
+    //         form.append("course", course.id.toString());
+
+    //         if (formData.image) {
+    //             form.append("image", formData.image);
+    //         }
+
+    //         // const res = await fetch(`${BASE_URL}/course_wise_rating/`, {
+    //         //     method: "POST",
+    //         //     body: form,
+    //         // });
+
+    //         // const data = await res.json(); // ✅ only once
+    //         const data = await apiService.submitCourseRating(form);
+
+    //         // ❌ Backend error
+    //         if (data.status === "error") {
+    //             showApiErrors(data.errors || data); // 🔥 SweetAlert error
+    //             return;
+    //         }
+
+    //         // ✅ Success
+    //         Swal.fire("Success", "Review submitted successfully!", "success");
+
+    //         // UI update
+    //         setReviews((prev) => [data.data, ...prev]);
+
+    //         setShowForm(false);
+    //         setFormData({
+    //             name: "",
+    //             review: "",
+    //             rating: 5,
+    //             image: null,
+    //         });
+
+    //     } catch (err) {
+    //         console.error(err);
+
+    //         Swal.fire("Error", "Something went wrong!", "error");
+    //     }
+    // };
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const name = formData.get("name")?.toString().trim();
+    const review = formData.get("review")?.toString().trim();
+    const rating = formData.get("rating")?.toString();
+    const image = formData.get("image") as File;
+
+    // Validation
+    if (!name) {
+        Swal.fire("Warning", "Please enter your name", "warning");
+        return;
+    }
+
+    if (!review) {
+        Swal.fire("Warning", "Please write your review", "warning");
+        return;
+    }
+
+    if (!rating) {
+        Swal.fire("Warning", "Please select rating", "warning");
+        return;
+    }
+
+    try {
+        formData.append("course", course.id.toString());
+
+        const data = await apiService.submitCourseRating(formData);
+
+        if (data.status === "error") {
+            showApiErrors(data.errors || data);
             return;
         }
 
-        if (!formData.review.trim()) {
-            Swal.fire("Warning", "Please write your review", "warning");
-            return;
-        }
+        Swal.fire("Success", "Review submitted successfully!", "success");
 
-        if (!formData.rating) {
-            Swal.fire("Warning", "Please select rating", "warning");
-            return;
-        }
+        // Update UI
+        setReviews((prev) => [data.data, ...prev]);
 
-        try {
-            const form = new FormData();
+        form.reset();
+        setShowForm(false);
 
-            form.append("name", formData.name);
-            form.append("review", formData.review);
-            form.append("rating", formData.rating.toString());
-            form.append("course", course.id.toString());
-
-            if (formData.image) {
-                form.append("image", formData.image);
-            }
-
-            // const res = await fetch(`${BASE_URL}/course_wise_rating/`, {
-            //     method: "POST",
-            //     body: form,
-            // });
-
-            // const data = await res.json(); // ✅ only once
-            const data = await apiService.submitCourseRating(form);
-
-            // ❌ Backend error
-            if (data.status === "error") {
-                showApiErrors(data.errors || data); // 🔥 SweetAlert error
-                return;
-            }
-
-            // ✅ Success
-            Swal.fire("Success", "Review submitted successfully!", "success");
-
-            // UI update
-            setReviews((prev) => [data.data, ...prev]);
-
-            setShowForm(false);
-            setFormData({
-                name: "",
-                review: "",
-                rating: 5,
-                image: null,
-            });
-
-        } catch (err) {
-            console.error(err);
-
-            Swal.fire("Error", "Something went wrong!", "error");
-        }
-    };
+    } catch (err) {
+        console.error(err);
+        Swal.fire("Error", "Something went wrong!", "error");
+    }
+};
     useEffect(() => {
         console.log("COURSE TABS EVENTS 👉", events);
     }, [events]);
@@ -213,6 +309,30 @@ export default function CourseTabs({ course, events }: any) {
         };
 
         fetchModules();
+    }, [course.id]);
+
+    useEffect(() => {
+        const fetchFaqs = async () => {
+            try {
+                // const res = await fetch(
+                //   `${BASE_URL}/faqs/`
+                // );
+                // const json = await res.json();
+                const json = await apiService.getFaqs();
+                // 👉 FILTER BY COURSE ID
+                const filtered = (json.data || []).filter(
+                    (f: FaqType) => f.course === course.id
+                );
+
+                setFaqs(filtered);
+            } catch (err) {
+                console.error("FAQ fetch error", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (course.id) fetchFaqs();
     }, [course.id]);
     // useEffect(() => {
     //     const fetchReviews = async () => {
@@ -451,7 +571,7 @@ export default function CourseTabs({ course, events }: any) {
                 </div>
             </div>
             {/* 🔥 STICKY TABS */}
-            <div className="course-tabs-sticky z-20 bg-[var(--color-bg-light)] py-3">
+            <div className="course-tabs-sticky  z-20 bg-[var(--color-bg-light)] py-3">
                 {/* <div className="sticky top-[140px] z-20 py-3"> */}
 
                 <div className="flex gap-3 overflow-x-auto px-1">
@@ -492,7 +612,7 @@ export default function CourseTabs({ course, events }: any) {
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
                 >
-                    <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">What you'll learn</h3>
+                    <h3 className="mb-6 text-[20px] font-bold text-[var(--color-heading)]">What you'll learn</h3>
                     <div
                         className="prose max-w-none text-[var(--color-text-muted)] "
                         dangerouslySetInnerHTML={{
@@ -507,66 +627,10 @@ export default function CourseTabs({ course, events }: any) {
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"
                 >
-                    <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">Course Content</h3>
+                    <h3 className="mb-6 text-[20px] font-bold text-[var(--color-heading)]">Course Content</h3>
 
                     <div className="space-y-4">
-                        {modules.map((mod, index) => {
-                            const isOpen = openId === mod.id;
-
-                            return (
-                                <div
-                                    key={mod.id}
-                                    className="border rounded-xl bg-[var(--color-bg-softest)]"
-                                >
-                                    {/* HEADER */}
-                                    <button
-                                        onClick={() => setOpenId(isOpen ? null : mod.id)}
-                                        className="w-full flex items-center justify-between px-5 py-4 text-left"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-xl font-bold text-[var(--color-text-medium)]">+</span>
-
-                                            <h4 className="font-semibold text-[var(--color-accent-purple)]">
-                                                Module {index + 1} - {mod.name.replace(/Module\s*\d+\s*-\s*/i, "")}
-                                            </h4>
-                                        </div>
-
-                                        <span className="text-xl text-[var(--color-muted)]">
-                                            {isOpen ? "−" : "›"}
-                                        </span>
-                                    </button>
-
-                                    {/* BODY */}
-                                    <AnimatePresence initial={false}>
-                                        {isOpen && (
-                                            <motion.div
-                                                key={`content-${mod.id}`}
-                                                initial={{ opacity: 0, height: 0 }}
-                                                animate={{ opacity: 1, height: "auto" }}
-                                                exit={{ opacity: 0, height: 0 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut" }}
-                                                className="overflow-hidden"
-                                            >
-                                                <div className="px-5 pb-4 text-sm text-[var(--color-muted)]">
-                                                    <div className="space-y-2">
-                                                        {mod.descriptions ? (
-                                                            <div
-                                                                className="prose max-w-none"
-                                                                dangerouslySetInnerHTML={{ __html: mod.descriptions }}
-                                                            />
-                                                        ) : (
-                                                            <p className="text-[var(--color-muted-light)]">
-                                                                No topics available
-                                                            </p>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            );
-                        })}
+                        <Accordion items={accordionItems} scrollOffset={300} />
                     </div>
                 </section>
             </div>
@@ -576,7 +640,7 @@ export default function CourseTabs({ course, events }: any) {
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border scroll-mt-[200px]"
                 >
-                    <Faq courseId={course.id} />
+                    <Accordion items={faqItems} scrollOffset={-350} />
                 </section>
             </div>
             {/* 🔥 REVIEW SECTION (UPDATED) */}
@@ -868,7 +932,8 @@ export default function CourseTabs({ course, events }: any) {
                     </div>
                     {/* REVIEW FORM */}
                     {showForm && (
-                        <div ref={formRef} className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]">
+                        <form  onSubmit={handleSubmit} className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]">
+                        {/* <div ref={formRef} onSubmit={handleSubmit}  className="border p-5 rounded-lg bg-[var(--color-bg-light)] space-y-4 scroll-mt-[200px]"> */}
                             <input
                                 type="text"
                                 placeholder="Your Name"
@@ -877,6 +942,7 @@ export default function CourseTabs({ course, events }: any) {
                                     setFormData({ ...formData, name: e.target.value })
                                 }
                                 className="w-full border rounded px-3 py-2"
+                                required
                             />
 
                             <textarea
@@ -886,6 +952,7 @@ export default function CourseTabs({ course, events }: any) {
                                     setFormData({ ...formData, review: e.target.value })
                                 }
                                 className="w-full border rounded px-3 py-2"
+                                required
                             />
 
                             {/* STAR RATING INPUT */}
@@ -938,7 +1005,7 @@ export default function CourseTabs({ course, events }: any) {
 
                             <div className="flex ">
                                 <Button
-                                    onClick={handleSubmit}
+                                   type="submit"
                                     variant="gradient"
                                     size="sm"
                                     className="px-2 py-2 rounded text-white transition-colors"
@@ -954,7 +1021,7 @@ export default function CourseTabs({ course, events }: any) {
                                     Cancel
                                 </Button>
                             </div>
-                        </div>
+                        </form>
                     )}
 
                     {/* DISPLAY REVIEWS */}

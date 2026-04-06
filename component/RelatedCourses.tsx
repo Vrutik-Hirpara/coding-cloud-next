@@ -710,7 +710,7 @@ export default function RelatedCourses() {
                       <div
                         key={course.id}
                         className="
-                  w-[335px]
+                  w-[280px] sm:w-[335px]
                   p-2 rounded-3xl
                   transition-all duration-300 hover:-translate-y-2 cursor-pointer
                   bg-[var(--color-white)]
@@ -718,7 +718,7 @@ export default function RelatedCourses() {
                       >
                         <div className="flex flex-col w-full h-full">
                           {/* IMAGE */}
-                          <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden rounded-t-2xl">
+                          <div className="relative h-[190px] sm:h-[240px] md:h-[190px] lg:h-[190px] overflow-hidden">
                             <Image
                               src={imageUrl}
                               alt={course.name}

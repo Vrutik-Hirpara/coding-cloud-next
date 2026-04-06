@@ -596,7 +596,6 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
           <p className="text-xs sm:text-sm text-[var(--color-muted)] mt-1 break-words">
             Fill the form below to enroll in your desired course. Our team will contact you shortly 🚀
           </p>
-          <p className="text-xs text-[var(--color-muted-light)] mt-2">* All fields are required</p>
         </div>
 
         {/* FORM */}

@@ -886,9 +886,9 @@ const contactData = [
                 We are always ready to help you
               </span>
 
-              <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[var(--color-text)] mb-3 md:mb-4 lg:mb-5 leading-tight break-words">
+              {/* <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[var(--color-text)] mb-3 md:mb-4 lg:mb-5 leading-tight break-words">
                 Get a Free Course You Can Contact With Me
-              </h2>
+              </h2> */}
 
               {success && (
                 <p className="text-green-600 text-sm font-medium mb-2 break-words">

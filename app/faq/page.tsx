@@ -47,7 +47,7 @@ export default function Faq({ courseId }: { courseId: number }) {
   return (
     <section className="bg-[var(--color-white)]   space-y-5">
       {/* 🔥 TITLE */}
-      <h3 className="mb-6 text-[20px] pb-5 font-bold text-[var(--color-heading)]">
+      <h3 className="mb-6 text-[20px] font-bold text-[var(--color-heading)]">
         Frequently Asked Questions
       </h3>
 

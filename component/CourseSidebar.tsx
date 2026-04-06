@@ -293,17 +293,17 @@ export default function CourseSidebar({
     const [isMobile, setIsMobile] = useState(false);
 
     console.log("CourseSidebar rendered with course:", course);
-    
+
     useEffect(() => {
-  const checkScreen = () => {
-    setIsMobile(window.innerWidth < 640);
-  };
+        const checkScreen = () => {
+            setIsMobile(window.innerWidth < 640);
+        };
 
-  checkScreen();
-  window.addEventListener("resize", checkScreen);
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
 
-  return () => window.removeEventListener("resize", checkScreen);
-}, []);
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
     // Scroll position track karva mate useEffect
     useEffect(() => {
         const handleScroll = () => {
@@ -313,13 +313,13 @@ export default function CourseSidebar({
                 // Jyaare sidebar sticky thay chhe (top: 140px thi upar aave)
                 // 140 px thi upar sticky thay, so rect.top <= 140 thay tyare sticky
                 const stickyThreshold = 140;
-                
+
                 if (rect.top <= stickyThreshold) {
                     setIsSticky(true);
                 } else {
                     setIsSticky(false);
                 }
-                
+
                 // Mark as initialized after first check
                 if (!isInitialized) {
                     setIsInitialized(true);
@@ -334,7 +334,7 @@ export default function CourseSidebar({
         }, 100);
 
         window.addEventListener('scroll', handleScroll);
-        
+
         // Cleanup function
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -347,19 +347,19 @@ export default function CourseSidebar({
         { id: 3, icon: FaInstagram, link: "https://www.instagram.com/codingcloud_institute/" },
         { id: 4, icon: FaLinkedinIn, link: "https://www.linkedin.com/company/coding-cloud/" },
     ];
-    
+
     const getImage = (img?: string) => {
         console.log("getImage called with:", img);
         if (!img) return "";
         if (img.startsWith("http")) return img;
         return `${BASE_URL}${img}`;
     };
-    
+
     // Debug log
     useEffect(() => {
         console.log("isSticky state:", isSticky);
     }, [isSticky]);
-    
+
     return (
         <>
             <EnrollModal
@@ -380,13 +380,12 @@ export default function CourseSidebar({
                     {/* PRICE - Image ne conditional rendering */}
                     <div className="p-6">
                         {/* Image div ne show/hide karo based on isSticky */}
-                        <div 
-                            className={`mb-4 bg-[var(--color-bg-light)] transition-all duration-500 ease-in-out ${
-                                !isInitialized ? 'opacity-100 h-auto mb-4' : // Show by default until initialized
-                                isSticky 
-                                    ? 'opacity-0 h-0 overflow-hidden mb-0 pointer-events-none' 
-                                    : 'opacity-100 h-auto mb-4'
-                            }`}
+                        <div
+                            className={`mb-4 bg-[var(--color-bg-light)] transition-all duration-500 ease-in-out ${!isInitialized ? 'opacity-100 h-auto mb-4' : // Show by default until initialized
+                                    isSticky
+                                        ? 'opacity-0 h-0 overflow-hidden mb-0 pointer-events-none'
+                                        : 'opacity-100 h-auto mb-4'
+                                }`}
                         >
                             {course?.image2 && (
                                 <img
@@ -396,7 +395,7 @@ export default function CourseSidebar({
                                 />
                             )}
                         </div>
-                        
+
                         {/* <div className="flex justify-center">
                             <Button
                                 variant="gradient"
@@ -408,24 +407,24 @@ export default function CourseSidebar({
                                 Enroll Now
                             </Button>
                         </div> */}
-<div className="flex justify-center">
- <Button
-    variant="gradient"
-    size={isMobile ? "md" : "lg"}
-    onClick={() => setIsEnrollOpen(true)}
-  >
-    Enroll Now
-  </Button>
-</div>
+                        <div className="flex justify-center">
+                            <Button
+                                variant="gradient"
+                                size={isMobile ? "md" : "lg"}
+                                onClick={() => setIsEnrollOpen(true)}
+                            >
+                                Enroll Now
+                            </Button>
+                        </div>
 
                         <div className="divide-y mt-4">
 
                             {[
-                                { label: "Duration ", value: course.duration || "5 Hrs 20 Min" },
-                                { label: "Students", value: `${course.students || "100"}` },
-                                { label: "Lectures", value: course.lecture || "50" },
-                                { label: "Level", value: course.level || "Basic" },
-                                { label: "Language", value: course.language || "English" },
+                                { label: "Course Duration", value: course.duration || "-" },
+                                { label: "Students", value: `${course.students || "-"}` },
+                                { label: "Lectures", value: course.lecture || "-" },
+                                { label: "Level", value: course.level || "-" },
+                                { label: "Language", value: course.language || "-" },
                                 { label: "Certificate", value: course.certificate ? "Yes" : "No" },
                             ].map((item, i) => (
                                 <motion.div
@@ -474,7 +473,7 @@ export default function CourseSidebar({
                             {/* <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
                                 📞 Call Us:  +91 95373 44018
                             </div> */}
-<div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
+                            <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium">
                                 📞 Call Us:  +91 95373 44018
                             </div>
                         </div>
