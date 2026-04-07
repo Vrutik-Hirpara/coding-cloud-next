@@ -200,7 +200,7 @@ export default function CourseCard({
     >
       <Link
         href={`/courses/${course.slug}`}
-        className="block p-2 rounded-3xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-white shadow-sm hover:shadow-xl h-full"
+        className="block p-2 rounded-3xl shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-white shadow-sm hover:shadow-xl h-full"
       >
         <div className="flex flex-col w-full h-full">
           <CourseImage />
