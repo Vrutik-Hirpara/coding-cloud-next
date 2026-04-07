@@ -655,7 +655,7 @@ export default function CourseTabs({ course, events }: any) {
                 >
                     <h3 className=" mb-6 text-[20px] font-bold text-[var(--color-heading)]">Frequently Asked Questions</h3>
 
-                    <Accordion items={faqItems} scrollOffset={320} />
+                    <Accordion items={faqItems} scrollOffset={300} />
                 </section>
             </div>
             {/* 🔥 REVIEW SECTION (UPDATED) */}

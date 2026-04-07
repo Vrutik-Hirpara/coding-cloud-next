@@ -291,9 +291,58 @@ export default function CourseSidebar({
     const [isInitialized, setIsInitialized] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
-
+    const [isDownloading, setIsDownloading] = useState(false);
     console.log("CourseSidebar rendered with course:", course);
+    // Function to download PDF from URL
+    // const downloadPDF = async (pdfUrl: string, studentName: string) => {
+    //     setIsDownloading(true);
+    //     try {
+    //         const response = await fetch(pdfUrl);
+    //         const blob = await response.blob();
+    //         const url = window.URL.createObjectURL(blob);
+    //         const link = document.createElement('a');
+    //         link.href = url;
+    //         link.download = `Course_Material_${studentName.replace(/\s/g, '_')}.pdf`;
+    //         document.body.appendChild(link);
+    //         link.click();
+    //         document.body.removeChild(link);
+    //         window.URL.revokeObjectURL(url);
+    //     } catch (error) {
+    //         console.error("PDF download error:", error);
+    //     } finally {
+    //         setIsDownloading(false);
+    //     }
+    // };
+    const downloadPDF = async (pdfUrl: string, studentName: string) => {
+        setIsDownloading(true);
+        try {
+            const response = await fetch(pdfUrl);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
 
+            // 🔥 URL mathi original filename extract karo
+            // Example: "https://.../Short-MERN_Stack_Training_Course.pdf" -> "Short-MERN_Stack_Training_Course.pdf"
+            const originalFileName = pdfUrl.split('/').pop() || 'course_material.pdf';
+            link.download = originalFileName;  // 👈 Original name use karo
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("PDF download error:", error);
+        } finally {
+            setIsDownloading(false);
+        }
+    };
+    // Handle successful enrollment
+    const handleEnrollmentSuccess = (responseData: any) => {
+        if (responseData.pdf_download_url) {
+            downloadPDF(responseData.pdf_download_url, responseData.data?.first_name || "Student");
+        }
+    };
     useEffect(() => {
         const checkScreen = () => {
             setIsMobile(window.innerWidth < 640);
@@ -366,7 +415,17 @@ export default function CourseSidebar({
                 isOpen={isEnrollOpen}
                 onClose={() => setIsEnrollOpen(false)}
                 courses={[course]}
+                onSuccess={handleEnrollmentSuccess}  // Add this line
+
             />
+            {isDownloading && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg p-8 text-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                        <p className="text-gray-700">Downloading course material...</p>
+                    </div>
+                </div>
+            )}
             {/* Sidebar ne ref assign karo */}
             <div
                 ref={sidebarRef}
@@ -382,9 +441,9 @@ export default function CourseSidebar({
                         {/* Image div ne show/hide karo based on isSticky */}
                         <div
                             className={`mb-4 bg-[var(--color-bg-light)] transition-all duration-500 ease-in-out ${!isInitialized ? 'opacity-100 h-auto mb-4' : // Show by default until initialized
-                                    isSticky
-                                        ? 'opacity-0 h-0 overflow-hidden mb-0 pointer-events-none'
-                                        : 'opacity-100 h-auto mb-4'
+                                isSticky
+                                    ? 'opacity-0 h-0 overflow-hidden mb-0 pointer-events-none'
+                                    : 'opacity-100 h-auto mb-4'
                                 }`}
                         >
                             {course?.image2 && (
@@ -440,7 +499,15 @@ export default function CourseSidebar({
                             ))}
 
                         </div>
-
+                        <div className="border-t py-6 flex justify-center gap-4">
+                            <Button
+                                variant="gradient"
+                                size={isMobile ? "md" : "md"}
+                                onClick={() => setIsEnrollOpen(true)}
+                            >
+                                {isDownloading ? "Downloading..." : "Download Brochure"}
+                            </Button>
+                        </div>
                         {/* SOCIAL */}
                         <div className="border-t py-6 flex justify-center gap-4">
 

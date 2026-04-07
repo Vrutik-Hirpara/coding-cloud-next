@@ -371,7 +371,7 @@ const fetchRatings = async (courseList: Course[]) => {
                   src={img}
                   alt={course.name}
                   fill
-                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                  className="object-contain group-hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';

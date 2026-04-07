@@ -272,6 +272,8 @@ interface EnrollModalProps {
   isOpen: boolean;
   onClose: () => void;
   courses: any[];
+    onSuccess?: (response: any) => void;  // Add this
+
 }
 
 type MessageType = {
@@ -279,7 +281,7 @@ type MessageType = {
   type: "success" | "error" | "warning" | "";
 };
 
-export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalProps) {
+export default function EnrollModal({ isOpen, onClose, courses, onSuccess }: EnrollModalProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<MessageType>({ text: "", type: "" });
   useEffect(() => {
@@ -406,23 +408,67 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
     // } finally {
     //   setLoading(false); // 🔥 ALWAYS RUNS
     // }
+    // try {
+    //   const data = await apiService.submitEnrollment(payload);
+
+    //   if (data.status === "error") {
+    //     showApiErrors(data || data);
+    //     return;
+    //   }
+
+    //   // SUCCESS
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Enrollment Successful",
+    //     text: "We will contact you soon!",
+    //   });
+
+    //   setMessage({
+    //     text: "🎉 Enrollment Successful!",
+    //     type: "success"
+    //   });
+
+    //   setTimeout(() => {
+    //     onClose();
+    //   }, 3000);
+
+    // } catch (err: any) {
+    //   console.error(err);
+
+    //   // 🔥 THIS IS IMPORTANT
+    //   if (err) {
+    //     showApiErrors(err);
+    //   } else {
+    //     Swal.fire({
+    //       icon: "error",
+    //       title: "Server Error",
+    //       text: "Please try again later",
+    //     });
+    //   }
+
+    // } finally {
+    //   setLoading(false);
+    // }
     try {
       const data = await apiService.submitEnrollment(payload);
 
-      if (data.status === "error") {
-        showApiErrors(data || data);
+      // 🔥 backend response ma success false hoy to error
+      if (!data.success) {
+        showApiErrors(data.message || "Enrollment failed");
         return;
       }
 
-      // SUCCESS
+      // ✅ SUCCESS - backend message show karo
       Swal.fire({
         icon: "success",
         title: "Enrollment Successful",
-        text: "We will contact you soon!",
+        text: data.message || "We will contact you soon!",
       });
-
+  if (onSuccess) {
+    onSuccess(data);  // Pass the entire response which contains pdf_download_url
+  }
       setMessage({
-        text: "🎉 Enrollment Successful!",
+        text: `🎉 ${data.message}`,
         type: "success"
       });
 
@@ -433,17 +479,13 @@ export default function EnrollModal({ isOpen, onClose, courses }: EnrollModalPro
     } catch (err: any) {
       console.error(err);
 
-      // 🔥 THIS IS IMPORTANT
-      if (err) {
-        showApiErrors(err);
+      if (err?.response?.data?.message) {
+        showApiErrors(err.response.data.message);
+      } else if (err?.message) {
+        showApiErrors(err.message);
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Server Error",
-          text: "Please try again later",
-        });
+        showApiErrors("Please try again later");
       }
-
     } finally {
       setLoading(false);
     }
