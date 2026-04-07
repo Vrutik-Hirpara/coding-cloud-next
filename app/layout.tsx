@@ -73,6 +73,7 @@ import Navbar from "@/component/Navbar";
 import Footer from "@/component/Footer";
 import type { Metadata } from "next";
 import ScrollToTop from "@/component/ScrollToTop";
+import WhatsAppButton from "@/component/ui/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Coding Cloud",
@@ -102,6 +103,7 @@ export default function RootLayout({
         </main>
 
         <Footer />
+        <WhatsAppButton />
 
       </body>
     </html>

@@ -637,7 +637,7 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
               Privacy policy
             </Link>
           </div>
-          <p>
+          <p className="">
             Copyright © 2023 by Coding Cloud
              {/* <span className="font-semibold">
               Coding Cloud</span>
