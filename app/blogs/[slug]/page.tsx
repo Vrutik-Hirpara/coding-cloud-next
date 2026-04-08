@@ -378,7 +378,7 @@ export default function BlogDetailPage() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="prose max-w-none text-[var(--color-text)] text-center"
+              className="prose max-w-none text-[var(--color-text)] text-start"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
 
