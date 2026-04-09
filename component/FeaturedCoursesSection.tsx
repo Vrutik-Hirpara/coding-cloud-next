@@ -1183,7 +1183,7 @@ const FeaturedCoursesSection = () => {
         </div>
 
         <div className="relative flex items-center gap-2 md:gap-4">
-          <button
+          {/* <button
             onClick={() => scroll("left")}
             className="
               hidden md:flex
@@ -1196,7 +1196,7 @@ const FeaturedCoursesSection = () => {
             "
           >
             <FaArrowLeft size={16} />
-          </button>
+          </button> */}
 
           <div
             ref={scrollRef}
@@ -1243,7 +1243,7 @@ const FeaturedCoursesSection = () => {
             ))}
           </div>
 
-          <button
+          {/* <button
             onClick={() => scroll("right")}
             className="
               hidden md:flex
@@ -1256,7 +1256,7 @@ const FeaturedCoursesSection = () => {
             "
           >
             <FaArrowRight size={16} />
-          </button>
+          </button> */}
         </div>
       </div>
 

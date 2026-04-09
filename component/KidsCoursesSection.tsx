@@ -1419,10 +1419,10 @@ const KidsCoursesSection: React.FC = () => {
         </div>
 
         {/* COURSE CONTAINER - with scroll for more than 2 cards */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative group/slider">
+        <div className="max-w-7xl mx-auto  group/slider">
 
           {/* LEFT BUTTON - only show if more than 2 cards */}
-          {events.length > 2 && (
+          {/* {events.length > 2 && (
             <button
               onClick={() => scroll("left")}
               className={`
@@ -1438,17 +1438,17 @@ const KidsCoursesSection: React.FC = () => {
             >
               <FaArrowLeft />
             </button>
-          )}
+          )} */}
 
           {/* RIGHT BUTTON - only show if more than 2 cards */}
-          {events.length > 2 && (
+          {/* {events.length > 2 && (
             <button
               onClick={() => scroll("right")}
               className="hidden md:flex absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-[var(--color-accent-purple)] text-[var(--color-white)] w-12 h-12 rounded-full items-center justify-center shadow-lg opacity-100 transition hover:scale-110"
             >
               <FaArrowRight />
             </button>
-          )}
+          )} */}
 
           {/* SCROLLABLE CONTAINER */}
           <div
