@@ -690,9 +690,257 @@
 
 // export default FeaturedCoursesSection;
 
+// "use client";
+
+// import React, { useEffect, useRef, useState } from "react";
+// import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+// import { useRouter } from "next/navigation";
+// import EventCard from "./EventCard";
+// import Pill from "./ui/Pill";
+// import Heading from "./ui/Heading";
+// import { apiService, BASE_URL } from "@/lib/api";
+
+// type CourseApi = {
+//   id: number;
+//   name: string;
+//   image: string;
+//   duration: string;
+//   lecture: string;
+//   students: string;
+//   category_details: {
+//     name: string;
+//   };
+//   featured: boolean;
+//   slug?: string;
+// };
+
+// type EventItem = {
+//   id: number;
+//   image: string;
+//   title: string;
+//   rating: number;
+//   subtitle: string;
+//   author: string;
+//   dateRange: string;
+//   lessons: number;
+//   students: number;
+//   reviews: number;
+//   price: string;
+//   oldPrice: string;
+//   category: string;
+//   instructor: string;
+//   instructorImage: string;
+//   slug: string;
+// };
+
+// const FeaturedCoursesSection = () => {
+//   const router = useRouter();
+//   const [events, setEvents] = useState<EventItem[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+//   // Slider scroll
+//   const scroll = (dir: "left" | "right") => {
+//     if (!scrollRef.current) return;
+
+//     const container = scrollRef.current;
+//     const cardWidth = 335 + 16; // card width + gap
+//     const scrollAmount = dir === "left" ? -cardWidth : cardWidth;
+
+//     container.scrollBy({
+//       left: scrollAmount,
+//       behavior: "smooth",
+//     });
+//   };
+
+//   const handleCardClick = (courseId: number, slug?: string) => {
+//     if (slug) {
+//       router.push(`/courses/${slug}`);
+//     } else {
+//       router.push(`/courses/${courseId}`);
+//     }
+//   };
+
+//   useEffect(() => {
+//     const fetchCourses = async () => {
+//       try {
+//         const json = await apiService.getCourses();
+//         const featuredCourses = json.data.filter(
+//           (c: CourseApi) => c.featured === true
+//         );
+
+//         const mapped: EventItem[] = featuredCourses.map(
+//           (course: CourseApi) => ({
+//             id: course.id,
+//             image: `${BASE_URL}${course.image}`,
+//             title: course.name,
+//             subtitle: course.category_details?.name || "Course",
+//             author: "Coding Cloud",
+//             dateRange: course.duration,
+//             lessons: Number(course.lecture || 0),
+//             students: course.students ? parseInt(String(course.students).replace(/\D/g, "")) : 0,
+//             reviews: 0,
+//             rating: 0,
+//             price: "",
+//             oldPrice: "",
+//             category: course.category_details?.name || "",
+//             instructor: "Coding Cloud",
+//             instructorImage: "/images/avatar.png",
+//             slug: course.slug || String(course.id),
+//           })
+//         );
+
+//         setEvents(mapped);
+//       } catch (err) {
+//         console.error("Error fetching courses:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchCourses();
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <section className="pt-16 bg-[var(--color-bg-light)] overflow-hidden">
+//         <div className="container-custom relative px-4 sm:px-6">
+//           <div className="text-center mb-4 px-5">
+//             <Pill
+//               text="SIMULATED TO TAKE PART IN?"
+//               textColor="var(--color-accent-purple)"
+//               bgColor="var(--color-primary-light)"
+//             />
+//             <Heading title={<>Feature Course</>} />
+//           </div>
+//           <div className="flex justify-center gap-4">
+//             {[1, 2, 3].map((n) => (
+//               <div key={n} className="w-[335px] flex-shrink-0 p-2 rounded-3xl bg-white shadow-sm animate-pulse">
+//                 <div className="h-[180px] sm:h-[200px] w-full bg-[var(--color-light)] rounded-t-2xl mb-2"></div>
+//                 <div className="p-4">
+//                   <div className="h-4 bg-[var(--color-light)] rounded w-1/4 mb-2"></div>
+//                   <div className="h-6 bg-[var(--color-light)] rounded w-3/4 mb-2"></div>
+//                   <div className="flex gap-4 mb-3">
+//                     <div className="h-4 bg-[var(--color-light)] rounded w-1/3"></div>
+//                     <div className="h-4 bg-[var(--color-light)] rounded w-1/3"></div>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+//     );
+//   }
+
+//   if (events.length === 0) {
+//     return (
+//       <section className="pt-16 bg-[var(--color-bg-light)] overflow-hidden">
+//         <div className="container-custom relative px-4 sm:px-6">
+//           <div className="text-center mb-4 px-5">
+//             <Pill
+//               text="SIMULATED TO TAKE PART IN?"
+//               textColor="var(--color-accent-purple)"
+//               bgColor="var(--color-primary-light)"
+//             />
+//             <Heading title={<>Feature Course</>} />
+//           </div>
+//           <div className="text-center py-12">
+//             <p className="text-[var(--color-muted)]">No featured courses available at the moment.</p>
+//           </div>
+//         </div>
+//       </section>
+//     );
+//   }
+
+//   return (
+//     <section className="pt-16 bg-[var(--color-bg-light)] overflow-hidden">
+//       <div className="container-custom relative px-4 sm:px-6">
+//         {/* HEADER */}
+//         <div className="text-center mb-4 px-5">
+//           <Pill
+//             text="SIMULATED TO TAKE PART IN?"
+//             textColor="var(--color-accent-purple)"
+//             bgColor="var(--color-primary-light)"
+//           />
+//           <Heading title={<>Feature Course</>} />
+//         </div>
+
+//         {/* SLIDER WITH BUTTONS ON SIDES */}
+//         <div className="relative flex items-center gap-2 md:gap-4">
+//           {/* LEFT BUTTON */}
+//           <button
+//             onClick={() => scroll("left")}
+//             className="
+//               hidden md:flex
+//               flex-shrink-0
+//               w-10 h-10 md:w-12 md:h-12 rounded-full items-center justify-center
+//               transition hover:scale-110
+//               bg-[var(--color-accent-purple)] shadow-lg
+//               text-white hover:opacity-80
+//               z-10
+//             "
+//           >
+//             <FaArrowLeft size={16} />
+//           </button>
+
+//           {/* SCROLL CONTAINER - FIXED WITH PADDING */}
+//           <div
+//             ref={scrollRef}
+//             className="
+//               flex-1
+//               grid grid-flow-col
+//               auto-cols-[335px]
+//               overflow-x-auto
+//               gap-6
+//               pb-6 pt-2
+//               hide-scrollbar scroll-smooth
+//               px-1
+//             "
+//           >
+//             {events.map((ev) => (
+//               <div
+//                 key={ev.id}
+//                 onClick={() => handleCardClick(ev.id, ev.slug)}
+//                 className="
+//                   w-[335px]
+//                   rounded-3xl
+//                   transition-all duration-300 hover:-translate-y-2 cursor-pointer
+//                 "
+//               >
+//                 <div className="flex flex-col w-full h-full">
+//                   <EventCard event={ev} />
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+
+//           {/* RIGHT BUTTON */}
+//           <button
+//             onClick={() => scroll("right")}
+//             className="
+//               hidden md:flex
+//               flex-shrink-0
+//               w-10 h-10 md:w-12 md:h-12 rounded-full items-center justify-center
+//               transition hover:scale-110
+//               bg-[var(--color-accent-purple)] shadow-lg
+//               text-white hover:opacity-80
+//               z-10
+//             "
+//           >
+//             <FaArrowRight size={16} />
+//           </button>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default FeaturedCoursesSection;
+
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import EventCard from "./EventCard";
@@ -738,15 +986,84 @@ const FeaturedCoursesSection = () => {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const animationRef = useRef<number | null>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
+  const autoScrollSpeed = useRef(1);
+  const isHovered = useRef(false);
 
-  // Slider scroll
-  const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
+  const autoScroll = useCallback(() => {
+    if (!scrollRef.current || isDragging.current || isHovered.current) {
+      animationRef.current = requestAnimationFrame(autoScroll);
+      return;
+    }
 
     const container = scrollRef.current;
-    const cardWidth = 335 + 16; // card width + gap
-    const scrollAmount = dir === "left" ? -cardWidth : cardWidth;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    
+    container.scrollLeft += autoScrollSpeed.current;
+    
+    if (container.scrollLeft >= maxScrollLeft) {
+      container.scrollLeft = 0;
+    }
+    else if (container.scrollLeft <= 0 && autoScrollSpeed.current < 0) {
+      container.scrollLeft = maxScrollLeft;
+    }
+    
+    animationRef.current = requestAnimationFrame(autoScroll);
+  }, []);
 
+  useEffect(() => {
+    if (events.length === 0) return;
+    
+    animationRef.current = requestAnimationFrame(autoScroll);
+    
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [autoScroll, events.length]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    isDragging.current = true;
+    startX.current = e.pageX - scrollRef.current.offsetLeft;
+    scrollLeftStart.current = scrollRef.current.scrollLeft;
+    scrollRef.current.style.cursor = "grabbing";
+    scrollRef.current.style.userSelect = "none";
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    scrollRef.current.scrollLeft = scrollLeftStart.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    if (!scrollRef.current) return;
+    isDragging.current = false;
+    scrollRef.current.style.cursor = "grab";
+    scrollRef.current.style.removeProperty("user-select");
+  };
+
+  const handleMouseEnter = () => {
+    isHovered.current = true;
+  };
+
+  const handleMouseLeave = () => {
+    isHovered.current = false;
+  };
+
+  const scroll = (dir: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const cardWidth = 335 + 24;
+    const scrollAmount = dir === "left" ? -cardWidth : cardWidth;
+    
     container.scrollBy({
       left: scrollAmount,
       behavior: "smooth",
@@ -856,7 +1173,6 @@ const FeaturedCoursesSection = () => {
   return (
     <section className="pt-16 bg-[var(--color-bg-light)] overflow-hidden">
       <div className="container-custom relative px-4 sm:px-6">
-        {/* HEADER */}
         <div className="text-center mb-4 px-5">
           <Pill
             text="SIMULATED TO TAKE PART IN?"
@@ -866,9 +1182,7 @@ const FeaturedCoursesSection = () => {
           <Heading title={<>Feature Course</>} />
         </div>
 
-        {/* SLIDER WITH BUTTONS ON SIDES */}
         <div className="relative flex items-center gap-2 md:gap-4">
-          {/* LEFT BUTTON */}
           <button
             onClick={() => scroll("left")}
             className="
@@ -884,9 +1198,16 @@ const FeaturedCoursesSection = () => {
             <FaArrowLeft size={16} />
           </button>
 
-          {/* SCROLL CONTAINER - FIXED WITH PADDING */}
           <div
             ref={scrollRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={() => {
+              handleMouseLeave();
+              handleMouseUp();
+            }}
+            onMouseEnter={handleMouseEnter}
             className="
               flex-1
               grid grid-flow-col
@@ -894,9 +1215,16 @@ const FeaturedCoursesSection = () => {
               overflow-x-auto
               gap-6
               pb-6 pt-2
-              hide-scrollbar scroll-smooth
               px-1
+              cursor-grab
+              active:cursor-grabbing
+              select-none
             "
+            style={{
+              scrollBehavior: "auto",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none"
+            }}
           >
             {events.map((ev) => (
               <div
@@ -915,7 +1243,6 @@ const FeaturedCoursesSection = () => {
             ))}
           </div>
 
-          {/* RIGHT BUTTON */}
           <button
             onClick={() => scroll("right")}
             className="
@@ -932,6 +1259,17 @@ const FeaturedCoursesSection = () => {
           </button>
         </div>
       </div>
+
+      {/* Add this style tag in your global CSS or use a CSS module */}
+      <style>{`
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };
