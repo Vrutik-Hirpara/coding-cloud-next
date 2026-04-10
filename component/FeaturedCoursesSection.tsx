@@ -1330,7 +1330,8 @@ const FeaturedCoursesSection = () => {
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
   const scrollPos = useRef(0);
-  const autoScrollSpeed = useRef(0.20);
+  // const autoScrollSpeed = useRef(0.20);
+  const autoScrollSpeed = useRef(0.5);
   const isHovered = useRef(false);
 
   // Auto-scroll function
@@ -1359,6 +1360,34 @@ const FeaturedCoursesSection = () => {
     
   //   animationRef.current = requestAnimationFrame(autoScroll);
   // }, [events.length]);
+// const autoScroll = useCallback(() => {
+//   if (!scrollRef.current || events.length <= 2) {
+//     animationRef.current = requestAnimationFrame(autoScroll);
+//     return;
+//   }
+  
+//   if (isDragging.current || isHovered.current) {
+//     // જ્યારે યુઝર ડ્રેગ કરે ત્યારે પોઝિશન અપડેટ રાખવી
+//     scrollPos.current = scrollRef.current.scrollLeft;
+//     animationRef.current = requestAnimationFrame(autoScroll);
+//     return;
+//   }
+
+//   const container = scrollRef.current;
+//   const maxScrollLeft = container.scrollWidth - container.clientWidth;
+  
+//   // ફ્લોટિંગ પોઈન્ટમાં ગણતરી કરો જેથી 0.20 જેવી નાની સ્પીડ પણ કામ કરે
+//   scrollPos.current += autoScrollSpeed.current;
+  
+//   if (scrollPos.current >= maxScrollLeft) {
+//     scrollPos.current = 0;
+//   }
+  
+//   // કન્ટેનરને પોઝિશન અસાઇન કરો
+//   container.scrollLeft = scrollPos.current;
+  
+//   animationRef.current = requestAnimationFrame(autoScroll);
+// }, [events.length]);
 const autoScroll = useCallback(() => {
   if (!scrollRef.current || events.length <= 2) {
     animationRef.current = requestAnimationFrame(autoScroll);
@@ -1366,7 +1395,6 @@ const autoScroll = useCallback(() => {
   }
   
   if (isDragging.current || isHovered.current) {
-    // જ્યારે યુઝર ડ્રેગ કરે ત્યારે પોઝિશન અપડેટ રાખવી
     scrollPos.current = scrollRef.current.scrollLeft;
     animationRef.current = requestAnimationFrame(autoScroll);
     return;
@@ -1375,14 +1403,12 @@ const autoScroll = useCallback(() => {
   const container = scrollRef.current;
   const maxScrollLeft = container.scrollWidth - container.clientWidth;
   
-  // ફ્લોટિંગ પોઈન્ટમાં ગણતરી કરો જેથી 0.20 જેવી નાની સ્પીડ પણ કામ કરે
   scrollPos.current += autoScrollSpeed.current;
   
   if (scrollPos.current >= maxScrollLeft) {
     scrollPos.current = 0;
   }
   
-  // કન્ટેનરને પોઝિશન અસાઇન કરો
   container.scrollLeft = scrollPos.current;
   
   animationRef.current = requestAnimationFrame(autoScroll);

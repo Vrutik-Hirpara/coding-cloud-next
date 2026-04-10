@@ -159,7 +159,7 @@ const accreditations = [
         logo: iao,
         description: "International Accreditation Organization",
         fullDesc: "Globally recognized accreditation body",
-        link: "https://www.iao.org/India-Gujarat/Coding-Cloud",
+        link: "/images/IAO.png",
         badge: "International",
         color: "from-blue-500 to-indigo-500",
         lightBg: "bg-blue-50",

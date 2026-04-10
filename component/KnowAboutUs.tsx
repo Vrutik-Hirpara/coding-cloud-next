@@ -153,9 +153,9 @@ const points = [
   { text: "Unlock Your Potential with Our IT Programs", icon: Rocket },
 ];
 // images (public folder)
-const about1 = "/images/about/about-01.png";
-const about2 = "/images/about/about-02.png";
-const about3 = "/images/about/about-03.png";
+const about1 = "/images/about/about-01up.png";
+const about2 = "/images/about/about-02up.png";
+const about3 = "/images/about/aboutup-03.png";
 export default function KnowAboutUs() {
   const router = useRouter();
 
