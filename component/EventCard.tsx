@@ -673,11 +673,11 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
 
   return (
-    <div className="w-full h-full"> {/* Only w-full h-full */}
+    <div className="w-full h-full pt-2"> {/* Only w-full h-full */}
 
       {/* ---------- DESIGN 1 ---------- */}
       {variant === "default" && (
-        <div className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col h-full w-full">
+        <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col h-full w-full">
 
           {/* IMAGE */}
           <div className="relative overflow-hidden h-[215px] w-full">

@@ -885,6 +885,7 @@
 
 
 //no scroll
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { FaQuoteRight, FaStar } from "react-icons/fa";

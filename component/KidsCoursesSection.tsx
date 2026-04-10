@@ -1220,40 +1220,73 @@ const KidsCoursesSection: React.FC = () => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
+  const scrollPos = useRef(0); // આ સ્ક્રોલની ચોક્કસ વેલ્યુ સાચવશે
+  const frameCount = useRef(0); // આ નવું ઉમેરો
   const autoScrollSpeed = useRef(1);
   const isHovered = useRef(false);
 
   // Auto-scroll function
-  const autoScroll = useCallback(() => {
-    if (!scrollRef.current || events.length <= 2) {
-      animationRef.current = requestAnimationFrame(autoScroll);
-      return;
-    }
+  // const autoScroll = useCallback(() => {
+  //   if (!scrollRef.current || events.length <= 2) {
+  //     animationRef.current = requestAnimationFrame(autoScroll);
+  //     return;
+  //   }
     
-    if (isDragging.current || isHovered.current) {
-      animationRef.current = requestAnimationFrame(autoScroll);
-      return;
-    }
+  //   if (isDragging.current || isHovered.current) {
+  //     animationRef.current = requestAnimationFrame(autoScroll);
+  //     return;
+  //   }
 
-    const container = scrollRef.current;
-    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+  //   const container = scrollRef.current;
+  //   const maxScrollLeft = container.scrollWidth - container.clientWidth;
     
-    // Move right
-    container.scrollLeft += autoScrollSpeed.current;
+  //   // Move right
+  //   container.scrollLeft += autoScrollSpeed.current;
     
-    // Check if reached the end
-    if (container.scrollLeft >= maxScrollLeft) {
-      // Reset to start smoothly
-      container.scrollLeft = 0;
-    }
-    // Check if went before start (shouldn't happen with right scroll, but for safety)
-    else if (container.scrollLeft <= 0 && autoScrollSpeed.current < 0) {
-      container.scrollLeft = maxScrollLeft;
-    }
+  //   // Check if reached the end
+  //   if (container.scrollLeft >= maxScrollLeft) {
+  //     // Reset to start smoothly
+  //     container.scrollLeft = 0;
+  //   }
+  //   // Check if went before start (shouldn't happen with right scroll, but for safety)
+  //   else if (container.scrollLeft <= 0 && autoScrollSpeed.current < 0) {
+  //     container.scrollLeft = maxScrollLeft;
+  //   }
     
+  //   animationRef.current = requestAnimationFrame(autoScroll);
+  // }, [events.length]);
+const autoScroll = useCallback(() => {
+  if (!scrollRef.current || events.length <= 2) {
     animationRef.current = requestAnimationFrame(autoScroll);
-  }, [events.length]);
+    return;
+  }
+  
+  if (isDragging.current || isHovered.current) {
+    // જ્યારે યુઝર ડ્રેગ કરે ત્યારે પોઝિશન અપડેટ રાખવી જેથી ઝટકો ન લાગે
+    scrollPos.current = scrollRef.current.scrollLeft;
+    animationRef.current = requestAnimationFrame(autoScroll);
+    return;
+  }
 
+  const container = scrollRef.current;
+  const maxScrollLeft = container.scrollWidth - container.clientWidth;
+  
+  // સ્પીડ અહીંથી કંટ્રોલ કરો (0.3 કે 0.5 એકદમ સ્મૂથ લાગશે)
+  const speed = 0.5; 
+  
+  // ફ્લોટિંગ પોઈન્ટમાં ગણતરી કરો
+  scrollPos.current += speed;
+  
+  // જો છેડે પહોંચી જાય તો રિસેટ કરો
+  if (scrollPos.current >= maxScrollLeft) {
+    scrollPos.current = 0;
+  }
+  
+  // કન્ટેનરને ફ્લોટિંગ વેલ્યુ આપો (બ્રાઉઝર આને સ્મૂથલી હેન્ડલ કરશે)
+  container.scrollLeft = scrollPos.current;
+  
+  animationRef.current = requestAnimationFrame(autoScroll);
+}, [events.length]);
   // Start/stop auto-scroll based on hover and events length
   useEffect(() => {
     if (events.length <= 2) return;
