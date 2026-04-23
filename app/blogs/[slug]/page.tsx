@@ -82,14 +82,36 @@ export default function BlogDetailPage() {
 
   // Handle Scroll for Sticky logic
   useEffect(() => {
+    // const handleScroll = () => {
+    //   if (sidebarRef.current) {
+    //     const rect = sidebarRef.current.getBoundingClientRect();
+    //     const stickyThreshold = 140; // Same as CourseSidebar
+
+    //     if (rect.top <= stickyThreshold) {
+    //       setIsSticky(true);
+    //     } else {
+    //       setIsSticky(false);
+    //     }
+
+    //     if (!isInitialized) {
+    //       setIsInitialized(true);
+    //     }
+    //   }
+    // };
     const handleScroll = () => {
       if (sidebarRef.current) {
         const rect = sidebarRef.current.getBoundingClientRect();
-        const stickyThreshold = 140; // Same as CourseSidebar
+        const stickyThreshold = 140;
 
-        if (rect.top <= stickyThreshold) {
-          setIsSticky(true);
+        // 👇 ONLY apply sticky on large screens
+        if (window.innerWidth >= 1024) {
+          if (rect.top <= stickyThreshold) {
+            setIsSticky(true);
+          } else {
+            setIsSticky(false);
+          }
         } else {
+          // 👇 Mobile / stacked layout → always show image
           setIsSticky(false);
         }
 
@@ -98,7 +120,6 @@ export default function BlogDetailPage() {
         }
       }
     };
-
     const timer = setTimeout(() => {
       handleScroll();
       setIsInitialized(true);
@@ -278,7 +299,7 @@ export default function BlogDetailPage() {
       {/* 🔥 MAIN CONTENT SECTION */}
       <div className="mx-auto px-4 py-8 sm:px-8 md:px-4 lg:px-12 xl:px-16 2xl:px-24">
         <div className="flex flex-col lg:grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-12">
-          
+
           {/* LEFT SIDE: Blog Content */}
           <div className="w-full">
             <motion.div
@@ -296,7 +317,7 @@ export default function BlogDetailPage() {
                 />
               </div>
 
-              <div 
+              <div
                 className="prose max-w-none text-[var(--color-text)] blog-content"
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               />
@@ -304,187 +325,187 @@ export default function BlogDetailPage() {
           </div>
 
           {/* RIGHT SIDEBAR */}
-          <div className="lg:-mt-[280px] lg:sticky lg:top-[140px] self-start h-fit space-y-8">
-             {/* Inquiry Form Box */}
-             <div
-                ref={sidebarRef}
-                className="rounded p-[2px] shadow-lg transition-all duration-300"
-                style={{
-                    backgroundImage:
-                        "linear-gradient(rgb(148 179 246) 0%, rgb(79, 130, 240) 45%, rgb(147 173 252) 100%)",
-                }}
+          <div className="lg:-mt-[280px] lg:sticky lg:top-[140px] self-center h-fit space-y-8">
+            {/* Inquiry Form Box */}
+            <div
+              ref={sidebarRef}
+              className="rounded p-[2px] shadow-lg transition-all duration-300"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgb(148 179 246) 0%, rgb(79, 130, 240) 45%, rgb(147 173 252) 100%)",
+              }}
             >
-                <div className="bg-white rounded shadow-md overflow-hidden">
-                    <div className="pb-0 p-6">
-                        {/* Hiding Image Section */}
-                        <div
-                            className={`mb-4 bg-[var(--color-bg-light)] transition-all duration-500 ease-in-out ${!isInitialized ? 'opacity-100 h-auto mb-4' : 
-                                isSticky
-                                    ? 'opacity-0 h-0 overflow-hidden mb-0 pointer-events-none'
-                                    : 'opacity-100 h-auto mb-4'
-                                }`}
-                        >
-                            <Image
-                                src={contactImg}
-                                alt="Contact Us"
-                                className="w-full h-auto rounded object-cover"
-                            />
-                        </div>
+              <div className="bg-white rounded shadow-md overflow-hidden">
+                <div className="pb-0 p-6">
+                  {/* Hiding Image Section */}
+                  <div
+                    className={`mb-4 bg-[var(--color-bg-light)] transition-all duration-500 ease-in-out ${!isInitialized ? 'opacity-100 h-auto mb-4' :
+                      isSticky
+                        ? 'opacity-0 h-0 overflow-hidden mb-0 pointer-events-none'
+                        : 'opacity-100 h-auto mb-4'
+                      }`}
+                  >
+                    <Image
+                      src={contactImg}
+                      alt="Contact Us"
+                      className="w-full h-auto rounded object-cover"
+                    />
+                  </div>
 
-                        {/* Title Section */}
-                        <div className="text-center mb-6">
-                            {/* <span className="inline-block px-4 py-1 mb-2 text-[12px] font-bold text-[var(--color-accent-purple)] bg-[#F3F4FE] rounded-full uppercase">
+                  {/* Title Section */}
+                  <div className="text-center mb-6">
+                    {/* <span className="inline-block px-4 py-1 mb-2 text-[12px] font-bold text-[var(--color-accent-purple)] bg-[#F3F4FE] rounded-full uppercase">
                                 CONTACT US
                             </span> */}
-                            <h3 className="text-[20px] font-bold text-[var(--color-dark)]">
-                                Inquire Now
-                            </h3>
-                        </div>
+                    <h3 className="text-[20px] font-bold text-[var(--color-dark)]">
+                      Inquire Now
+                    </h3>
+                  </div>
 
-                        {/* Form */}
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={form.name}
-                                    onChange={handleInputChange}
-                                    placeholder="Full Name"
-                                    className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
-                                />
-                                {errors.name && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.name}</p>}
-                            </div>
-
-                            <div>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={form.email}
-                                    onChange={handleInputChange}
-                                    placeholder="Email Address"
-                                    className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
-                                />
-                                {errors.email && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.email}</p>}
-                            </div>
-
-                            <div>
-                                <input
-                                    type="tel"
-                                    name="mobile"
-                                    value={form.mobile}
-                                    onChange={(e) => {
-                                        const val = e.target.value.replace(/\D/g, "");
-                                        setForm({ ...form, mobile: val.slice(0, 10) });
-                                    }}
-                                    placeholder="Mobile Number"
-                                    className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
-                                />
-                                {errors.mobile && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.mobile}</p>}
-                            </div>
-
-                            <div>
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    value={form.subject}
-                                    onChange={handleInputChange}
-                                    placeholder="Subject"
-                                    className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
-                                />
-                                {errors.subject && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.subject}</p>}
-                            </div>
-
-                            <div>
-                                <textarea
-                                    name="message"
-                                    value={form.message}
-                                    onChange={handleInputChange}
-                                    placeholder="Your Message"
-                                    rows={1}
-                                    className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent resize-none placeholder-gray-400"
-                                />
-                                {errors.message && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.message}</p>}
-                            </div>
-
-                            <div className="flex justify-center ">
-                                <Button
-                                    type="submit"
-                                    variant="gradient"
-                                    className="w-full rounded-lg font-bold text-sm py-3"
-                                    disabled={formLoading}
-                                >
-                                    {formLoading ? "Sending..." : "Submit Inquiry"}
-                                </Button>
-                            </div>
-                        </form>
-
-                        {/* SOCIAL SECTION */}
-                        <div className="border-t mt-6 py-6 flex flex-col items-center">
-                            <p className="text-gray-500 text-[13px] mb-4">Follow us on social media</p>
-                            <div className="flex justify-center gap-4">
-                                {socialLinks.map((data) => {
-                                    const Icon = data.icon;
-                                    return (
-                                        <motion.a
-                                            key={data.id}
-                                            href={data.link}
-                                            target="_blank"
-                                            whileHover={{ y: -6, scale: 1.08 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 shadow-sm hover:[background:var(--color-logo-gradient)] hover:text-white transition-all duration-300"
-                                        >
-                                            <Icon size={15} />
-                                        </motion.a>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        {/* CALL SECTION */}
-                        <div className="border-t p-6 text-center">
-                            <p className="text-sm text-gray-500 mb-3">
-                                For details about the course
-                            </p>
-                            <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium text-sm">
-                                📞 Call Us:  +91 95373 44018
-                            </div>
-                        </div>
+                  {/* Form */}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <input
+                        type="text"
+                        name="name"
+                        value={form.name}
+                        onChange={handleInputChange}
+                        placeholder="Full Name"
+                        className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
+                      />
+                      {errors.name && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.name}</p>}
                     </div>
+
+                    <div>
+                      <input
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleInputChange}
+                        placeholder="Email Address"
+                        className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
+                      />
+                      {errors.email && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.email}</p>}
+                    </div>
+
+                    <div>
+                      <input
+                        type="tel"
+                        name="mobile"
+                        value={form.mobile}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, "");
+                          setForm({ ...form, mobile: val.slice(0, 10) });
+                        }}
+                        placeholder="Mobile Number"
+                        className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
+                      />
+                      {errors.mobile && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.mobile}</p>}
+                    </div>
+
+                    <div>
+                      <input
+                        type="text"
+                        name="subject"
+                        value={form.subject}
+                        onChange={handleInputChange}
+                        placeholder="Subject"
+                        className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent placeholder-gray-400"
+                      />
+                      {errors.subject && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.subject}</p>}
+                    </div>
+
+                    <div>
+                      <textarea
+                        name="message"
+                        value={form.message}
+                        onChange={handleInputChange}
+                        placeholder="Your Message"
+                        rows={1}
+                        className="w-full border-b border-[var(--color-border)] p-2 text-sm outline-none focus:border-[var(--color-accent-purple)] bg-transparent resize-none placeholder-gray-400"
+                      />
+                      {errors.message && <p className="text-[var(--color-danger)] text-[10px] mt-1">{errors.message}</p>}
+                    </div>
+
+                    <div className="flex justify-center ">
+                      <Button
+                        type="submit"
+                        variant="gradient"
+                        className="w-full rounded-lg font-bold text-sm py-3"
+                        disabled={formLoading}
+                      >
+                        {formLoading ? "Sending..." : "Submit Inquiry"}
+                      </Button>
+                    </div>
+                  </form>
+
+                  {/* SOCIAL SECTION */}
+                  <div className="border-t mt-6 py-6 flex flex-col items-center">
+                    <p className="text-gray-500 text-[13px] mb-4">Follow us on social media</p>
+                    <div className="flex justify-center gap-4">
+                      {socialLinks.map((data) => {
+                        const Icon = data.icon;
+                        return (
+                          <motion.a
+                            key={data.id}
+                            href={data.link}
+                            target="_blank"
+                            whileHover={{ y: -6, scale: 1.08 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 shadow-sm hover:[background:var(--color-logo-gradient)] hover:text-white transition-all duration-300"
+                          >
+                            <Icon size={15} />
+                          </motion.a>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* CALL SECTION */}
+                  <div className="border-t p-6 text-center">
+                    <p className="text-sm text-gray-500 mb-3">
+                      For details about the course
+                    </p>
+                    <div className="bg-purple-200 text-purple-800 rounded-full py-3 font-medium text-sm">
+                      📞 Call Us:  +91 95373 44018
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
 
             {/* Related Posts in Sidebar */}
             <div className="bg-white rounded shadow-sm border p-6">
-                <h3 className="text-xl font-bold text-[var(--color-dark)] mb-6 pb-2 border-b">
-                  Recent Posts
-                </h3>
-                <div className="flex flex-col gap-6">
-                  {relatedBlogs.map((item) => (
-                    <Link
-                      key={item.id}
-                      href={`/blogs/${item.slug}`}
-                      className="group flex gap-4 items-start"
-                    >
-                      <div className="relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 ">
-                        <Image
-                          src={getImage(item.featured_image)}
-                          alt={item.title}
-                          fill
-                          className="object-contain transition-transform duration-300 group-hover:scale-110"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <h4 className="text-sm font-semibold text-[var(--color-dark)] group-hover:text-[var(--color-accent-purple)] line-clamp-2 transition capitalize">
-                          {item.title}
-                        </h4>
-                        <span className="text-[10px] text-[var(--color-muted)] mt-1">
-                          {item.publish_date ? new Date(item.publish_date).toLocaleDateString() : ''}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+              <h3 className="text-xl font-bold text-[var(--color-dark)] mb-6 pb-2 border-b">
+                Recent Posts
+              </h3>
+              <div className="flex flex-col gap-6">
+                {relatedBlogs.map((item) => (
+                  <Link
+                    key={item.id}
+                    href={`/blogs/${item.slug}`}
+                    className="group flex gap-4 items-start"
+                  >
+                    <div className="relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 ">
+                      <Image
+                        src={getImage(item.featured_image)}
+                        alt={item.title}
+                        fill
+                        className="object-contain transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <h4 className="text-sm font-semibold text-[var(--color-dark)] group-hover:text-[var(--color-accent-purple)] line-clamp-2 transition capitalize">
+                        {item.title}
+                      </h4>
+                      <span className="text-[10px] text-[var(--color-muted)] mt-1">
+                        {item.publish_date ? new Date(item.publish_date).toLocaleDateString() : ''}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
               </div>
+            </div>
           </div>
         </div>
       </div>

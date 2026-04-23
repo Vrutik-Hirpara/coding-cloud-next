@@ -335,7 +335,7 @@ const handleCourseClick = (slug: string, type: "featured" | "kids") => {
           </div>
 
           {/* ── CENTER: Nav links ── */}
-          <ul className="hidden md:flex items-center gap-4 sm:gap-6 md:gap-8 font-bold text-[var(--color-text-medium)] flex-1 justify-center">
+          <ul className="hidden lg:flex items-center gap-4 sm:gap-6 md:gap-7 font-bold text-[var(--color-text-medium)] flex-1 justify-center">
             <motion.li whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
               <Link
                 href="/"
@@ -627,7 +627,7 @@ onClick={() => handleCourseClick(course.slug, "kids")}
           </ul>
 
           {/* ── RIGHT: Search + Cart + Admin + Enroll ── */}
-          <div className="hidden md:flex items-center gap-1 flex-shrink-0 border-l border-gray-200 pl-4">
+          <div className="hidden lg:flex items-center gap-1 flex-shrink-0 border-l border-gray-200 pl-4">
             {/* Enroll marquee pill */}
             <button
               onClick={() => {
@@ -650,21 +650,21 @@ style={{
           </div>
 
           {/* ── MOBILE RIGHT ── */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={() => {
                 setIsCoursesDropdownOpen(false);
     setIsKidsDropdownOpen(false);
                 setIsEnrollOpen(true);
               }}
-              className="hidden sm:block relative overflow-hidden px-4 py-1.5 rounded-full border-2 font-semibold text-xs cursor-pointer"
+              className="hidden  min-[360px]:block relative overflow-hidden px-4 py-1.5 rounded-full border-2 font-semibold text-xs cursor-pointer"
               style={{ borderColor: "var(--color-accent-purple)" }}
             >
               <span
-                className="animate-marquee-text block"
+                // className="animate-marquee-text block"
                 style={{ color: "var(--color-accent-purple)" }}
               >
-                Enroll Now
+                BOOK A DEMO CLASS
               </span>
             </button>
             <button
@@ -863,7 +863,7 @@ style={{
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden absolute top-full left-0 w-full bg-[var(--color-white)] shadow-lg border-t z-50 overflow-hidden"
+              className="lg:hidden absolute top-full left-0 w-full bg-[var(--color-white)] shadow-lg border-t z-50 overflow-hidden"
             >
               <div className="px-4 py-3 flex flex-col gap-1">
                 {/* Home */}
