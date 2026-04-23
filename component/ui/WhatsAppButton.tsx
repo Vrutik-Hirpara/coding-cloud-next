@@ -57,7 +57,7 @@ const WhatsAppButton = () => {
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-2 right-2  z-[9999] bg-green-500 text-white p-2 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50"
+      className="fixed bottom-12 right-12  z-[99999] bg-green-500 text-white p-2 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50"
       aria-label="Chat on WhatsApp"
     >
       <FaWhatsapp size={32} />

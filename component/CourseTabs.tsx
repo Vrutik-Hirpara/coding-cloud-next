@@ -584,7 +584,7 @@ export default function CourseTabs({ course, events }: any) {
                 </div>
             </div>
             {/* 🔥 STICKY TABS */}
-            <div className="course-tabs-sticky  z-20 bg-[var(--color-bg-light)] pt-6">
+            <div className="course-tabs-sticky  z-20 bg-[var(--color-bg-light)] py-3">
                 {/* <div className="sticky top-[140px] z-20 py-3"> */}
 
                 <div className="flex gap-3 overflow-x-auto px-1">
@@ -620,7 +620,7 @@ export default function CourseTabs({ course, events }: any) {
             </div>
 
             {/* 🔥 OVERVIEW CARD */}
-            <div id="overview" className="pt-6  pb-0">
+            <div id="overview" className="pt-4  pb-0">
                 <section
 
                     className="bg-[var(--color-white)] p-6 rounded-xl shadow border space-y-4 scroll-mt-[200px]"

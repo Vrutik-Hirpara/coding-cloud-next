@@ -540,20 +540,9 @@ export default function ContactPage() {
         { label: "info@codingcloudinstitute.com", link: "mailto:info@codingcloudinstitute.com" },
       ],
     },
+   
     {
       title: "Head Office",
-      icon: <FaMapMarkerAlt />,
-      items: [
-        {
-          label:
-            "Unit No, 201, 2nd Floor, Polaris, Near Noble Hospital, Hadapsar, Pune, Maharashtra 411060",
-          link:
-            "https://www.google.com/maps/search/?api=1&query=Unit%20No%20201%20Polaris%20Hadapsar%20Pune",
-        },
-      ],
-    },
-    {
-      title: "Branch",
       icon: <FaMapMarkerAlt />,
       items: [
         {
@@ -561,6 +550,18 @@ export default function ContactPage() {
             "Office No. 401, 4th Floor, Sapphire Complex, C.G Road, Ahmedabad, Gujarat, 380009",
           link:
             "https://www.google.com/maps/search/?api=1&query=Sapphire%20Complex%20CG%20Road%20Ahmedabad",
+        },
+      ],
+    },
+     {
+      title: "Branch",
+      icon: <FaMapMarkerAlt />,
+      items: [
+        {
+          label:
+            "Unit No, 201, 2nd Floor, Polaris, Near Noble Hospital, Hadapsar, Pune, Maharashtra 411060",
+          link:
+            "https://www.google.com/maps/search/?api=1&query=Unit%20No%20201%20Polaris%20Hadapsar%20Pune",
         },
       ],
     },

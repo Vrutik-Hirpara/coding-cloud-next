@@ -236,7 +236,7 @@ export default function Page() {
               {/* Course Name */}
               <span
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="cursor-pointer hover:text-[var(--color-accent-purple)] transition"
+                className="cursor-pointer text-[var(--color-accent-purple)] transition"
               >
                 {course?.name}
               </span>

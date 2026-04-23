@@ -724,7 +724,7 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
 
             {/* AUTHOR */}
             <p className="text-sm text-gray-500 mb-4 line-clamp-1">
-              • {event.author}
+              By {event.author}
             </p>
 
             {/* META */}

@@ -359,7 +359,7 @@ const imgBottomFloatRef = useRef<HTMLDivElement | null>(null);
           <Button
             href="/courses"
             variant="gradient"
-            className="mt-4 px-6 py-3 w-fit rounded-full font-semibold hover:scale-105 transition"
+            className="mt-4  py-3 w-fit rounded-full font-semibold hover:scale-105 transition"
 
           >
             All Course →

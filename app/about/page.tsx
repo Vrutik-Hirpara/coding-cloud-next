@@ -15,7 +15,7 @@
 //     <div className="min-h-screen bg-[var(--color-white)]">
 
 //       {/* ================= HERO SECTION ================= */}
-    
+
 //       <section className="relative h-[67vh] flex items-center justify-center text-center overflow-hidden">
 
 //         <div className="absolute inset-0">
@@ -33,7 +33,7 @@
 
 //         <div className="relative z-10 max-w-4xl px-6">
 
-        
+
 //           <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">
 //             <span className="block text-blue-400 animate-pulse">
 //               About Us
@@ -121,7 +121,7 @@
 //               viewport={{ once: true }}
 //             >
 //               {/* TAG with modern design */}
-           
+
 
 //               {/* POINTS with creative numbering */}
 //               <div className="space-y-6">
@@ -422,6 +422,7 @@ import Button from "@/component/ui/Button";
 import TestimonialSection from "@/component/TestimonialSection";
 import RegisterPage from "../register/page";
 import Accreditation from "@/component/Accreditation";
+import Pill from "@/component/ui/Pill";
 
 export default function AboutPage() {
   return (
@@ -713,25 +714,28 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="lg:col-span-3 relative z-20 text-center lg:text-left"
             >
-              <div className="rounded-2xl p-6 sm:p-8 lg:p-10 backdrop-blur-md">
-                <div className="inline-block px-3 sm:px-5 py-1 sm:py-2 mb-3 sm:mb-4 lg:mb-5 text-xs sm:text-sm font-semibold text-[var(--color-accent-purple)] rounded-full">
+              <div className="rounded-2xl p-6 sm:p-8 lg:p-10 pl-0 sm:pl-0 lg:pl-0 backdrop-blur-md">
+                {/* <div className="inline-block  py-1 sm:py-2 mb-3 sm:mb-4 lg:mb-5 text-xs sm:text-sm font-semibold text-[var(--color-accent-purple)] rounded-full">
                   LEARNERS FEEDBACK
+                </div> */}
+                <div className="pt-3">
+                  <Pill text="LEARNERS FEEDBACK" />
                 </div>
-
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-[var(--color-text)] leading-tight mb-3 sm:mb-4 lg:mb-6">
                   What Our <br className="hidden sm:block" /> Learners Say
                 </h2>
 
                 <p className="text-[var(--color-muted)] mb-4 sm:mb-6 lg:mb-8 text-xs sm:text-sm lg:text-base max-w-md mx-auto lg:mx-0">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Repudiandae consectetur adipisicing elit. Repudiandae
+                  At Coding Cloud, we don’t just teach — we build careers. 
+Our learners gain hands-on experience, industry-relevant skills, 
+and the confidence to succeed in today’s competitive tech world.
                 </p>
-                
+
                 <div className="flex justify-center lg:justify-start">
                   <Button
                     href="/contact"
                     variant="gradient"
-                    className="w-auto px-4 sm:px-6 py-1.5 sm:py-2 lg:py-3 text-xs sm:text-sm lg:text-base"
+                    className="w-auto  py-1.5 sm:py-2 lg:py-3 text-xs sm:text-sm lg:text-base"
                   >
                     Contact Us
                   </Button>

@@ -44,16 +44,16 @@
 //       try {
 //         const apiUrl = API.CATEGORY.DETAIL_BY_SLUG(categorySlug) ;
 //         console.log("🌐 Fetching from URL:", apiUrl);
-        
+
 //         const res = await fetch(apiUrl);
 //         console.log("📡 Response status:", res.status);
-        
+
 //         const data = await res.json();
 //         console.log("📦 Response data:", data);
 
 //         if (data.success) {
 //           setCourses(data.data || []);
-          
+
 //           if (data.data && data.data.length > 0) {
 //             setCategoryName(data.data[0].category_details?.name || categorySlug);
 //           }
@@ -146,10 +146,10 @@
 //                     __html: course?.text || "No description available",
 //                   }}
 //                 />
-                
+
 //                 <div className="text-[var(--color-accent-purple)] font-semibold hover:underline mt-auto">
 //                   Learn More →
-             
+
 //                 </div>
 //               </div>
 //             </Link>
@@ -168,7 +168,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { API, BASE_URL , apiService} from "@/lib/api";
+import { API, BASE_URL, apiService } from "@/lib/api";
 import { motion } from "framer-motion";
 
 interface Course {
@@ -236,26 +236,26 @@ export default function CategoryCoursesPage() {
 
   //   setRatings(ratingData);
   // };
-const fetchRatings = async (courseList: Course[]) => {
-  const courseIds = courseList.map(course => course.id);
-  const ratingData = await apiService.getMultipleCourseRatings(courseIds);
-  setRatings(ratingData);
-};
+  const fetchRatings = async (courseList: Course[]) => {
+    const courseIds = courseList.map(course => course.id);
+    const ratingData = await apiService.getMultipleCourseRatings(courseIds);
+    setRatings(ratingData);
+  };
   useEffect(() => {
     const fetchCourses = async () => {
       try {
         const apiUrl = API.CATEGORY.DETAIL_BY_SLUG(categorySlug);
         console.log("🌐 Fetching from URL:", apiUrl);
-        
+
         const res = await fetch(apiUrl);
         console.log("📡 Response status:", res.status);
-        
+
         const data = await res.json();
         console.log("📦 Response data:", data);
 
         if (data.success) {
           setCourses(data.data || []);
-          
+
           if (data.data && data.data.length > 0) {
             setCategoryName(data.data[0].category_details?.name || categorySlug);
           }
@@ -288,7 +288,7 @@ const fetchRatings = async (courseList: Course[]) => {
         <div className="text-center mb-8 sm:mb-10">
           <div className="h-10 w-64 bg-gray-200 rounded mx-auto animate-pulse"></div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5 gap-4 justify-items-center">
           {[1, 2, 3, 4, 5, 6].map((n) => (
             <div key={n} className="w-[335px] p-2 rounded-3xl bg-white shadow-sm animate-pulse">
               <div className="h-[180px] sm:h-[200px] w-full bg-gray-200 rounded-t-2xl mb-2"></div>
@@ -317,7 +317,7 @@ const fetchRatings = async (courseList: Course[]) => {
             Category: {categorySlug}
           </h1>
           <p className="text-gray-600">No courses found in this category</p>
-          <Link 
+          <Link
             href="/"
             className="mt-6 inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
@@ -336,160 +336,160 @@ const fetchRatings = async (courseList: Course[]) => {
         transition={{ duration: 0.5 }}
         className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-center text-[var(--color-text-strong)]"
       >
-        {categoryName} Courses 
+        {categoryName} Courses
       </motion.h1>
 
       <motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 0.5, delay: 0.2 }}
-  className="flex flex-wrap justify-center gap-4 mx-auto"
->
-  {courses.map((course, index) => {
-    const img = getImage(course.image);
-    const rating = ratings[course.id]?.average_rating || 0;
-    const reviews = ratings[course.id]?.total_reviews || 0;
-
-    return (
-      <motion.div
-        key={course.id}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        whileHover={{ y: -5 }}
-        className="w-[335px] flex-shrink-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="flex flex-wrap justify-center gap-4 mx-auto"
       >
-        <Link
-          href={`/courses/${course.slug}`}
-          className="block p-2 rounded-3xl  transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-white shadow-sm shadow-xl h-full"
-        >
-          <div className="flex flex-col w-full h-full">
-            {/* Image Container */}
-            <div className="relative h-[180px] sm:h-[200px] w-full bg-[var(--color-bg-light)] rounded-t-2xl overflow-hidden mb-2">
-              {img ? (
-                <Image
-                  src={img}
-                  alt={course.name}
-                  fill
-                  className="object-contain group-hover:scale-105 transition-transform duration-300"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    target.parentElement!.innerHTML = `
+        {courses.map((course, index) => {
+          const img = getImage(course.image);
+          const rating = ratings[course.id]?.average_rating || 0;
+          const reviews = ratings[course.id]?.total_reviews || 0;
+
+          return (
+            <motion.div
+              key={course.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="w-[335px] flex-shrink-0"
+            >
+              <Link
+                href={`/courses/${course.slug}`}
+                className="block p-2 rounded-3xl  transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-white shadow-sm shadow-xl h-full"
+              >
+                <div className="flex flex-col w-full h-full">
+                  {/* Image Container */}
+                  <div className="relative h-[180px] sm:h-[200px] w-full bg-[var(--color-bg-light)] rounded-t-2xl overflow-hidden mb-2">
+                    {img ? (
+                      <Image
+                        src={img}
+                        alt={course.name}
+                        fill
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.parentElement!.innerHTML = `
                       <div class="flex items-center justify-center h-full text-gray-400 bg-gray-100">
                         <span class="text-sm">Image not available</span>
                       </div>
                     `;
-                  }}
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full text-gray-400 bg-gray-100">
-                  <span className="text-sm">No Image</span>
-                </div>
-              )}
-              
-              {/* Duration Badge */}
-              {course.duration && (
-                <span className="absolute top-3 left-3 bg-white/90 text-xs px-3 py-1 rounded-full font-semibold shadow-sm">
-                  {course.duration}
-                </span>
-              )}
-            </div>
+                        }}
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-gray-400 bg-gray-100">
+                        <span className="text-sm">No Image</span>
+                      </div>
+                    )}
 
-            {/* Content Section */}
-            <div className="p-4 pt-2">
-              {/* Rating */}
-              {/* <div className="text-orange-400 text-sm mb-2">
+                    {/* Duration Badge */}
+                    {course.duration && (
+                      <span className="absolute top-3 left-3 bg-white/90 text-xs px-3 py-1 rounded-full font-semibold shadow-sm">
+                        {course.duration}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-4 pt-2">
+                    {/* Rating */}
+                    {/* <div className="text-orange-400 text-sm mb-2">
                 ★ {rating.toFixed(1)}
                 <span className="text-[var(--color-muted)] ml-2">
                   ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
                 </span>
               </div> */}
-{/* <div className="text-orange-400 text-sm mb-2">
+                    {/* <div className="text-orange-400 text-sm mb-2">
   ★ {rating % 1 === 0 ? rating : rating.toFixed(1)}
   <span className="text-[var(--color-muted)] ml-2">
     ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
   </span>
 </div> */}
-<div className="flex items-center gap-2 text-sm mb-2 text-orange-400">
-  {/* ⭐ Dynamic Stars */}
-  <div className="flex items-center">
-    {[1, 2, 3, 4, 5].map((star) => {
-      const ratingValue = rating || 0;
+                    <div className="flex items-center gap-2 text-sm mb-2 text-orange-400">
+                      {/* ⭐ Dynamic Stars */}
+                      <div className="flex items-center">
+                        {[1, 2, 3, 4, 5].map((star) => {
+                          const ratingValue = rating || 0;
 
-      let fillPercent = 0;
+                          let fillPercent = 0;
 
-      if (ratingValue >= star) {
-        fillPercent = 100;
-      } else if (ratingValue > star - 1) {
-        fillPercent = (ratingValue - (star - 1)) * 100;
-      }
+                          if (ratingValue >= star) {
+                            fillPercent = 100;
+                          } else if (ratingValue > star - 1) {
+                            fillPercent = (ratingValue - (star - 1)) * 100;
+                          }
 
-      return (
-        <span key={star} className="relative text-lg">
-          <span className="text-gray-300">★</span>
-          <span
-            className="absolute top-0 left-0 overflow-hidden text-yellow-500"
-            style={{ width: `${fillPercent}%` }}
-          >
-            ★
-          </span>
-        </span>
-      );
-    })}
-  </div>
+                          return (
+                            <span key={star} className="relative text-lg">
+                              <span className="text-gray-300">★</span>
+                              <span
+                                className="absolute top-0 left-0 overflow-hidden text-yellow-500"
+                                style={{ width: `${fillPercent}%` }}
+                              >
+                                ★
+                              </span>
+                            </span>
+                          );
+                        })}
+                      </div>
 
-  {/* ⭐ Rating number */}
-  <span>
-    {rating
-      ? (rating % 1 === 0 ? rating : rating.toFixed(1))
-      : 0}
-  </span>
+                      {/* ⭐ Rating number */}
+                      <span>
+                        {rating
+                          ? (rating % 1 === 0 ? rating : rating.toFixed(1))
+                          : 0}
+                      </span>
 
-  {/* ⭐ Reviews */}
-  <span className="text-[var(--color-muted)] ml-2">
-    ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
-  </span>
-</div>
-              {/* Title */}
-              <h3 className="text-lg font-bold text-[var(--color-dark)] mb-2">
-                {course.name}
-              </h3>
+                      {/* ⭐ Reviews */}
+                      <span className="text-[var(--color-muted)] ml-2">
+                        ({reviews} {reviews === 1 ? 'Review' : 'Reviews'})
+                      </span>
+                    </div>
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-[var(--color-dark)] mb-2">
+                      {course.name}
+                    </h3>
 
-              {/* Stats */}
-              <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
-                <span>📘 {course.lecture || "0"} Lessons</span>
-                <span>👨‍🎓 {formatStudents(course.students)} Students</span>
-              </div>
+                    {/* Stats */}
+                    <div className="flex gap-4 text-sm text-[var(--color-muted)] mb-3">
+                      <span>📘 {course.lecture || "0"} Lessons</span>
+                      <span>👨‍🎓 {formatStudents(course.students)} Students</span>
+                    </div>
 
-              {/* Description */}
-              <div
-                className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
-                dangerouslySetInnerHTML={{
-                  __html: course?.text?.replace(/<[^>]*>/g, "") || "No description available",
-                }}
-              />
+                    {/* Description */}
+                    <div
+                      className="text-[var(--color-muted)] text-sm mb-4 line-clamp-2"
+                      dangerouslySetInnerHTML={{
+                        __html: course?.text?.replace(/<[^>]*>/g, "") || "No description available",
+                      }}
+                    />
 
-              {/* Category */}
-              {course.category_details?.name && (
-                <div className="text-xs text-[var(--color-muted-light)] mb-4">
-                  Category: {course.category_details.name}
+                    {/* Category */}
+                    {course.category_details?.name && (
+                      <div className="text-xs text-[var(--color-muted-light)] mb-4">
+                        Category: {course.category_details.name}
+                      </div>
+                    )}
+
+                    {/* Learn More Link */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-[var(--color-accent-purple)] font-semibold hover:underline">
+                        Learn More →
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              )}
-
-              {/* Learn More Link */}
-              <div className="flex items-center justify-between">
-                <span className="text-[var(--color-accent-purple)] font-semibold hover:underline">
-                  Learn More →
-                </span>
-              </div>
-            </div>
-          </div>
-        </Link>
+              </Link>
+            </motion.div>
+          );
+        })}
       </motion.div>
-    );
-  })}
-</motion.div>
     </div>
   );
 }

@@ -321,7 +321,8 @@ const Footer = () => {
 
             {/* DESCRIPTION */}
             <p className="text-[var(--color-text)] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 mr-4 2xl:mr-8">
-Start learning from our experts and enhance your skills            </p>
+              Master in-demand technologies with expert guidance and real-world experience.
+            </p>
 
             {/* BUTTON */}
             <Button
@@ -382,12 +383,12 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
 
             {/* COURSES */}
             <motion.div
-  className="hidden sm:block"
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.1, duration: 0.6 }}
-  viewport={{ once: true }}
->
+              className="hidden sm:block"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <h3 className="text-lg font-bold text-[var(--color-text)] mb-2 sm:mb-7">
                 Top Course
               </h3>
@@ -639,12 +640,12 @@ hover:[background:var(--color-logo-gradient)]  hover:text-white"
           </div>
           <p className="">
             Copyright © 2023 by Coding Cloud
-             {/* <span className="font-semibold">
+            {/* <span className="font-semibold">
               Coding Cloud</span>
              All Rights Reserved */}
           </p>
 
-          
+
         </motion.div>
 
       </div>
