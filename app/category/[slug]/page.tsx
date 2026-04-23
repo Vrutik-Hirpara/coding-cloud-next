@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 
 // 🔥 dynamic reusable SEO
 export async function generateMetadata({ params }: any) {
-  const slug = params.slug;
+   const { slug } = await params; 
 
   // optional API call (better)
   const res = await fetch(`${BASEURL}/category/${slug}`);
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: any) {
   });
 }
 
-export default function Page({ params }: any) {
-  return <CategoryCoursesClient slug={params.slug} />;
+export default async function Page({ params }: any) {
+    const { slug } = await params; 
+  return <CategoryCoursesClient slug={slug} />;
 }

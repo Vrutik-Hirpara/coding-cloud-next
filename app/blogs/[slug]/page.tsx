@@ -4,7 +4,8 @@ export const dynamic = "force-dynamic"
  const BASEURL = "https://codingcloudapi.codingcloud.co.in"
 // 🔥 reusable dynamic metadata
 export async function generateMetadata({ params }: any) {
-  const res = await fetch(`${BASEURL}/blogs/${params.slug}`);
+  const { slug } = await params; 
+  const res = await fetch(`${BASEURL}/blogs/${slug}`);
   const data = await res.json();
 
   const blog = data?.data || data;
@@ -12,11 +13,12 @@ export async function generateMetadata({ params }: any) {
   return createMetadata({
     title: blog?.title,
     description: blog?.short_description,
-    path: `/blogs/${params.slug}`,
+    path: `/blogs/${slug}`,
     image: blog?.featured_image,
   });
 }
 
-export default function Page({ params }: any) {
-  return <BlogDetailClient slug={params.slug} />;
+export default async function Page({ params }: any) {
+   const { slug } = await params; 
+  return <BlogDetailClient slug={slug} />;
 }

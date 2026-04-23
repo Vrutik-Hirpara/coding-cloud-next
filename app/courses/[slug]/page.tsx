@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 
 // 🔥 dynamic metadata
 export async function generateMetadata({ params }: any) {
-  const slug = params.slug;
+   const { slug } = await params; 
 
   // 🔥 fetch course
   const res = await fetch(`${BASEURL}/course/${slug}`);
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: any) {
   });
 }
 
-export default function Page({ params }: any) {
-  return <CourseDetailClient slug={params.slug} />;
+export default async function Page({ params }: any) {
+    const { slug } = await params; 
+  return <CourseDetailClient slug={slug} />;
 }

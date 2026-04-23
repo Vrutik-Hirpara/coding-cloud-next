@@ -3,7 +3,7 @@ import { createMetadata } from "@/lib/seo";
 const BASEURL = "https://codingcloudapi.codingcloud.co.in"
 
 export async function generateMetadata({ params }: any) {
-  const slug = params.slug;
+    const { slug } = await params; 
 
   const res = await fetch(`${BASEURL}/course/${slug}`);
   const data = await res.json();
@@ -18,8 +18,7 @@ export async function generateMetadata({ params }: any) {
 }
 
 export default async function Page({ params }: any) {
-  const slug = params.slug;
-
+    const { slug } = await params; 
   // 👉 get course to extract ID
   const res = await fetch(`${BASEURL}/course/${slug}`);
   const data = await res.json();
