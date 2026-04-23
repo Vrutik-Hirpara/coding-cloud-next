@@ -881,7 +881,11 @@ style={{
                 {/* Courses Dropdown */}
                 <div>
                   <button
-                    onClick={() => setIsMobileCoursesOpen(!isMobileCoursesOpen)}
+  onClick={() => {
+    setIsMobileCoursesOpen(!isMobileCoursesOpen);
+     setIsMobileKidsOpen(false);      // 👈 Close Kids dropdown
+    setIsMobileResourcesOpen(false); // 👈 Close Resources dropdown
+  }}
                     className={`w-full flex items-center justify-between py-2.5 px-4 rounded-lg transition-colors ${isActive("/courses") && type === "kids"
                         ? "bg-[var(--color-accent-purple)] text-white font-bold"
                         : "hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
@@ -943,7 +947,12 @@ onClick={() => handleCourseClick(course.slug, "featured")}
 {/* Kids Courses Dropdown */}
 <div>
   <button
-    onClick={() => setIsMobileKidsOpen(!isMobileKidsOpen)}
+     onClick={() => {
+    setIsMobileKidsOpen(!isMobileKidsOpen);
+        setIsMobileCoursesOpen(false);   // 👈 Close Courses dropdown
+    setIsMobileResourcesOpen(false); // 👈 Close Resources dropdown
+    
+  }}
     className={`w-full flex items-center justify-between py-2.5 px-4 rounded-lg transition-colors ${
       isActive("/courses") && type === "kids"
         ? "bg-[var(--color-accent-purple)] text-white font-bold"
@@ -1022,7 +1031,11 @@ onClick={() => handleCourseClick(course.slug, "featured")}
                 {/* Resources Dropdown */}
                 <div>
                   <button
-                    onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
+  onClick={() => {
+    setIsMobileResourcesOpen(!isMobileResourcesOpen);
+    setIsMobileCoursesOpen(false); // 👈 Close Courses dropdown
+    setIsMobileKidsOpen(false);    // 👈 Close Kids dropdown
+  }}
                     className="w-full flex items-center justify-between py-2.5 px-4 rounded-lg transition-colors hover:bg-[var(--color-bg-softest)] text-[var(--color-text-medium)]"
                   >
                     <span>Resources</span>
