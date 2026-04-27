@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CourseCard, { CourseCardSkeleton } from "@/component/ui/CourseCard";
 import { API, apiService, BASE_URL } from "@/lib/api";
+import { useSearchParams } from "next/navigation";
+
 
 interface Course {
   id: number;
@@ -22,10 +24,13 @@ interface Course {
 }
 
 export default function CoursesPage() {
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [ratings, setRatings] = useState<Record<number, any>>({});
+
 
   useEffect(() => {
     const getCourses = async () => {
@@ -33,12 +38,20 @@ export default function CoursesPage() {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(API.COURSES.LIST, {
+        let endpoint = API.COURSES.LIST;
+        if (type === "featured") {
+          endpoint = API.COURSES.FEATURED_COURSES;
+        } else if (type === "kids") {
+          endpoint = API.COURSES.KIDS_COURSES;
+        }
+
+        const res = await fetch(endpoint, {
           cache: "no-store",
           headers: {
             'Content-Type': 'application/json',
           }
         });
+
 
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -86,7 +99,8 @@ export default function CoursesPage() {
     };
 
     getCourses();
-  }, []);
+  }, [type]);
+
 
   // Fetch ratings for courses
   const fetchRatings = async (courseList: Course[]) => {
@@ -114,8 +128,9 @@ export default function CoursesPage() {
     return (
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-center text-[var(--color-text-strong)]">
-          All Courses
+          {type === "kids" ? "Kids Courses" : type === "featured" ? "Featured Courses" : "All Courses"}
         </h1>
+
         <div className="flex flex-wrap justify-center gap-4 mx-auto w-full">
           {[1, 2, 3, 4, 5, 6].map((n) => (
             <CourseCardSkeleton key={n} />
@@ -130,8 +145,9 @@ export default function CoursesPage() {
     return (
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-[var(--color-text-strong)]">
-          All Courses
+          {type === "kids" ? "Kids Courses" : type === "featured" ? "Featured Courses" : "All Courses"}
         </h1>
+
         <div className="text-center py-12">
           <p className="text-[var(--color-danger)] mb-4">{error}</p>
           <button
@@ -150,8 +166,9 @@ export default function CoursesPage() {
     return (
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-[var(--color-text-strong)]">
-          All Courses
+          {type === "kids" ? "Kids Courses" : type === "featured" ? "Featured Courses" : "All Courses"}
         </h1>
+
         <div className="text-center py-12">
           <p className="text-[var(--color-muted)] text-lg">No courses available at the moment.</p>
         </div>
@@ -168,8 +185,9 @@ export default function CoursesPage() {
         transition={{ duration: 0.5 }}
         className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-center text-[var(--color-text-strong)]"
       >
-        All Courses
+        {type === "kids" ? "Kids Courses" : type === "featured" ? "Featured Courses" : "All Courses"}
       </motion.h1>
+
 
       <motion.div
         initial={{ opacity: 0 }}

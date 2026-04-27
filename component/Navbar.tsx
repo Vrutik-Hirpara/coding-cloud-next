@@ -139,7 +139,8 @@ const [isKidsDropdownOpen, setIsKidsDropdownOpen] = useState(false);
   useEffect(() => {
     const getFeaturedCourses = async () => {
       try {
-        const res = await fetch(API.COURSES.FEATURED_COURSES, { cache: "no-store" });
+        const res = await fetch(API.COURSES.FEATURED_COURSES, { 
+          cache: "no-store" });
         const json = await res.json();
         setCourses(Array.isArray(json.data) ? json.data : []);
       } catch (err) {
@@ -184,7 +185,7 @@ const messages = (json.data || json)
     };
     fetchMarquee();
   }, []);
-
+console.log("marquee",marqueeMessages)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -277,6 +278,7 @@ const handleCourseClick = (slug: string, type: "featured" | "kids") => {
               {marqueeMessages.map((msg, i) => (
                 <span key={i} className="flex items-center gap-4">
                   {msg}
+                  
                   <span className="text-[var(--color-accent-purple)]">•</span>
                 </span>
               ))}
@@ -390,13 +392,14 @@ onClick={() => {
                         </span>
                       </p>
                       <Link
-                        href="/courses"
+                        href="/courses?type=featured"
   onClick={() => setIsCoursesDropdownOpen(false)}
                         className="text-xs font-semibold hover:underline transition-colors"
                         style={{ color: "var(--color-accent-purple)" }}
                       >
                         View All →
                       </Link>
+
                     </div>
 
                     {/* ── Scrollable grid ── */}
@@ -482,13 +485,13 @@ onClick={() => handleCourseClick(course.slug, "featured")}                      
                     {/* Header row */}
                     <div className="flex items-center justify-between px-6 lg:px-10 pt-4 pb-3 border-b border-gray-100">
                       <p className="text-sm font-bold text-[var(--color-text-strong)]">
-                        Kids Courses
+                        All Courses
                         <span className="ml-2 text-xs font-normal text-[var(--color-muted-light)]">
                           ({kidsCourses.length} available)
                         </span>
                       </p>
                       <Link
-                        href="/kids-courses"
+  href="/courses?type=kids"
                         onClick={() => setIsKidsDropdownOpen(false)}
                         className="text-xs font-semibold hover:underline transition-colors"
                         style={{ color: "var(--color-accent-purple)" }}
@@ -938,6 +941,16 @@ onClick={() => handleCourseClick(course.slug, "featured")}
                                 </button>
                               ))}
                             </div>
+                            <div className="px-4 pb-3 border-t border-gray-100 pt-2">
+                              <Link
+                                href="/courses?type=featured"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="text-xs font-bold hover:underline"
+                                style={{ color: "var(--color-accent-purple)" }}
+                              >
+                                View All →
+                              </Link>
+                            </div>
                           </div>
                         )}
                       </motion.div>
@@ -1010,6 +1023,17 @@ onClick={() => handleCourseClick(course.slug, "featured")}
                 </button>
               ))}
             </div>
+            <div className="px-4 pb-3 border-t border-gray-100 pt-2">
+              <Link
+                href="/courses?type=kids"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-xs font-bold hover:underline"
+                style={{ color: "var(--color-accent-purple)" }}
+              >
+                View All →
+              </Link>
+            </div>
+
           </div>
         )}
       </motion.div>
