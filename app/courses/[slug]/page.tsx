@@ -5,10 +5,13 @@ export const dynamic = "force-dynamic"
 
 // 🔥 dynamic metadata
 export async function generateMetadata({ params }: any) {
-   const { slug } = await params; 
+  //  const { slug } = await params; 
+  const { slug } = params;
 
   // 🔥 fetch course
-  const res = await fetch(`${BASEURL}/course/${slug}`);
+  const res = await fetch(`${BASEURL}/course/${slug}`, {
+    cache: "no-store", // 🔥 important
+  });
   const data = await res.json();
 
   const course = data?.data?.[0] || data;
