@@ -191,29 +191,29 @@ export default function HeroSection({ data = defaultData, courses = [] }: { data
   const router = useRouter();
   return (
     <>
-    <section
-  className="pt-12 z-[99] md:pt-16 lg:pt-20 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-28 3xl:pb-32 overflow-hidden relative"
-  style={{
-    backgroundImage: "url('/images/hero/background.webp')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  <div className="
+      <section
+        className="pt-12 z-[99] md:pt-16 lg:pt-20 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-28 3xl:pb-32 overflow-hidden relative"
+        style={{
+          backgroundImage: "url('/images/hero/background.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="
     w-full container-custom mx-auto grid grid-cols-1 xl:grid-cols-12 gap-6 items-center
   ">
-    {/* ================= LEFT CONTENT ================= */}
-    <motion.div
-      initial={{ opacity: 0, x: -60 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      className=" space-y-5  text-center xl:col-span-5 xl:text-left xl:space-y-6  3xl:col-span-5 3xl:text-left 3xl:space-y-6 z-10"
-    >
-      <span className="hero-badge mx-auto xl:mx-0 text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
-        Ignite Young Minds
-      </span>
-      <h1
-        className="
+          {/* ================= LEFT CONTENT ================= */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className=" space-y-5  text-center xl:col-span-5 xl:text-left xl:space-y-6  3xl:col-span-5 3xl:text-left 3xl:space-y-6 z-10"
+          >
+            <span className="hero-badge mx-auto xl:mx-0 text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
+              Ignite Young Minds
+            </span>
+            <h1
+              className="
 text-2xl sm:text-3xl md:text-4xl
 xl:text-5xl
 2xl:text-6xl
@@ -223,37 +223,37 @@ leading-snug md:leading-tight
 xl:leading-tight
 text-[var(--color-text)]
 "
-      >
-        Learn New Things Daily
-      </h1>
+            >
+              Learn New Things Daily
+            </h1>
 
-      <p className="
+            <p className="
         text-[var(--color-text-light)] 
         text-base md:text-lg 
         xl:text-xl 
         2xl:text-2xl 
         3xl:text-3xl
 max-w-md md:max-w-lg xl:max-w-xl 2xl:max-w-2xl 3xl:max-w-3xl mx-auto xl:mx-0            ">
-        Transform your career with us! IT Training and Placement Institute for exceptional learning experience. Join now!
-      </p>
+              Transform your career with us! IT Training and Placement Institute for exceptional learning experience. Join now!
+            </p>
 
-      <div className="flex justify-center xl:justify-start">
-        <Button
-          href="/courses"
-          variant="gradient"
-          size="md"
-        >
-          View Course →
-        </Button>
-      </div>
-    </motion.div>
+            <div className="flex justify-center xl:justify-start">
+              <Button
+                href="/courses"
+                variant="gradient"
+                size="md"
+              >
+                View Course →
+              </Button>
+            </div>
+          </motion.div>
 
-    {/* ================= RIGHT SIDE ================= */}
-    <motion.div
-      initial={{ opacity: 0, x: 60 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.7 }}
-      className="
+          {/* ================= RIGHT SIDE ================= */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="
         xl:col-span-7
         flex flex-col md:flex-row
         items-center md:items-end
@@ -264,11 +264,11 @@ max-w-md md:max-w-lg xl:max-w-xl 2xl:max-w-2xl 3xl:max-w-3xl mx-auto xl:mx-0    
         
         xl:-ml-12 2xl:-ml-6 3xl:-ml-10
       "
-    >
+          >
 
-      {/* ===== IMAGE BLOCK (RIGHT ALIGNED ALWAYS) ===== */}
-      <div
-        className="
+            {/* ===== IMAGE BLOCK (RIGHT ALIGNED ALWAYS) ===== */}
+            <div
+              className="
           relative
           w-full
           xl:ml-[-30px]
@@ -284,14 +284,14 @@ xl:max-w-[420px]
           justify-center xl:justify-end
           z-[0]
         "
-      >
-        {/* BLOB */}
-        <Image
-          src={blobImg}
-          alt="blob"
-          width={420}
-          height={420}
-          className="
+            >
+              {/* BLOB */}
+              <Image
+                src={blobImg}
+                alt="blob"
+                width={420}
+                height={420}
+                className="
             absolute
             bottom-4
             right-[40px] 
@@ -307,28 +307,28 @@ xl:right-[20px]
             2xl:w-[480px] 
             3xl:w-[540px]
           "
-        />
+              />
 
-        {/* GIRL IMAGE */}
-        <Image
-          src={data.image}
-          alt="student"
-          width={420}
-          height={600}
-          className="
+              {/* GIRL IMAGE */}
+              <Image
+                src={data.image}
+                alt="student"
+                width={420}
+                height={600}
+                className="
             relative z-10 object-contain 
             w-full h-auto
             xl:w-[420px] 
             2xl:w-[480px] 
             3xl:w-[540px]
           "
-          priority
-        />
-      </div>
+                priority
+              />
+            </div>
 
-      {/* ===== CARD SLIDER ===== */}
-      <div
-        className="
+            {/* ===== CARD SLIDER ===== */}
+            <div
+              className="
 relative md:static xl:absolute
 xl:right-[10px]
 2xl:right-[-5px]
@@ -347,19 +347,19 @@ px-5 md:px-0
 
 origin-bottom-right
 "
-      >
-        <CardSlider courses={courses} />
-      </div>
+            >
+              <CardSlider courses={courses} />
+            </div>
 
-    </motion.div>
+          </motion.div>
 
-  </div>
-  <Image
-    src="/images/hero/bg-2.svg"
-    alt="wave"
-    width={1920}
-    height={145}
-    className="
+        </div>
+        <Image
+          src="/images/hero/bg-2.svg"
+          alt="wave"
+          width={1920}
+          height={145}
+          className="
       absolute bottom-[-2px] left-0 
       w-full 
       h-[80px] sm:h-[100px] md:h-[120px] lg:h-[145px]
@@ -368,8 +368,8 @@ origin-bottom-right
       3xl:h-[200px] 
       object-cover pointer-events-none
     "
-  />
-</section>
+        />
+      </section>
 
     </>
   );

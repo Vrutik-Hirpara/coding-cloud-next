@@ -30,22 +30,22 @@ import FeaturedCoursesSection from "@/component/FeaturedCoursesSection";
 import RegisterPage from "./RegisterClient";
 import Accreditation from "@/component/Accreditation";
 // import { API } from "@/app/api/endpoints/route";
-import { BASE_URL,API, apiService } from "@/lib/api";
+import { BASE_URL, API, apiService } from "@/lib/api";
 // ============================
 // MAIN HOME PAGE
 // ============================
 export default function HomePage() {
   const [courses, setCourses] = useState([]);
 
- useEffect(() => {
-  const fetchCourses = async () => {
-    const data = await apiService.getCoursesWithRatings();
-    setCourses(data);
-  };
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const data = await apiService.getCoursesWithRatings();
+      setCourses(data);
+    };
 
-  fetchCourses();
-}, []);
- 
+    fetchCourses();
+  }, []);
+
   const stats = [
     {
       icon: <FaUserGraduate className="text-[var(--color-accent-pink)] text-3xl" />,

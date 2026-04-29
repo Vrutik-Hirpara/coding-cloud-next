@@ -268,11 +268,15 @@ import { createPortal } from "react-dom";
 import Button from "./ui/Button";
 import { showApiErrors } from "@/utility/apiError";
 import Swal from "sweetalert2";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { isValidPhoneNumber } from "libphonenumber-js";
+
 interface EnrollModalProps {
   isOpen: boolean;
   onClose: () => void;
   courses: any[];
-    onSuccess?: (response: any) => void;  // Add this
+  onSuccess?: (response: any) => void;  // Add this
 
 }
 
@@ -284,6 +288,8 @@ type MessageType = {
 export default function EnrollModal({ isOpen, onClose, courses, onSuccess }: EnrollModalProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<MessageType>({ text: "", type: "" });
+  const [phone, setPhone] = useState("");
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -313,8 +319,28 @@ export default function EnrollModal({ isOpen, onClose, courses, onSuccess }: Enr
 
   if (!isOpen) return null;
 
+  const formatPhoneNumber = (mobile: string) => {
+    if (!mobile) return "";
+
+    // remove all except digits
+    const digits = mobile.replace(/\D/g, "");
+
+    // last 10 digits (India number)
+    const number = digits.slice(-10);
+
+    // country code (rest)
+    const countryCode = digits.slice(0, digits.length - 10);
+
+    if (!number) return "";
+
+    return `+${countryCode} ${number.slice(0, 5)} ${number.slice(5)}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+
+
     const formData = new FormData(e.currentTarget);
 
     const first_name = (formData.get("first_name") as string).trim();
@@ -343,22 +369,37 @@ export default function EnrollModal({ isOpen, onClose, courses, onSuccess }: Enr
       return;
     }
 
-    if (!/^[0-9]{10}$/.test(mobile)) {
+    // if (!/^[0-9]{10}$/.test(mobile)) {
+    //   setMessage({
+    //     text: "📱 Enter valid 10 digit mobile number",
+    //     type: "warning"
+    //   });
+    //   return;
+    // }
+
+    setMessage({ text: "", type: "" }); // Clear previous messages
+    // clean + add + in one go
+    const cleanNumber = phone.replace(/[^\d+]/g, "");
+    const finalNumber = cleanNumber.startsWith("+")
+      ? cleanNumber
+      : "+" + cleanNumber;
+
+    // validation
+    if (!isValidPhoneNumber(finalNumber)) {
       setMessage({
-        text: "📱 Enter valid 10 digit mobile number",
+        text: "📱 Invalid phone number",
         type: "warning"
       });
       return;
     }
-
-    setLoading(true);
-    setMessage({ text: "", type: "" }); // Clear previous messages
-
+    
     const payload = {
       first_name,
       last_name,
       email,
-      mobile,
+      // mobile,
+      mobile: finalNumber, // ✅ use this
+
       city,
       course_id,
       course_name,
@@ -464,9 +505,9 @@ export default function EnrollModal({ isOpen, onClose, courses, onSuccess }: Enr
         title: "Enrollment Successful",
         text: data.message || "We will contact you soon!",
       });
-  if (onSuccess) {
-    onSuccess(data);  // Pass the entire response which contains pdf_download_url
-  }
+      if (onSuccess) {
+        onSuccess(data);  // Pass the entire response which contains pdf_download_url
+      }
       setMessage({
         text: `🎉 ${data.message}`,
         type: "success"
@@ -673,12 +714,47 @@ export default function EnrollModal({ isOpen, onClose, courses, onSuccess }: Enr
             className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
           />
 
-          <input
+          {/* <input
             name="mobile"
             placeholder="Mobile Number"
             required
             className="w-full border border-gray-200 p-3 rounded-lg focus:ring-2 focus:ring-purple-400 outline-none transition-all text-sm"
-          />
+          /> */}
+
+          {/* <div className="relative z-[9999]">
+  <PhoneInput
+    country={"in"}
+    value={phone}
+    onChange={(value) => setPhone(value)}
+    inputProps={{
+      name: "mobile",
+      required: true,
+    }}
+    containerClass="w-full"
+    inputClass="!w-full !p-3 !rounded-lg !border !border-gray-200"
+    dropdownClass="!z-[9999]"
+  />
+</div> */}
+
+          <div className="relative z-[9999] w-full">
+            <PhoneInput
+              country={"in"}
+              value={phone}
+              onChange={(value: string, data: any) => {
+                if (value.length < data.dialCode.length) return;
+                setPhone(value);
+              }}
+              inputProps={{
+                name: "mobile",
+                required: true,
+              }}
+              countryCodeEditable={false}   // 🔥 IMPORTANT (fix for backspace)
+              containerClass="!w-full"
+              inputClass="!w-full !pl-14 !py-3 !rounded-lg !border !border-gray-200 !text-sm"
+              buttonClass="!border-none !bg-transparent"
+              dropdownClass="!z-[9999]"
+            />
+          </div>
 
           <input
             name="city"

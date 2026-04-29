@@ -769,6 +769,8 @@ const EventCard: React.FC<Props> = ({ event, variant = "default" }) => {
               Learn More →
             </Link>
 
+      
+
           </div>
         </div>
       )}

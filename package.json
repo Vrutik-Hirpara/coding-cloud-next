@@ -14,6 +14,7 @@
     "@tsaddict/react-social-share": "^0.1.6",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.2",
+    "libphonenumber-js": "^1.12.42",
     "lucide-react": "^0.574.0",
     "next": "16.1.6",
     "next-seo": "^7.2.0",
@@ -23,6 +24,7 @@
     "react-dom": "19.2.3",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.6.0",
+    "react-phone-input-2": "^2.15.1",
     "sweetalert2": "^11.26.24",
     "tailwind-scrollbar-hide": "^4.0.0"
   },
