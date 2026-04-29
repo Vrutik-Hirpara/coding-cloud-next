@@ -1,5 +1,6 @@
 import CoursesClient from "@/component/CoursesClient ";
 import { createMetadata } from "@/lib/seo";
+import { Suspense } from "react";
 
 export const metadata = createMetadata({
   title: "All Courses",
@@ -8,6 +9,13 @@ export const metadata = createMetadata({
   path: "/courses",
 });
 
+// export default function Page() {
+//   return <CoursesClient />;
+// }
 export default function Page() {
-  return <CoursesClient />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CoursesClient />
+    </Suspense>
+  );
 }
